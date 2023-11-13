@@ -2195,7 +2195,7 @@ GameObject:
   - component: {fileID: 6086255857624811693}
   - component: {fileID: 8195692351803792237}
   m_Layer: 0
-  m_Name: New Palette
+  m_Name: Terra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
