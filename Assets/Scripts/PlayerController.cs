@@ -53,12 +53,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             this.transform.Translate(Vector2.left * Time.deltaTime * characterSpeed);
+            this.transform.localScale = new Vector2(-5,5);
         }
 
         //Moves character right if "D" key is pressed
         if (Input.GetKey(KeyCode.D)) 
         {
             this.transform.Translate(Vector2.right * Time.deltaTime * characterSpeed);
+            this.transform.localScale = new Vector2(5, 5);
         }
 
         //Makes character jump if Spacebar is pressed

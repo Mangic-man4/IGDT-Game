@@ -7547,6 +7547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportDistance: 7.5
   teleportUp: 0
+  cooldown: 0.5
 --- !u!114 &1633843957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7597,8 +7598,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1047197828}
-  - {fileID: 737804497}
   - {fileID: 1431559082}
+  - {fileID: 737804497}
   - {fileID: 1389684890}
   - {fileID: 1384781333}
   - {fileID: 1998667462}
