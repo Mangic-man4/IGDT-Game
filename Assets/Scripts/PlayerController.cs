@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float characterJump = 200f;
     public float gravityScale = 1f;
     public Camera mainCamera;
+    AudioSource jumpsound;
     private float isJumping = 0f;
     Vector2 cameraPos;
     public Transform groundCheck;
@@ -23,10 +24,12 @@ public class PlayerController : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
         //Lukitsee kameran pelaajan hahmoon
+        //Hyppy ‰‰ni hahmolle
         if (mainCamera)
         {
             cameraPos = mainCamera.transform.position;
-        }
+            jumpsound = GetComponent<AudioSource>();
+        } 
         
     }
 
@@ -67,6 +70,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && isTouchingGround)
         {
                 player.velocity = new Vector2(player.velocity.x, characterJump);
+                jumpsound.Play();
         }
     }
 }
