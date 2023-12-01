@@ -19,17 +19,13 @@ public class itemCollector : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Debug.Log("Button pressed!");
-            // Check if the door object exists
-            if (Door != null)
-            {
-                // Destroy the door object
-                Destroy(Door);
-                Debug.Log("Door disappeared!");
-            }
-            else
-            {
-                Debug.LogWarning("Door reference not set in the inspector!");
 
+            // Find and destroy all objects with the "Door" tag
+            GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+            foreach (GameObject door in doors)
+            {
+                Destroy(door);
             }
         }
+    }
 }
