@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Moves character left if "A" key is pressed
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector2.left * Time.deltaTime * characterSpeed);
             transform.localScale = new Vector2(-5, 5);
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Moves character right if "D" key is pressed
-        if (Input.GetKey(KeyCode.D)) 
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) 
         {
             transform.Translate(Vector2.right * Time.deltaTime * characterSpeed);
             transform.localScale = new Vector2(5, 5);

@@ -16,12 +16,12 @@ public class TeleportControl : MonoBehaviour
         {                                                                       // and the cooldown has passed
             if (!teleportUp) //checks, if teleportUp is false
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y+teleportDistance);
+                transform.position = new Vector2(transform.position.x, transform.position.y + teleportDistance);
                 teleportUp = true;
             }
             else //if teleportUp is true, then teleports down
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y-teleportDistance);
+                transform.position = new Vector2(transform.position.x, transform.position.y - teleportDistance);
                 teleportUp = false;
             }
             lastTeleport = Time.time;

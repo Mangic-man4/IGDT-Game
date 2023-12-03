@@ -8,6 +8,7 @@ TagManager:
   - Coins
   - Button
   - Door
+  - ObbyCourse
   layers:
   - Default
   - TransparentFX
