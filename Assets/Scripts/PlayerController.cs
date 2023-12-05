@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
     private bool isTouchingGround;
-    private Animator animator;
+    Animator animator;
 
     void Start()
     {
-        animator = transform.GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
         //Lukitsee kameran pelaajan hahmoon
         //Hyppy ‰‰ni hahmolle
@@ -38,7 +38,9 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        animator.SetBool("isWalking", false);
+        animator.SetBool("isJumping", !isTouchingGround);
+        animator.SetFloat("xVelocity", Mathf.Abs(player.velocity.x));
+        animator.SetFloat("yVelocity", player.velocity.y);
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         isJumping = Input.GetAxis("Horizontal");
 
@@ -58,19 +60,16 @@ public class PlayerController : MonoBehaviour
         //Moves character left if "A" key is pressed
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector2.left * Time.deltaTime * characterSpeed);
-            transform.localScale = new Vector2(-5, 5);
-            animator.SetFloat("XInput", -1);
-            animator.SetBool("isWalking", true);
+            this.transform.Translate(Vector2.left * Time.deltaTime * characterSpeed);
+            this.transform.localScale = new Vector2(-5, 5);
+            
         }
 
         //Moves character right if "D" key is pressed
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) 
         {
-            transform.Translate(Vector2.right * Time.deltaTime * characterSpeed);
-            transform.localScale = new Vector2(5, 5);
-            animator.SetFloat("XInput", 1);
-            animator.SetBool("isWalking", true);
+            this.transform.Translate(Vector2.right * Time.deltaTime * characterSpeed);
+            this.transform.localScale = new Vector2(5, 5);
 
         }
 
