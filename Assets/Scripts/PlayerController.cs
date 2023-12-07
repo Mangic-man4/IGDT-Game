@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public float gravityScale = 1f;
     public Camera mainCamera;
     AudioSource jumpsound;
-    private float isJumping = 0f;
     Vector2 cameraPos;
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -42,8 +41,9 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("xVelocity", Mathf.Abs(player.velocity.x));
         animator.SetFloat("yVelocity", player.velocity.y);
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        isJumping = Input.GetAxis("Horizontal");
+        float xAxisMovement = Input.GetAxisRaw("Horizontal");
 
+        /*  //Vanha koodi
         if (isJumping > 0f) 
         {
             player.velocity = new Vector2(isJumping * characterSpeed, player.velocity.y);
@@ -71,6 +71,18 @@ public class PlayerController : MonoBehaviour
             this.transform.Translate(Vector2.right * Time.deltaTime * characterSpeed);
             this.transform.localScale = new Vector2(5, 5);
 
+        }*/
+
+        //Uus koodi
+        player.velocity = new Vector2(xAxisMovement * characterSpeed, player.velocity.y);
+
+        if (xAxisMovement > 0f)
+        {
+            this.transform.localScale = new Vector2(5, 5);
+        }
+        else if (xAxisMovement  < 0f)
+        {
+            this.transform.localScale = new Vector2(-5, 5);
         }
 
         //Makes character jump if Spacebar is pressed
