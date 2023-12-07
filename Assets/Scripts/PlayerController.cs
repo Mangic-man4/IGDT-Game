@@ -79,5 +79,11 @@ public class PlayerController : MonoBehaviour
                 player.velocity = new Vector2(player.velocity.x, characterJump);
                 jumpsound.Play();
         }
+
+        //Quit Game
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 }
