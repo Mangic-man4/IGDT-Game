@@ -18,8 +18,11 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
     private bool isTouchingGround;
-    Animator animator;
+    private float xAxisMovement = 0f;
 
+    Animator animator;
+    private enum MovementState { idle, walk, jump, fall}
+    
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -37,12 +40,9 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        animator.SetBool("isJumping", !isTouchingGround);
-        animator.SetFloat("xVelocity", Mathf.Abs(player.velocity.x));
-        animator.SetFloat("yVelocity", player.velocity.y);
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        float xAxisMovement = Input.GetAxisRaw("Horizontal");
 
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        xAxisMovement = Input.GetAxisRaw("Horizontal");
         /*  //Vanha koodi
         if (isJumping > 0f) 
         {
@@ -92,10 +92,40 @@ public class PlayerController : MonoBehaviour
                 jumpsound.Play();
         }
 
+        AnimationUpdate();
+
         //Quit Game
         if (Input.GetKey("escape"))
         {
             Application.Quit();
         }
+    }
+    private void AnimationUpdate()
+    {
+        MovementState state;
+
+        if (xAxisMovement > 0f)
+        {
+            state = MovementState.walk;
+        }
+        else if (xAxisMovement < 0f)
+        {
+            state = MovementState.walk;
+        }
+        else
+        {
+            state = MovementState.idle;
+        }
+
+        if (player.velocity.y > .1f)
+        {
+            state = MovementState.jump;
+        }
+        else if (player.velocity.y < -.1f)
+        {
+            state = MovementState.fall;
+        }
+
+        animator.SetInteger("movement", (int)state);
     }
 }
