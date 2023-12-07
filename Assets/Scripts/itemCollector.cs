@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class itemCollector : MonoBehaviour
 {
     private int coins = 0;
+
+    [SerializeField] private Text coinCount;
 
     // Dictionary to store the relationship between buttons and doors
     private Dictionary<GameObject, GameObject> buttonToDoorMap = new Dictionary<GameObject, GameObject>();
@@ -15,7 +17,7 @@ public class itemCollector : MonoBehaviour
         {
             Destroy(collision.gameObject);
             coins++;
-            Debug.Log("Coins: " + coins);
+            coinCount.text = "Coins: " + coins;
         }
 
         if (collision.gameObject.CompareTag("Button"))
