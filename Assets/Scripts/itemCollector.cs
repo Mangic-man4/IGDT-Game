@@ -7,8 +7,8 @@ public class itemCollector : MonoBehaviour
     private int coins = 0;
 
     [SerializeField] private Text coinCount;
-
     [SerializeField] private AudioSource keyCollectSound;
+    [SerializeField] private AudioSource coinCollectSound;
 
     // Dictionary to store the relationship between buttons and doors
     private Dictionary<GameObject, GameObject> buttonToDoorMap = new Dictionary<GameObject, GameObject>();
@@ -17,6 +17,7 @@ public class itemCollector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Coins"))
         {
+            coinCollectSound.Play();
             Destroy(collision.gameObject);
             coins++;
             coinCount.text = "Coins: " + coins;
