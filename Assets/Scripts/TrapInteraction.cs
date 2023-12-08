@@ -11,7 +11,7 @@ public class TrapInteraction : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(Respawn);
+            SceneManager.LoadScene("BigGame");
             Debug.Log("Player has died!");
 
         }
