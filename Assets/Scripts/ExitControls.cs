@@ -7,6 +7,6 @@ public class ExitControls : MonoBehaviour
 {
     public void ExitScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("Start Screen");
     }
 }

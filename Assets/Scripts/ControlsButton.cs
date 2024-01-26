@@ -7,6 +7,6 @@ public class ControlsButton : MonoBehaviour
 {
     public void EnterControls()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Controls");
     }
 }
