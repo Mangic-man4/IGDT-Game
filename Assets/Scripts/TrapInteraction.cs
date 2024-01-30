@@ -11,11 +11,18 @@ public class TrapInteraction : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("BigGame");
+            ReloadCurrentScene();
             Debug.Log("Player has died!");
 
         }
     }
+    void ReloadCurrentScene()
+    {
+        // Get the current scene's build index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
+        // Load the scene with the current build index
+        SceneManager.LoadScene(currentSceneIndex);
+    }
 }
 

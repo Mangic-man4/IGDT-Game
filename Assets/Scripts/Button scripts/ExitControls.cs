@@ -7,6 +7,9 @@ public class ExitControls : MonoBehaviour
 {
     public void ExitScene()
     {
+        // Set pause state to false before transitioning to the Start Screen
+        PauseManager.Instance.SetPauseState(false);
+
         SceneManager.LoadScene("Start Screen");
     }
 }
