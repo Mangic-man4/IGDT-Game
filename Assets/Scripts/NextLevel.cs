@@ -9,6 +9,9 @@ public class NextLevel : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
+            // Set pause state to false before transitioning to the Start Screen
+            PauseManager.Instance.SetPauseState(false);
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
