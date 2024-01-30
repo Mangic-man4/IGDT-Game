@@ -19,89 +19,27 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     private bool isTouchingGround;
     private float xAxisMovement = 0f;
+    private bool isPaused = false;
 
     Animator animator;
-    private enum MovementState { idle, walk, jump, fall}
-    
+    private enum MovementState { idle, walk, jump, fall }
+
     void Start()
     {
         animator = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
-        //Lukitsee kameran pelaajan hahmoon
-        //Hyppy ‰‰ni hahmolle
         if (mainCamera)
         {
             cameraPos = mainCamera.transform.position;
             jumpsound = GetComponent<AudioSource>();
-        } 
-        
+        }
     }
 
-    
     void Update()
     {
-
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        xAxisMovement = Input.GetAxisRaw("Horizontal");
-        /*  //Vanha koodi
-        if (isJumping > 0f) 
+        if (!isPaused)
         {
-<<<<<<< Updated upstream
-            player.velocity = new Vector2(isJumping * characterSpeed, player.velocity.y);
-        }
-        else if (isJumping < 0f) 
-        {
-            player.velocity = new Vector2(isJumping * characterSpeed, player.velocity.y);
-        }
-        else 
-        {
-            player.velocity = new Vector2(0, player.velocity.y);
-        }
-
-        //Moves character left if "A" key is pressed
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            this.transform.Translate(Vector2.left * Time.deltaTime * characterSpeed);
-            this.transform.localScale = new Vector2(-5, 5);
-            
-        }
-
-        //Moves character right if "D" key is pressed
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) 
-        {
-            this.transform.Translate(Vector2.right * Time.deltaTime * characterSpeed);
-            this.transform.localScale = new Vector2(5, 5);
-
-        }*/
-
-        //Uus koodi
-        player.velocity = new Vector2(xAxisMovement * characterSpeed, player.velocity.y);
-
-        if (xAxisMovement > 0f)
-        {
-            this.transform.localScale = new Vector2(5, 5);
-        }
-        else if (xAxisMovement  < 0f)
-        {
-            this.transform.localScale = new Vector2(-5, 5);
-        }
-
-        //Makes character jump if Spacebar is pressed
-        if (Input.GetKey(KeyCode.Space) && isTouchingGround)
-        {
-                player.velocity = new Vector2(player.velocity.x, characterJump);
-                jumpsound.Play();
-        }
-
-        AnimationUpdate();
-
-        //Quit Game
-        if (Input.GetKey("escape"))
-        {
-            Application.Quit();
-=======
             HandleInput();
->>>>>>> Stashed changes
         }
     }
 
@@ -114,6 +52,14 @@ public class PlayerController : MonoBehaviour
         HandleJumpInput();
 
         AnimationUpdate();
+
+        // Add other non-pause related logic here...
+
+        // Quit Game
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
     void HandleMovementInput()
@@ -167,13 +113,9 @@ public class PlayerController : MonoBehaviour
 
         animator.SetInteger("movement", (int)state);
     }
-<<<<<<< Updated upstream
-}
-=======
 
     public void SetPauseState(bool pauseState)
     {
         isPaused = pauseState;
     }
 }
->>>>>>> Stashed changes

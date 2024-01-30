@@ -105,4 +105,4 @@ public class Pause : MonoBehaviour
 }
 
 
-// pause to do: Fix unpause when press space
+// pause to do: Fix unpause when press space, teleport bug is back...
