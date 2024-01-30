@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
         /*  //Vanha koodi
         if (isJumping > 0f) 
         {
-<<<<<<< Updated upstream
             player.velocity = new Vector2(isJumping * characterSpeed, player.velocity.y);
         }
         else if (isJumping < 0f) 
@@ -99,47 +98,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("escape"))
         {
             Application.Quit();
-=======
-            HandleInput();
->>>>>>> Stashed changes
         }
     }
-
-    void HandleInput()
-    {
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        xAxisMovement = Input.GetAxisRaw("Horizontal");
-
-        HandleMovementInput();
-        HandleJumpInput();
-
-        AnimationUpdate();
-    }
-
-    void HandleMovementInput()
-    {
-        player.velocity = new Vector2(xAxisMovement * characterSpeed, player.velocity.y);
-
-        if (xAxisMovement > 0f)
-        {
-            this.transform.localScale = new Vector2(5, 5);
-        }
-        else if (xAxisMovement < 0f)
-        {
-            this.transform.localScale = new Vector2(-5, 5);
-        }
-    }
-
-    void HandleJumpInput()
-    {
-        if (Input.GetKey(KeyCode.Space) && isTouchingGround)
-        {
-            player.velocity = new Vector2(player.velocity.x, characterJump);
-            jumpsound.Play();
-        }
-    }
-
-    void AnimationUpdate()
+    private void AnimationUpdate()
     {
         MovementState state;
 
@@ -167,13 +128,4 @@ public class PlayerController : MonoBehaviour
 
         animator.SetInteger("movement", (int)state);
     }
-<<<<<<< Updated upstream
 }
-=======
-
-    public void SetPauseState(bool pauseState)
-    {
-        isPaused = pauseState;
-    }
-}
->>>>>>> Stashed changes
