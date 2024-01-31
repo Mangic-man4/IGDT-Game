@@ -9,9 +9,6 @@ public class Pause : MonoBehaviour
     public Text pausedText;
     public AudioSource backgroundMusic;
 
-    private bool isPaused = false;
-
-
     public PlayerController playerController;
     public TeleportControl teleportControl;
 

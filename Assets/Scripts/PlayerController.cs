@@ -55,11 +55,13 @@ public class PlayerController : MonoBehaviour
 
         // Add other non-pause related logic here...
 
+        /*
         // Quit Game
         if (Input.GetKey("escape"))
         {
             Application.Quit();
         }
+        */
     }
 
     void HandleMovementInput()
@@ -78,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleJumpInput()
     {
-        if (Input.GetKey(KeyCode.Space) && isTouchingGround)
+        if (!isPaused && Input.GetKey(KeyCode.Space) && isTouchingGround)
         {
             player.velocity = new Vector2(player.velocity.x, characterJump);
             jumpsound.Play();

@@ -25,7 +25,7 @@ public class TeleportControl : MonoBehaviour
     }
         void HandleTeleportInput()
         {
-            if (Input.GetKeyDown(KeyCode.F) && Time.time > lastTeleport + cooldown)
+            if (!isPaused && Input.GetKeyDown(KeyCode.F) && Time.time > lastTeleport + cooldown)
             {
                 PerformTeleport();
             }

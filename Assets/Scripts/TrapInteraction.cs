@@ -12,7 +12,7 @@ public class TrapInteraction : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             ReloadCurrentScene();
-            Debug.Log("Player has died!");
+            Debug.Log("Player has died! Reloading scene...");
 
         }
     }
@@ -23,6 +23,10 @@ public class TrapInteraction : MonoBehaviour
 
         // Load the scene with the current build index
         SceneManager.LoadScene(currentSceneIndex);
+
+        // Set Time.timeScale to 1f after scene reloads
+        Time.timeScale = 1f;
+
     }
 }
 
