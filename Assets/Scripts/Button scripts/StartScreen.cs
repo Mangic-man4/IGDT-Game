@@ -10,6 +10,6 @@ public class StartScreen : MonoBehaviour
         // Set pause state to false before transitioning to the Start Screen
         PauseManager.Instance.SetPauseState(false);
 
-        SceneManager.LoadScene("BigGame");
+        SceneManager.LoadScene("Level Select");
     }
 }
