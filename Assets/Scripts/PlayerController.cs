@@ -21,6 +21,19 @@ public class PlayerController : MonoBehaviour
     private float xAxisMovement = 0f;
     private bool isPaused = false;
 
+    private float coyoteTime = 0.05f; // Time the jump "counts" after not touching a platform
+    private float coyoteTimer = 0f;
+
+    public float CoyoteTime
+    {
+        get { return coyoteTime; }
+        set
+        {
+            coyoteTime = value;
+            coyoteTimer = Mathf.Min(coyoteTimer, coyoteTime);
+        }
+    }
+
     Animator animator;
     private enum MovementState { idle, walk, jump, fall }
 
@@ -50,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
         HandleMovementInput();
         HandleJumpInput();
-
+        UpdateCoyoteTimer();
         AnimationUpdate();
 
         // Add other non-pause related logic here...
@@ -62,6 +75,19 @@ public class PlayerController : MonoBehaviour
             Application.Quit();
         }
         */
+    }
+
+    void UpdateCoyoteTimer()
+    {
+        if (isTouchingGround)
+        {
+            coyoteTimer = coyoteTime;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+            coyoteTimer = Mathf.Clamp(coyoteTimer, 0f, coyoteTime);
+        }
     }
 
     void HandleMovementInput()
@@ -80,10 +106,11 @@ public class PlayerController : MonoBehaviour
 
     void HandleJumpInput()
     {
-        if (!isPaused && Input.GetKey(KeyCode.Space) && isTouchingGround)
+        if (!isPaused && Input.GetKeyDown(KeyCode.Space) && (isTouchingGround || coyoteTimer > 0))
         {
             player.velocity = new Vector2(player.velocity.x, characterJump);
             jumpsound.Play();
+            coyoteTimer = 0;
         }
     }
 
