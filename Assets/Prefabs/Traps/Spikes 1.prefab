@@ -93,11 +93,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4273475440976444722}
-  - component: {fileID: 2939309069376643086}
+  - component: {fileID: 5304490874928480288}
   - component: {fileID: 5565045768790810396}
   m_Layer: 0
   m_Name: Spikes 1
-  m_TagString: Untagged
+  m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +118,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2939309069376643086
+--- !u!114 &5304490874928480288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d3eb73bcf53504d8310fc41c21d9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Respawn: 0
 --- !u!61 &5565045768790810396
 BoxCollider2D:
   m_ObjectHideFlags: 0

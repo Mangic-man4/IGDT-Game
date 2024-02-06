@@ -9,6 +9,10 @@ TagManager:
   - Button
   - Door
   - ObbyCourse
+  - Checkpoint
+  - Spike
+  - Ground
+  - LowGravityZone
   layers:
   - Default
   - TransparentFX

@@ -45,18 +45,12 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 32efb70b253612b4a81eff9747db5267, type: 3}
-    - {fileID: 102900000, guid: ed10d86ee34e04e41b4785477d1fe2e0, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 6fbc60b052015dd40bd485d429a1b8fc, type: 3}
   - {fileID: 21300000, guid: 427f1781fbad6e147bc2b317671412f1, type: 3}
-  - {fileID: -492376050, guid: 8f987564849221841b134e73311bd5c5, type: 3}
-  - {fileID: -1286426487, guid: 8f987564849221841b134e73311bd5c5, type: 3}
-  - {fileID: 1935651976, guid: 8f987564849221841b134e73311bd5c5, type: 3}
-  - {fileID: 1468463609, guid: 8f987564849221841b134e73311bd5c5, type: 3}
   - {fileID: -1374739231, guid: c2397fb49d60a71449fc28ff18110ab3, type: 3}
   - {fileID: 850049481, guid: c2397fb49d60a71449fc28ff18110ab3, type: 3}
   - {fileID: -783832130, guid: c2397fb49d60a71449fc28ff18110ab3, type: 3}
@@ -107,28 +101,9 @@ SpriteAtlas:
   - {fileID: -2021203977, guid: fb39eec6334516940a6c743aee0a2ddf, type: 3}
   - {fileID: -1769732177, guid: fb39eec6334516940a6c743aee0a2ddf, type: 3}
   - {fileID: 21300000, guid: 02b9c7970534f9a4da839e4256deb3c7, type: 3}
-  - {fileID: 86587917, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: -1484956737, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: 1249846088, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: -212817082, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: -444403854, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: 1350567351, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: -1837718401, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: -562230506, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: 357548776, guid: 275b965997d366f49ba7593a3a0a7ad9, type: 3}
-  - {fileID: 21300000, guid: 80dc12cab1cd2ac43ad82c42d93f495e, type: 3}
-  - {fileID: 2000025094, guid: 2c65419b4ee633541b467c3d7207505c, type: 3}
-  - {fileID: 1173486998, guid: 2c65419b4ee633541b467c3d7207505c, type: 3}
-  - {fileID: 566452539, guid: 2c65419b4ee633541b467c3d7207505c, type: 3}
-  - {fileID: 1813527076, guid: 2c65419b4ee633541b467c3d7207505c, type: 3}
   - {fileID: 21300000, guid: 8b5de2bd0756a694c9f044c9056c2363, type: 3}
   m_PackedSpriteNamesToIndex:
-  - falling
   - OtherChainWithKey
-  - teleport-sheet_1
-  - teleport-sheet_0
-  - teleport-sheet_3
-  - teleport-sheet_2
   - tileset_0
   - tileset_1
   - tileset_2
@@ -179,20 +154,6 @@ SpriteAtlas:
   - normalWorld_9
   - normalWorld_8
   - normalSpike
-  - walk-sheet_8
-  - walk-sheet_7
-  - walk-sheet_6
-  - walk-sheet_5
-  - walk-sheet_4
-  - walk-sheet_3
-  - walk-sheet_2
-  - walk-sheet_1
-  - walk-sheet_0
-  - jump
-  - idle-sheet_2
-  - idle-sheet_3
-  - idle-sheet_0
-  - idle-sheet_1
   - OtherChainOnly
   m_RenderDataMap: {}
   m_Tag: PlatformAtlas
