@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ButtonInteractionHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
-{
+//Ignore script. Broken and obsolete!
+public class ButtonInteractionHandler : MonoBehaviour//, IPointerDownHandler
+{/*
     public DifficultySelector difficultySelector;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -18,11 +19,6 @@ public class ButtonInteractionHandler : MonoBehaviour, IPointerDownHandler, IPoi
         {
             difficultySelector.IncreaseDifficulty();
         }
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        // You can optionally handle the pointer up event here if needed
-    }
+    }*/
 }
 
