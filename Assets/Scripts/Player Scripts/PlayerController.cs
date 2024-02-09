@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     public float lowGravityScale = 0.5f;
     public float lowGravityDrag = 1f;
 
+    [SerializeField] private LayerMask platformLayer;
+
+
     public float CoyoteTime
     {
         get { return coyoteTime; }
@@ -63,7 +66,8 @@ public class PlayerController : MonoBehaviour
 
     void HandleInput()
     {
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) ||
+                           Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, platformLayer);
         xAxisMovement = Input.GetAxisRaw("Horizontal");
 
         HandleMovementInput();
