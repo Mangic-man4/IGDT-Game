@@ -14,7 +14,7 @@ public class TrapInteraction : MonoBehaviour
 
         }
     }
-    void ReloadCurrentScene()
+    public void ReloadCurrentScene()
     {
         // Get the current scene's build index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

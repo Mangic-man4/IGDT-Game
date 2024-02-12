@@ -166,5 +166,4 @@ public class PlayerController : MonoBehaviour
             player.angularDrag = normalDrag;
         }
     }
-
 }
