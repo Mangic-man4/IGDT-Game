@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     public float lowGravityScale = 0.5f;
     public float lowGravityDrag = 1f;
 
+    private Vector2 respawnPoint;
+    private TeleportControl teleportControl;
+
     [SerializeField] private LayerMask platformLayer;
 
 
@@ -47,13 +50,17 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        respawnPoint = transform.position;
         animator = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
+        teleportControl = GetComponent<TeleportControl>();
+
         if (mainCamera)
         {
             cameraPos = mainCamera.transform.position;
             jumpsound = GetComponent<AudioSource>();
         }
+
     }
 
     void Update()
@@ -155,6 +162,20 @@ public class PlayerController : MonoBehaviour
             player.gravityScale = lowGravityScale;
             player.angularDrag = lowGravityDrag;
         }
+        else if (other.CompareTag("Checkpoint"))
+        {
+            // Get the checkpoint script component
+            Checkpoint checkpoint = other.GetComponent<Checkpoint>();
+            // Check if the checkpoint has not been checked yet
+            if (checkpoint != null && !checkpoint.IsChecked)
+            {
+                // Set the respawn point using the checkpoint's position
+                SetRespawnPoint(other.transform.position);
+                // Set the checkpoint as checked
+                checkpoint.IsChecked = true;
+                checkpoint.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -165,5 +186,17 @@ public class PlayerController : MonoBehaviour
             player.gravityScale = normalGravityScale;
             player.angularDrag = normalDrag;
         }
+    }
+
+    public void SetRespawnPoint(Vector2 point)
+    {
+        respawnPoint = point;
+    }
+
+    public void Respawn()
+    {
+        transform.position = respawnPoint;
+        player.velocity = Vector2.zero;
+        teleportControl.ResetTeleportDirection();
     }
 }
