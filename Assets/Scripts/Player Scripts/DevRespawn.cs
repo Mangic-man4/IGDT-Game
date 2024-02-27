@@ -25,7 +25,7 @@ public class DevRespawn : MonoBehaviour
     void Respawn()
     {
         // Set teleportUp to true/false during respawn
-        teleportControl.teleportUp = false;
+        teleportControl.teleportUp = true;
 
         // Set the respawn point with the specified X and Y coordinates and the current Z position
         Vector3 respawnPosition = new Vector3(respawnPointX, respawnPointY, transform.position.z);
