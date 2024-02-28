@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private LayerMask platformLayer;
 
+    public TrapInteraction trapInteraction;
+
 
     public float CoyoteTime
     {
@@ -61,6 +64,7 @@ public class PlayerController : MonoBehaviour
             jumpsound = GetComponent<AudioSource>();
         }
 
+        trapInteraction = FindObjectOfType<TrapInteraction>();
     }
 
     void Update()
@@ -195,8 +199,25 @@ public class PlayerController : MonoBehaviour
 
     public void Respawn()
     {
-        transform.position = respawnPoint;
-        player.velocity = Vector2.zero;
-        teleportControl.ResetTeleportDirection();
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName.Contains("Easy"))
+        {
+            transform.position = respawnPoint;
+            player.velocity = Vector2.zero;
+            teleportControl.ResetTeleportDirection();
+            
+        }
+        else
+        {
+            if (trapInteraction != null)
+            {
+                trapInteraction.ReloadCurrentScene();
+            }
+            else
+            {
+                Debug.LogError("TrapInteraction reference is null!");
+            }
+        }
     }
 }
