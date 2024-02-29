@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour
         {
             isChecked = true;
             GetComponent<SpriteRenderer>().color = Color.green;
-            
+
             // Update the player's respawn point
             other.GetComponent<PlayerController>().SetRespawnPoint(transform.position);
         }
