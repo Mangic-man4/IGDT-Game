@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7752239881352396739}
   m_Layer: 0
   m_Name: Checkpoint
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -541522737943073818, guid: 32726eef68207514bbede9c6509379b5, type: 3}
+  m_Sprite: {fileID: 862349742, guid: e8d5dca6b50e8b94da7cb747c71c0b74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8beb8b60677b4794eb098a3b8dfa08e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: {fileID: 2021673001, guid: e8d5dca6b50e8b94da7cb747c71c0b74, type: 3}
 --- !u!61 &7752239881352396739
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111,16 +112,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.093502775, y: -0.07448527}
+  m_Offset: {x: 0.0018181354, y: 0.0006970018}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.16, y: 0.56}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0980019, y: 0.49102944}
+  m_Size: {x: 0.1597589, y: 0.56084144}
   m_EdgeRadius: 0

@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 831029226}
   - component: {fileID: 831029228}
   - component: {fileID: 831029227}
+  - component: {fileID: 831029229}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -676,6 +677,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831029225}
   m_CullTransparentMesh: 1
+--- !u!114 &831029229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831029225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad50ec288c10f4c43b50f39c4696711b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1993940064}
 --- !u!1 &1247299692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,8 +1243,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727070973}
-        m_TargetAssemblyTypeName: Restart, Assembly-CSharp
-        m_MethodName: StartGame
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: LoadPreviousScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1287,7 +1301,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1727070967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ffc62c66d7767745b9e59546b07ac25, type: 3}
+  m_Script: {fileID: 11500000, guid: c1dfd34add56859448a45a209c71035f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1738105750
@@ -1357,6 +1371,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1963316859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1963316861}
+  - component: {fileID: 1963316860}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1963316860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963316859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d732732104933f45bdd4d1e4ff2a140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1963316861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963316859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 615.8799, y: 263.32562, z: 10.033493}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1967250763
 GameObject:

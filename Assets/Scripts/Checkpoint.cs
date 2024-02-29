@@ -2,7 +2,15 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    private SpriteRenderer sR;
+    public Sprite activated;
+
     private bool isChecked = false;
+
+    private void Start() //Gets the sprite rendere component for sprite change
+    {
+        sR = GetComponent<SpriteRenderer>();
+    }
 
     public bool IsChecked
     {
@@ -15,7 +23,7 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player") && !isChecked)
         {
             isChecked = true;
-            GetComponent<SpriteRenderer>().color = Color.green;
+            sR.sprite = activated; //Changes the sprite
 
             // Update the player's respawn point
             other.GetComponent<PlayerController>().SetRespawnPoint(transform.position);

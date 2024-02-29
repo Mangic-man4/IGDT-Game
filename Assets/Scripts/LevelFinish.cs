@@ -5,7 +5,68 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelFinish : MonoBehaviour
-{/*
+{
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text coinCount;
+    [SerializeField] private Timer timer;
+    [SerializeField] private ScoreManager scoreManager;
+
+
+
+    private void Update()
+    {
+        // Get the current scene name
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        // Split the scene name by space
+        string[] sceneParts = sceneName.Split(' ');
+
+        // The last part should be the difficulty
+        string difficulty = sceneParts[sceneParts.Length - 1];
+
+        // Extract the number of coins collected from the coinCount text
+        int coinsCollected = ExtractCoinsFromText();
+
+        // Get the time elapsed from the Timer script
+        float timeElapsed = timer.GetTimeElapsed();
+
+        // Calculate the score using the ScoreManager
+        int score = ScoreManager.instance.CalculateScore(difficulty, coinsCollected, timeElapsed);
+        scoreText.text = "Score: " + score.ToString();
+
+        // Save the score
+        scoreManager.SaveScore(score);
+    }
+
+    private int ExtractCoinsFromText()
+    {
+        // Split the coinCount text by ':' to get the part after ':', which should be the number of coins
+
+        string[] parts = coinCount.text.Split(':');
+
+        if (parts.Length >= 2)
+        {
+            // Try parsing the number of coins
+            if (int.TryParse(parts[1].Trim(), out int coins))
+            {
+                return coins;
+            }
+        }
+        // If parsing fails, return 0
+        return 0;
+    }
+    /*
+    private void Update()
+    {
+        // Increment timeElapsed by the time passed since the last frame
+        timeElapsed += Time.deltaTime;
+        //Debug.Log("Time Elapsed: " + timeElapsed);
+
+        }
+    */
+}
+
+/*
     [SerializeField] private Text scoreText;
     [SerializeField] private Text coinCountText;
     [SerializeField] private Timer timerScript;
@@ -77,56 +138,3 @@ public class LevelFinish : MonoBehaviour
 */
 
 
-
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text coinCount;
-    [SerializeField] private Timer timer;
-
-
-    private void Start()
-    {
-        // Get the current scene name
-        string sceneName = SceneManager.GetActiveScene().name;
-
-        // Split the scene name by space
-        string[] sceneParts = sceneName.Split(' ');
-
-        // The last part should be the difficulty
-        string difficulty = sceneParts[sceneParts.Length - 1];
-
-        // Extract the number of coins collected from the coinCount text
-        int coinsCollected = ExtractCoinsFromText();
-
-        // Get the time elapsed from the Timer script
-        float timeElapsed = timer.GetTimeElapsed();
-
-        // Calculate the score using the ScoreManager
-        int score = ScoreManager.instance.CalculateScore(difficulty, coinsCollected, timeElapsed);
-        scoreText.text = "Score: " + score.ToString();
-    }
-
-    private int ExtractCoinsFromText()
-    {
-        // Split the coinCount text by ':' to get the part after ':', which should be the number of coins
-        string[] parts = coinCount.text.Split(':');
-        if (parts.Length >= 2)
-        {
-            // Try parsing the number of coins
-            if (int.TryParse(parts[1].Trim(), out int coins))
-            {
-                return coins;
-            }
-        }
-        // If parsing fails, return 0
-        return 0;
-    }
-    /*
-    private void Update()
-    {
-        // Increment timeElapsed by the time passed since the last frame
-        timeElapsed += Time.deltaTime;
-        //Debug.Log("Time Elapsed: " + timeElapsed);
-
-        }
-    */
-}
