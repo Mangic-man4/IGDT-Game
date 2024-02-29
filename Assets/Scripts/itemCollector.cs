@@ -28,6 +28,7 @@ public class itemCollector : MonoBehaviour
             Destroy(collision.gameObject);
             coins++;
             coinCount.text = "Coins: " + coins;
+
         }
 
         if (collision.gameObject.CompareTag("Button"))
@@ -60,7 +61,6 @@ public class itemCollector : MonoBehaviour
         }
 
     }
-
     void OpenDoor(GameObject door, List<GameObject> spikes)
     {
         // Check if the door is not null

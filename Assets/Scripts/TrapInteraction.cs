@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TrapInteraction : MonoBehaviour
+    
 {
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -37,3 +38,5 @@ public class TrapInteraction : MonoBehaviour
         Time.timeScale = 1f;
     }
 }
+
+
