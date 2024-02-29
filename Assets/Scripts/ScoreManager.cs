@@ -14,12 +14,15 @@ public class ScoreManager : MonoBehaviour
     private const float NormalMultiplier = 0.75f;
     private const float HardMultiplier = 1.0f;
 
+    private int score = 0;
+
     private void Awake()
     {
         // Ensure only one instance of ScoreManager exists
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
         }
         else
         {
@@ -36,9 +39,14 @@ public class ScoreManager : MonoBehaviour
         int timeScore = CalculateTimeScore(timeElapsed);
 
         // Calculate total score
-        int totalScore = (int)((coinsCollected * 25 + timeScore) * difficultyMultiplier);
+        int score = (int)((coinsCollected * 25 + timeScore) * difficultyMultiplier);
 
-        return totalScore;
+        return score;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 
     // Helper method to get difficulty multiplier
@@ -64,6 +72,12 @@ public class ScoreManager : MonoBehaviour
         // Time score starts at 600 and decreases by 2 for each second elapsed, with a minimum score of 0
         int timeScore = Mathf.Max(0, 600 - Mathf.RoundToInt(timeElapsed) * 2);
         return timeScore;
+    }
+    public void SaveScore(int score)
+    {
+        PlayerPrefs.SetInt("PreviousScore", score);
+        Debug.Log("Score saved: " + score);
+
     }
 }
 
