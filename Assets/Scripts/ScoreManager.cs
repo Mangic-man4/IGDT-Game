@@ -76,7 +76,7 @@ public class ScoreManager : MonoBehaviour
     public void SaveScore(int score)
     {
         PlayerPrefs.SetInt("PreviousScore", score);
-        Debug.Log("Score saved: " + score);
+        //Debug.Log("Score saved: " + score);
 
     }
 }

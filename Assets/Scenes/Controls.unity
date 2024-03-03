@@ -195,7 +195,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "A & LEFT ARROW  = WALK LEFT\nD & RIGHT ARROW = WALK RIGHT\nSPACE   \t
-    \t= JUMP\nF \t\t\t\t= TELEPORT UP/DOWN\nR \t\t\t\t= RESTART\n(PLACEHOLDER)"
+    \t= JUMP\nF \t\t\t\t= TELEPORT UP/DOWN\nR \t\t\t\t= RESTART\nESC \t\t\t= PAUSE"
 --- !u!222 &31902310
 CanvasRenderer:
   m_ObjectHideFlags: 0

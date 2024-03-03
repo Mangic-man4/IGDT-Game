@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     private const string PreviousSceneKey = "PreviousSceneIndex";
+    private const string CompletedLevelKey = "CompletedLevel";
 
     public void LoadPreviousScene()
     {
@@ -25,6 +26,12 @@ public class SceneController : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt(PreviousSceneKey, currentSceneIndex);
+        PlayerPrefs.Save();
+    }
+
+    public void SaveCompletedLevel(string levelName)
+    {
+        PlayerPrefs.SetString(CompletedLevelKey, levelName);
         PlayerPrefs.Save();
     }
 }

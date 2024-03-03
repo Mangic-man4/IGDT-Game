@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     private SceneController sceneController;
+    public string currentLevelName;
 
     private void Start()
     {
@@ -16,6 +17,8 @@ public class NextLevel : MonoBehaviour
         }
     }
 
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "Player")
@@ -24,6 +27,11 @@ public class NextLevel : MonoBehaviour
             PauseManager.Instance.SetPauseState(false);
 
             sceneController.SaveCurrentScene();
+
+            sceneController.SaveCompletedLevel(currentLevelName);
+
+            // Save the completed level's name in PlayerPrefs
+            // PlayerPrefs.SetString("CompletedLevel", completedLevelName);
 
             SceneManager.LoadScene("Level Complete");
         }
