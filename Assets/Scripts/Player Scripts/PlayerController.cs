@@ -205,7 +205,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = respawnPoint;
             player.velocity = Vector2.zero;
-            teleportControl.ResetTeleportDirection();
             
         }
         else

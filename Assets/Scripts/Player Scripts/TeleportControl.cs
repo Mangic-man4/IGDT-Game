@@ -5,7 +5,6 @@ using UnityEngine;
 public class TeleportControl : MonoBehaviour
 {
     public float teleportDistance;
-    public bool teleportUp = true;
     public float cooldown;
     private float lastTeleport;
     private bool isPaused = false;
@@ -32,27 +31,21 @@ public class TeleportControl : MonoBehaviour
     void PerformTeleport()
     {
         Vector3 newPosition = transform.position; // Get the current position
-        if (teleportUp)
+        if (transform.position.y < -3f)
         {
-            newPosition += Vector3.up * teleportDistance; // Teleport the player upward
+            newPosition += Vector3.up * teleportDistance; // Teleport the player upward if y position is less than -3
         }
         else
         {
-            newPosition += Vector3.down * teleportDistance; // Teleport the player downward
+            newPosition += Vector3.down * teleportDistance; // Teleport the player downward if y position is greater than -3
         }
 
         transform.position = newPosition; // Perform the teleportation
-
-        teleportUp = !teleportUp; // Toggle teleport direction
         lastTeleport = Time.time; // Update last teleport time
     }
 
     public void SetPauseState(bool pauseState)
     {
         isPaused = pauseState;
-    }
-    public void ResetTeleportDirection()
-    {
-        teleportUp = true; // Reset teleportUp to true
     }
 }
