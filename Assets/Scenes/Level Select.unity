@@ -2055,7 +2055,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3104259492835932613, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
       propertyPath: level
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3104259492835932613, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
       propertyPath: difficultyText
