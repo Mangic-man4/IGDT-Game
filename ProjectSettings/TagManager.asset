@@ -13,6 +13,7 @@ TagManager:
   - Spike
   - Ground
   - LowGravityZone
+  - CoinMimic
   layers:
   - Default
   - TransparentFX
