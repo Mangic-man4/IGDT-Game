@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     public TrapInteraction trapInteraction;
 
+    private PlayerPowerUps powerUps;
+
 
     public float CoyoteTime
     {
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviour
         respawnPoint = transform.position;
         animator = GetComponent<Animator>();
         player = GetComponent<Rigidbody2D>();
+        powerUps = GetComponent<PlayerPowerUps>();
         teleportControl = GetComponent<TeleportControl>();
 
         if (mainCamera)
@@ -102,7 +105,12 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovementInput()
     {
-        player.velocity = new Vector2(xAxisMovement * characterSpeed, player.velocity.y);
+        float speed = characterSpeed;
+
+        if (powerUps.hasSpeed)
+            speed *= powerUps.speedMultiplier;
+
+        player.velocity = new Vector2(xAxisMovement * speed, player.velocity.y);
 
         if (xAxisMovement > 0f)
         {
@@ -114,14 +122,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     void HandleJumpInput()
     {
-        if (!isPaused && Input.GetKeyDown(KeyCode.Space) && (isTouchingGround || coyoteTimer > 0))
+        if (!isPaused && Input.GetKeyDown(KeyCode.Space))
         {
-            player.velocity = new Vector2(player.velocity.x, characterJump);
-            jumpsound.Play();
-            coyoteTimer = 0;
+            if (isTouchingGround || coyoteTimer > 0f)
+            {
+                Jump(); // Normal jump
+                powerUps.hasUsedDoubleJump = false; // Reset double jump
+            }
+            else if (powerUps.hasDoubleJump && !powerUps.hasUsedDoubleJump)
+            {
+                Jump(); // Double jump
+                powerUps.hasUsedDoubleJump = true;
+
+                // Optional: Add particle effect here
+            }
         }
+    }
+
+    void Jump()
+    {
+        player.velocity = new Vector2(player.velocity.x, characterJump);
+        jumpsound.Play();
+        coyoteTimer = 0f;
     }
 
     void AnimationUpdate()

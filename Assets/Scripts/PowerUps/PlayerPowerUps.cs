@@ -13,13 +13,16 @@ public class PlayerPowerUps : MonoBehaviour
 
     public float speedTimer;
     public float doubleJumpTimer;
+    public bool hasUsedDoubleJump = false;
+
 
     private float baseSpeed = 5f;
-    private float speedMultiplier = 2f;
+    public float speedMultiplier = 2f;
     private float currentSpeed;
 
     private float dashCooldown = 0.5f;
     private float lastDashTime;
+
 
     private void Start()
     {
@@ -49,7 +52,7 @@ public class PlayerPowerUps : MonoBehaviour
             case PowerUpType.Speed:
                 hasSpeed = true;
                 speedTimer = 15f;
-                currentSpeed = baseSpeed * speedMultiplier;
+                //currentSpeed = baseSpeed * speedMultiplier;
                 break;
             case PowerUpType.DoubleJump:
                 hasDoubleJump = true;
