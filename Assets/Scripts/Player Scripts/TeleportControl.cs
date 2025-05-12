@@ -9,39 +9,42 @@ public class TeleportControl : MonoBehaviour
     private float lastTeleport;
     private bool isPaused = false;
 
-    void Update()
+    private PlayerPowerUps powerUps;
+
+    void Start()
     {
-        if (!isPaused)
-        {
-            if (Input.GetKeyDown(KeyCode.F) && Time.time > lastTeleport + cooldown)
-            {
-                HandleTeleportInput();
-            }
-        }
+        powerUps = GetComponent<PlayerPowerUps>();
     }
 
-    void HandleTeleportInput()
+    void Update()
     {
-        if (!isPaused && Time.time > lastTeleport + cooldown)
+        if (!isPaused && Input.GetKeyDown(KeyCode.F) && Time.time > lastTeleport + cooldown)
         {
-            PerformTeleport();
+            if (powerUps != null && powerUps.hasDash)
+            {
+                powerUps.PerformDash(); // Use dash instead of teleport
+            }
+            else
+            {
+                PerformTeleport();
+            }
         }
     }
 
     void PerformTeleport()
     {
-        Vector3 newPosition = transform.position; // Get the current position
+        Vector3 newPosition = transform.position;
         if (transform.position.y < -3f)
         {
-            newPosition += Vector3.up * teleportDistance; // Teleport the player upward if y position is less than -3
+            newPosition += Vector3.up * teleportDistance;
         }
         else
         {
-            newPosition += Vector3.down * teleportDistance; // Teleport the player downward if y position is greater than -3
+            newPosition += Vector3.down * teleportDistance;
         }
 
-        transform.position = newPosition; // Perform the teleportation
-        lastTeleport = Time.time; // Update last teleport time
+        transform.position = newPosition;
+        lastTeleport = Time.time;
     }
 
     public void SetPauseState(bool pauseState)
