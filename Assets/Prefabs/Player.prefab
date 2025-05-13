@@ -655,6 +655,7 @@ MonoBehaviour:
   dashDistance: 3
   fireballPrefab: {fileID: 4377477607646044283, guid: 83080a53bef141846958a25126e2685f, type: 3}
   firePoint: {fileID: 2527680590558214655}
+  groundCheck: {fileID: 5327273358116382481}
 --- !u!1 &7015317838451058430
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class PlayerPowerUps : MonoBehaviour
     private float fireCooldown = 0.5f;
     private float lastFireTime;
 
-
+    private PlayerController playerController;
 
 
 
@@ -40,6 +40,8 @@ public class PlayerPowerUps : MonoBehaviour
         currentSpeed = baseSpeed;
 
         rb = GetComponent<Rigidbody2D>();
+
+        playerController = GetComponent<PlayerController>();
 
     }
 
@@ -107,10 +109,12 @@ public class PlayerPowerUps : MonoBehaviour
 
     private void FlipGravity()
     {
+        // Flip the sprite
         Vector3 scale = transform.localScale;
         scale.y *= -1;
         transform.localScale = scale;
 
+        // Flip gravity
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.gravityScale *= -1;
     }

@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour
     void HandleMovementInput()
     {
         float speed = characterSpeed;
+        float baseScale = 5f;
+        float currentY = Mathf.Sign(transform.localScale.y) * baseScale;    
 
         if (powerUps.hasSpeed)
             speed *= powerUps.speedMultiplier;
@@ -114,11 +116,11 @@ public class PlayerController : MonoBehaviour
 
         if (xAxisMovement > 0f)
         {
-            this.transform.localScale = new Vector2(5, 5);
+            transform.localScale = new Vector3(baseScale, currentY, 1f);
         }
         else if (xAxisMovement < 0f)
         {
-            this.transform.localScale = new Vector2(-5, 5);
+            transform.localScale = new Vector3(-baseScale, currentY, 1f);
         }
     }
 
@@ -144,7 +146,9 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        player.velocity = new Vector2(player.velocity.x, characterJump);
+        float jumpDirection = Mathf.Sign(player.gravityScale); // +1 for normal, -1 for flipped
+        player.velocity = new Vector2(player.velocity.x, characterJump * jumpDirection);
+        
         jumpsound.Play();
         coyoteTimer = 0f;
     }
