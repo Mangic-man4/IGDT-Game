@@ -22,16 +22,35 @@ public class PlayerPowerUps : MonoBehaviour
 
     private float dashCooldown = 0.5f;
     private float lastDashTime;
+    [SerializeField] private float dashDistance = 3f;
+    private Rigidbody2D rb;
+
+    [SerializeField] private GameObject fireballPrefab;
+    [SerializeField] private Transform firePoint; // Point in front of player
+
+    private float fireCooldown = 0.5f;
+    private float lastFireTime;
+
+
+
 
 
     private void Start()
     {
         currentSpeed = baseSpeed;
+
+        rb = GetComponent<Rigidbody2D>();
+
     }
 
     private void Update()
     {
         HandleTimers();
+
+        if (Input.GetKeyDown(KeyCode.E) && Time.time > lastFireTime + fireCooldown)
+        {
+            TryFireball();
+        }
     }
 
     public void CollectPowerUp(PowerUpType type)
@@ -100,15 +119,69 @@ public class PlayerPowerUps : MonoBehaviour
     {
         if (Time.time < lastDashTime + dashCooldown) return;
 
-        Vector3 dashDirection = transform.localScale.x > 0 ? Vector3.right : Vector3.left;
-        float dashDistance = 3f; // adjust as needed
-        Vector3 targetPosition = transform.position + dashDirection * dashDistance;
+        Vector2 dashDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        Vector2 rayOrigin = rb. position + dashDirection * 0.5f;
+        Vector2 targetPosition = rb.position + dashDirection * dashDistance;
 
-        // Optional: Check for walls using LayerMask here if needed
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, dashDirection, dashDistance, ~LayerMask.GetMask("Player"));
 
-        transform.position = targetPosition;
+
+        if (hit.collider != null)
+        {
+            string tag = hit.collider.tag;
+
+            if (tag == "ObbyCourse" || tag == "Door")
+            {
+                Debug.Log("Hit " + hit.collider.tag + ", stopping dash before wall.");
+
+                // Blocked: dash stops right before the wall
+                Vector2 stopPosition = hit.point - dashDirection * 0.05f;
+                rb.MovePosition(stopPosition);
+            }
+            else if (tag == "DashWall")
+            {
+                Debug.Log("DashWall hit, dashing through.");
+
+                // Enable trigger on DashWall collider for the duration of the dash
+                Collider2D wallCollider = hit.collider;
+                wallCollider.isTrigger = true;
+
+                // Dash through the wall
+                rb.MovePosition(targetPosition);
+
+                // Disable the trigger after the dash
+                StartCoroutine(DisableTriggerAfterDash(wallCollider));
+
+            }
+        }
+        else
+        {
+            Debug.Log("Nothing hit, dashing freely.");
+
+            // Nothing hit, dash freely
+            rb.MovePosition(targetPosition);
+        }
+
         lastDashTime = Time.time;
+    }
 
-        // Optional: Phantom image effect goes here
+    // Coroutine to disable the trigger after a short delay (the length of the dash)
+    private IEnumerator DisableTriggerAfterDash(Collider2D wallCollider)
+    {
+        yield return new WaitForSeconds(0.01f); // Adjust this to the length of your dash or required time
+        wallCollider.isTrigger = false;  // Disable trigger again after the dash is complete
+    }
+
+    void TryFireball()
+    {
+        if (fireballCharges > 0)
+        {
+            GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
+            Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            fireball.GetComponent<Fireball>().SetDirection(direction);
+
+            fireballCharges--;
+            lastFireTime = Time.time;
+        }
     }
 }
