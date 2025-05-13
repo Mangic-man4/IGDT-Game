@@ -5,19 +5,33 @@ using UnityEngine;
 public class MimicController : MonoBehaviour
 {
     public float detectionRange = 2.5f;
-    public float chaseStopDistance = 20f;
-    public float moveSpeed = 4f;
-    public Sprite disguisedSprite;  // coin sprite
-    public Sprite revealedSprite;   // mimic monster sprite
+    public float chaseStopDistance = 6f;
+    public float moveSpeed = 12f;
+    public Sprite disguisedSprite;
+    public Sprite revealedSprite;
     public Transform player;
-    public LayerMask wallLayer;     // Assign this to the Obby Course layer in Inspector
 
     private SpriteRenderer sr;
+    private Rigidbody2D rb;
     private bool revealed = false;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+            }
+            else
+            {
+                Debug.LogError("Player not found in scene. Make sure the Player has the 'Player' tag.");
+            }
+        }
         sr.sprite = disguisedSprite;
     }
 
@@ -40,14 +54,7 @@ public class MimicController : MonoBehaviour
             }
             else
             {
-                // Check if wall is between mimic and player
-                Vector2 direction = (player.position - transform.position).normalized;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRange, wallLayer);
-
-                if (hit.collider == null)
-                {
-                    ChasePlayer();
-                }
+                ChasePlayer();
             }
         }
     }
@@ -66,16 +73,17 @@ public class MimicController : MonoBehaviour
 
     void ChasePlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+        Vector2 direction = (player.transform.position - transform.position).normalized;
+        Vector2 newPos = rb.position + direction * moveSpeed * Time.deltaTime;
+        rb.MovePosition(newPos); // respects collisions!
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (revealed && other.CompareTag("Player"))
+        if(revealed && collision.collider.CompareTag("Player"))
         {
             Debug.Log("Player caught by Mimic!");
-            other.GetComponent<PlayerController>().Respawn();
+            collision.collider.GetComponent<PlayerController>().Respawn();
         }
     }
 }
