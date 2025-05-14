@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
+    public LayerMask testPlatforms;
     [SerializeField] private LayerMask platformLayer;
 
     [Header("Gravity Zones")]
@@ -79,7 +80,9 @@ public class PlayerController : MonoBehaviour
     private void HandleInput()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) ||
-                     Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, platformLayer);
+                     Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, platformLayer) ||
+                     Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, testPlatforms);
+
 
         xInput = Input.GetAxisRaw("Horizontal");
 

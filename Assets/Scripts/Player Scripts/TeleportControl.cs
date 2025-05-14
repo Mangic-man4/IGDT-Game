@@ -44,9 +44,20 @@ public class TeleportControl : MonoBehaviour
         Vector3 newPosition = transform.position;
 
         // Teleport up if below threshold, otherwise down
-        newPosition += transform.position.y < -3f
-            ? Vector3.up * teleportDistance
-            : Vector3.down * teleportDistance;
+        if (VerticalModeManager.IsVertical)
+        {
+            // Horizontal teleport (left/right)
+            newPosition += transform.position.x < 0
+                ? Vector3.right * teleportDistance
+                : Vector3.left * teleportDistance;
+        }
+        else
+        {
+            // Vertical teleport (up/down)
+            newPosition += transform.position.y < -3f
+                ? Vector3.up * teleportDistance
+                : Vector3.down * teleportDistance;
+        }
 
         transform.position = newPosition;
         lastTeleportTime = Time.time;
