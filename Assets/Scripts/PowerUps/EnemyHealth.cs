@@ -39,6 +39,11 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void Kill() //Kill without dealing damage.
+    {
+        Destroy(gameObject);
+    }
+
 
     private int maxHits; // Moved to bottom to reduce inspector confusion
 }

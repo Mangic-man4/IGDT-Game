@@ -119,8 +119,8 @@ public class PlayerPowerUps : MonoBehaviour
         Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
         Vector2 rayOrigin = rb.position + direction * 0.5f;
         Vector2 targetPosition = rb.position + direction * dashDistance;
-
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player"));
+            
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player", "IgnoreDash"));
         Debug.DrawRay(rayOrigin, direction * dashDistance, Color.cyan, 0.2f);
 
         if (hit.collider != null)
@@ -140,15 +140,45 @@ public class PlayerPowerUps : MonoBehaviour
                 wallCollider.isTrigger = true;
                 rb.MovePosition(targetPosition);
                 StartCoroutine(DisableTriggerAfterDash(wallCollider));
+                TryKillEnemyAtDashEndpoint(targetPosition);
             }
         }
         else
         {
             Debug.Log("Nothing hit, dashing freely.");
             rb.MovePosition(targetPosition);
+            TryKillEnemyAtDashEndpoint(targetPosition);
+
         }
 
         lastDashTime = Time.time;
+    }
+
+    private void TryKillEnemyAtDashEndpoint(Vector2 position)
+    {
+        float killRadius = 0.5f; // Adjust for difficulty/sensitivity
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, killRadius);
+
+        foreach (var col in hits)
+        {
+            if (col != null && IsEnemyTag(col.tag))
+            {
+                if (col.TryGetComponent<EnemyHealth>(out var enemy))
+                {
+                    enemy.TakeDamage(int.MaxValue);
+                }
+                else
+                {
+                    Destroy(col.gameObject);
+                }
+            }
+        }
+    }
+
+
+    private bool IsEnemyTag(string tag)
+    {
+        return tag == "Enemy" || tag == "CoinMimic";
     }
 
     private IEnumerator DisableTriggerAfterDash(Collider2D wallCollider)
