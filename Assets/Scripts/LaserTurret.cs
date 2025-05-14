@@ -23,19 +23,10 @@ public class LaserTurret : MonoBehaviour
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);
 
-            if (hitInfo.collider.CompareTag("Player"))
+            if (hitInfo.collider.CompareTag("Player") && hitInfo.collider.TryGetComponent<PlayerController>(out var playerController))
             {
-                // Assuming the player has a script with a method to handle death.
-                // Get the current scene's build index
-                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-                // Load the scene with the current build index
-                SceneManager.LoadScene(currentSceneIndex);
-
-                // Set Time.timeScale to 1f after scene reloads
-                Time.timeScale = 1f;
-
-                Debug.Log("Player has died! Reloading scene...");
+                playerController.Die();
+                Debug.Log("Player has died! Triggered by LaserTurret.");
             }
         }
         else

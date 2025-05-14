@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class TeleportControl : MonoBehaviour
 {
-    public float teleportDistance;
-    public float cooldown;
-    private float lastTeleport;
+    [Tooltip("Vertical distance the player teleports.")]
+    [SerializeField] private float teleportDistance = 3f;
+
+    [Tooltip("Cooldown time between teleports or dashes.")]
+    [SerializeField] private float teleportCooldown = 0.5f;
+
+    private float lastTeleportTime;
     private bool isPaused = false;
 
     private PlayerPowerUps powerUps;
 
-    void Start()
+    private void Start()
     {
         powerUps = GetComponent<PlayerPowerUps>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (!isPaused && Input.GetKeyDown(KeyCode.F) && Time.time > lastTeleport + cooldown)
+        if (isPaused) return;
+
+        bool canTeleport = Time.time > lastTeleportTime + teleportCooldown;
+
+        if (canTeleport && Input.GetKeyDown(KeyCode.F))
         {
-            if (powerUps != null && powerUps.hasDash)
+            if (powerUps.hasDash)
             {
-                powerUps.PerformDash(); // Use dash instead of teleport
+                powerUps.PerformDash(); // Dash overrides teleport
             }
             else
             {
@@ -31,24 +39,21 @@ public class TeleportControl : MonoBehaviour
         }
     }
 
-    void PerformTeleport()
+    private void PerformTeleport()
     {
         Vector3 newPosition = transform.position;
-        if (transform.position.y < -3f)
-        {
-            newPosition += Vector3.up * teleportDistance;
-        }
-        else
-        {
-            newPosition += Vector3.down * teleportDistance;
-        }
+
+        // Teleport up if below threshold, otherwise down
+        newPosition += transform.position.y < -3f
+            ? Vector3.up * teleportDistance
+            : Vector3.down * teleportDistance;
 
         transform.position = newPosition;
-        lastTeleport = Time.time;
+        lastTeleportTime = Time.time;
     }
 
-    public void SetPauseState(bool pauseState)
+    public void SetPauseState(bool pause)
     {
-        isPaused = pauseState;
+        isPaused = pause;
     }
 }

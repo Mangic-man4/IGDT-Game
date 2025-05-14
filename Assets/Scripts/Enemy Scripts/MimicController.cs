@@ -80,10 +80,10 @@ public class MimicController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(revealed && collision.collider.CompareTag("Player"))
+        if (revealed && collision.collider.CompareTag("Player") && collision.collider.TryGetComponent<PlayerController>(out var playerController))
         {
+            playerController.Die();
             Debug.Log("Player caught by Mimic!");
-            collision.collider.GetComponent<PlayerController>().Respawn();
         }
     }
 }

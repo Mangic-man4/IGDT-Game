@@ -8,91 +8,125 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D player;
-    public float characterSpeed = 5.0f;
-    public float characterJump = 200f;
-    public Camera mainCamera;
-    AudioSource jumpsound;
-    Vector2 cameraPos;
+    [Header("Movement Settings")]
+    public float baseMoveSpeed = 10f;   
+    public float jumpForce = 20f;
+
+    [Header("Environment Layers")]
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
-    private bool isTouchingGround;
-    private float xAxisMovement = 0f;
-    private bool isPaused = false;
+    [SerializeField] private LayerMask platformLayer;
 
-    private float coyoteTime = 0.05f; // Time the jump "counts" after not touching a platform
-    private float coyoteTimer = 0f;
-
-    private bool isInLowGravityZone = false;
+    [Header("Gravity Zones")]
     public float normalGravityScale = 5f;
     public float normalDrag = 0f;
     public float lowGravityScale = 0.5f;
     public float lowGravityDrag = 1f;
 
-    private Vector2 respawnPoint;
+    [Header("Camera + Audio")]
+    public Camera mainCamera;
+
+    private Rigidbody2D rb;
+    private Animator animator;
+    private AudioSource jumpSound;
+    private PlayerPowerUps powerUps;
     private TeleportControl teleportControl;
 
-    [SerializeField] private LayerMask platformLayer;
+    private float xInput;
+    private bool isGrounded;
+    private bool isPaused = false;
+    private bool isInLowGravityZone = false;
 
-    public TrapInteraction trapInteraction;
+    private readonly float coyoteTime = 0.05f;
+    private float coyoteTimer;
 
-    private PlayerPowerUps powerUps;
+    private Vector2 respawnPoint;
 
+    private enum MovementState { Idle, Walk, Jump, Fall }
 
-    public float CoyoteTime
+    // === Unity Methods ===
+    private void Start()
     {
-        get { return coyoteTime; }
-        set
-        {
-            coyoteTime = value;
-            coyoteTimer = Mathf.Min(coyoteTimer, coyoteTime);
-        }
-    }
-
-    Animator animator;
-    private enum MovementState { idle, walk, jump, fall }
-
-    void Start()
-    {
-        respawnPoint = transform.position;
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        player = GetComponent<Rigidbody2D>();
         powerUps = GetComponent<PlayerPowerUps>();
         teleportControl = GetComponent<TeleportControl>();
+        jumpSound = GetComponent<AudioSource>();
 
-        if (mainCamera)
-        {
-            cameraPos = mainCamera.transform.position;
-            jumpsound = GetComponent<AudioSource>();
-        }
+        if (mainCamera) _ = mainCamera.transform.position; // Accessed once
 
-        trapInteraction = FindObjectOfType<TrapInteraction>();
+        respawnPoint = transform.position;
     }
 
-    void Update()
+    private void Update()
     {
-        if (!isPaused)
-        {
-            HandleInput();
-        }
-    }
+        if (isPaused) return;
 
-    void HandleInput()
-    {
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) ||
-                           Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, platformLayer);
-        xAxisMovement = Input.GetAxisRaw("Horizontal");
-
-        HandleMovementInput();
-        HandleJumpInput();
+        HandleInput();
         UpdateCoyoteTimer();
-        AnimationUpdate();
+        UpdateAnimation();
     }
 
-    void UpdateCoyoteTimer()
+    private void FixedUpdate()
     {
-        if (isTouchingGround)
+        if (isPaused) return;
+
+        Move();
+    }
+
+    // === Input + Logic ===
+    private void HandleInput()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) ||
+                     Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, platformLayer);
+
+        xInput = Input.GetAxisRaw("Horizontal");
+
+        HandleJumpInput();
+    }
+
+    private void Move()
+    {
+        float moveSpeed = baseMoveSpeed;
+
+        if (powerUps.hasSpeed)
+        {
+            moveSpeed *= powerUps.speedMultiplier;
+        }
+
+        rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+
+        FlipSprite();
+    }
+
+    private void HandleJumpInput()
+    {
+        if (!Input.GetKeyDown(KeyCode.Space)) return;
+
+        if (isGrounded || coyoteTimer > 0f)
+        {
+            Jump();
+            powerUps.hasUsedDoubleJump = false;
+        }
+        else if (powerUps.hasDoubleJump && !powerUps.hasUsedDoubleJump)
+        {
+            Jump();
+            powerUps.hasUsedDoubleJump = true;
+        }
+    }
+
+    private void Jump()
+    {
+        float direction = Mathf.Sign(rb.gravityScale); // +1 or -1 depending on gravity
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce * direction);
+        jumpSound.Play();
+        coyoteTimer = 0f;
+    }
+
+    private void UpdateCoyoteTimer()
+    {
+        if (isGrounded)
         {
             coyoteTimer = coyoteTime;
         }
@@ -103,149 +137,91 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void HandleMovementInput()
+    private void FlipSprite()
     {
-        float speed = characterSpeed;
-        float baseScale = 5f;
-        float currentY = Mathf.Sign(transform.localScale.y) * baseScale;    
-
-        if (powerUps.hasSpeed)
-            speed *= powerUps.speedMultiplier;
-
-        player.velocity = new Vector2(xAxisMovement * speed, player.velocity.y);
-
-        if (xAxisMovement > 0f)
+        float scale = 5f;
+        if (xInput != 0)
         {
-            transform.localScale = new Vector3(baseScale, currentY, 1f);
-        }
-        else if (xAxisMovement < 0f)
-        {
-            transform.localScale = new Vector3(-baseScale, currentY, 1f);
+            float flipY = Mathf.Sign(transform.localScale.y);
+            transform.localScale = new Vector3(Mathf.Sign(xInput) * scale, flipY * scale, 1f);
         }
     }
 
-
-    void HandleJumpInput()
+    private void UpdateAnimation()
     {
-        if (!isPaused && Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isTouchingGround || coyoteTimer > 0f)
-            {
-                Jump(); // Normal jump
-                powerUps.hasUsedDoubleJump = false; // Reset double jump
-            }
-            else if (powerUps.hasDoubleJump && !powerUps.hasUsedDoubleJump)
-            {
-                Jump(); // Double jump
-                powerUps.hasUsedDoubleJump = true;
+        MovementState state = MovementState.Idle;
 
-                // Optional: Add particle effect here
-            }
-        }
-    }
-
-    void Jump()
-    {
-        float jumpDirection = Mathf.Sign(player.gravityScale); // +1 for normal, -1 for flipped
-        player.velocity = new Vector2(player.velocity.x, characterJump * jumpDirection);
-        
-        jumpsound.Play();
-        coyoteTimer = 0f;
-    }
-
-    void AnimationUpdate()
-    {
-        MovementState state;
-
-        if (xAxisMovement > 0f)
-        {
-            state = MovementState.walk;
-        }
-        else if (xAxisMovement < 0f)
-        {
-            state = MovementState.walk;
-        }
-        else
-        {
-            state = MovementState.idle;
-        }
-
-        if (player.velocity.y > .1f)
-        {
-            state = MovementState.jump;
-        }
-        else if (player.velocity.y < -.1f)
-        {
-            state = MovementState.fall;
-        }
+        if (Mathf.Abs(xInput) > 0.1f) state = MovementState.Walk;
+        if (rb.velocity.y > 0.1f) state = MovementState.Jump;
+        else if (rb.velocity.y < -0.1f) state = MovementState.Fall;
 
         animator.SetInteger("movement", (int)state);
     }
 
+    // === Pause ===
     public void SetPauseState(bool pauseState)
     {
         isPaused = pauseState;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    // === Respawning ===   
+    public void SetRespawnPoint(Vector2 point)
     {
-        if (other.gameObject.CompareTag("LowGravityZone"))
+        respawnPoint = point;
+    }
+
+    public void Respawn() //Backward-compatible respawn method. Use Die() for all new death-related logic.
+    {
+        Die();
+    }
+
+    public void Die()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName.Contains("Easy"))
+        {
+            transform.position = respawnPoint;
+            rb.velocity = Vector2.zero;
+            Debug.Log("Player died — respawning at checkpoint.");
+        }
+        else
+        {
+            Debug.Log("Player died — reloading scene.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Time.timeScale = 1f;
+        }
+    }
+
+
+    // === Collision Events ===
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("LowGravityZone"))
         {
             isInLowGravityZone = true;
-            player.gravityScale = lowGravityScale;
-            player.angularDrag = lowGravityDrag;
+            rb.gravityScale = lowGravityScale;
+            rb.drag = lowGravityDrag;
         }
         else if (other.CompareTag("Checkpoint"))
         {
-            // Get the checkpoint script component
             Checkpoint checkpoint = other.GetComponent<Checkpoint>();
-            // Check if the checkpoint has not been checked yet
             if (checkpoint != null && !checkpoint.IsChecked)
             {
-                // Set the respawn point using the checkpoint's position
                 SetRespawnPoint(other.transform.position);
-                // Set the checkpoint as checked
                 checkpoint.IsChecked = true;
                 checkpoint.GetComponent<SpriteRenderer>().color = Color.green;
             }
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("LowGravityZone"))
+        if (other.CompareTag("LowGravityZone"))
         {
             isInLowGravityZone = false;
-            player.gravityScale = normalGravityScale;
-            player.angularDrag = normalDrag;
-        }
-    }
-
-    public void SetRespawnPoint(Vector2 point)
-    {
-        respawnPoint = point;
-    }
-
-    public void Respawn()
-    {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-        if (currentSceneName.Contains("Easy"))
-        {
-            transform.position = respawnPoint;
-            player.velocity = Vector2.zero;
-            
-        }
-        else
-        {
-            if (trapInteraction != null)
-            {
-                trapInteraction.ReloadCurrentScene();
-            }
-            else
-            {
-                Debug.LogError("TrapInteraction reference is null!");
-            }
+            rb.gravityScale = normalGravityScale;
+            rb.drag = normalDrag;
         }
     }
 }

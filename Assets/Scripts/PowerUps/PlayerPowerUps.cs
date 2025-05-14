@@ -1,48 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections;
 
 public class PlayerPowerUps : MonoBehaviour
 {
+    // --- Power-up States ---
     public bool hasDash;
-    public int fireballCharges;
+    public bool hasDoubleJump;
+    public bool hasUsedDoubleJump;
     public bool gravityFlipped;
     public bool hasSpeed;
-    public bool hasDoubleJump;
+    public int fireballCharges;
 
+    // --- Timers ---
     public float speedTimer;
     public float doubleJumpTimer;
-    public bool hasUsedDoubleJump = false;
 
-
-    private float baseSpeed = 5f;
-    public float speedMultiplier = 2f;
-    private float currentSpeed;
-
-    private float dashCooldown = 0.5f;
-    private float lastDashTime;
+    // --- Dash Settings ---
+    [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float dashDistance = 3f;
-    private Rigidbody2D rb;
+    private float lastDashTime;
 
+    // --- Fireball Settings ---
     [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private Transform firePoint; // Point in front of player
-
-    private float fireCooldown = 0.5f;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float fireCooldown = 0.5f;
     private float lastFireTime;
 
-    private PlayerController playerController;
+    // --- Speed Settings ---
+    public float speedMultiplier = 2f;
 
-
+    // --- References ---
+    private Rigidbody2D rb;
 
     private void Start()
     {
-        currentSpeed = baseSpeed;
-
         rb = GetComponent<Rigidbody2D>();
-
-        playerController = GetComponent<PlayerController>();
-
     }
 
     private void Update()
@@ -61,25 +53,28 @@ public class PlayerPowerUps : MonoBehaviour
         {
             case PowerUpType.Dash:
                 hasDash = true;
-                // TODO: Disable teleport, show phantom if needed
                 break;
+
             case PowerUpType.Fireball:
-                fireballCharges += 10; // Adjust for difficulty
+                fireballCharges += 10; // Difficulty-based adjustment could go here
                 break;
+
             case PowerUpType.GravityFlip:
                 gravityFlipped = !gravityFlipped;
                 FlipGravity();
                 break;
+
             case PowerUpType.Speed:
                 hasSpeed = true;
                 speedTimer = 15f;
-                //currentSpeed = baseSpeed * speedMultiplier;
                 break;
+
             case PowerUpType.DoubleJump:
                 hasDoubleJump = true;
                 doubleJumpTimer = 15f;
                 break;
-            case PowerUpType.Teleport: //For disabling dash
+
+            case PowerUpType.Teleport: // Used to disable dash when teleport returns
                 hasDash = false;
                 break;
         }
@@ -93,7 +88,6 @@ public class PlayerPowerUps : MonoBehaviour
             if (speedTimer <= 0f)
             {
                 hasSpeed = false;
-                currentSpeed = baseSpeed;
             }
         }
 
@@ -109,13 +103,12 @@ public class PlayerPowerUps : MonoBehaviour
 
     private void FlipGravity()
     {
-        // Flip the sprite
+        // Flip sprite
         Vector3 scale = transform.localScale;
         scale.y *= -1;
         transform.localScale = scale;
 
         // Flip gravity
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.gravityScale *= -1;
     }
 
@@ -123,12 +116,12 @@ public class PlayerPowerUps : MonoBehaviour
     {
         if (Time.time < lastDashTime + dashCooldown) return;
 
-        Vector2 dashDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-        Vector2 rayOrigin = rb. position + dashDirection * 0.5f;
-        Vector2 targetPosition = rb.position + dashDirection * dashDistance;
+        Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        Vector2 rayOrigin = rb.position + direction * 0.5f;
+        Vector2 targetPosition = rb.position + direction * dashDistance;
 
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, dashDirection, dashDistance, ~LayerMask.GetMask("Player"));
-
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player"));
+        Debug.DrawRay(rayOrigin, direction * dashDistance, Color.cyan, 0.2f);
 
         if (hit.collider != null)
         {
@@ -137,55 +130,45 @@ public class PlayerPowerUps : MonoBehaviour
             if (tag == "ObbyCourse" || tag == "Door")
             {
                 Debug.Log("Hit " + hit.collider.tag + ", stopping dash before wall.");
-
-                // Blocked: dash stops right before the wall
-                Vector2 stopPosition = hit.point - dashDirection * 0.05f;
+                Vector2 stopPosition = hit.point - direction * 0.05f;
                 rb.MovePosition(stopPosition);
             }
             else if (tag == "DashWall")
             {
                 Debug.Log("DashWall hit, dashing through.");
-
-                // Enable trigger on DashWall collider for the duration of the dash
                 Collider2D wallCollider = hit.collider;
                 wallCollider.isTrigger = true;
-
-                // Dash through the wall
                 rb.MovePosition(targetPosition);
-
-                // Disable the trigger after the dash
                 StartCoroutine(DisableTriggerAfterDash(wallCollider));
-
             }
         }
         else
         {
             Debug.Log("Nothing hit, dashing freely.");
-
-            // Nothing hit, dash freely
             rb.MovePosition(targetPosition);
         }
 
         lastDashTime = Time.time;
     }
 
-    // Coroutine to disable the trigger after a short delay (the length of the dash)
     private IEnumerator DisableTriggerAfterDash(Collider2D wallCollider)
     {
-        yield return new WaitForSeconds(0.01f); // Adjust this to the length of your dash or required time
-        wallCollider.isTrigger = false;  // Disable trigger again after the dash is complete
+        yield return new WaitForSeconds(0.01f);
+        if (wallCollider != null)
+            wallCollider.isTrigger = false;
     }
 
-    void TryFireball()
+    private void TryFireball()
     {
-        if (fireballCharges > 0)
-        {
-            GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
-            Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-            fireball.GetComponent<Fireball>().SetDirection(direction);
+        if (fireballCharges <= 0 || fireballPrefab == null || firePoint == null)
+            return;
 
-            fireballCharges--;
-            lastFireTime = Time.time;
-        }
+        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
+        Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        fireball.GetComponent<Fireball>().SetDirection(direction);
+
+        fireballCharges--;
+        lastFireTime = Time.time;
     }
 }
+

@@ -4,36 +4,43 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public float speed = 10f;
-    public int damage = 1;
-    public float lifetime = 5f;
+    [Header("Fireball Settings")]
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private int damage = 1;
+    [SerializeField] private float lifetime = 5f;
+
     private Vector2 direction;
 
-    public void SetDirection(Vector2 dir)
+    /// <summary>
+    /// Set the direction the fireball should move and schedule its destruction.
+    /// </summary>
+    public void SetDirection(Vector2 newDirection)
     {
-        direction = dir.normalized;
-        Destroy(gameObject, lifetime); // Auto-destroy after some time
+        direction = newDirection.normalized;
+        Destroy(gameObject, lifetime);
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * speed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Check for valid target tags
         if (other.CompareTag("Enemy") || other.CompareTag("CoinMimic"))
         {
-            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
+            if (other.TryGetComponent<EnemyHealth>(out var enemyHealth))
             {
                 enemyHealth.TakeDamage(damage);
-                Destroy(gameObject);
             }
+
+            Destroy(gameObject);
         }
-        else if (!other.CompareTag("Player") || other.CompareTag("Untagged"))
+        else if (!other.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
     }
+
 }
