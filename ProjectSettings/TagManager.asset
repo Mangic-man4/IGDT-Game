@@ -17,6 +17,7 @@ TagManager:
   - Enemy
   - DashWall
   - PowerUp
+  - Laser
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1480373035
     locked: 0

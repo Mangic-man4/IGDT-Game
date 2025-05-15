@@ -17,7 +17,7 @@ public class PlayerPowerUps : MonoBehaviour
 
     // --- Dash Settings ---
     [SerializeField] private float dashCooldown = 0.5f;
-    [SerializeField] private float dashDistance = 3f;
+    public float dashDistance;
     private float lastDashTime;
 
     // --- Fireball Settings ---
@@ -121,7 +121,6 @@ public class PlayerPowerUps : MonoBehaviour
         Vector2 targetPosition = rb.position + direction * dashDistance;
             
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player", "IgnoreDash"));
-        Debug.DrawRay(rayOrigin, direction * dashDistance, Color.cyan, 0.2f);
 
         if (hit.collider != null)
         {
