@@ -16,6 +16,7 @@ TagManager:
   - CoinMimic
   - Enemy
   - DashWall
+  - PowerUp
   layers:
   - Default
   - TransparentFX

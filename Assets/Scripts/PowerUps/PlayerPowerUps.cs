@@ -142,6 +142,16 @@ public class PlayerPowerUps : MonoBehaviour
                 StartCoroutine(DisableTriggerAfterDash(wallCollider));
                 TryKillEnemyAtDashEndpoint(targetPosition);
             }
+            else if (IsEnemyTag(tag))
+            {
+                Debug.Log("Enemy hit during dash, dashing through.");
+
+                Collider2D enemyCollider = hit.collider;
+                enemyCollider.isTrigger = true;
+                rb.MovePosition(targetPosition);
+                StartCoroutine(DisableTriggerAfterDash(enemyCollider)); // reuse same trigger disable
+                TryKillEnemyAtDashEndpoint(targetPosition);
+            }
         }
         else
         {

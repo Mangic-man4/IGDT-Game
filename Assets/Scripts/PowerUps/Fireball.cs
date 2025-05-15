@@ -37,7 +37,7 @@ public class Fireball : MonoBehaviour
 
             Destroy(gameObject);
         }
-        else if (!other.CompareTag("Player"))
+        else if (!other.CompareTag("Player") && !other.CompareTag("PowerUp"))
         {
             Destroy(gameObject);
         }
