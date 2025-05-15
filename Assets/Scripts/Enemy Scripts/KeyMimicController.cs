@@ -27,6 +27,7 @@ public class KeyMimicController : MonoBehaviour
         sr.sprite = disguisedSprite;
         shootTimer = shootInterval;
 
+
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -36,6 +37,7 @@ public class KeyMimicController : MonoBehaviour
                 Debug.LogError("Player not found! Tag the player as 'Player'.");
         }
     }
+
 
     void Update()
     {
@@ -67,13 +69,17 @@ public class KeyMimicController : MonoBehaviour
                     shootTimer = shootInterval;
                 }
 
-                // 🔁 Rotate to face the player
+                // Rotate toward player with +180 so thin end leads
                 Vector2 direction = (player.position - transform.position).normalized;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
+
+                // Flip sprite horizontally if the player is on the left
+                sr.flipY = (player.position.x > transform.position.x);
             }
         }
     }
+
 
     void Reveal()
     {
