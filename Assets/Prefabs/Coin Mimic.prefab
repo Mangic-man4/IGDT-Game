@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969178686675295398}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 23.36, y: -11.53, z: 0.14035416}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -133,7 +133,7 @@ Animator:
   m_GameObject: {fileID: 969178686675295398}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eb70b5e7a65fecf4d96445a82f6de9bf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7aa10a65a946b294c8251e543a96e84e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -185,7 +185,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 4
   chaseStopDistance: 20
-  moveSpeed: 12
-  disguisedSprite: {fileID: 1900987643, guid: 0cd20d78f24dec049ba77efb1a00695c, type: 3}
-  revealedSprite: {fileID: -2127100622, guid: 0cd20d78f24dec049ba77efb1a00695c, type: 3}
+  moveSpeed: 15
   player: {fileID: 0}

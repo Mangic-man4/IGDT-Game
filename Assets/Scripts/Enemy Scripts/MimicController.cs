@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,18 +7,18 @@ public class MimicController : MonoBehaviour
     public float detectionRange = 2.5f;
     public float chaseStopDistance = 6f;
     public float moveSpeed = 12f;
-    public Sprite disguisedSprite;
-    public Sprite revealedSprite;
     public Transform player;
 
     private SpriteRenderer sr;
     private Rigidbody2D rb;
+    private Animator anim;
     private bool revealed = false;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         if (player == null)
         {
@@ -32,7 +32,8 @@ public class MimicController : MonoBehaviour
                 Debug.LogError("Player not found in scene. Make sure the Player has the 'Player' tag.");
             }
         }
-        sr.sprite = disguisedSprite;
+
+        anim.Play("Idle"); // Start in idle animation
     }
 
     void Update()
@@ -55,6 +56,9 @@ public class MimicController : MonoBehaviour
             else
             {
                 ChasePlayer();
+
+                // ✅ Flip the sprite to face the player
+                sr.flipX = (player.position.x < transform.position.x);
             }
         }
     }
@@ -62,20 +66,20 @@ public class MimicController : MonoBehaviour
     void Reveal()
     {
         revealed = true;
-        sr.sprite = revealedSprite;
+        anim.Play("CoinMimic_Chomp"); // Start chomp loop
     }
 
     void StopChase()
     {
         revealed = false;
-        sr.sprite = disguisedSprite;
+        anim.Play("Coin"); // Go back to idle animation
     }
 
     void ChasePlayer()
     {
-        Vector2 direction = (player.transform.position - transform.position).normalized;
+        Vector2 direction = (player.position - transform.position).normalized;
         Vector2 newPos = rb.position + direction * moveSpeed * Time.deltaTime;
-        rb.MovePosition(newPos); // respects collisions!
+        rb.MovePosition(newPos);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -87,5 +91,7 @@ public class MimicController : MonoBehaviour
         }
     }
 }
+
+
 
 
