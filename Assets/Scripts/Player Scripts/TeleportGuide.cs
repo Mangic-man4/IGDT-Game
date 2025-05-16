@@ -11,8 +11,6 @@ public class TeleportGuide : MonoBehaviour
     public GameObject teleportGhost;
 
     [Header("Settings")]
-    public float teleportDistance = 3f;
-
     private LineRenderer lineRenderer;
     private TeleportControl teleportControl;
 
@@ -21,7 +19,6 @@ public class TeleportGuide : MonoBehaviour
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        teleportControl = player.GetComponent<TeleportControl>();
 
         lineRenderer.positionCount = 2;
         lineRenderer.useWorldSpace = true;
@@ -42,12 +39,16 @@ public class TeleportGuide : MonoBehaviour
         Vector3 targetPosition;
 
         PlayerPowerUps powerUps = player.GetComponent<PlayerPowerUps>();
+        teleportControl = player.GetComponent<TeleportControl>();
+        float teleportDistance = teleportControl.teleportDistance;
+
 
         if (powerUps != null && powerUps.hasDash)
         {
             direction = player.localScale.x > 0 ? Vector3.right : Vector3.left;
             targetPosition = player.position + direction * powerUps.dashDistance;
         }
+
         else
         {
             direction = VerticalModeManager.IsVertical

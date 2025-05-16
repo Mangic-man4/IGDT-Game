@@ -45,6 +45,8 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
+
+
     private int maxHits; // Moved to bottom to reduce inspector confusion
 }
 
