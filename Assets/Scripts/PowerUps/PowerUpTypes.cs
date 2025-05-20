@@ -5,6 +5,8 @@ public enum PowerUpType
     GravityFlip,
     Speed,
     DoubleJump,
-    Teleport
+    Teleport,
+    InfiniteSpeed,
+    InfiniteDoubleJump
 }
 

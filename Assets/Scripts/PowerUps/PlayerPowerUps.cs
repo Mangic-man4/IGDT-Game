@@ -15,6 +15,11 @@ public class PlayerPowerUps : MonoBehaviour
     public float speedTimer;
     public float doubleJumpTimer;
 
+    // --- Infinite Power Ups ---
+    public bool hasInfiniteSpeed;
+    public bool hasInfiniteDoubleJump;
+
+
     // --- Dash Settings ---
     [SerializeField] private float dashCooldown = 0.5f;
     public float dashDistance;
@@ -77,12 +82,22 @@ public class PlayerPowerUps : MonoBehaviour
             case PowerUpType.Teleport: // Used to disable dash when teleport returns
                 hasDash = false;
                 break;
+
+            case PowerUpType.InfiniteSpeed:
+                hasSpeed = true;
+                hasInfiniteSpeed = true;
+                break;
+
+            case PowerUpType.InfiniteDoubleJump:
+                hasDoubleJump = true;
+                hasInfiniteDoubleJump = true;
+                break;
         }
     }
 
     private void HandleTimers()
     {
-        if (hasSpeed)
+        if (hasSpeed && !hasInfiniteSpeed)
         {
             speedTimer -= Time.deltaTime;
             if (speedTimer <= 0f)
@@ -91,7 +106,7 @@ public class PlayerPowerUps : MonoBehaviour
             }
         }
 
-        if (hasDoubleJump)
+        if (hasDoubleJump && !hasInfiniteDoubleJump)
         {
             doubleJumpTimer -= Time.deltaTime;
             if (doubleJumpTimer <= 0f)
