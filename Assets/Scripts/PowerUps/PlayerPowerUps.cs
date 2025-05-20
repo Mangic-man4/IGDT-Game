@@ -120,7 +120,7 @@ public class PlayerPowerUps : MonoBehaviour
         Vector2 rayOrigin = rb.position + direction * 0.5f;
         Vector2 targetPosition = rb.position + direction * dashDistance;
             
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player", "IgnoreDash"));
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player", "Ghost", "IgnoreDash"));
 
         if (hit.collider != null)
         {
@@ -174,7 +174,7 @@ public class PlayerPowerUps : MonoBehaviour
             {
                 if (col.TryGetComponent<EnemyHealth>(out var enemy))
                 {
-                    enemy.TakeDamage(int.MaxValue);
+                    enemy.Kill();
                 }
                 else
                 {

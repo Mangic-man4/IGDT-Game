@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class itemCollector : MonoBehaviour
+using TMPro;
+
+
+public class ItemCollector : MonoBehaviour
 {
     [System.Serializable]
     public class DoorAndSpikes
@@ -13,12 +16,31 @@ public class itemCollector : MonoBehaviour
 
     private int coins = 0;
 
-    [SerializeField] private Text coinCount;
+    private TextMeshProUGUI coinCount;
     [SerializeField] private AudioSource keyCollectSound;
     [SerializeField] private AudioSource coinCollectSound;
 
     // Dictionary to store the relationship between buttons and doors
     private Dictionary<GameObject, DoorAndSpikes> buttonToDoorAndSpikesMap = new Dictionary<GameObject, DoorAndSpikes>();
+
+    void Start()
+    {
+        // Try to auto-find coinCount
+        if (coinCount == null)
+        {
+            foreach (var tmp in FindObjectsOfType<TextMeshProUGUI>(true))
+            {
+                if (tmp.name == "Coin Count") // Make sure this matches the name in hierarchy
+                {
+                    coinCount = tmp;
+                    break;
+                }
+            }
+
+            if (coinCount == null)
+                Debug.LogWarning("coinCount TMP not found in scene!");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -80,63 +102,3 @@ public class itemCollector : MonoBehaviour
         }
     }
 }
-
-/* Old code
- public class itemCollector : MonoBehaviour
-{
-    private int coins = 0;
-
-    [SerializeField] private Text coinCount;
-    [SerializeField] private AudioSource keyCollectSound;
-    [SerializeField] private AudioSource coinCollectSound;
-
-    // Dictionary to store the relationship between buttons and doors
-    private Dictionary<GameObject, GameObject> buttonToDoorMap = new Dictionary<GameObject, GameObject>();
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Coins"))
-        {
-            coinCollectSound.Play();
-            Destroy(collision.gameObject);
-            coins++;
-            coinCount.text = "Coins: " + coins;
-        }
-
-        if (collision.gameObject.CompareTag("Button"))
-        {
-
-            //Play collecting sound effect
-            keyCollectSound.time = 0.5f;
-            keyCollectSound.Play();
-
-            // Assume each button has a corresponding door as a child
-            GameObject door = collision.transform.Find("Door").gameObject;
-
-            // Store the relationship in the dictionary
-            buttonToDoorMap.Add(collision.gameObject, door);
-
-            Destroy(collision.gameObject);
-            Debug.Log("Button pressed!");
-
-            // Open the specific door associated with this button
-            OpenDoor(door);
-        }
-    }
-
-    void OpenDoor(GameObject door)
-    {
-        // Check if the door is not null
-        if (door != null)
-        {
-            // Destroy the door
-            Destroy(door);
-            Debug.Log("Door opened!");
-        }
-        else
-        {
-            Debug.LogWarning("Door not found!");
-        }
-    }
-}
- */

@@ -37,6 +37,7 @@ public class TeleportControl : MonoBehaviour
         teleportGhost = Instantiate(gameObject, transform.position, Quaternion.identity);
         teleportGhost.name = "TeleportGhost";
         teleportGhost.tag = "Ghost";
+        teleportGhost.layer = 13;
 
         // Remove unnecessary gameplay components from ghost
         Destroy(teleportGhost.GetComponent<TeleportControl>());
@@ -44,7 +45,26 @@ public class TeleportControl : MonoBehaviour
         Destroy(teleportGhost.GetComponent<PlayerPowerUps>());
         Destroy(teleportGhost.GetComponent<Rigidbody2D>());
         Destroy(teleportGhost.GetComponent<Collider2D>());
-        Destroy(teleportGhost.GetComponent<AudioSource>());
+        Destroy(teleportGhost.GetComponent<BoxCollider2D>());
+        Destroy(teleportGhost.GetComponent<ItemCollector>());
+        Destroy(teleportGhost.GetComponent<DevRespawn>());
+        Destroy(teleportGhost.GetComponent<Timer>());
+        foreach (var audio in teleportGhost.GetComponents<AudioSource>())
+        {
+            Destroy(audio);
+        }
+
+        // Destroy named child objects
+        string[] childrenToDestroy = { "GroundCheck", "FirePoint" };
+        foreach (string childName in childrenToDestroy)
+        {
+            Transform child = teleportGhost.transform.Find(childName);
+            if (child != null)
+                Destroy(child.gameObject);
+        }
+
+
+
 
         // Fade all sprites
         foreach (var sr in teleportGhost.GetComponentsInChildren<SpriteRenderer>())
@@ -131,16 +151,34 @@ public class TeleportControl : MonoBehaviour
 
     private void PerformTeleport()
     {
-        Vector3 newPosition = transform.position;
+        Vector3 direction = VerticalModeManager.IsVertical
+            ? (transform.position.x < 0 ? Vector3.right : Vector3.left)
+            : (transform.position.y < -3f ? Vector3.up : Vector3.down);
 
-        newPosition += VerticalModeManager.IsVertical
-            ? (transform.position.x < 0 ? Vector3.right : Vector3.left) * teleportDistance
-            : (transform.position.y < -3f ? Vector3.up : Vector3.down) * teleportDistance;
-
+        Vector3 newPosition = transform.position + direction * teleportDistance;
         transform.position = newPosition;
         lastTeleportTime = Time.time;
+
+        // Define which tags are allowed to be killed
+        string[] killableTags = { "Enemy"};
+
+        // Check if any enemies are hit
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(newPosition, 0.5f);
+        foreach (var col in overlaps)
+        {
+            if (col.TryGetComponent<EnemyHealth>(out var enemyHealth))
+            {
+                // Only kill if the tag is in the allowed list
+                if (killableTags.Contains(col.tag))
+                {
+                    enemyHealth.Kill();
+                }
+            }
+        }
     }
-        
+
+
+
     private bool IsEasyDifficulty()
     {
         return SceneManager.GetActiveScene().name.Contains("Easy");

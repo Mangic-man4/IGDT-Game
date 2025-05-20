@@ -2,14 +2,32 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class Timer : MonoBehaviour
 {
-    public Text timerText;
+    private TextMeshProUGUI timerText;
     private float timerValue = 0f;
 
     void Start()
     {
+        // Auto-find timerText
+        if (timerText == null)
+        {
+            foreach (var tmp in FindObjectsOfType<TextMeshProUGUI>(true))
+            {
+                if (tmp.name == "Timer") // Match the name of your UI Text element
+                {
+                    timerText = tmp;
+                    break;
+                }
+            }
+
+            if (timerText == null)
+                Debug.LogWarning("timerText TMP not found in scene!");
+        }
+
         // Start the timer coroutine
         StartCoroutine(UpdateTimer());
     }

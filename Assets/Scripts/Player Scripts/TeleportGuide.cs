@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-[RequireComponent(typeof(LineRenderer))]
 public class TeleportGuide : MonoBehaviour
 {
     [Header("References")]
@@ -60,6 +59,16 @@ public class TeleportGuide : MonoBehaviour
 
         lineRenderer.SetPosition(0, player.position);
         lineRenderer.SetPosition(1, targetPosition);
+
+        // === Copy the ghost's tint color ===
+        SpriteRenderer ghostSprite = teleportGhost.GetComponentInChildren<SpriteRenderer>();
+        if (ghostSprite != null)
+        {
+            Color ghostColor = ghostSprite.color;
+            ghostColor.a = 1f; // Make line fully opaque for visibility
+            lineRenderer.startColor = ghostColor;
+            lineRenderer.endColor = ghostColor;
+        }
     }
 
     public void ToggleVisibility()

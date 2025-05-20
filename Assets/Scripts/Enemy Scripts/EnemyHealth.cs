@@ -17,9 +17,7 @@ public class EnemyHealth : MonoBehaviour
         currentHits = maxHits;
     }
 
-    /// <summary>
-    /// Determines hit points based on scene difficulty keyword.
-    /// </summary>
+    // Determines hit points based on scene difficulty keyword.
     private int GetHitsByDifficulty(string sceneName) => sceneName switch
     {
         string name when name.Contains("Easy") => 1,
@@ -28,9 +26,7 @@ public class EnemyHealth : MonoBehaviour
         _ => defaultHits
     };
 
-    /// <summary>
-    /// Applies damage and destroys the enemy if health reaches 0.
-    /// </summary>
+    // Applies damage and destroys the enemy if health reaches 0.
     public void TakeDamage(int amount)
     {
         currentHits -= amount;
@@ -44,6 +40,15 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Hit enemy");
+
+            Kill();
+        }
+    }
 
 
 

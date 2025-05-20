@@ -41,12 +41,4 @@ public class LaserTurret : MonoBehaviour
         laserBeamRenderer.SetPosition(0, firePoint.position);
         laserBeamRenderer.SetPosition(1, endPoint);
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
-    }
 }

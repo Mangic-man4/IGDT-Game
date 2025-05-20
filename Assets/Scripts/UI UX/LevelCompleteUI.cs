@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelCompleteUI : MonoBehaviour
 {
-    [SerializeField] private Text scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private void Start()
     {
@@ -21,14 +22,4 @@ public class LevelCompleteUI : MonoBehaviour
     {
         scoreText.text = "Score: " + score.ToString();
     }
-
-    /*
-        private void Start()
-        {
-            // Retrieve the score from the ScoreManager
-            int score = ScoreManager.instance.GetScore();
-
-            // Display the score in the score text
-            scoreText.text = "Score: " + score.ToString();
-        }*/
 }

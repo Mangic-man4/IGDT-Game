@@ -151,15 +151,15 @@ MonoBehaviour:
     m_Bits: 64
   testPlatforms:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   platformLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   normalGravityScale: 5
   normalDrag: 0
   lowGravityScale: 0.5
   lowGravityDrag: 1
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 8379751870133835304, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
 --- !u!95 &3857985449349044614
 Animator:
   serializedVersion: 5
@@ -656,7 +656,7 @@ MonoBehaviour:
   speedTimer: 0
   doubleJumpTimer: 0
   dashCooldown: 0.5
-  dashDistance: 3
+  dashDistance: 4
   fireballPrefab: {fileID: 4377477607646044283, guid: 83080a53bef141846958a25126e2685f, type: 3}
   firePoint: {fileID: 2527680590558214655}
   fireCooldown: 0.5
