@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private AudioSource jumpSound;
     private PlayerPowerUps powerUps;
-    private TeleportControl teleportControl;
 
     private float xInput;
     private bool isGrounded;
@@ -52,7 +51,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         powerUps = GetComponent<PlayerPowerUps>();
-        teleportControl = GetComponent<TeleportControl>();
         jumpSound = GetComponent<AudioSource>();
 
         if (mainCamera) _ = mainCamera.transform.position; // Accessed once
@@ -227,4 +225,16 @@ public class PlayerController : MonoBehaviour
             rb.drag = normalDrag;
         }
     }
+
+    public void UnparentFromPlatform()
+    {
+        StartCoroutine(UnparentDelayed());
+    }
+
+    private IEnumerator UnparentDelayed()
+    {
+        yield return null;
+        transform.SetParent(null);
+    }
+
 }

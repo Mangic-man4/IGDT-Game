@@ -17,7 +17,6 @@ public class TextToTMPConverter : EditorWindow
             // Copy settings
             string content = text.text;
             Color color = text.color;
-            Font font = text.font;
             int fontSize = text.fontSize;
             TextAnchor alignment = text.alignment;
 

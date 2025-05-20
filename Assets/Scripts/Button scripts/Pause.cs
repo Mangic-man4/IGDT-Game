@@ -24,7 +24,7 @@ public class Pause : MonoBehaviour
         {
             foreach (var tmp in PauseScreen.GetComponentsInChildren<TextMeshProUGUI>(true))
             {
-                Debug.Log("Found TMP child: " + tmp.name); // Log TMP components found
+                //Debug.Log("Found TMP child: " + tmp.name); // Log TMP components found
                 if (tmp.name == "pausedText")
                 {
                     pausedText = tmp;

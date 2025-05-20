@@ -14,21 +14,26 @@ public class ScoreManager : MonoBehaviour
     private const float NormalMultiplier = 0.75f;
     private const float HardMultiplier = 1.0f;
 
-    private int score = 0;
+    private readonly int score = 0;
 
     private void Awake()
     {
-        // Ensure only one instance of ScoreManager exists
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
+
+            // Detach from parent if needed
+            if (transform.parent != null)
+                transform.SetParent(null);
+
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
 
     // Method to calculate the score based on difficulty, coins, and time
     public int CalculateScore(string difficulty, int coinsCollected, float timeElapsed)

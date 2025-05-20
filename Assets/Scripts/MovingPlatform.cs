@@ -84,9 +84,12 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(null);
+            // Call a method on the player to handle delayed unparenting
+            collision.gameObject.SendMessage("UnparentFromPlatform", SendMessageOptions.DontRequireReceiver);
         }
     }
+
+
 }
 
 

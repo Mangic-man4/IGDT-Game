@@ -16,7 +16,12 @@ public class PowerUpUI : MonoBehaviour
 
         // Store reference to the visual UI panel (parent of the TMP)
         if (powerUpText != null)
-            uiPanel = transform.Find("Panel")?.gameObject;
+        {
+            Transform panelTransform = transform.Find("Panel");
+            if (panelTransform != null)
+                uiPanel = panelTransform.gameObject;
+        }
+
 
         // Attempt to find the PlayerPowerUps script in scene
         playerPowerUps = FindObjectOfType<PlayerPowerUps>();
@@ -96,9 +101,9 @@ public class PowerUpUI : MonoBehaviour
         if (uiPanel.activeSelf != shouldBeVisible)
             uiPanel.SetActive(shouldBeVisible);
     }
-    void OnDisable()
+    /*void OnDisable()
     {
         Debug.LogWarning("PowerUpUI was disabled!", this);
-    }
+    }*/
 
 }

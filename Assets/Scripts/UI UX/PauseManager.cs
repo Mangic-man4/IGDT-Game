@@ -35,9 +35,15 @@ public class PauseManager : MonoBehaviour
         else
         {
             instance = this;
+
+            // Detach from parent if not already root
+            if (transform.parent != null)
+                transform.SetParent(null);
+
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
 
     public void SetPauseState(bool pauseState)
     {
