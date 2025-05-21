@@ -34,12 +34,19 @@ public class PlayerPowerUps : MonoBehaviour
     // --- Speed Settings ---
     public float speedMultiplier = 2f;
 
+    // --- Gravity Settings ---
+    private bool previousGravityState;
+
+
     // --- References ---
     private Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        previousGravityState = gravityFlipped;
+
     }
 
     private void Update()
@@ -49,6 +56,12 @@ public class PlayerPowerUps : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && Time.time > lastFireTime + fireCooldown)
         {
             TryFireball();
+        }
+
+        if (gravityFlipped != previousGravityState)
+        {
+            FlipGravity();
+            previousGravityState = gravityFlipped;
         }
     }
 
@@ -67,6 +80,7 @@ public class PlayerPowerUps : MonoBehaviour
             case PowerUpType.GravityFlip:
                 gravityFlipped = !gravityFlipped;
                 FlipGravity();
+                previousGravityState = gravityFlipped;
                 break;
 
             case PowerUpType.Speed:
