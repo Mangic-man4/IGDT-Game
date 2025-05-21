@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5007240873689150125}
   - component: {fileID: 7883553588569127699}
   - component: {fileID: 7016894945470450141}
+  - component: {fileID: 1530861629846059183}
   m_Layer: 0
   m_Name: KeyMimic
   m_TagString: Untagged
@@ -199,7 +200,28 @@ MonoBehaviour:
   shootInterval: 2
   fireballSpeed: 6
   player: {fileID: 0}
-  disguisedSprite: {fileID: -273517065, guid: 0a646fdf1b1e7e94695b5731e6e6dec1, type: 3}
-  revealedSprite: {fileID: 1720955360, guid: 0a646fdf1b1e7e94695b5731e6e6dec1, type: 3}
+  disguisedSprite: {fileID: 0}
+  revealedSprite: {fileID: 0}
   fireballPrefab: {fileID: 7644876235087695980, guid: 2dfcf2d945169604abc94c3ca7faaddb, type: 3}
   fireballSpawnPoint: {fileID: 5250846358273488598}
+--- !u!95 &1530861629846059183
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4980505486070737709}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80fd6c8474933e345bc4b42db704ad58, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
