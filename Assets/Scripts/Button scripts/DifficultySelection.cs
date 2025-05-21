@@ -1,17 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DifficultySelection : MonoBehaviour
 {
     public Button easyButton;
     public Button normalButton;
     public Button hardButton;
+    public Button extremeButton;
     private Button[] allButtons;
     public string CurrentDifficultyStatic { get; private set; } = "Normal"; // Default to "Normal"
-    public Text difficultyText; // Reference to the Text UI element
+    public TextMeshProUGUI difficultyText; // Reference to the Text UI element
     void Start()
     {
-        allButtons = new Button[] { easyButton, normalButton, hardButton };
+        allButtons = new Button[] { easyButton, normalButton, hardButton, extremeButton };
         SetSelectedDifficulty("Normal"); // Default selection or load from player prefs
     }
 

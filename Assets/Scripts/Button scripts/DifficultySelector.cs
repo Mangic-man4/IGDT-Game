@@ -1,68 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
-//Ignore script. Broken and obsolete!
 
-/*public class DifficultySelector : MonoBehaviour
-{
-    public Text difficultyText;
-    private int currentDifficultyIndex = 1; // Default to Normal
-    private string[] difficultyLevels = { "Easy", "Normal", "Hard" };
-    private bool isUpdating = false; // Flag to prevent updates while another is in progress
-
-    void Start()
-    {
-        SetDifficulty(currentDifficultyIndex); // Initialize difficulty on start
-    }
-
-    public void DecreaseDifficulty()
-    {
-        if (isUpdating) return; // Exit if an update is already in progress
-
-        isUpdating = true;
-        currentDifficultyIndex--;
-        if (currentDifficultyIndex < 0)
-        {
-            currentDifficultyIndex = difficultyLevels.Length - 1; // Wrap to last index if out of bounds
-        }
-        SetDifficulty(currentDifficultyIndex);
-        isUpdating = false; // Reset flag after update
-    }
-
-    public void IncreaseDifficulty()
-    {
-        if (isUpdating) return; // Exit if an update is already in progress
-
-        isUpdating = true;
-        currentDifficultyIndex++;
-        if (currentDifficultyIndex >= difficultyLevels.Length)
-        {
-            currentDifficultyIndex = 0; // Wrap to first index if out of bounds
-        }
-        SetDifficulty(currentDifficultyIndex);
-        isUpdating = false; // Reset flag after update
-    }
-
-    private void SetDifficulty(int index)
-    {
-        // Ensure the index is within valid bounds
-        currentDifficultyIndex = Mathf.Clamp(index, 0, difficultyLevels.Length - 1);
-        UpdateDifficultyText();
-        Debug.Log($"Difficulty set to {difficultyLevels[currentDifficultyIndex]}. Current difficulty index: {currentDifficultyIndex}");
-    }
-
-    private void UpdateDifficultyText()
-    {
-        difficultyText.text = difficultyLevels[currentDifficultyIndex];
-    }
-}
-*/ 
 public class DifficultySelector : MonoBehaviour
 {
-    public Text difficultyText; // Assign in the Inspector
+    public TextMeshProUGUI difficultyText; // Assign in the Inspector
     private int difficultyIndex = 1; // Start at Normal
-    private string[] difficulties = { "Easy", "Normal", "Hard" };
+    private string[] difficulties = { "Easy", "Normal", "Hard", "Extreme" };
     private bool canChangeDifficulty = true; // To prevent rapid, unintended changes
     public float changeCooldown = 0.5f; // Half a second before allowing another change
 

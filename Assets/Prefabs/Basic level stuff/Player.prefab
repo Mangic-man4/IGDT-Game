@@ -412,7 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee7c80b58fd56741876638725cab0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinCount: {fileID: 0}
   keyCollectSound: {fileID: 947713195477563227}
   coinCollectSound: {fileID: 5787218236385084756}
 --- !u!114 &7011977222045603715
@@ -634,7 +633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27009be9badde824a93a184cd2691f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
 --- !u!114 &5436946557807577545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +653,8 @@ MonoBehaviour:
   fireballCharges: 0
   speedTimer: 0
   doubleJumpTimer: 0
+  hasInfiniteSpeed: 0
+  hasInfiniteDoubleJump: 0
   dashCooldown: 0.5
   dashDistance: 4
   fireballPrefab: {fileID: 4377477607646044283, guid: 83080a53bef141846958a25126e2685f, type: 3}

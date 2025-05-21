@@ -13,6 +13,8 @@ public class ScoreManager : MonoBehaviour
     private const float EasyMultiplier = 0.5f;
     private const float NormalMultiplier = 0.75f;
     private const float HardMultiplier = 1.0f;
+    private const float ExtremeMultiplier = 1.5f;
+
 
     private readonly int score = 0;
 
@@ -65,6 +67,8 @@ public class ScoreManager : MonoBehaviour
                 return NormalMultiplier;
             case "hard":
                 return HardMultiplier;
+            case "extreme":
+                return ExtremeMultiplier;
             default:
                 Debug.LogError("Unknown difficulty: " + difficulty);
                 return 1.0f;
@@ -85,90 +89,3 @@ public class ScoreManager : MonoBehaviour
 
     }
 }
-
-/*
-{
-public DifficultySelection difficultySelection;
-public Text coinCount;
-public Text timerText;
-public int coins = 0;
-private float timerValue = 0f;
-public static ScoreManager instance;
-
-
-private void Start()
-{
-    if (instance == null)
-    {
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-    else
-    {
-        Destroy(gameObject);
-    }
-
-    StartCoroutine(UpdateTimer());
-}
-
-private IEnumerator UpdateTimer()
-{
-    while (true)
-    {
-        yield return new WaitForSeconds(1f);
-        timerValue++;
-        UpdateTimerDisplay();
-    }
-}
-
-private void UpdateTimerDisplay()
-{
-    string formattedTime = timerValue.ToString("000");
-    timerText.text = "Time: " + formattedTime;
-}
-
-public void IncrementCoinCount()
-{
-    coins++;
-    coinCount.text = "Coins: " + coins;
-}
-
-public int CalculateScore()
-{
-    // Calculate the time-based score
-    int timeScore = Mathf.Max(0, 600 - (int)timerValue * 2);
-
-    // Get the difficulty multiplier from the DifficultySelection script
-    float difficultyMultiplier = GetDifficultyMultiplier();
-
-    // Calculate the total score
-    int totalScore = (coins * 25 + timeScore) * (int)(difficultyMultiplier * 100);
-
-    return totalScore;
-}
-
-private float GetDifficultyMultiplier()
-{
-    if (difficultySelection != null)
-    {
-        string difficulty = difficultySelection.difficultyText.text;
-        switch (difficulty)
-        {
-            case "Easy":
-                return 0.5f;
-            case "Normal":
-                return 0.75f;
-            case "Hard":
-                return 1.0f;
-            default:
-                Debug.LogError("Unknown difficulty level: " + difficulty);
-                return 1.0f;
-        }
-    }
-    else
-    {
-        Debug.LogError("DifficultySelection is not assigned.");
-        return 1.0f;
-    }
-}
-}*/

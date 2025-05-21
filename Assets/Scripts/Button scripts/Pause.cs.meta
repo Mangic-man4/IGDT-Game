@@ -3,7 +3,9 @@ guid: 88b40c0a15a4ccd48a49dc1176f3cb65
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - PauseScreen: {fileID: 446711713201364681, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
+  - backgroundMusic: {fileID: 8334946878693140749, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

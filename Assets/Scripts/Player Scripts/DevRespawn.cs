@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DevRespawn : MonoBehaviour
 {
-    public float respawnPointX = 140f;
-    public float respawnPointY = 7.22f;
+    public float respawnPointX = 140f; //-15 for spawn
+    public float respawnPointY = 7.22f; //-15 for spawn
 
     // Reference to the TeleportControl script
     public TeleportControl teleportControl;
