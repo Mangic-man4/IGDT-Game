@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelFinish : MonoBehaviour
 {
@@ -20,24 +16,13 @@ public class LevelFinish : MonoBehaviour
         {
             if (tmp.name == "Score") scoreText = tmp;
             else if (tmp.name == "Coin Count") coinCount = tmp;
-            else if (tmp.name == "Timer") timer = tmp.GetComponent<Timer>(); // if Timer is on the same object
+            else if (tmp.name == "Timer") timer = tmp.GetComponent<Timer>();
         }
 
-        // Fallbacks (optional)
         if (scoreText == null) Debug.LogWarning("Score TMP not found!");
         if (coinCount == null) Debug.LogWarning("Coin Count TMP not found!");
-
-        if (timer == null)
-        {
-            timer = FindObjectOfType<Timer>();
-            if (timer == null) Debug.LogWarning("Timer component not found!");
-        }
-
-        if (scoreManager == null)
-        {
-            scoreManager = FindObjectOfType<ScoreManager>();
-            if (scoreManager == null) Debug.LogWarning("ScoreManager not found!");
-        }
+        if (timer == null) timer = FindObjectOfType<Timer>();
+        if (scoreManager == null) scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     private void Update()
@@ -54,7 +39,40 @@ public class LevelFinish : MonoBehaviour
         int score = ScoreManager.instance.CalculateScore(difficulty, coinsCollected, timeElapsed);
 
         scoreText.text = "Score: " + score;
+    }
+
+    public void FinalizeScore()
+    {
+        if (scoreText == null || coinCount == null || timer == null || scoreManager == null)
+            return;
+
+        string sceneName = SceneManager.GetActiveScene().name;
+        string[] sceneParts = sceneName.Split(' ');
+        string difficulty = sceneParts[sceneParts.Length - 1];
+
+        int coinsCollected = ExtractCoinsFromText();
+        float timeElapsed = timer.GetTimeElapsed();
+        int score = ScoreManager.instance.CalculateScore(difficulty, coinsCollected, timeElapsed);
+
+        PlayerPrefs.SetInt("PreviousScore", score);
+        PlayerPrefs.SetString("LastCompletedScene", sceneName);
+        SavePlayerHighScore(sceneName, score);
+        PlayerPrefs.Save();
+
         scoreManager.SaveScore(score);
+    }
+
+
+    private void SavePlayerHighScore(string sceneName, int newScore)
+    {
+        string playerName = PlayerPrefs.GetString("PlayerName", "Guest");
+        string key = $"Hiscore_{playerName}_{sceneName}";
+
+        int previousBest = PlayerPrefs.GetInt(key, 0);
+        if (newScore > previousBest)
+        {
+            PlayerPrefs.SetInt(key, newScore);
+        }
     }
 
     private int ExtractCoinsFromText()
@@ -66,5 +84,3 @@ public class LevelFinish : MonoBehaviour
         return 0;
     }
 }
-
-

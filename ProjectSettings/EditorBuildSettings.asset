@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Controls.unity
     guid: b11960f3b6044b245a087a2e785d59e5
   - enabled: 1
+    path: Assets/Scenes/Hiscores.unity
+    guid: 4cda6c744fc84b34082430193fad2540
+  - enabled: 1
     path: Assets/Scenes/Level Select.unity
     guid: da87353661810b04da7786c60c5a83f8
   - enabled: 1
@@ -40,7 +43,7 @@ EditorBuildSettings:
     guid: 4639a5eb469e60542873e63bde7ba752
   - enabled: 1
     path: Assets/Scenes/Level Complete.unity
-    guid: 4cda6c744fc84b34082430193fad2540
+    guid: d6368250e6d71604e9f308c2b6686258
   - enabled: 1
     path: Assets/Scenes/Levels/Level 2 Easy.unity
     guid: c2701a29107e6d14788d63104e8a12fb

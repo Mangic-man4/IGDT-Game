@@ -17,38 +17,29 @@ public class NextLevel : MonoBehaviour
         }
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "Player")
         {
+            // Finalize the score before changing scenes
+            var levelFinish = FindObjectOfType<LevelFinish>();
+            if (levelFinish != null)
+            {
+                levelFinish.FinalizeScore();
+            }
+            else
+            {
+                Debug.LogWarning("LevelFinish script not found before scene change.");
+            }
+
             // Set pause state to false before transitioning to the Start Screen
             PauseManager.Instance.SetPauseState(false);
 
             sceneController.SaveCurrentScene();
-
             sceneController.SaveCompletedLevel(currentLevelName);
 
-            // Save the completed level's name in PlayerPrefs
-            // PlayerPrefs.SetString("CompletedLevel", completedLevelName);
-
             SceneManager.LoadScene("Level Complete");
         }
     }
-}
-/*
- public class NextLevel : MonoBehaviour
-{
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.name == "Player")
-        {
-            // Set pause state to false before transitioning to the Start Screen
-            PauseManager.Instance.SetPauseState(false);
 
-            SceneManager.LoadScene("Level Complete");
-        }
-    }
 }
-*/
