@@ -19,14 +19,16 @@ public class KeyMimicController : MonoBehaviour
     private Rigidbody2D rb;
     private bool revealed = false;
     private float shootTimer;
+    private Animator anim;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         sr.sprite = disguisedSprite;
         shootTimer = shootInterval;
-
+        anim.Play("Key"); // Start in idle animation
 
         if (player == null)
         {
@@ -37,7 +39,6 @@ public class KeyMimicController : MonoBehaviour
                 Debug.LogError("Player not found! Tag the player as 'Player'.");
         }
     }
-
 
     void Update()
     {
@@ -80,19 +81,31 @@ public class KeyMimicController : MonoBehaviour
         }
     }
 
-
     void Reveal()
     {
+        if (revealed) return; // prevent double triggering
         revealed = true;
-        sr.sprite = revealedSprite;
+
+        // Set scale immediately to prevent flash
+        transform.localScale = new Vector3(2f, 2f, 1f);
+
+        // Manually reset to frame 0 before the animation starts
+        anim.Play("Key"); // forces evaluation of first (idle) frame immediately at new scale
+
+        // Now trigger the actual animation
+        anim.SetTrigger("Reveal");
     }
+
 
     void StopChase()
     {
         revealed = false;
-        sr.sprite = disguisedSprite;
-        transform.rotation = Quaternion.identity; // Reset rotation when hidden
+
+        transform.localScale = Vector3.one;         // Reset size
+        anim.Play("Key");                           // Play idle animation directly
+        transform.rotation = Quaternion.identity;   // Reset rotation
     }
+
 
     void ChasePlayer()
     {
@@ -107,18 +120,11 @@ public class KeyMimicController : MonoBehaviour
 
         GameObject fireball = Instantiate(fireballPrefab, fireballSpawnPoint.position, Quaternion.identity);
         Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
-        // Launch direction
         Vector2 direction = (player.position - transform.position).normalized;
-
-        // Set velocity
         rb.velocity = direction * fireballSpeed;
 
-        // Set rotation based on direction
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
-
-
-
+        fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 160f);
     }
 }
 

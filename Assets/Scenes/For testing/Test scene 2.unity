@@ -371,28 +371,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99520757}
   m_CullTransparentMesh: 1
---- !u!114 &134798647 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1177102040998870391, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
-  m_PrefabInstance: {fileID: 410171905}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cedaaf7998e1d74eb90ed46762ab8bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &134798652 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1840644673984533290, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
-  m_PrefabInstance: {fileID: 410171905}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766e8c92045614246af2a3137f975bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &134798654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5426890507027463275, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
@@ -23017,10 +22995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseScreen: {fileID: 1388089689}
-  pausedText: {fileID: 1267644624}
   backgroundMusic: {fileID: 1954323912}
-  playerController: {fileID: 134798652}
-  teleportControl: {fileID: 134798647}
 --- !u!1 &1033613163
 GameObject:
   m_ObjectHideFlags: 0
@@ -23571,6 +23546,7 @@ GameObject:
   - component: {fileID: 1869066241}
   - component: {fileID: 1869066243}
   - component: {fileID: 1869066242}
+  - component: {fileID: 1869066244}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -319822,6 +319798,27 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!95 &1869066244
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869066240}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d9b1e84016c0de4f81cc9f50dccb8f2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1954323908
 GameObject:
   m_ObjectHideFlags: 0
@@ -320196,10 +320193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseScreen: {fileID: 1388089689}
-  pausedText: {fileID: 1267644624}
   backgroundMusic: {fileID: 1954323912}
-  playerController: {fileID: 134798652}
-  teleportControl: {fileID: 134798647}
 --- !u!1001 &452352005411637069
 PrefabInstance:
   m_ObjectHideFlags: 0
