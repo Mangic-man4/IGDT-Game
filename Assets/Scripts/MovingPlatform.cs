@@ -47,7 +47,16 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            var player = collision.gameObject.GetComponent<PlayerPowerUps>();
+            if (player != null && !player.isDashing && collision.transform.parent != transform)
+            {
+                collision.transform.SetParent(transform);
+            }
+        }
+    }
 
 }
-
-

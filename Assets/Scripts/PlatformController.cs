@@ -18,4 +18,3 @@ public class PlatformController : MonoBehaviour
         return platformTilemap.GetTile(position);
     }
 }
-

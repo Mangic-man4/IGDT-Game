@@ -24,6 +24,8 @@ public class PlayerPowerUps : MonoBehaviour
     [SerializeField] private float dashCooldown = 0.5f;
     public float dashDistance;
     private float lastDashTime;
+    public bool isDashing = false;
+
 
     // --- Fireball Settings ---
     [SerializeField] private GameObject fireballPrefab;
@@ -145,10 +147,29 @@ public class PlayerPowerUps : MonoBehaviour
     {
         if (Time.time < lastDashTime + dashCooldown) return;
 
+        int platformLayer = LayerMask.NameToLayer("Platform");
+        bool wasOnMovingPlatform = transform.parent != null && transform.parent.gameObject.layer == platformLayer;
+
+        if (wasOnMovingPlatform)
+        {
+            transform.SetParent(null);
+            isDashing = true;
+            StartCoroutine(DelayedDash());
+        }
+        else
+        {
+            ExecuteDash();
+        }
+
+        lastDashTime = Time.time;
+    }
+
+    private void ExecuteDash()
+    {
         Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
         Vector2 rayOrigin = rb.position + direction * 0.5f;
         Vector2 targetPosition = rb.position + direction * dashDistance;
-            
+
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player", "Ghost", "IgnoreDash"));
 
         if (hit.collider != null)
@@ -188,8 +209,6 @@ public class PlayerPowerUps : MonoBehaviour
             TryKillEnemyAtDashEndpoint(targetPosition);
 
         }
-
-        lastDashTime = Time.time;
     }
 
     private void TryKillEnemyAtDashEndpoint(Vector2 position)
@@ -237,6 +256,15 @@ public class PlayerPowerUps : MonoBehaviour
 
         fireballCharges--;
         lastFireTime = Time.time;
+
+    }
+
+    private IEnumerator DelayedDash()
+    {
+        yield return null; // Wait 1 frame for unparenting to take effect
+        ExecuteDash();
+        isDashing = false;
+
     }
 }
 
