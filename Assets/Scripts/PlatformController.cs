@@ -17,30 +17,5 @@ public class PlatformController : MonoBehaviour
     {
         return platformTilemap.GetTile(position);
     }
-    /*
-    
-        public Transform startPosition;
-        public Transform endPosition;
-        public float speed = 2f;
-
-        private Vector2 targetPosition;
-
-        void Start()
-        {
-            targetPosition = endPosition.position;
-        }
-
-        void Update()
-        {
-            // Move the platform towards the target position
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
-            // Check if the platform has reached the target position
-            if (Vector2.Distance((Vector2)transform.position, targetPosition) < 0.01f)
-            {
-                // Swap the target position to move the platform in the opposite direction
-                targetPosition = (targetPosition == (Vector2)startPosition.position) ? (Vector2)endPosition.position : (Vector2)startPosition.position;
-            }
-        }*/
-    }
+}
 
