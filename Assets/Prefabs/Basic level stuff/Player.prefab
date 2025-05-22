@@ -275,7 +275,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005539513, y: -0.03811984}
+  m_Offset: {x: -0.023385216, y: -0.038119838}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -286,7 +286,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2328835, y: 0.2360816}
+  m_Size: {x: 0.1971921, y: 0.2360816}
   m_EdgeRadius: 0
 --- !u!114 &1177102040998870391
 MonoBehaviour:
@@ -657,6 +657,7 @@ MonoBehaviour:
   hasInfiniteDoubleJump: 0
   dashCooldown: 0.5
   dashDistance: 4
+  isDashing: 0
   fireballPrefab: {fileID: 4377477607646044283, guid: 83080a53bef141846958a25126e2685f, type: 3}
   firePoint: {fileID: 2527680590558214655}
   fireCooldown: 0.5
