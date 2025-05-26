@@ -25327,7 +25327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ...TRY TO PICKUP THIS COIN
+  m_text: "...TRY TO PICK UP \nTHIS COIN"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
@@ -26195,7 +26195,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WATCH OUT FOR SPIKES!\n\nTHEY WILL RESET YOUR PROGRESS \n\n\u2193\u2193\u2193"
+  m_text: "WATCH OUT FOR SPIKES!\n\nTHEY WILL RESET YOUR PROGRESS \n\n\u2193 \u2193
+    \u2193"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
@@ -26861,7 +26862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "...THIS KEY\n\n\u2193\u2193\u2193"
+  m_text: "...THIS KEY\n\n\u2193 \u2193 \u2193"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
@@ -27104,6 +27105,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7034206896893669320, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
+      propertyPath: PauseScreen
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034206896893669320, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7802741437313342349, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
       propertyPath: m_Name
       value: LevelManagers

@@ -7,61 +7,62 @@ using TMPro;
 
 public class Pause : MonoBehaviour
 {
-    public GameObject PauseScreen;
+    private GameObject PauseScreen;
     private TextMeshProUGUI pausedText;
-    public AudioSource backgroundMusic;
+    private AudioSource backgroundMusic;
 
     private PlayerController playerController;
     private TeleportControl teleportControl;
 
     void Start()
-    {   
-        // Disable the pause menu UI and resume button at the start
-        PauseScreen.SetActive(false);
+    {
+        // Auto-assign PauseScreen by name or tag
+        if (PauseScreen == null)
+        {
+            PauseScreen = GameObject.Find("PauseScreen");
+            if (PauseScreen == null)
+                Debug.LogError("PauseScreen not found in scene!");
+        }
 
-        // Attempt to auto-assign pausedText from the children of PauseScreen
+        // Auto-assign pausedText from PauseScreen's children
         if (pausedText == null && PauseScreen != null)
         {
-            foreach (var tmp in PauseScreen.GetComponentsInChildren<TextMeshProUGUI>(true))
-            {
-                //Debug.Log("Found TMP child: " + tmp.name); // Log TMP components found
-                if (tmp.name == "pausedText")
-                {
-                    pausedText = tmp;
-                    break;
-                }
-            }
-        }
-
-        // Log a warning if pausedText is still not found
-        if (pausedText == null)
-        {
-            Debug.LogWarning("pausedText TMP not found in PauseScreen! Looking for a fallback.");
-        }
-
-        // Fallback mechanism to find pausedText if not set by the above method
-        if (pausedText == null)
-        {
-            pausedText = FindObjectOfType<TextMeshProUGUI>(); // Fallback to any TMP text in the scene
+            pausedText = PauseScreen.GetComponentInChildren<TextMeshProUGUI>(true);
             if (pausedText == null)
+                Debug.LogWarning("No TextMeshProUGUI found in PauseScreen!");
+        }
+
+        // Auto-assign backgroundMusic from main camera
+        if (backgroundMusic == null)
+        {
+            Camera cam = Camera.main;
+            if (cam != null)
             {
-                Debug.LogError("No TextMeshProUGUI component found in the scene!");
+                if (!cam.TryGetComponent(out backgroundMusic))
+                {
+                    Debug.LogWarning("Main camera found but no AudioSource on it.");
+                }
+
+                if (backgroundMusic == null)
+                    Debug.LogWarning("Main camera found but no AudioSource on it.");
+            }
+            else
+            {
+                Debug.LogWarning("Main camera not found.");
             }
         }
 
-        // Initialize other references (playerController, teleportControl)
+        // Auto-assign player controller
         if (playerController == null)
             playerController = FindObjectOfType<PlayerController>();
 
         if (teleportControl == null)
             teleportControl = FindObjectOfType<TeleportControl>();
 
-        if (playerController == null)
-            Debug.LogError("PlayerController reference is not set!");
-
-        if (teleportControl == null)
-            Debug.LogError("TeleportControl reference is not set!");
+        if (PauseScreen != null)
+            PauseScreen.SetActive(false);
     }
+
 
 
     void Update()
@@ -87,6 +88,8 @@ public class Pause : MonoBehaviour
 
     public void PauseGame()
     {
+        EnsureInitialized();
+
         if (PauseScreen == null)
         {
             Debug.LogError("PauseScreen is null!");
@@ -95,8 +98,6 @@ public class Pause : MonoBehaviour
 
         PauseManager.Instance.SetPauseState(true);
         PauseScreen.SetActive(true);
-
-        EnsurePausedTextInitialized();
 
         if (pausedText != null)
             pausedText.gameObject.SetActive(true);
@@ -114,6 +115,8 @@ public class Pause : MonoBehaviour
 
     public void ResumeGame()
     {
+        EnsureInitialized();
+
         if (PauseScreen == null)
         {
             Debug.LogError("PauseScreen is null!");
@@ -124,8 +127,6 @@ public class Pause : MonoBehaviour
 
         PauseManager.Instance.SetPauseState(false);
         PauseScreen.SetActive(false);
-
-        EnsurePausedTextInitialized();
 
         if (pausedText != null)
             pausedText.gameObject.SetActive(false);
@@ -157,22 +158,27 @@ public class Pause : MonoBehaviour
             backgroundMusic.Play();
         }
     }
-    private void EnsurePausedTextInitialized()
+
+    private void EnsureInitialized()
     {
+        if (PauseScreen == null)
+            PauseScreen = GameObject.Find("PauseScreen");
+
         if (pausedText == null && PauseScreen != null)
         {
-            foreach (var tmp in PauseScreen.GetComponentsInChildren<TextMeshProUGUI>(true))
-            {
-                if (tmp.name == "pausedText")
-                {
-                    pausedText = tmp;
-                    break;
-                }
-            }
-
-            if (pausedText == null)
-                Debug.LogWarning("pausedText still not found when trying to initialize during ResumeGame.");
+            TextMeshProUGUI[] tmps = PauseScreen.GetComponentsInChildren<TextMeshProUGUI>(true);
+            if (tmps.Length > 0)
+                pausedText = tmps[0];
         }
+
+        if (backgroundMusic == null && Camera.main != null)
+            Camera.main.TryGetComponent(out backgroundMusic);
+
+        if (playerController == null)
+            playerController = FindObjectOfType<PlayerController>();
+
+        if (teleportControl == null)
+            teleportControl = FindObjectOfType<TeleportControl>();
     }
 
 }

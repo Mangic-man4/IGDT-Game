@@ -233,7 +233,11 @@ PrefabInstance:
     - target: {fileID: 549101099918024687, guid: 1e0c8f94514ab1644806671db996e393, type: 3}
       propertyPath: PauseScreen
       value: 
-      objectReference: {fileID: 446711713201364681, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 549101099918024687, guid: 1e0c8f94514ab1644806671db996e393, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3690778051161339753, guid: 1e0c8f94514ab1644806671db996e393, type: 3}
       propertyPath: m_Name
       value: PauseScript

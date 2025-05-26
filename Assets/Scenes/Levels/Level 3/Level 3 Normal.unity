@@ -357995,6 +357995,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7034206896893669320, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
+      propertyPath: PauseScreen
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034206896893669320, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7802741437313342349, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
       propertyPath: m_Name
       value: LevelManagers
