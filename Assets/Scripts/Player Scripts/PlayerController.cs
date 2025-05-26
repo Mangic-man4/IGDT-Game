@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Environment Layers")]
     public Transform groundCheck;
-    public float groundCheckRadius;
+    [SerializeField] private Vector2 groundCheckBoxSize = new (0.7f, 0.2f); // New box-based groundCheck detection method
+    private float groundCheckRadius; //Old circle radius-based groundCheck detection method
     public LayerMask groundLayer;
     public LayerMask testPlatforms;
     [SerializeField] private LayerMask platformLayer;
@@ -77,15 +78,25 @@ public class PlayerController : MonoBehaviour
     // === Input + Logic ===
     private void HandleInput()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) ||
-                     Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, platformLayer) ||
-                     Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, testPlatforms);
+        /* // Old detection method
+             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) ||
+             Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, platformLayer) ||
+             Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, testPlatforms);
+        */
 
+        // Nre detection method
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBoxSize, 0f, groundLayer | platformLayer | testPlatforms);
 
         xInput = Input.GetAxisRaw("Horizontal");
 
         HandleJumpInput();
     }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundCheck.position, groundCheckBoxSize);
+    }
+
 
     private void Move()
     {
