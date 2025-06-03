@@ -19,6 +19,7 @@ TagManager:
   - PowerUp
   - Laser
   - Ghost
+  - Drip
   layers:
   - Default
   - TransparentFX
