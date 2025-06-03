@@ -1,9 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
 
 public class ItemCollector : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class ItemCollector : MonoBehaviour
     public class DoorAndSpikes
     {
         public GameObject door;
-        public List<GameObject> spikes; // Assuming spikes are a list of GameObjects
+        public List<GameObject> spikes;
     }
 
     private int coins = 0;
@@ -20,17 +19,15 @@ public class ItemCollector : MonoBehaviour
     [SerializeField] private AudioSource keyCollectSound;
     [SerializeField] private AudioSource coinCollectSound;
 
-    // Dictionary to store the relationship between buttons and doors
     private Dictionary<GameObject, DoorAndSpikes> buttonToDoorAndSpikesMap = new Dictionary<GameObject, DoorAndSpikes>();
 
     void Start()
     {
-        // Try to auto-find coinCount
         if (coinCount == null)
         {
             foreach (var tmp in FindObjectsOfType<TextMeshProUGUI>(true))
             {
-                if (tmp.name == "Coin Count") // Make sure this matches the name in hierarchy
+                if (tmp.name == "Coin Count")
                 {
                     coinCount = tmp;
                     break;
@@ -50,7 +47,6 @@ public class ItemCollector : MonoBehaviour
             Destroy(collision.gameObject);
             coins++;
             coinCount.text = "Coins: " + coins;
-
         }
 
         if (collision.gameObject.CompareTag("Button"))
@@ -58,41 +54,56 @@ public class ItemCollector : MonoBehaviour
             keyCollectSound.time = 0.5f;
             keyCollectSound.Play();
 
-            GameObject door = collision.transform.Find("Door").gameObject;
+            GameObject door = null;
+            Vector3 keyPosition = collision.transform.position;
+
+            // 🔍 Find closest door based on distance
+            GameObject[] allDoors = GameObject.FindGameObjectsWithTag("Door");
+            float closestDistance = Mathf.Infinity;
+
+            foreach (GameObject d in allDoors)
+            {
+                float dist = Vector3.Distance(d.transform.position, keyPosition);
+                if (dist < closestDistance && dist < 50f) // 10f is max search range
+                {
+                    closestDistance = dist;
+                    door = d;
+                }
+            }
+
+            if (door == null)
+            {
+                Debug.LogError("Couldn't find a nearby door for: " + collision.name);
+                return;
+            }
+
+            // 🧨 Look for spikes under this door
             List<GameObject> spikes = new List<GameObject>();
-            // Here you need to find the associated spikes. This depends on your scene structure.
-            // For example, if spikes are always children of the door, you can find them like this:
             foreach (Transform child in door.transform)
             {
-                if (child.CompareTag("Spikes")) // Assuming spikes have a tag "Spike"
+                if (child.CompareTag("Spikes"))
                 {
                     spikes.Add(child.gameObject);
                 }
             }
 
-            // Store the relationship in the dictionary
             buttonToDoorAndSpikesMap.Add(collision.gameObject, new DoorAndSpikes { door = door, spikes = spikes });
 
-            Destroy(collision.gameObject);
-            Debug.Log("Button pressed!");
+            Destroy(collision.gameObject); // ✅ Remove key after use
+            Debug.Log("Key collected and door unlocked!");
 
-            // Open the specific door associated with this button
-            OpenDoor(door, spikes); // Adjust the OpenDoor call to pass spikes as well
-
-            Destroy(collision.gameObject); // Destroy the button after processing
+            OpenDoor(door, spikes);
         }
-
     }
+
     void OpenDoor(GameObject door, List<GameObject> spikes)
     {
-        // Check if the door is not null
         if (door != null)
         {
-            // Destroy the door
             Destroy(door);
             foreach (GameObject spike in spikes)
             {
-                Destroy(spike); // Destroy each spike
+                Destroy(spike);
             }
             Debug.Log("Door opened!");
         }
