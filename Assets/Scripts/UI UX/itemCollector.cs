@@ -54,30 +54,18 @@ public class ItemCollector : MonoBehaviour
             keyCollectSound.time = 0.5f;
             keyCollectSound.Play();
 
-            GameObject door = null;
-            Vector3 keyPosition = collision.transform.position;
+            // 🎯 Get the child door directly
+            Transform doorTransform = collision.transform.Find("Door"); // assumes door is named "Door"
 
-            // 🔍 Find closest door based on distance
-            GameObject[] allDoors = GameObject.FindGameObjectsWithTag("Door");
-            float closestDistance = Mathf.Infinity;
-
-            foreach (GameObject d in allDoors)
+            if (doorTransform == null)
             {
-                float dist = Vector3.Distance(d.transform.position, keyPosition);
-                if (dist < closestDistance && dist < 50f) // 10f is max search range
-                {
-                    closestDistance = dist;
-                    door = d;
-                }
-            }
-
-            if (door == null)
-            {
-                Debug.LogError("Couldn't find a nearby door for: " + collision.name);
+                Debug.LogError("No child named 'Door' found under button: " + collision.name);
                 return;
             }
 
-            // 🧨 Look for spikes under this door
+            GameObject door = doorTransform.gameObject;
+
+            // 🧨 Find spikes under the door (if any)
             List<GameObject> spikes = new List<GameObject>();
             foreach (Transform child in door.transform)
             {
@@ -89,11 +77,12 @@ public class ItemCollector : MonoBehaviour
 
             buttonToDoorAndSpikesMap.Add(collision.gameObject, new DoorAndSpikes { door = door, spikes = spikes });
 
-            Destroy(collision.gameObject); // ✅ Remove key after use
+            Destroy(collision.gameObject); // ✅ Remove key/button after use
             Debug.Log("Key collected and door unlocked!");
 
             OpenDoor(door, spikes);
         }
+
     }
 
     void OpenDoor(GameObject door, List<GameObject> spikes)
