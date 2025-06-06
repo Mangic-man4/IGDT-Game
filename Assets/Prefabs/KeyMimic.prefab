@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 4
   chaseStopDistance: 30
-  chaseSpeed: 8
+  chaseSpeed: 7
   shootInterval: 2
   fireballSpeed: 6
   player: {fileID: 0}
