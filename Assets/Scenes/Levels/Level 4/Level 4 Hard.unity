@@ -351526,6 +351526,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7011977222045603715, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: respawnPointX
+      value: 146.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011977222045603715, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: respawnPointY
+      value: -12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
