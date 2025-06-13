@@ -9,6 +9,19 @@ public class Timer : MonoBehaviour
 {
     private TextMeshProUGUI timerText;
     private float timerValue = 0f;
+    private Coroutine timerRoutine;
+
+    void Awake()
+    {
+        // Destroy this component if another Timer already exists
+        Timer other = FindObjectOfType<Timer>();
+        if (other != null && other != this)
+        {
+            Debug.LogWarning("Duplicate Timer found – destroying extra instance on " + gameObject.name);
+            Destroy(this);           // or Destroy(gameObject) if the whole GO is redundant
+        }
+    }
+
 
     void Start()
     {
@@ -29,7 +42,7 @@ public class Timer : MonoBehaviour
         }
 
         // Start the timer coroutine
-        StartCoroutine(UpdateTimer());
+        timerRoutine = StartCoroutine(UpdateTimer());
     }
 
     IEnumerator UpdateTimer()
@@ -50,18 +63,26 @@ public class Timer : MonoBehaviour
 
     void UpdateTimerDisplay()
     {
+        timerText.text = "Time: " + timerValue.ToString("000");
 
-        // Format the timer value as a string with leading zeros
-        string formattedTime = timerValue.ToString("000");
-        
-
-        // Update the UI text
-        timerText.text = "Time: " + formattedTime;
     }
 
     // Method to get the elapsed time
-    public float GetTimeElapsed()
+    public float GetTimeElapsed() => timerValue;
+
+
+    /// <summary>Sets the timer and guarantees **only one** coroutine is running.</summary>
+    public void SetTimeElapsed(float v)
     {
-        return timerValue;
+        timerValue = v;
+        UpdateTimerDisplay();
+
+        // restart coroutine to avoid duplicates
+        if (timerRoutine != null) StopCoroutine(timerRoutine);
+        timerRoutine = StartCoroutine(UpdateTimer());
     }
+    public void ResetTimer() => SetTimeElapsed(0f); 
+    /*{
+        timerValue = 0f; UpdateTimerDisplay(); 
+    }*/
 }

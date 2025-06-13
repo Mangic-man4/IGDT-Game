@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("Environment Layers")]
     public Transform groundCheck;
     [SerializeField] private Vector2 groundCheckBoxSize = new (0.7f, 0.2f); // New box-based groundCheck detection method
-    private float groundCheckRadius; //Old circle radius-based groundCheck detection method
+    private readonly float groundCheckRadius; //Old circle radius-based groundCheck detection method
     public LayerMask groundLayer;
     public LayerMask testPlatforms;
     [SerializeField] private LayerMask platformLayer;
@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimer;
 
     private Vector2 respawnPoint;
+
+    private Checkpoint currentCheckpoint;
+
 
     private enum MovementState { Idle, Walk, Jump, Fall }
 
@@ -186,24 +189,62 @@ public class PlayerController : MonoBehaviour
     {
         Die();
     }
+    public void SetActiveCheckpoint(Checkpoint checkpoint)
+    {
+        currentCheckpoint = checkpoint;
+        SetRespawnPoint(checkpoint.transform.position);
+        Debug.Log($"Set currentCheckpoint to: {checkpoint.name}");
+    }
+
+
 
     public void Die()
     {
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if (sceneName.Contains("Easy"))
+        if (!sceneName.Contains("Easy"))
         {
-            transform.position = respawnPoint;
-            rb.velocity = Vector2.zero;
-            Debug.Log("Player died — respawning at checkpoint.");
-        }
-        else
-        {
-            Debug.Log("Player died — reloading scene.");
+            // Medium / Hard – unchanged
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Time.timeScale = 1f;
+            return;
         }
+
+        //  EASY MODE 
+        // 1) Is there an active checkpoint?
+        Checkpoint active = currentCheckpoint;
+
+        var pwr = GetComponent<PlayerPowerUps>();
+        var collector = GetComponent<ItemCollector>();
+        var timer = FindObjectOfType<Timer>();
+
+        // Always clear current power-ups
+        if (pwr != null) pwr.ClearAllPowerUps();
+
+        if (active == null)
+        {
+            //  NO CHECKPOINT YET: full level reset 
+            Debug.Log("Easy death with NO checkpoint – hard resetting level");
+
+            // reset player position to scene start
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Time.timeScale = 1f;          // in case pause scale changed
+            return;                       // scene reload will rebuild everything
+        }
+
+        //  CHECKPOINT EXISTS 
+        Debug.Log($"Easy death WITH checkpoint – restoring snapshot from {active.name}");
+
+        // 1) teleport player
+        transform.position = respawnPoint;
+        rb.velocity = Vector2.zero;
+
+        // 2) respawn world pickups (if that flag is on)
+        active.RestoreCheckpointState(gameObject);
     }
+
+
+
 
 
     // === Collision Events ===

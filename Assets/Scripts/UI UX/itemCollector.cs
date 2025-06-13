@@ -13,92 +13,190 @@ public class ItemCollector : MonoBehaviour
         public List<GameObject> spikes;
     }
 
+    // ---------------- runtime state ----------------
     private int coins = 0;
 
+    // ---------------- references ----------------
     private TextMeshProUGUI coinCount;
     [SerializeField] private AudioSource keyCollectSound;
     [SerializeField] private AudioSource coinCollectSound;
 
-    private Dictionary<GameObject, DoorAndSpikes> buttonToDoorAndSpikesMap = new Dictionary<GameObject, DoorAndSpikes>();
+    // button → door/spikes map so we can re-enable them on level reset
+    private readonly Dictionary<GameObject, DoorAndSpikes> buttonToDoorAndSpikesMap = new();
 
+    // ---------- coin+button lookup so we can re-enable them ----------
+    private readonly List<GameObject> collectedCoins = new();
+    private readonly List<GameObject> pressedButtons = new();
+
+    // ────────────────────────────────────────────────────────────────
+    #region Unity Life-Cycle
     void Start()
     {
         if (coinCount == null)
         {
             foreach (var tmp in FindObjectsOfType<TextMeshProUGUI>(true))
             {
-                if (tmp.name == "Coin Count")
-                {
-                    coinCount = tmp;
-                    break;
+                if (tmp.name == "Coin Count") 
+                { 
+                    coinCount = tmp; break; 
                 }
             }
 
-            if (coinCount == null)
+            if (coinCount == null) 
                 Debug.LogWarning("coinCount TMP not found in scene!");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Coins"))
+        // ─────────── COINS ───────────
+        if (collision.CompareTag("Coins"))
         {
             coinCollectSound.Play();
-            Destroy(collision.gameObject);
-            coins++;
-            coinCount.text = "Coins: " + coins;
+            CollectCoin(collision.gameObject);
+            return;
         }
 
-        if (collision.gameObject.CompareTag("Button"))
+        // ─────────── KEYS / BUTTONS ───────────
+        if (collision.CompareTag("Button"))
         {
             keyCollectSound.time = 0.5f;
             keyCollectSound.Play();
+            PressButton(collision.gameObject);
+        }
+    }
+    #endregion
+    // ────────────────────────────────────────────────────────────────
 
-            // 🎯 Get the child door directly
-            Transform doorTransform = collision.transform.Find("Door"); // assumes door is named "Door"
+    #region Coin & Button Helpers
+    void CollectCoin(GameObject coin)
+    {
+        coins++;
+        coinCount.text = $"Coins: {coins}";
+        collectedCoins.Add(coin);
+        coin.SetActive(false);              // disable instead of Destroy
+    }
 
-            if (doorTransform == null)
-            {
-                Debug.LogError("No child named 'Door' found under button: " + collision.name);
-                return;
-            }
-
-            GameObject door = doorTransform.gameObject;
-
-            // 🧨 Find spikes under the door (if any)
-            List<GameObject> spikes = new List<GameObject>();
-            foreach (Transform child in door.transform)
-            {
-                if (child.CompareTag("Spikes"))
-                {
-                    spikes.Add(child.gameObject);
-                }
-            }
-
-            buttonToDoorAndSpikesMap.Add(collision.gameObject, new DoorAndSpikes { door = door, spikes = spikes });
-
-            Destroy(collision.gameObject); // ✅ Remove key/button after use
-            Debug.Log("Key collected and door unlocked!");
-
-            OpenDoor(door, spikes);
+    void PressButton(GameObject button)
+    {
+        // find the child "Door"
+        Transform doorTf = button.transform.Find("Door");
+        if (doorTf == null) 
+        { 
+            Debug.LogError($"No child 'Door' under {button.name}"); 
+            return; 
         }
 
+        if (buttonToDoorAndSpikesMap.ContainsKey(button))
+            return; // already processed this button in this life
+
+        GameObject door = doorTf.gameObject;
+
+        // find spikes under door
+        List<GameObject> spikes = new();
+        foreach (Transform t in door.transform)
+            if (t.CompareTag("Spikes")) spikes.Add(t.gameObject);
+
+        buttonToDoorAndSpikesMap.Add(button, new DoorAndSpikes { door = door, spikes = spikes });
+        pressedButtons.Add(button);
+
+        button.SetActive(false);            // disable button
+        OpenDoor(door, spikes);
     }
 
     void OpenDoor(GameObject door, List<GameObject> spikes)
     {
-        if (door != null)
+        door.SetActive(false);              // disable instead of Destroy
+        foreach (var s in spikes) s.SetActive(false);
+    }
+    #endregion
+    // ────────────────────────────────────────────────────────────────
+
+    #region Checkpoint / Level-Reset API
+    // Snapshot used by Checkpoint
+    public struct CollectorSnapshot
+    {
+        public int coins;
+        public List<GameObject> collectedCoins;
+        public List<GameObject> pressedButtons;
+    }
+
+    public CollectorSnapshot GetSnapshot()
+    {
+        return new CollectorSnapshot
         {
-            Destroy(door);
-            foreach (GameObject spike in spikes)
-            {
-                Destroy(spike);
-            }
-            Debug.Log("Door opened!");
+            coins = coins,
+            collectedCoins = collectedCoins != null ? new List<GameObject>(collectedCoins) : new List<GameObject>(),
+            pressedButtons = pressedButtons != null ? new List<GameObject>(pressedButtons) : new List<GameObject>()
+        };
+    }
+
+
+    public void RestoreSnapshot(CollectorSnapshot snap)
+    {
+        if (snap.collectedCoins == null || snap.pressedButtons == null)
+        {
+            Debug.LogWarning("Checkpoint snapshot is empty or invalid — skipping restore.");
+            return;
         }
-        else
+
+        // 1) reset every coin & button to active
+        foreach (var c in collectedCoins) c.SetActive(true);
+        foreach (var b in pressedButtons) b.SetActive(true);
+        foreach (var kv in buttonToDoorAndSpikesMap)
         {
-            Debug.LogWarning("Door not found!");
+            kv.Value.door.SetActive(true);
+            kv.Value.spikes.ForEach(s => s.SetActive(true));
+        }
+            
+        // 2) apply snapshot
+        coins = snap.coins;
+        coinCount.text = $"Coins: {coins}";
+
+        buttonToDoorAndSpikesMap.Clear();
+
+        // 3) disable coins & buttons that were already collected/pressed
+        collectedCoins.Clear();
+        pressedButtons.Clear();
+
+        foreach (var c in snap.collectedCoins) 
+        { 
+            c.SetActive(false); collectedCoins.Add(c); 
+        }
+        foreach (var b in snap.pressedButtons) 
+        { 
+            b.SetActive(false); pressedButtons.Add(b); 
+        }
+
+        // re-open doors for pressed buttons
+        foreach (var b in snap.pressedButtons)
+        {
+            if (buttonToDoorAndSpikesMap.TryGetValue(b, out var ds))
+            {
+                ds.door.SetActive(false);
+                ds.spikes.ForEach(s => s.SetActive(false));
+            }
         }
     }
+
+    // Fast level reset (no checkpoint reached)
+    public void ResetEverything()
+    {
+        // reactivate every coin & button
+        foreach (var c in collectedCoins) c.SetActive(true);
+        foreach (var b in pressedButtons) b.SetActive(true);
+        foreach (var kv in buttonToDoorAndSpikesMap)
+        {
+            kv.Value.door.SetActive(true);
+            kv.Value.spikes.ForEach(s => s.SetActive(true));
+        }
+        buttonToDoorAndSpikesMap.Clear();
+        collectedCoins.Clear();
+        pressedButtons.Clear();
+        coins = 0;
+        coinCount.text = "Coins: 0";
+    }
+
+    public int GetCoinCount() => coins;
+    #endregion
 }

@@ -16,7 +16,7 @@ public class ScoreManager : MonoBehaviour
     private const float ExtremeMultiplier = 1.5f;
 
 
-    private readonly int score = 0;
+    private int score = 0;
 
     private void Awake()
     {
@@ -40,6 +40,7 @@ public class ScoreManager : MonoBehaviour
     // Method to calculate the score based on difficulty, coins, and time
     public int CalculateScore(string difficulty, int coinsCollected, float timeElapsed)
     {
+
         float difficultyMultiplier = GetDifficultyMultiplier(difficulty);
 
         // Calculate time score
@@ -88,4 +89,12 @@ public class ScoreManager : MonoBehaviour
         //Debug.Log("Score saved: " + score);
 
     }
+
+    public void ResetScore() 
+    { 
+        score = 0; 
+    }
+    // Simple accessors so a checkpoint can snapshot the score
+    public void SetScore(int v) => score = v;
+
 }

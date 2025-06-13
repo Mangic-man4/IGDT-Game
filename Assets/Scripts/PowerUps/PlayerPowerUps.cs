@@ -80,9 +80,12 @@ public class PlayerPowerUps : MonoBehaviour
                 break;
 
             case PowerUpType.GravityFlip:
-                gravityFlipped = !gravityFlipped;
-                FlipGravity();
-                previousGravityState = gravityFlipped;
+                if (!gravityFlipped)
+                {
+                    gravityFlipped = true;
+                    FlipGravity();
+                    previousGravityState = gravityFlipped;
+                }
                 break;
 
             case PowerUpType.Speed:
@@ -266,5 +269,103 @@ public class PlayerPowerUps : MonoBehaviour
         isDashing = false;
 
     }
+
+
+    [System.Serializable]
+    public struct CheckpointPowerUpState
+    {
+        // --- Power-up States ---
+        public bool hasDash;
+        public bool hasDoubleJump;
+        public bool hasUsedDoubleJump;
+        public bool gravityFlipped;
+        public bool hasSpeed;
+        public int fireballCharges;
+
+        // --- Timers ---
+        public float speedTimer;
+        public float doubleJumpTimer;
+
+        // --- Infinite Power Ups ---
+        public bool hasInfiniteSpeed;
+        public bool hasInfiniteDoubleJump;
+    }
+
+    public CheckpointPowerUpState GetPowerUpState()
+    {
+        return new CheckpointPowerUpState
+        {
+            hasDash = this.hasDash,
+            hasDoubleJump = this.hasDoubleJump,
+            hasUsedDoubleJump = this.hasUsedDoubleJump,
+            gravityFlipped = this.gravityFlipped,
+            hasSpeed = this.hasSpeed,
+            fireballCharges = this.fireballCharges,
+
+            speedTimer = this.speedTimer,
+            doubleJumpTimer = this.doubleJumpTimer,
+
+            hasInfiniteSpeed = this.hasInfiniteSpeed,
+            hasInfiniteDoubleJump = this.hasInfiniteDoubleJump
+        };
+    }
+
+    public void SetPowerUpState(CheckpointPowerUpState state)
+    {
+        hasDash = state.hasDash;
+        hasDoubleJump = state.hasDoubleJump;
+        hasUsedDoubleJump = state.hasUsedDoubleJump;
+        gravityFlipped = state.gravityFlipped;
+        hasSpeed = state.hasSpeed;
+        fireballCharges = state.fireballCharges;
+
+        speedTimer = state.speedTimer;
+        doubleJumpTimer = state.doubleJumpTimer;
+
+        hasInfiniteSpeed = state.hasInfiniteSpeed;
+        hasInfiniteDoubleJump = state.hasInfiniteDoubleJump;
+
+        // Optional: Reapply any state visuals like flipping gravity
+        if (gravityFlipped != previousGravityState)
+        {
+            FlipGravity();
+            previousGravityState = gravityFlipped;
+        }
+    }
+
+
+    public void RespawnPowerUps()
+    {
+        // OPTIONAL: Reset in-world pickups, if needed
+        Debug.Log("Would reset collectible powerups here.");
+    }
+
+    public void ClearAllPowerUps()
+    {
+        // Clear normal power-ups
+        hasDash = false;
+        hasDoubleJump = false;
+        hasUsedDoubleJump = false;
+        hasSpeed = false;
+        gravityFlipped = false;
+        fireballCharges = 0;
+
+        // Clear timers
+        speedTimer = 0f;
+        doubleJumpTimer = 0f;
+
+        // Clear infinite power-ups
+        hasInfiniteSpeed = false;
+        hasInfiniteDoubleJump = false;
+
+        // Restore gravity if it was flipped
+        if (previousGravityState)
+        {
+            FlipGravity();  // restore to default
+            previousGravityState = false;
+        }
+    }
+
+
 }
 
