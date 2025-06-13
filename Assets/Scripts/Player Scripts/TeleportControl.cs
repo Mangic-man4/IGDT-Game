@@ -17,6 +17,10 @@ public class TeleportControl : MonoBehaviour
     [Header("Teleport Visual Ghost")]
     [SerializeField] private float ghostAlpha = 0.3f;
 
+    [Header("Vertical Mode Settings")]
+    [SerializeField] private float verticalXThreshold = 0f;  // Default fallback to 0
+
+
     private float lastTeleportTime;
     private bool isPaused = false;
     private bool ghostIsSafe = true;
@@ -120,7 +124,7 @@ public class TeleportControl : MonoBehaviour
             else
             {
                 direction = VerticalModeManager.IsVertical
-                    ? (transform.position.x < 0 ? Vector3.right : Vector3.left)
+                    ? (transform.position.x < verticalXThreshold ? Vector3.right : Vector3.left)
                     : (transform.position.y < -3f ? Vector3.up : Vector3.down);
                 previewDistance = teleportDistance;
             }
@@ -152,7 +156,7 @@ public class TeleportControl : MonoBehaviour
     private void PerformTeleport()
     {
         Vector3 direction = VerticalModeManager.IsVertical
-            ? (transform.position.x < 0 ? Vector3.right : Vector3.left)
+            ? (transform.position.x < verticalXThreshold? Vector3.right : Vector3.left)
             : (transform.position.y < -3f ? Vector3.up : Vector3.down);
 
         Vector3 newPosition = transform.position + direction * teleportDistance;
