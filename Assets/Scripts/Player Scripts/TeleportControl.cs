@@ -31,6 +31,12 @@ public class TeleportControl : MonoBehaviour
     private PlayerPowerUps powerUps;
     private TeleportGuide teleportGuide;
 
+    [Header("Dash & Teleport FX")]
+    [SerializeField] private GameObject afterImagePrefab;
+    [SerializeField] private GameObject teleportBurstPrefab;
+    [SerializeField] private float dashPreviewLength = 0.1f; // optional, for tiny streak
+
+
 
     private void Start()
     {
@@ -155,11 +161,26 @@ public class TeleportControl : MonoBehaviour
 
     private void PerformTeleport()
     {
+        Vector3 startPos = transform.position;
         Vector3 direction = VerticalModeManager.IsVertical
             ? (transform.position.x < verticalXThreshold? Vector3.right : Vector3.left)
             : (transform.position.y < -3f ? Vector3.up : Vector3.down);
 
         Vector3 newPosition = transform.position + direction * teleportDistance;
+
+        // --- FX ---
+        if (afterImagePrefab)
+        {
+            GameObject ghost = Instantiate(afterImagePrefab, startPos, transform.rotation);
+            ghost.transform.localScale = transform.localScale;
+        }
+
+        if (teleportBurstPrefab)
+        {
+            Instantiate(teleportBurstPrefab, newPosition, Quaternion.identity);
+        }
+
+
         transform.position = newPosition;
         lastTeleportTime = Time.time;
 

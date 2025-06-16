@@ -26,6 +26,11 @@ public class PlayerPowerUps : MonoBehaviour
     private float lastDashTime;
     public bool isDashing = false;
 
+    [Header("Dash Visual Effects")]
+    public GameObject afterImagePrefab;
+    public GameObject dashBurstPrefab;
+
+
 
     // --- Fireball Settings ---
     [SerializeField] private GameObject fireballPrefab;
@@ -169,9 +174,11 @@ public class PlayerPowerUps : MonoBehaviour
 
     private void ExecuteDash()
     {
+        Vector2 startPos = rb.position;
         Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
         Vector2 rayOrigin = rb.position + direction * 0.5f;
         Vector2 targetPosition = rb.position + direction * dashDistance;
+        Vector2 finalPos = targetPosition;
 
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player", "Ghost", "IgnoreDash"));
 
@@ -212,6 +219,20 @@ public class PlayerPowerUps : MonoBehaviour
             TryKillEnemyAtDashEndpoint(targetPosition);
 
         }
+
+        // ---- FX ----
+        if (afterImagePrefab)
+        {
+            GameObject ghost = Instantiate(afterImagePrefab, startPos, transform.rotation);
+            ghost.transform.localScale = transform.localScale;
+        }
+
+        if (dashBurstPrefab)
+        {
+            Instantiate(dashBurstPrefab, finalPos, Quaternion.identity);
+        }
+
+
     }
 
     private void TryKillEnemyAtDashEndpoint(Vector2 position)

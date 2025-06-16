@@ -303,6 +303,11 @@ MonoBehaviour:
   teleportCooldown: 0.5
   teleportGuidePrefab: {fileID: 1922650727168598821, guid: a26e2ee09e105d84099faa5b3e1e7753, type: 3}
   ghostAlpha: 0.3
+  verticalXThreshold: 0
+  afterImagePrefab: {fileID: 2646490012046674189, guid: 8712cd7ad51c8924388b90c139fca216, type: 3}
+  dashBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
+  teleportBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
+  dashPreviewLength: 0.1
 --- !u!82 &5194615938594376831
 AudioSource:
   m_ObjectHideFlags: 0
@@ -645,6 +650,8 @@ MonoBehaviour:
   dashCooldown: 0.5
   dashDistance: 4
   isDashing: 0
+  afterImagePrefab: {fileID: 2646490012046674189, guid: 8712cd7ad51c8924388b90c139fca216, type: 3}
+  dashBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
   fireballPrefab: {fileID: 4377477607646044283, guid: 83080a53bef141846958a25126e2685f, type: 3}
   firePoint: {fileID: 2527680590558214655}
   fireCooldown: 0.5
