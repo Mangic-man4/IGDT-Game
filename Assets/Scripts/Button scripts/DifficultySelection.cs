@@ -4,55 +4,51 @@ using TMPro;
 
 public class DifficultySelection : MonoBehaviour
 {
-    public Button easyButton;
-    public Button normalButton;
-    public Button hardButton;
-    public Button extremeButton;
-    private Button[] allButtons;
-    public string CurrentDifficultyStatic { get; private set; } = "Normal"; // Default to "Normal"
-    public TextMeshProUGUI difficultyText; // Reference to the Text UI element
+    public TMP_Dropdown difficultyDropdown;
+    public TextMeshProUGUI difficultyText;
+
+    public string CurrentDifficultyStatic { get; private set; } = "Normal";
+
     void Start()
     {
-        allButtons = new Button[] { easyButton, normalButton, hardButton, extremeButton };
-        SetSelectedDifficulty("Normal"); // Default selection or load from player prefs
+        if (difficultyDropdown != null)
+        {
+            difficultyDropdown.onValueChanged.AddListener(OnDropdownChanged);
+
+            // Optional: Set default index
+            difficultyDropdown.value = 1; // 0 = Easy, 1 = Normal, 2 = Hard, 3 = Extreme
+            difficultyDropdown.RefreshShownValue();
+
+            SetSelectedDifficulty(difficultyDropdown.options[difficultyDropdown.value].text);
+        }
+    }
+
+    private void OnDropdownChanged(int index)
+    {
+        string selectedDifficulty = difficultyDropdown.options[index].text;
+        SetSelectedDifficulty(selectedDifficulty);
     }
 
     public void SetSelectedDifficulty(string difficulty)
     {
-        CurrentDifficultyStatic = difficulty; // Ensure the current difficulty is updated
-        UpdateDifficultyDisplay(); // Update the display whenever the difficulty changes
+        CurrentDifficultyStatic = difficulty;
 
-        foreach (Button btn in allButtons)
-            {
-            ColorBlock cb = btn.colors;
-            if (btn.name == difficulty + "Button")
-            {
-                cb.normalColor = Color.grey;
-                cb.highlightedColor = Color.grey;
-                btn.interactable = false; // Optional: make it non-interactable
-            }
-            else
-            {
-                cb.normalColor = Color.white;
-                cb.highlightedColor = Color.white;
-                btn.interactable = true; // Make other buttons interactable
-            }
-            btn.colors = cb;
-        }
-        Debug.Log("Difficulty set to: " + difficulty); // For debugging
+        UpdateDifficultyDisplay();
+        Debug.Log("Difficulty set to: " + difficulty);
     }
-    void UpdateDifficultyDisplay()
+
+    private void UpdateDifficultyDisplay()
     {
         if (difficultyText != null)
         {
-            difficultyText.text =  CurrentDifficultyStatic;
+            difficultyText.text = CurrentDifficultyStatic;
         }
         else
         {
-            Debug.LogError("DifficultyText is not assigned!");
+            Debug.LogWarning("DifficultyText is not assigned!");
         }
     }
-
 }
+
 
 

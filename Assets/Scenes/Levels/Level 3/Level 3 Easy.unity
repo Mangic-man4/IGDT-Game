@@ -30516,6 +30516,7 @@ MonoBehaviour:
   startPosition: {x: -5, y: 0, z: -1}
   endPosition: {x: 1.8, y: 0, z: -1}
   speed: 1.75
+  startOnFirstTouch: 0
 --- !u!251 &303451417
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -31313,6 +31314,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: -1}
   endPosition: {x: 7, y: 0, z: -1}
   speed: 2
+  startOnFirstTouch: 0
 --- !u!251 &342003621
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -34040,6 +34042,7 @@ MonoBehaviour:
   startPosition: {x: -4, y: 0, z: -1}
   endPosition: {x: 4, y: 0, z: -1}
   speed: 2.25
+  startOnFirstTouch: 0
 --- !u!251 &503693758
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -34803,6 +34806,7 @@ MonoBehaviour:
   startPosition: {x: -3, y: 3, z: -1}
   endPosition: {x: -3, y: -1, z: -1}
   speed: 1.75
+  startOnFirstTouch: 0
 --- !u!251 &518297120
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -38012,6 +38016,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48fbef02931b9db4b9c2d83605039b5a, type: 3}
+--- !u!1 &697029618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 697029620}
+  - component: {fileID: 697029619}
+  m_Layer: 0
+  m_Name: KeyBindings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &697029619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697029618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49db19f33eb002a43b2eba8c751f5c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &697029620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697029618}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 487.37802, y: 180.82182, z: -0.34191978}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &697196732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2609007147354730318, guid: fdf2e2382febb3a4f9ddf79cfed2bd03, type: 3}
@@ -40887,6 +40935,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: -1}
   endPosition: {x: 7, y: 0, z: -1}
   speed: 2
+  startOnFirstTouch: 0
 --- !u!251 &854014198
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -48044,6 +48093,7 @@ MonoBehaviour:
   startPosition: {x: -1, y: 0, z: -1}
   endPosition: {x: 4, y: 0, z: -1}
   speed: 1.75
+  startOnFirstTouch: 0
 --- !u!251 &1211956210
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -59932,6 +59982,7 @@ MonoBehaviour:
   startPosition: {x: 2, y: 0, z: -1}
   endPosition: {x: 9, y: 0, z: -1}
   speed: 1.75
+  startOnFirstTouch: 0
 --- !u!251 &1848634332
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -360193,6 +360244,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: -1}
   endPosition: {x: -6, y: 0, z: -1}
   speed: 1.75
+  startOnFirstTouch: 0
 --- !u!251 &2067666736
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -361777,3 +361829,4 @@ SceneRoots:
   - {fileID: 23604172}
   - {fileID: 1047085452}
   - {fileID: 55401744}
+  - {fileID: 697029620}

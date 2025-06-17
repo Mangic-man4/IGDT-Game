@@ -151,8 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b40c0a15a4ccd48a49dc1176f3cb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseScreen: {fileID: 633375043}
-  backgroundMusic: {fileID: 449263910}
 --- !u!4 &5728665
 Transform:
   m_ObjectHideFlags: 0
@@ -215,6 +213,50 @@ Transform:
   - {fileID: 583073984}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &422705101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 422705103}
+  - component: {fileID: 422705102}
+  m_Layer: 0
+  m_Name: KeyBindings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &422705102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422705101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49db19f33eb002a43b2eba8c751f5c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &422705103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422705101}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 487.37802, y: 180.82182, z: -0.34191978}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &439361583
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,8 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b40c0a15a4ccd48a49dc1176f3cb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseScreen: {fileID: 633375043}
-  backgroundMusic: {fileID: 449263910}
 --- !u!114 &439361586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,6 +662,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: -1}
   endPosition: {x: 10, y: 0, z: -1}
   speed: 2
+  startOnFirstTouch: 0
 --- !u!251 &583073986
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -1248,6 +1289,10 @@ MonoBehaviour:
   teleportCooldown: 0.5
   teleportGuidePrefab: {fileID: 1922650727168598821, guid: a26e2ee09e105d84099faa5b3e1e7753, type: 3}
   ghostAlpha: 0.3
+  verticalXThreshold: 0
+  afterImagePrefab: {fileID: 0}
+  teleportBurstPrefab: {fileID: 0}
+  dashPreviewLength: 0.1
 --- !u!114 &713990947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,7 +1308,7 @@ MonoBehaviour:
   baseMoveSpeed: 10
   jumpForce: 20
   groundCheck: {fileID: 1308164073}
-  groundCheckRadius: 0.2
+  groundCheckBoxSize: {x: 0.7, y: 0.2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1816,6 +1861,8 @@ MonoBehaviour:
   dashCooldown: 0.5
   dashDistance: 0
   isDashing: 0
+  afterImagePrefab: {fileID: 0}
+  dashBurstPrefab: {fileID: 0}
   fireballPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   fireCooldown: 0.5
@@ -320716,3 +320763,4 @@ SceneRoots:
   - {fileID: 5728665}
   - {fileID: 1029198884}
   - {fileID: 16847318031974907}
+  - {fileID: 422705103}

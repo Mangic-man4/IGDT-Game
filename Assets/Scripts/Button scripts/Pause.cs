@@ -67,7 +67,7 @@ public class Pause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (KeyBindings.GetKeyDown(ActionKey.Pause))
         {
             Debug.Log("Escape key pressed!");
             TogglePause();

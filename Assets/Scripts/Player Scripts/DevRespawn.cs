@@ -16,7 +16,7 @@ public class DevRespawn : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (KeyBindings.GetKeyDown(ActionKey.Respawn))
         {
             Respawn();
         }
@@ -25,7 +25,7 @@ public class DevRespawn : MonoBehaviour
     void Respawn()
     {
         // Set the respawn point with the specified X and Y coordinates and the current Z position
-        Vector3 respawnPosition = new Vector3(respawnPointX, respawnPointY, transform.position.z);
+        Vector3 respawnPosition = new (respawnPointX, respawnPointY, transform.position.z);
 
         // Move the player to the respawn point
         transform.position = respawnPosition;

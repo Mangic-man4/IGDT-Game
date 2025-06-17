@@ -100,13 +100,13 @@ public class TeleportControl : MonoBehaviour
         if (isPaused) return;
 
         // Toggle ghost
-        if (Input.GetKeyDown(KeyCode.G) && teleportGhost != null)
+        if (KeyBindings.GetKeyDown(ActionKey.ToggleGhost) && teleportGhost != null)
         {
             teleportGhost.SetActive(!teleportGhost.activeSelf);
         }
 
         // Attempt teleport
-        if (Time.time > lastTeleportTime + teleportCooldown && Input.GetKeyDown(KeyCode.F))
+        if (Time.time > lastTeleportTime + teleportCooldown && KeyBindings.GetKeyDown(ActionKey.Teleport))
         {
             if (powerUps.hasDash)
                 powerUps.PerformDash();
@@ -177,8 +177,18 @@ public class TeleportControl : MonoBehaviour
 
         if (teleportBurstPrefab)
         {
-            Instantiate(teleportBurstPrefab, newPosition, Quaternion.identity);
+            GameObject burst = Instantiate(teleportBurstPrefab, newPosition, Quaternion.identity);
+
+            if (burst.TryGetComponent<ParticleSystem>(out var ps))
+            {
+                Destroy(burst, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+            else
+            {
+                Destroy(burst, 1.5f); // fallback time if no particle system is found
+            }
         }
+
 
 
         transform.position = newPosition;

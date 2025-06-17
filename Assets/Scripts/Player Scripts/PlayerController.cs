@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("Environment Layers")]
     public Transform groundCheck;
     [SerializeField] private Vector2 groundCheckBoxSize = new (0.7f, 0.2f); // New box-based groundCheck detection method
-    private readonly float groundCheckRadius; //Old circle radius-based groundCheck detection method
+    //private readonly float groundCheckRadius; //Old circle radius-based groundCheck detection method
     public LayerMask groundLayer;
     public LayerMask testPlatforms;
     [SerializeField] private LayerMask platformLayer;
@@ -90,7 +90,10 @@ public class PlayerController : MonoBehaviour
         // Nre detection method
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBoxSize, 0f, groundLayer | platformLayer | testPlatforms);
 
-        xInput = Input.GetAxisRaw("Horizontal");
+        //xInput = Input.GetAxisRaw("Horizontal"); //old
+
+        xInput = KeyBindings.GetAxisRaw(ActionAxis.Horizontal);
+
 
         HandleJumpInput();
     }
@@ -117,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJumpInput()
     {
-        if (!Input.GetKeyDown(KeyCode.Space)) return;
+        if (!KeyBindings.GetKeyDown(ActionKey.Jump)) return;
 
         if (isGrounded || coyoteTimer > 0f)
         {
@@ -215,8 +218,8 @@ public class PlayerController : MonoBehaviour
         Checkpoint active = currentCheckpoint;
 
         var pwr = GetComponent<PlayerPowerUps>();
-        var collector = GetComponent<ItemCollector>();
-        var timer = FindObjectOfType<Timer>();
+        _ = GetComponent<ItemCollector>();
+        _ = FindObjectOfType<Timer>();
 
         // Always clear current power-ups
         if (pwr != null) pwr.ClearAllPowerUps();

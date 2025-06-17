@@ -60,7 +60,7 @@ public class PlayerPowerUps : MonoBehaviour
     {
         HandleTimers();
 
-        if (Input.GetKeyDown(KeyCode.E) && Time.time > lastFireTime + fireCooldown)
+        if (KeyBindings.GetKeyDown(ActionKey.FireballAttack) && Time.time > lastFireTime + fireCooldown)
         {
             TryFireball();
         }
@@ -229,8 +229,18 @@ public class PlayerPowerUps : MonoBehaviour
 
         if (dashBurstPrefab)
         {
-            Instantiate(dashBurstPrefab, finalPos, Quaternion.identity);
+            GameObject burst = Instantiate(dashBurstPrefab, finalPos, Quaternion.identity);
+
+            if (burst.TryGetComponent<ParticleSystem>(out var ps))
+            {
+                Destroy(burst, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+            else
+            {
+                Destroy(burst, 1.5f); // fallback time if no particle system is found
+            }
         }
+
 
 
     }

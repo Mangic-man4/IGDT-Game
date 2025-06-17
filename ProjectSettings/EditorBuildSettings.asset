@@ -69,6 +69,30 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level 3/Level 3 Extreme.unity
     guid: fdfa590dba122b94d9504ac1c28684d1
   - enabled: 1
+    path: Assets/Scenes/Levels/Level 4/Level 4 Easy.unity
+    guid: 54413d5c139a0a2439ad1bee2a250283
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 4/Level 4 Extreme.unity
+    guid: 0b3094c9e3e02f241a3ebfc84afe2754
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 4/Level 4 Hard.unity
+    guid: 566f763ee5384324582f602a6f2c0317
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 4/Level 4 Normal.unity
+    guid: 41f04f9001b736245abbd94445938879
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 5/Level 5 Easy.unity
+    guid: 6875c3f64af82fd489bb2729ad0407af
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 5/Level 5 Extreme.unity
+    guid: d5a9355005b26f3418b39da6acd94339
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 5/Level 5 Hard.unity
+    guid: 4dfa2807654746848b8eecc0288aa518
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 5/Level 5 Normal.unity
+    guid: 0aa659ea21fc8a242ad170b42d4dbab1
+  - enabled: 1
     path: Assets/Scenes/End Screen.unity
     guid: 9050f8bd1231ea5408d0d7505bbfb219
   m_configObjects: {}
