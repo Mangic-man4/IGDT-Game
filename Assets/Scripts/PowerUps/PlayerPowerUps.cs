@@ -64,12 +64,6 @@ public class PlayerPowerUps : MonoBehaviour
         {
             TryFireball();
         }
-
-        if (gravityFlipped != previousGravityState)
-        {
-            FlipGravity();
-            previousGravityState = gravityFlipped;
-        }
     }
 
     public void CollectPowerUp(PowerUpType type)
@@ -85,13 +79,11 @@ public class PlayerPowerUps : MonoBehaviour
                 break;
 
             case PowerUpType.GravityFlip:
-                if (!gravityFlipped)
-                {
-                    gravityFlipped = true;
-                    FlipGravity();
-                    previousGravityState = gravityFlipped;
-                }
+                gravityFlipped = !gravityFlipped;
+                FlipGravity();
+                previousGravityState = gravityFlipped;
                 break;
+
 
             case PowerUpType.Speed:
                 hasSpeed = true;
