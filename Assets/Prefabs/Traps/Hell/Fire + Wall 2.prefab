@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7379698100409193852}
   - component: {fileID: 3803489429129498978}
   m_Layer: 0
-  m_Name: Spike 2
+  m_Name: Fire + Wall 2
   m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 965068536, guid: bac62947c0906824cbe1277c88e7adeb, type: 3}
+  m_Sprite: {fileID: 1178461288, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
