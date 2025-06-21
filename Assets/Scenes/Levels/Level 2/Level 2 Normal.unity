@@ -46758,11 +46758,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7011977222045603715, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: respawnPointX
-      value: 60
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 7011977222045603715, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: respawnPointY
-      value: 1
+      value: -15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

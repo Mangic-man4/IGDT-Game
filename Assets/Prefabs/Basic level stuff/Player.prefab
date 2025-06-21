@@ -305,7 +305,6 @@ MonoBehaviour:
   ghostAlpha: 0.3
   verticalXThreshold: 0
   afterImagePrefab: {fileID: 2646490012046674189, guid: 8712cd7ad51c8924388b90c139fca216, type: 3}
-  dashBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
   teleportBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
   dashPreviewLength: 0.1
 --- !u!82 &5194615938594376831
