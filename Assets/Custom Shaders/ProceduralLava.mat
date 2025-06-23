@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_OLDGlowingGlass_Anisotropic
-  m_Shader: {fileID: 4800000, guid: 4ef6b0e7a6f4709418685ffb65220d6d, type: 3}
+  m_Name: ProceduralLava
+  m_Shader: {fileID: 4800000, guid: df5ae79347713124cbf6e3ac40db25ed, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,10 +29,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EdgeWidthX: 0.267
-    - _EdgeWidthY: 0.001
-    - _GlowStrength: 2.4
+    - _Alpha: 1
+    - _CrackSharp: 2.5
+    - _GlowMult: 3
+    - _GlowPulse: 0.1
+    - _ScrollSpeed: 0.2
+    - _TileFactor: 0.4
+    - _Tiling: 1
+    - _UVStretchFix: 0.17
     m_Colors:
-    - _Color: {r: 0.043253757, g: 0.8490566, b: 0.13582677, a: 0.27450982}
-    - _GlowColor: {r: 0.3226415, g: 1, b: 0.74796695, a: 1}
+    - _ColorCool: {r: 0.5999999, g: 0.06885245, b: 0, a: 1}
+    - _ColorHot: {r: 0.645283, g: 0.38970032, b: 0, a: 1}
   m_BuildTextureStacks: []

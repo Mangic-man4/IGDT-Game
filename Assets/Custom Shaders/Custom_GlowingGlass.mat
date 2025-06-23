@@ -30,7 +30,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EdgeWidth: 0.1
-    - _GlowStrength: 2.51
+    - _GlowStrength: 2.5
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 0.27450982}
     - _GlowColor: {r: 0.4716981, g: 0.31594872, b: 0.31594872, a: 1}

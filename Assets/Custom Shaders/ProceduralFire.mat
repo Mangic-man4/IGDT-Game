@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_OLDGlowingGlass_Anisotropic
-  m_Shader: {fileID: 4800000, guid: 4ef6b0e7a6f4709418685ffb65220d6d, type: 3}
+  m_Name: ProceduralFire
+  m_Shader: {fileID: 4800000, guid: 607ea1b78bdab5749988a3a13c0bf3ea, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -27,12 +27,21 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: b3db425bcb2b62f4f965909ebbb6f9e8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EdgeWidthX: 0.267
-    - _EdgeWidthY: 0.001
-    - _GlowStrength: 2.4
+    - _Alpha: 1
+    - _DistortAmt: 0.5
+    - _DistortSpeed: 0
+    - _FlickerStrength: 0
+    - _GlowMult: 3.5
+    - _Speed: 0
     m_Colors:
-    - _Color: {r: 0.043253757, g: 0.8490566, b: 0.13582677, a: 0.27450982}
-    - _GlowColor: {r: 0.3226415, g: 1, b: 0.74796695, a: 1}
+    - _FlickerColor: {r: 1, g: 0.118867874, b: 0.118867874, a: 1}
+    - _GradientBot: {r: 1, g: 0.3822016, b: 0, a: 1}
+    - _GradientMid: {r: 1, g: 0.2904102, b: 0, a: 1}
+    - _GradientTop: {r: 1, g: 0.38400984, b: 0, a: 1}
   m_BuildTextureStacks: []
