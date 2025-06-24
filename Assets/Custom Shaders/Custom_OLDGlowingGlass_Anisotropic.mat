@@ -29,10 +29,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AmbientStrength: 1
+    - _Brightness: 2.19
     - _EdgeWidthX: 0.267
     - _EdgeWidthY: 0.001
     - _GlowStrength: 2.4
     m_Colors:
+    - _AmbientColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     - _Color: {r: 0.043253757, g: 0.8490566, b: 0.13582677, a: 0.27450982}
     - _GlowColor: {r: 0.3226415, g: 1, b: 0.74796695, a: 1}
   m_BuildTextureStacks: []

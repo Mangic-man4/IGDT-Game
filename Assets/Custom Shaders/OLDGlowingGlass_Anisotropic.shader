@@ -1,4 +1,4 @@
-Shader"Custom/OLDGlowingGlass_Anisotropic"
+Shader"Custom/OLDGlowingGlass_Anisotropic_Unlit"
 {
     Properties
     {
@@ -15,15 +15,14 @@ Shader"Custom/OLDGlowingGlass_Anisotropic"
         Tags { "Queue" = "Transparent" "RenderType" = "Transparent" }
         LOD 200
         Cull Off
-        Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
+        Blend One OneMinusSrcAlpha
 
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
             #include "UnityCG.cginc"
 
             sampler2D _MainTex;
@@ -59,26 +58,18 @@ Shader"Custom/OLDGlowingGlass_Anisotropic"
                 fixed4 texCol = tex2D(_MainTex, uv);
                 fixed4 col = _Color * texCol;
 
-                // Centered UV: distance from middle
                 float2 centeredUV = abs(uv - 0.5);
-
-                // Horizontal and vertical edge fade
                 float edgeX = smoothstep(0.5, 0.5 - _EdgeWidthX, centeredUV.x);
                 float edgeY = smoothstep(0.5, 0.5 - _EdgeWidthY, centeredUV.y);
-
-                // Blend both edge factors smoothly
-                float edgeFactor = edgeX * edgeY; // soft rectangular border instead of X pattern
+                float edgeFactor = edgeX * edgeY;
 
                 fixed4 glow = _GlowColor * edgeFactor * _GlowStrength;
-
                 col.rgb += glow.rgb;
-
+                col.rgb *= col.a;
                 return col;
             }
-
-                        ENDCG
-                    }
-                }
-
-            FallBack"Transparent/Diffuse"
+            ENDCG
         }
+    }
+FallBack Off
+}
