@@ -170,18 +170,21 @@ public class PlayerPowerUps : MonoBehaviour
         Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
         Vector2 rayOrigin = rb.position + direction * 0.5f;
         Vector2 targetPosition = rb.position + direction * dashDistance;
-        Vector2 finalPos = targetPosition;
+
+        Vector2 finalPos = targetPosition; // default
 
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, dashDistance, ~LayerMask.GetMask("Player", "Ghost", "IgnoreDash"));
 
         if (hit.collider != null)
         {
             string tag = hit.collider.tag;
+            int platformLayer = LayerMask.NameToLayer("Platform");
 
-            if (tag == "ObbyCourse" || tag == "Door")
+            if (tag == "ObbyCourse" || tag == "Door" || hit.collider.gameObject.layer == platformLayer)
             {
-                Debug.Log("Hit " + hit.collider.tag + ", stopping dash before wall.");
+                Debug.Log("Hit " + hit.collider.tag + " or Platform layer, stopping dash before wall.");
                 Vector2 stopPosition = hit.point - direction * 0.05f;
+                finalPos = stopPosition;
                 rb.MovePosition(stopPosition);
             }
             else if (tag == "DashWall")
@@ -189,30 +192,31 @@ public class PlayerPowerUps : MonoBehaviour
                 Debug.Log("DashWall hit, dashing through.");
                 Collider2D wallCollider = hit.collider;
                 wallCollider.isTrigger = true;
+                finalPos = targetPosition;
                 rb.MovePosition(targetPosition);
                 StartCoroutine(DisableTriggerAfterDash(wallCollider));
-                TryKillEnemyAtDashEndpoint(targetPosition);
+                TryKillEnemyAtDashEndpoint(finalPos);
             }
             else if (IsEnemyTag(tag))
             {
                 Debug.Log("Enemy hit during dash, dashing through.");
-
                 Collider2D enemyCollider = hit.collider;
                 enemyCollider.isTrigger = true;
+                finalPos = targetPosition;
                 rb.MovePosition(targetPosition);
-                StartCoroutine(DisableTriggerAfterDash(enemyCollider)); // reuse same trigger disable
-                TryKillEnemyAtDashEndpoint(targetPosition);
+                StartCoroutine(DisableTriggerAfterDash(enemyCollider));
+                TryKillEnemyAtDashEndpoint(finalPos);
             }
         }
         else
         {
             Debug.Log("Nothing hit, dashing freely.");
+            finalPos = targetPosition;
             rb.MovePosition(targetPosition);
-            TryKillEnemyAtDashEndpoint(targetPosition);
-
+            TryKillEnemyAtDashEndpoint(finalPos);
         }
 
-        // ---- FX ----
+        // FX
         if (afterImagePrefab)
         {
             GameObject ghost = Instantiate(afterImagePrefab, startPos, transform.rotation);
@@ -229,13 +233,11 @@ public class PlayerPowerUps : MonoBehaviour
             }
             else
             {
-                Destroy(burst, 1.5f); // fallback time if no particle system is found
+                Destroy(burst, 1.5f);
             }
         }
-
-
-
     }
+
 
     private void TryKillEnemyAtDashEndpoint(Vector2 position)
     {
