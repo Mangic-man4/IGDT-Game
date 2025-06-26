@@ -34,7 +34,7 @@ public class TeleportControl : MonoBehaviour
     [Header("Dash & Teleport FX")]
     [SerializeField] private GameObject afterImagePrefab;
     [SerializeField] private GameObject teleportBurstPrefab;
-    [SerializeField] private float dashPreviewLength = 0.1f; // optional, for tiny streak
+    //[SerializeField] private float dashPreviewLength = 0.1f; // optional, for tiny streak
 
 
 
