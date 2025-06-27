@@ -1,0 +1,222 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3859840964318529286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7902686519560674388}
+  m_Layer: 0
+  m_Name: Full Flowing Lava
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7902686519560674388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859840964318529286}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12, y: -15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3620818933409724816}
+  - {fileID: 3244495350758386997}
+  - {fileID: 4416664217183864613}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4925136077605705755
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7902686519560674388}
+    m_Modifications:
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8287292393128183203, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+      propertyPath: m_Name
+      value: Flowing Lava 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+--- !u!4 &3244495350758386997 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7592887001791739182, guid: eb06bfba6e8fbe742992752dfa436e9b, type: 3}
+  m_PrefabInstance: {fileID: 4925136077605705755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6058606811950772747
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7902686519560674388}
+    m_Modifications:
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8287292393128183203, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+      propertyPath: m_Name
+      value: Flowing Lava 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+--- !u!4 &4416664217183864613 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7592887001791739182, guid: 2c871cc42fa1486449babacdf97e03b2, type: 3}
+  m_PrefabInstance: {fileID: 6058606811950772747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6584510994530110654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7902686519560674388}
+    m_Modifications:
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8287292393128183203, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+      propertyPath: m_Name
+      value: Flowing Lava
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+--- !u!4 &3620818933409724816 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7592887001791739182, guid: bee1652e807426e4a85b67e2078abe9e, type: 3}
+  m_PrefabInstance: {fileID: 6584510994530110654}
+  m_PrefabAsset: {fileID: 0}

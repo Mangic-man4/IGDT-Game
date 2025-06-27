@@ -271,6 +271,7 @@ SpriteAtlas:
     - bac62947c0906824cbe1277c88e7adeb: -49041606
     - bac62947c0906824cbe1277c88e7adeb: 1036168986
     - 02b9c7970534f9a4da839e4256deb3c7: 21300000
+    - 26c7f15982696b944b41dc6c4a65fc38: 21300000
     - 5456183cc43be5e4ea183aaa25abb897: -718743241
     - 5456183cc43be5e4ea183aaa25abb897: -1797699945
     - 5456183cc43be5e4ea183aaa25abb897: -847874506
@@ -423,6 +424,22 @@ SpriteAtlas:
     - 5456183cc43be5e4ea183aaa25abb897: -1742977329
     - 5456183cc43be5e4ea183aaa25abb897: 1605737868
     - 5456183cc43be5e4ea183aaa25abb897: 1589847559
+    - 5456183cc43be5e4ea183aaa25abb897: -1247529367
+    - 5456183cc43be5e4ea183aaa25abb897: 13785508
+    - 5456183cc43be5e4ea183aaa25abb897: 105202111
+    - 5456183cc43be5e4ea183aaa25abb897: -1728390970
+    - 5456183cc43be5e4ea183aaa25abb897: 2107621236
+    - 5456183cc43be5e4ea183aaa25abb897: -836172048
+    - 5456183cc43be5e4ea183aaa25abb897: 1095413973
+    - 5456183cc43be5e4ea183aaa25abb897: -1067037912
+    - 5456183cc43be5e4ea183aaa25abb897: 1705646796
+    - 5456183cc43be5e4ea183aaa25abb897: -1055866540
+    - 5456183cc43be5e4ea183aaa25abb897: -1410045960
+    - 5456183cc43be5e4ea183aaa25abb897: -2094710065
+    - 5456183cc43be5e4ea183aaa25abb897: -1375195983
+    - 5456183cc43be5e4ea183aaa25abb897: 310663868
+    - 5456183cc43be5e4ea183aaa25abb897: -1646573184
+    - 5456183cc43be5e4ea183aaa25abb897: 1367608816
     - 5456183cc43be5e4ea183aaa25abb897: 641663633
     - 5456183cc43be5e4ea183aaa25abb897: 1340222431
     - 5456183cc43be5e4ea183aaa25abb897: -1558851959
@@ -799,6 +816,7 @@ SpriteAtlas:
   - {fileID: -49041606, guid: bac62947c0906824cbe1277c88e7adeb, type: 3}
   - {fileID: 1036168986, guid: bac62947c0906824cbe1277c88e7adeb, type: 3}
   - {fileID: 21300000, guid: 02b9c7970534f9a4da839e4256deb3c7, type: 3}
+  - {fileID: 21300000, guid: 26c7f15982696b944b41dc6c4a65fc38, type: 3}
   - {fileID: -718743241, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
   - {fileID: -1797699945, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
   - {fileID: -847874506, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
@@ -951,6 +969,22 @@ SpriteAtlas:
   - {fileID: -1742977329, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
   - {fileID: 1605737868, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
   - {fileID: 1589847559, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -1247529367, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: 13785508, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: 105202111, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -1728390970, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: 2107621236, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -836172048, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: 1095413973, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -1067037912, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: 1705646796, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -1055866540, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -1410045960, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -2094710065, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -1375195983, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: 310663868, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: -1646573184, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
+  - {fileID: 1367608816, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
   - {fileID: 641663633, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
   - {fileID: 1340222431, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
   - {fileID: -1558851959, guid: 5456183cc43be5e4ea183aaa25abb897, type: 3}
@@ -1326,6 +1360,7 @@ SpriteAtlas:
   - Plains&Caves_SpriteSheetPack_14
   - Plains&Caves_SpriteSheetPack_15
   - normalSpike
+  - Heaven&Hell_HellBG-export
   - Heaven&Hell_SpriteSheetPack_109
   - Heaven&Hell_SpriteSheetPack_189
   - Heaven&Hell_SpriteSheetPack_108
@@ -1478,6 +1513,22 @@ SpriteAtlas:
   - Heaven&Hell_SpriteSheetPack_111
   - Heaven&Hell_SpriteSheetPack_112
   - Heaven&Hell_SpriteSheetPack_113
+  - Heaven&Hell_SpriteSheetPack_318
+  - Heaven&Hell_SpriteSheetPack_319
+  - Heaven&Hell_SpriteSheetPack_309
+  - Heaven&Hell_SpriteSheetPack_312
+  - Heaven&Hell_SpriteSheetPack_308
+  - Heaven&Hell_SpriteSheetPack_313
+  - Heaven&Hell_SpriteSheetPack_310
+  - Heaven&Hell_SpriteSheetPack_311
+  - Heaven&Hell_SpriteSheetPack_305
+  - Heaven&Hell_SpriteSheetPack_316
+  - Heaven&Hell_SpriteSheetPack_304
+  - Heaven&Hell_SpriteSheetPack_317
+  - Heaven&Hell_SpriteSheetPack_307
+  - Heaven&Hell_SpriteSheetPack_314
+  - Heaven&Hell_SpriteSheetPack_306
+  - Heaven&Hell_SpriteSheetPack_315
   - Heaven&Hell_SpriteSheetPack_301
   - Heaven&Hell_SpriteSheetPack_300
   - Heaven&Hell_SpriteSheetPack_303
