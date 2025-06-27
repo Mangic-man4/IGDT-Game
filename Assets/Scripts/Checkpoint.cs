@@ -124,7 +124,10 @@ public class Checkpoint : MonoBehaviour
             var scoreMgr = FindObjectOfType<ScoreManager>();
             if (scoreMgr != null) scoreMgr.SetScore(savedScore);
         }
-
+        {
+            CheckpointManager.RespawnAllPickups();
+        }
+    
         // Reapply manual power-ups after full restore
         if (giveDash) powerUps.CollectPowerUp(PowerUpType.Dash);
         if (giveSpeed) powerUps.CollectPowerUp(PowerUpType.Speed);
@@ -139,6 +142,5 @@ public class Checkpoint : MonoBehaviour
     {
         return respawnRestoresSavedState;
     }
-
 
 }
