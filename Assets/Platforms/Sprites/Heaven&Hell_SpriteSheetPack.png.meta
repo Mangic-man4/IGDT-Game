@@ -6712,7 +6712,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -6733,7 +6733,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -6741,6 +6741,90 @@ TextureImporter:
       bones: []
       spriteID: 6fad4d02f7db51449a72301342efa953
       internalID: 1367608816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven&Hell_SpriteSheetPack_316
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16040905f9bd3924ca74bb2dafe5d0e5
+      internalID: -1055866540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven&Hell_SpriteSheetPack_317
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6fb7563ad1433e43989b54fb9439a45
+      internalID: -2094710065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven&Hell_SpriteSheetPack_318
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 047dbdb5e11738e4ebdfe0291792efa9
+      internalID: -1247529367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven&Hell_SpriteSheetPack_319
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 011421b583903304a83c836deffda72f
+      internalID: 13785508
       vertices: []
       indices: 
       edges: []
@@ -6998,6 +7082,10 @@ TextureImporter:
       Heaven&Hell_SpriteSheetPack_313: -836172048
       Heaven&Hell_SpriteSheetPack_314: 310663868
       Heaven&Hell_SpriteSheetPack_315: 1367608816
+      Heaven&Hell_SpriteSheetPack_316: -1055866540
+      Heaven&Hell_SpriteSheetPack_317: -2094710065
+      Heaven&Hell_SpriteSheetPack_318: -1247529367
+      Heaven&Hell_SpriteSheetPack_319: 13785508
       Heaven&Hell_SpriteSheetPack_32: -899806615
       Heaven&Hell_SpriteSheetPack_33: 1088849093
       Heaven&Hell_SpriteSheetPack_34: -1592324884
