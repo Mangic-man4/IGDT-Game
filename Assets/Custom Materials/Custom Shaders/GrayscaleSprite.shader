@@ -4,6 +4,7 @@ Shader"Custom/GrayscaleSprite"
     {
         _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint Color", Color) = (1,1,1,1)
+        _Lighten ("Lighten Colors", Float) = 1
     }
     SubShader
     {
@@ -36,6 +37,7 @@ Shader"Custom/GrayscaleSprite"
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float4 _Color;
+            float _Lighten;
 
             v2f vert(appdata_t v)
             {
@@ -44,19 +46,23 @@ Shader"Custom/GrayscaleSprite"
                 o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
                 return o;
             }
-
             fixed4 frag(v2f i) : SV_Target
             {
                 fixed4 texCol = tex2D(_MainTex, i.uv);
-                
-                            // Convert to grayscale using standard luminance weights
+
+                // Convert to grayscale using luminance weights
                 float gray = dot(texCol.rgb, float3(0.299, 0.587, 0.114));
+
+                // Boost grayscale to bring lightest values closer to white
+                gray = pow(gray, _Lighten);
+
                 fixed3 grayscale = float3(gray, gray, gray);
-                
-                            // Multiply by tint color
+
+                // Multiply by tint color
                 fixed4 result = fixed4(grayscale, texCol.a) * _Color;
                 return result;
             }
+
             ENDCG
         }
     }
