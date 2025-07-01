@@ -18,7 +18,7 @@ public class TeleportControl : MonoBehaviour
     [SerializeField] private float ghostAlpha = 0.3f;
 
     [Header("Vertical Mode Settings")]
-    [SerializeField] private float verticalXThreshold = 0f;  // Default fallback to 0
+    [SerializeField] public float verticalXThreshold = 0f;  // Default fallback to 0
 
 
     private float lastTeleportTime;

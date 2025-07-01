@@ -51,7 +51,7 @@ public class TeleportGuide : MonoBehaviour
         else
         {
             direction = VerticalModeManager.IsVertical
-                ? (player.position.x < 0 ? Vector3.right : Vector3.left)
+                ? (player.position.x < teleportControl.verticalXThreshold ? Vector3.right : Vector3.left)
                 : (player.position.y < -3f ? Vector3.up : Vector3.down);
 
             targetPosition = player.position + direction * teleportDistance;
