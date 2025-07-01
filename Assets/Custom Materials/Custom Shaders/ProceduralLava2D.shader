@@ -2,6 +2,7 @@ Shader"Custom/ProceduralLava2D"
 {
     Properties
     {
+        _MainTex ("Texture", 2D) = "white" {}
         _ColorCool   ("Rock Color",   Color) = (0.08,0.02,0.01,1)
         _ColorHot    ("Lava Color",   Color) = (1,0.4,0,1)
         _CrackSharp  ("Crack Sharpness", Range(0.1,5)) = 3
@@ -28,6 +29,7 @@ Shader"Custom/ProceduralLava2D"
 
             fixed4 _ColorCool, _ColorHot;
             float _CrackSharp, _ScrollSpeed, _GlowPulse, _Alpha, _TileFactor, _GlowMult;
+            sampler2D _MainTex;
 
             struct appdata
             {

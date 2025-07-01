@@ -9,16 +9,23 @@ public class MovingPlatform : MonoBehaviour
 
     [Header("Behaviour")]
     [Tooltip("If ON, the platform stays still until the player touches it once.")]
-    public bool startOnFirstTouch = false;      
+    [SerializeField] private bool startOnFirstTouch = false;
+    [Tooltip("If ON, the platform can be started by triggers in addition to collision.")]
+    [SerializeField] private bool triggerCheck = false;
+    [Tooltip("If ON, the platform stops when it reaches the End Position    .")]
+    [SerializeField] private bool stopAtEnd = false;
+
 
     private bool movingToEnd = true;
     private bool activated = false;        // set true after first player touch
+    private bool hasStopped = false;
+
 
 
     void Update()
     {
         //  Pause until activated (if toggle is on)
-        if (startOnFirstTouch && !activated)
+        if (startOnFirstTouch && !activated || hasStopped)
         {
             return;
         }
@@ -31,7 +38,14 @@ public class MovingPlatform : MonoBehaviour
 
             if (transform.position == endPosition)
             {
-                movingToEnd = false;
+                if (stopAtEnd)
+                {
+                    hasStopped = true;
+                }
+                else
+                {
+                    movingToEnd = false;
+                }
             }
         }
         else
@@ -56,6 +70,18 @@ public class MovingPlatform : MonoBehaviour
             }
 
             collision.transform.SetParent(transform);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            if (startOnFirstTouch && triggerCheck && !activated)
+            {
+                activated = true;
+            }
         }
     }
 

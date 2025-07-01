@@ -205,7 +205,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &7773183268164951915
 CapsuleCollider2D:
@@ -306,7 +306,6 @@ MonoBehaviour:
   verticalXThreshold: 0
   afterImagePrefab: {fileID: 2646490012046674189, guid: 8712cd7ad51c8924388b90c139fca216, type: 3}
   teleportBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
-  dashPreviewLength: 0.1
 --- !u!82 &5194615938594376831
 AudioSource:
   m_ObjectHideFlags: 0
