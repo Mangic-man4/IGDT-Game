@@ -166,6 +166,9 @@ public class PlayerPowerUps : MonoBehaviour
 
     private void ExecuteDash()
     {
+        // Temporarily set to Discrete for pixel-precise dash behavior
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+
         Vector2 startPos = rb.position;
         Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
         Vector2 rayOrigin = rb.position + direction * 0.5f;
@@ -236,7 +239,19 @@ public class PlayerPowerUps : MonoBehaviour
                 Destroy(burst, 1.5f);
             }
         }
+        // Restore Continuous after dash (in next frame to be safe)
+        StartCoroutine(RestoreCollisionModeAfterFrames(3));
     }
+    private IEnumerator RestoreCollisionModeAfterFrames(int frameDelay = 3)
+    {
+        for (int i = 0; i < frameDelay; i++)
+        {
+            yield return null;
+        }
+
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+    }
+
 
 
     private void TryKillEnemyAtDashEndpoint(Vector2 position)
