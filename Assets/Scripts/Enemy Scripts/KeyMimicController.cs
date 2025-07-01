@@ -28,7 +28,7 @@ public class KeyMimicController : MonoBehaviour
         anim = GetComponent<Animator>();
         sr.sprite = disguisedSprite;
         shootTimer = shootInterval;
-        anim.Play("Key"); // Start in idle animation
+        anim.Play("Key");
 
         if (player == null)
         {
@@ -70,12 +70,10 @@ public class KeyMimicController : MonoBehaviour
                     shootTimer = shootInterval;
                 }
 
-                // Rotate toward player with +180 so thin end leads
                 Vector2 direction = (player.position - transform.position).normalized;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
 
-                // Flip sprite horizontally if the player is on the left
                 sr.flipY = (player.position.x > transform.position.x);
             }
         }
@@ -83,29 +81,21 @@ public class KeyMimicController : MonoBehaviour
 
     void Reveal()
     {
-        if (revealed) return; // prevent double triggering
+        if (revealed) return;
         revealed = true;
 
-        // Set scale immediately to prevent flash
         transform.localScale = new Vector3(2f, 2f, 1f);
-
-        // Manually reset to frame 0 before the animation starts
-        anim.Play("Key"); // forces evaluation of first (idle) frame immediately at new scale
-
-        // Now trigger the actual animation
+        anim.Play("Key");
         anim.SetTrigger("Reveal");
     }
-
 
     void StopChase()
     {
         revealed = false;
-
-        transform.localScale = Vector3.one;         // Reset size
-        anim.Play("Key");                           // Play idle animation directly
-        transform.rotation = Quaternion.identity;   // Reset rotation
+        transform.localScale = Vector3.one;
+        anim.Play("Key");
+        transform.rotation = Quaternion.identity;
     }
-
 
     void ChasePlayer()
     {
@@ -125,6 +115,18 @@ public class KeyMimicController : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 160f);
+
+        // Pass self as owner
+        fireball.GetComponent<MimicFireball>()?.SetOwner(this);
+    }
+
+    // NEW: Allow fireball to force mimic to return to disguised state
+    public void ForceDeaggro()
+    {
+        revealed = false;
+        transform.localScale = Vector3.one;
+        anim.Play("Key");
+        transform.rotation = Quaternion.identity;
     }
 }
 
