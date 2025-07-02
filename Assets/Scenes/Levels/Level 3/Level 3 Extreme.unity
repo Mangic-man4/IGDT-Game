@@ -30885,6 +30885,8 @@ MonoBehaviour:
   endPosition: {x: 1.8, y: 0, z: -1}
   speed: 4
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &303451417
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -31810,6 +31812,8 @@ MonoBehaviour:
   endPosition: {x: 6, y: 0, z: -1}
   speed: 2.7
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &342003621
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -35080,6 +35084,8 @@ MonoBehaviour:
   endPosition: {x: 4, y: 0, z: -1}
   speed: 3
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &503693758
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -35966,6 +35972,8 @@ MonoBehaviour:
   endPosition: {x: -3, y: -1, z: -1}
   speed: 2.25
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &518297120
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -42760,6 +42768,8 @@ MonoBehaviour:
   endPosition: {x: 7, y: 0, z: -1}
   speed: 2.7
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &854014198
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -51098,6 +51108,8 @@ MonoBehaviour:
   endPosition: {x: 4, y: 0, z: -1}
   speed: 3.5
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &1211956210
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -64522,6 +64534,8 @@ MonoBehaviour:
   endPosition: {x: 9, y: 0, z: -1}
   speed: 2.5
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &1848634332
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -364904,6 +364918,8 @@ MonoBehaviour:
   endPosition: {x: -5, y: 0, z: -1}
   speed: 3
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &2067666736
 PlatformEffector2D:
   m_ObjectHideFlags: 0

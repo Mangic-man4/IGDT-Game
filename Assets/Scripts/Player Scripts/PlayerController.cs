@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -259,15 +260,14 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = lowGravityScale;
             rb.drag = lowGravityDrag;
         }
-        else if (other.CompareTag("Checkpoint"))
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("LowGravityZone"))
         {
-            Checkpoint checkpoint = other.GetComponent<Checkpoint>();
-            if (checkpoint != null && !checkpoint.IsChecked)
-            {
-                SetRespawnPoint(other.transform.position);
-                checkpoint.IsChecked = true;
-                checkpoint.GetComponent<SpriteRenderer>().color = Color.green;
-            }
+            isInLowGravityZone = true;
+            rb.gravityScale = lowGravityScale;
+            rb.drag = lowGravityDrag;
         }
     }
 

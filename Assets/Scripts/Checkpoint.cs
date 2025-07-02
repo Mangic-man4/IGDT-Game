@@ -91,6 +91,8 @@ public class Checkpoint : MonoBehaviour
         isChecked = true;
         sR.sprite = activated;
 
+        GetComponent<SpriteRenderer>().color = Color.green;
+
         Debug.Log($"Checkpoint {name} snapshot saved!");
     }
 
