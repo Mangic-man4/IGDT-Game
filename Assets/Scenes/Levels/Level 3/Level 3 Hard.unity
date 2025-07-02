@@ -30239,6 +30239,8 @@ MonoBehaviour:
   endPosition: {x: 1.8, y: 0, z: -1}
   speed: 3.4
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &303451417
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -31103,6 +31105,8 @@ MonoBehaviour:
   endPosition: {x: 6, y: 0, z: -1}
   speed: 2.7
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &342003621
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -33992,6 +33996,8 @@ MonoBehaviour:
   endPosition: {x: 4, y: 0, z: -1}
   speed: 3
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &503693758
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -34756,6 +34762,8 @@ MonoBehaviour:
   endPosition: {x: -3, y: -1, z: -1}
   speed: 2.25
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &518297120
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -40550,7 +40558,6 @@ GameObject:
   - component: {fileID: 840954155}
   - component: {fileID: 840954157}
   - component: {fileID: 840954153}
-  - component: {fileID: 840954158}
   - component: {fileID: 840954159}
   m_Layer: 0
   m_Name: End
@@ -40684,18 +40691,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevelName: Level 2 Hard
---- !u!114 &840954158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840954152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae5d901a37b4f549823dca6c9d6bf48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &840954159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41103,6 +41098,8 @@ MonoBehaviour:
   endPosition: {x: 7, y: 0, z: -1}
   speed: 2.7
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &854014198
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -48613,6 +48610,8 @@ MonoBehaviour:
   endPosition: {x: 4, y: 0, z: -1}
   speed: 2.7
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &1211956210
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -60102,6 +60101,8 @@ MonoBehaviour:
   endPosition: {x: 9, y: 0, z: -1}
   speed: 2.5
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &1848634332
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -360421,6 +360422,8 @@ MonoBehaviour:
   endPosition: {x: -5, y: 0, z: -1}
   speed: 2.5
   startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0
 --- !u!251 &2067666736
 PlatformEffector2D:
   m_ObjectHideFlags: 0
