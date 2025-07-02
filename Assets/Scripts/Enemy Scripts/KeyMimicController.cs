@@ -8,7 +8,7 @@ public class KeyMimicController : MonoBehaviour
 
     public float detectionRange = 4f;
     public float chaseStopDistance = 30f;
-    public float chaseSpeed = 7f;
+    public float chaseSpeed = 4f;
     public float shootInterval = 2f;
     public float fireballSpeed = 6f;
     public Transform player;
@@ -49,7 +49,7 @@ public class KeyMimicController : MonoBehaviour
         activeMimics.Remove(this);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (player == null) return;
 
@@ -72,7 +72,7 @@ public class KeyMimicController : MonoBehaviour
             {
                 ChasePlayer();
 
-                shootTimer -= Time.deltaTime;
+                shootTimer -= Time.fixedDeltaTime;
                 if (shootTimer <= 0f)
                 {
                     ShootFireball();
@@ -82,7 +82,6 @@ public class KeyMimicController : MonoBehaviour
                 Vector2 direction = (player.position - transform.position).normalized;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
-
                 sr.flipY = (player.position.x > transform.position.x);
             }
         }
@@ -114,7 +113,7 @@ public class KeyMimicController : MonoBehaviour
     void ChasePlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
-        Vector2 newPos = rb.position + direction * chaseSpeed * Time.deltaTime;
+        Vector2 newPos = rb.position + direction * chaseSpeed * Time.fixedDeltaTime;
         rb.MovePosition(newPos);
     }
 
@@ -130,18 +129,15 @@ public class KeyMimicController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 160f);
 
-        // Pass self as owner
         fireball.GetComponent<MimicFireball>()?.SetOwner(this);
     }
 
     public void ForceDeaggro()
     {
-        revealed = false;
-        transform.localScale = Vector3.one;
-        anim.Play("Key");
-        transform.rotation = Quaternion.identity;
+        StopChase();
     }
 }
+
 
 
 
