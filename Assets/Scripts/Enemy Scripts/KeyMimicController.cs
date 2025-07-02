@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class KeyMimicController : MonoBehaviour
 {
+    public static List<KeyMimicController> activeMimics = new List<KeyMimicController>();
+
     public float detectionRange = 4f;
     public float chaseStopDistance = 30f;
-    public float chaseSpeed = 38f;
+    public float chaseSpeed = 7f;
     public float shootInterval = 2f;
     public float fireballSpeed = 6f;
     public Transform player;
@@ -38,6 +40,13 @@ public class KeyMimicController : MonoBehaviour
             else
                 Debug.LogError("Player not found! Tag the player as 'Player'.");
         }
+
+        activeMimics.Add(this);
+    }
+
+    void OnDestroy()
+    {
+        activeMimics.Remove(this);
     }
 
     void Update()
@@ -97,6 +106,11 @@ public class KeyMimicController : MonoBehaviour
         transform.rotation = Quaternion.identity;
     }
 
+    public void ResetToIdle()
+    {
+        StopChase(); // Called on player death
+    }
+
     void ChasePlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
@@ -120,7 +134,6 @@ public class KeyMimicController : MonoBehaviour
         fireball.GetComponent<MimicFireball>()?.SetOwner(this);
     }
 
-    // NEW: Allow fireball to force mimic to return to disguised state
     public void ForceDeaggro()
     {
         revealed = false;
@@ -129,6 +142,7 @@ public class KeyMimicController : MonoBehaviour
         transform.rotation = Quaternion.identity;
     }
 }
+
 
 
 

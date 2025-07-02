@@ -208,44 +208,39 @@ public class PlayerController : MonoBehaviour
 
         if (!sceneName.Contains("Easy"))
         {
-            // Medium / Hard – unchanged
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Time.timeScale = 1f;
             return;
         }
 
-        //  EASY MODE 
-        // 1) Is there an active checkpoint?
         Checkpoint active = currentCheckpoint;
 
         var pwr = GetComponent<PlayerPowerUps>();
         _ = GetComponent<ItemCollector>();
         _ = FindObjectOfType<Timer>();
 
-        // Always clear current power-ups
         if (pwr != null) pwr.ClearAllPowerUps();
+
+        // NEW: Force all KeyMimics to deaggro
+        foreach (var mimic in KeyMimicController.activeMimics)
+            mimic.ResetToIdle();
 
         if (active == null)
         {
-            //  NO CHECKPOINT YET: full level reset 
             Debug.Log("Easy death with NO checkpoint – hard resetting level");
-
-            // reset player position to scene start
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Time.timeScale = 1f;          // in case pause scale changed
-            return;                       // scene reload will rebuild everything
+            Time.timeScale = 1f;
+            return;
         }
 
-        //  CHECKPOINT EXISTS 
         Debug.Log($"Easy death WITH checkpoint – restoring snapshot from {active.name}");
 
-        // 1) teleport player
         transform.position = respawnPoint;
         rb.velocity = Vector2.zero;
 
-        // 2) respawn world pickups (if that flag is on)
         active.RestoreCheckpointState(gameObject);
     }
+
 
 
 
