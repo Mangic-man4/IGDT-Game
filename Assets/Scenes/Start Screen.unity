@@ -1800,8 +1800,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1536766586}
-        m_TargetAssemblyTypeName: ControlsButton, Assembly-CSharp
-        m_MethodName: EnterControls
+        m_TargetAssemblyTypeName: SettingsButton, Assembly-CSharp
+        m_MethodName: SettingsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1858,7 +1858,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1536766580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd3ddcbb4aed1043ab14c6ec3d486ea, type: 3}
+  m_Script: {fileID: 11500000, guid: ade554cdab0351b439eecefc9faa186f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1727070967
@@ -2294,7 +2294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CONTROLS
+  m_text: SETTINGS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}

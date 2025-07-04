@@ -121,7 +121,7 @@ public class KeyBindings : MonoBehaviour
     }
 
 
-    private void LoadBindings()
+    public void LoadBindings()
     {
         foreach (ActionKey k in System.Enum.GetValues(typeof(ActionKey)))
         {
