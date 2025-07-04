@@ -40690,7 +40690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe76d74b671154469ed69855956149e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelName: Level 2 Hard
+  currentLevelName: Level 3 Hard
 --- !u!114 &840954159
 MonoBehaviour:
   m_ObjectHideFlags: 0

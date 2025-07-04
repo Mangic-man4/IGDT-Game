@@ -154,4 +154,9 @@ public class ControlsMenu : MonoBehaviour
         }
     }
 
+    public void RefreshUI()
+    {
+        RefreshDisplay();
+    }
+
 }

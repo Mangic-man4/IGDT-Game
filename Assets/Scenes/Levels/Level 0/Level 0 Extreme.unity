@@ -345105,6 +345105,10 @@ PrefabInstance:
       propertyPath: startPosition.x
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 1331251727093042800, guid: 8f8dd30d004ae0b4e854c4602a018a88, type: 3}
+      propertyPath: startOnFirstTouch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2935261257184603215, guid: 8f8dd30d004ae0b4e854c4602a018a88, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1
