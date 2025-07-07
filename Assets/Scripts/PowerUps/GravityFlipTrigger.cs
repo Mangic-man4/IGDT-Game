@@ -2,34 +2,27 @@ using UnityEngine;
 
 public class GravityFlipTrigger : MonoBehaviour
 {
-    private bool isPlayerInside = false;
+    private PlayerPowerUps powerUps;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerInside = true;
-            ToggleGravity(other.gameObject.GetComponent<Rigidbody2D>(), other.gameObject.transform);
+            powerUps = other.GetComponent<PlayerPowerUps>();
+            ToggleGravity();
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void ToggleGravity()
     {
-        if (other.CompareTag("Player"))
+        if (powerUps != null)
         {
-            isPlayerInside = false;
+            powerUps.FlipGravity();
+
+            // Update gravityFlipped flag to reflect the new state
+            powerUps.gravityFlipped = !powerUps.gravityFlipped;
+            powerUps.previousGravityState = powerUps.gravityFlipped;
         }
-    }
-
-    void ToggleGravity(Rigidbody2D rb, Transform playerTransform)
-    {
-        rb.gravityScale *= -1;
-
-        // Rotate the player 180 degrees to flip upside down
-        playerTransform.Rotate(Vector3.forward, 180f);
-
-        // Flip the player's sprite along with the gravity change
-        SpriteRenderer spriteRenderer = playerTransform.GetComponent<SpriteRenderer>();
-        spriteRenderer.flipX = !spriteRenderer.flipX;
     }
 }
+

@@ -7,7 +7,7 @@ public class CameraSafeArea : MonoBehaviour
     public float referenceOrthographicSize = 5f;
 
     [Tooltip("The reference aspect ratio to base scaling on (e.g. 16:9)")]
-    public Vector2 referenceAspectRatio = new Vector2(16f, 9f);
+    public Vector2 referenceAspectRatio = new(16f, 9f);
 
     private Camera cam;
     private float lastScreenWidth;

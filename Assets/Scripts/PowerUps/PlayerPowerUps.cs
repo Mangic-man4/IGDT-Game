@@ -42,7 +42,7 @@ public class PlayerPowerUps : MonoBehaviour
     public float speedMultiplier = 2f;
 
     // --- Gravity Settings ---
-    private bool previousGravityState;
+    [HideInInspector] public bool previousGravityState;
 
 
     // --- References ---
@@ -63,6 +63,12 @@ public class PlayerPowerUps : MonoBehaviour
         if (KeyBindings.GetKeyDown(ActionKey.FireballAttack) && Time.time > lastFireTime + fireCooldown)
         {
             TryFireball();
+        }
+
+        if (gravityFlipped != previousGravityState)
+        {
+            FlipGravity();
+            previousGravityState = gravityFlipped;
         }
     }
 
@@ -132,7 +138,7 @@ public class PlayerPowerUps : MonoBehaviour
         }
     }
 
-    private void FlipGravity()
+    public void FlipGravity()
     {
         // Flip sprite
         Vector3 scale = transform.localScale;
