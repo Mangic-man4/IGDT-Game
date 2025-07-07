@@ -29,6 +29,9 @@ public class ControlsMenu : MonoBehaviour
 
     public MessageBoxUI messageBox;
 
+    public bool IsWaitingForKey => waitingForKey || waitingForAxisKey;
+
+
     void Start()
     {
         RefreshDisplay();

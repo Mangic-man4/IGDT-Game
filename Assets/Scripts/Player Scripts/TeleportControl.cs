@@ -18,12 +18,11 @@ public class TeleportControl : MonoBehaviour
     [SerializeField] private float ghostAlpha = 0.3f;
 
     [Header("Vertical Mode Settings")]
-    [SerializeField] public float verticalXThreshold = 0f;  // Default fallback to 0
+    public float verticalXThreshold = 0f;  // Default fallback to 0
 
 
     private float lastTeleportTime;
     private bool isPaused = false;
-    private bool ghostIsSafe = true;
 
     private GameObject teleportGhost;
     private Animator ghostAnimator;
@@ -117,8 +116,6 @@ public class TeleportControl : MonoBehaviour
         // Update ghost preview
         if (teleportGhost != null && teleportGhost.activeSelf)
         {
-            ghostIsSafe = true; // Reset this every frame; turrets can override it
-
             Vector3 direction;
             float previewDistance;
 
@@ -224,13 +221,6 @@ public class TeleportControl : MonoBehaviour
         isPaused = pause;
     }
 
-    public void SetGhostSafe(bool safe)
-    {
-        if (!safe)
-        {
-            ghostIsSafe = false;
-        }
-    }
 
 
     public bool IsTeleportTargetSafe(Vector3 destination)

@@ -3439,7 +3439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e75d8aaf49ae849ade95655c18df9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 1ba08d575e6366c44bd46ff447ae6607, type: 2}
+  musicVolumeParam: MusicVolume
+  sfxVolumeParam: SFXVolume
 --- !u!4 &1466017001
 Transform:
   m_ObjectHideFlags: 0

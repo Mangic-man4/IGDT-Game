@@ -44329,14 +44329,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7034206896893669320, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
-      propertyPath: PauseScreen
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7034206896893669320, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
-      propertyPath: backgroundMusic
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7802741437313342349, guid: a9e421b08bcda924e86b1e62415b8090, type: 3}
       propertyPath: m_Name
       value: LevelManagers
@@ -231631,6 +231623,10 @@ PrefabInstance:
     - target: {fileID: 8017317996580497496, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334946878693140749, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+      propertyPath: Mute
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

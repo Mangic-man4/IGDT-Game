@@ -10,6 +10,8 @@ public class MessageBoxUI : MonoBehaviour
     public TMP_Text messageText;
     public Button okButton;
 
+    public bool IsShowing => messagePanel.activeSelf;
+
     void Start()
     {
         if (messagePanel != null)
@@ -28,7 +30,7 @@ public class MessageBoxUI : MonoBehaviour
         }
     }
 
-    private void HideMessage()
+    public void HideMessage()
     {
         messagePanel.SetActive(false);
     }

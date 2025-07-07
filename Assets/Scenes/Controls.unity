@@ -1673,7 +1673,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 651024785}
         m_TargetAssemblyTypeName: SettingsButton, Assembly-CSharp
-        m_MethodName: SettingsMenu
+        m_MethodName: ExitScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

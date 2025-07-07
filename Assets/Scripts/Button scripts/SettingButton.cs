@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class SettingsButton : MonoBehaviour
 {
-    public void SettingsMenu()
+    public void EnterSettings()
     {
         // Set pause state to false before transitioning to the Start Screen
         PauseManager.Instance.SetPauseState(false);

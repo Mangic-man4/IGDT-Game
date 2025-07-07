@@ -14,6 +14,9 @@ public class Pause : MonoBehaviour
     private PlayerController playerController;
     private TeleportControl teleportControl;
 
+    private GameObject pauseMainPanel;
+    private GameObject settingsPanel;
+
     void Start()
     {
         // Auto-assign PauseScreen by name or tag
@@ -61,6 +64,15 @@ public class Pause : MonoBehaviour
 
         if (PauseScreen != null)
             PauseScreen.SetActive(false);
+
+        if (pauseMainPanel == null)
+            pauseMainPanel = GameObject.Find("PauseMainPanel");
+
+        if (settingsPanel == null)
+            settingsPanel = GameObject.Find("SettingsPanel");
+
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false); // hide at start
     }
 
 
@@ -98,6 +110,12 @@ public class Pause : MonoBehaviour
 
         PauseManager.Instance.SetPauseState(true);
         PauseScreen.SetActive(true);
+            
+        if (pauseMainPanel != null)
+            pauseMainPanel.SetActive(true);
+
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
 
         if (pausedText != null)
             pausedText.gameObject.SetActive(true);
@@ -174,6 +192,15 @@ public class Pause : MonoBehaviour
         if (backgroundMusic == null && Camera.main != null)
             Camera.main.TryGetComponent(out backgroundMusic);
 
+        Transform mainPanelTransform = PauseScreen.transform.Find("PauseMainPanel");
+        if (mainPanelTransform != null)
+            pauseMainPanel = mainPanelTransform.gameObject;
+
+        Transform settingsPanelTransform = PauseScreen.transform.Find("SettingsPanel");
+        if (settingsPanelTransform != null)
+            settingsPanel = settingsPanelTransform.gameObject;
+
+
         if (playerController == null)
             playerController = FindObjectOfType<PlayerController>();
 
@@ -181,6 +208,27 @@ public class Pause : MonoBehaviour
             teleportControl = FindObjectOfType<TeleportControl>();
     }
 
+    public void OpenSettings()
+    {
+        EnsureInitialized();
+
+        if (pauseMainPanel != null)
+            pauseMainPanel.SetActive(false);
+
+        if (settingsPanel != null)
+            settingsPanel.SetActive(true);
+    }
+
+    public void BackToPauseMenu()
+    {
+        EnsureInitialized();
+
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
+
+        if (pauseMainPanel != null)
+            pauseMainPanel.SetActive(true);
+    }
 }
 
 

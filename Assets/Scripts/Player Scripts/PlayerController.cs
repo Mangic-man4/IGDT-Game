@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
     private float xInput;
     private bool isGrounded;
     private bool isPaused = false;
-    private bool isInLowGravityZone = false;
 
     private readonly float coyoteTime = 0.05f;
     private float coyoteTimer;
@@ -251,7 +250,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("LowGravityZone"))
         {
-            isInLowGravityZone = true;
             rb.gravityScale = lowGravityScale;
             rb.drag = lowGravityDrag;
         }
@@ -260,7 +258,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("LowGravityZone"))
         {
-            isInLowGravityZone = true;
             rb.gravityScale = lowGravityScale;
             rb.drag = lowGravityDrag;
         }
@@ -270,7 +267,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("LowGravityZone"))
         {
-            isInLowGravityZone = false;
             rb.gravityScale = normalGravityScale;
             rb.drag = normalDrag;
         }

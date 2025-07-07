@@ -5,10 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class ExitControls : MonoBehaviour
 {
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitScene();
+        }
+    }
+
     public void ExitScene()
     {
         // Set pause state to false before transitioning to the Start Screen
-        PauseManager.Instance.SetPauseState(false);
+        if (PauseManager.Instance != null)
+        {
+            PauseManager.Instance.SetPauseState(false);
+        }
 
         SceneManager.LoadScene("Start Screen");
     }
