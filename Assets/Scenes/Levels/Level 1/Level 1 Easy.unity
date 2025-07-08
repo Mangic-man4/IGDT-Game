@@ -42105,6 +42105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2992987325490857947, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4299364924263223257, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: coinCount
       value: 
@@ -230462,6 +230466,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2064532135728517844, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065347792274921400, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995575537989063984, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6055509306862213044, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529709482505323482, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6830663561301405769, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518450745705491296, guid: 652897f5022b2bf4e97522b557d27faf, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

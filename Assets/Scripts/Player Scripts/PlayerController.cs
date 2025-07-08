@@ -226,22 +226,19 @@ public class PlayerController : MonoBehaviour
 
         if (active == null)
         {
-            Debug.Log("Easy death with NO checkpoint – hard resetting level");
+            Debug.Log("Easy death with NO checkpoint - hard resetting level");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Time.timeScale = 1f;
             return;
         }
 
-        Debug.Log($"Easy death WITH checkpoint – restoring snapshot from {active.name}");
+        Debug.Log($"Easy death WITH checkpoint - restoring snapshot from {active.name}");
 
         transform.position = respawnPoint;
         rb.velocity = Vector2.zero;
 
         active.RestoreCheckpointState(gameObject);
     }
-
-
-
 
 
 

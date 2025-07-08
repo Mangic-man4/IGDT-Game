@@ -85,12 +85,15 @@ public class TeleportControl : MonoBehaviour
         }
 
         // Cache the ghost animator
+        GhostSettings.LoadSettings();
+        GhostSettings.LoadColors();
+
         ghostAnimator = teleportGhost.GetComponent<Animator>();
         GameObject guideObj = Instantiate(teleportGuidePrefab);
         teleportGuide = guideObj.GetComponent<TeleportGuide>();
         teleportGuide.player = transform;
         teleportGuide.teleportGhost = teleportGhost;
-        teleportGhost.SetActive(IsEasyDifficulty());
+        teleportGhost.SetActive(IsEasyDifficulty() && GhostSettings.enableGhost);
 
     }
 
@@ -98,11 +101,15 @@ public class TeleportControl : MonoBehaviour
     {
         if (isPaused) return;
 
-        // Toggle ghost
-        if (KeyBindings.GetKeyDown(ActionKey.ToggleGhost) && teleportGhost != null)
+        if (KeyBindings.GetKeyDown(ActionKey.ToggleGhost))
         {
-            teleportGhost.SetActive(!teleportGhost.activeSelf);
+            if (teleportGhost != null)
+            {
+                SetGhostVisibility(!teleportGhost.activeSelf);
+            }
         }
+
+
 
         // Attempt teleport
         if (Time.time > lastTeleportTime + teleportCooldown && KeyBindings.GetKeyDown(ActionKey.Teleport))
@@ -139,13 +146,26 @@ public class TeleportControl : MonoBehaviour
             // Safety check
             bool isSafe = IsTeleportTargetSafe(teleportGhost.transform.position);
 
-            Color ghostColor = isSafe ? Color.green : Color.red;
+            Color ghostColor = GhostSettings.ghostColor;
+
+            if (IsEasyDifficulty() && GhostSettings.enableTinting)
+            {
+                ghostColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
+            }
+
+            ghostColor.a = GhostSettings.ghostAlpha;
+            foreach (var sr in teleportGhost.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.color = ghostColor;
+            }
+
+            /* //Old
             foreach (var sr in teleportGhost.GetComponentsInChildren<SpriteRenderer>())
             {
                 Color tinted = ghostColor;
                 tinted.a = sr.color.a;
                 sr.color = tinted;
-            }
+            }*/
 
 
             AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
@@ -211,7 +231,7 @@ public class TeleportControl : MonoBehaviour
 
 
 
-    private bool IsEasyDifficulty()
+    public bool IsEasyDifficulty()
     {
         return SceneManager.GetActiveScene().name.Contains("Easy");
     }
@@ -236,5 +256,30 @@ public class TeleportControl : MonoBehaviour
         }
         return true;
     }
+    public void SetGhostVisibility(bool isVisible)
+    {
+        if (teleportGhost == null) return;
 
+        teleportGhost.SetActive(isVisible);
+        GhostSettings.enableGhost = isVisible;
+        GhostSettings.SaveSettings();
+
+        if (IsEasyDifficulty() && teleportGuide != null &&
+            teleportGuide.TryGetComponent<LineRenderer>(out LineRenderer line))
+        {
+            line.enabled = isVisible;
+        }
+
+        NotifyGhostUIUpdate(isVisible);
+    }
+    private void NotifyGhostUIUpdate(bool visible)
+    {
+        GhostSettingsUI ui = FindObjectOfType<GhostSettingsUI>();
+        if (ui != null && ui.ghostEnableToggle != null)
+        {
+            ui.suppressGhostToggleUpdate = true;
+            ui.ghostEnableToggle.isOn = visible;
+            ui.suppressGhostToggleUpdate = false;
+        }
+    }
 }

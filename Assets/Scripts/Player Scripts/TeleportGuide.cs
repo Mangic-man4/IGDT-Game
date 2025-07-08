@@ -60,15 +60,20 @@ public class TeleportGuide : MonoBehaviour
         lineRenderer.SetPosition(0, player.position);
         lineRenderer.SetPosition(1, targetPosition);
 
-        // === Copy the ghost's tint color ===
-        SpriteRenderer ghostSprite = teleportGhost.GetComponentInChildren<SpriteRenderer>();
-        if (ghostSprite != null)
+        // === Match ghost tinting ===
+        Color guideColor = GhostSettings.ghostColor;
+
+        if (GhostSettings.enableTinting && PauseManager.Instance != null && teleportControl.IsEasyDifficulty()
+)
         {
-            Color ghostColor = ghostSprite.color;
-            ghostColor.a = 1f; // Make line fully opaque for visibility
-            lineRenderer.startColor = ghostColor;
-            lineRenderer.endColor = ghostColor;
+            bool isSafe = teleportControl.IsTeleportTargetSafe(targetPosition);
+            guideColor = isSafe ? Color.green : Color.red;
         }
+
+        guideColor.a = 1f; // Keep line fully visible
+        lineRenderer.startColor = guideColor;
+        lineRenderer.endColor = guideColor;
+
     }
 
     public void ToggleVisibility()
