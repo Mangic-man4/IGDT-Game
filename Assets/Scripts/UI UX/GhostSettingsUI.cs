@@ -12,10 +12,11 @@ public class GhostSettingsUI : MonoBehaviour
     public Toggle ghostTintToggle;
     public Toggle ghostEnableToggle;
 
+
     [SerializeField] private FlexibleColorPicker safeColorPicker;
     [SerializeField] private FlexibleColorPicker unsafeColorPicker;
 
-    public bool suppressGhostToggleUpdate = false;
+    [HideInInspector]public bool suppressGhostToggleUpdate = false;
 
     void Start()
     {
@@ -59,30 +60,25 @@ public class GhostSettingsUI : MonoBehaviour
         GhostSettings.SaveSettings();
         UpdateLineRendererColors();
     }
-
+   
     public void SetGhostEnabled(bool enabled)
     {
-        if (suppressGhostToggleUpdate)
-            return;
-
         GhostSettings.enableGhost = enabled;
         GhostSettings.SaveSettings();
-
-        // Update visuals
-        if (teleportGhost != null)
-            teleportGhost.SetActive(enabled);
-
         UpdateLineRendererColors();
     }
 
-
-
-
     public void OnGhostToggleChanged(bool isOn)
     {
-        SetGhostEnabled(isOn);
+        TeleportControl player = FindObjectOfType<TeleportControl>();
+        if (player != null)
+        {
+            player.updatingFromUI = true;
+            player.SetGhostVisibility(isOn);
+            player.updatingFromUI = false;
+        }
     }
-
+ 
     public void OnSafeColorChanged(Color newColor)
     {
         GhostSettings.safeColor = newColor;
@@ -101,7 +97,14 @@ public class GhostSettingsUI : MonoBehaviour
     {
         GhostSettings.LoadSettings();
         GhostSettings.LoadColors();
+
+        // Sync toggle state when UI becomes visible
+        if (ghostEnableToggle != null)
+        {
+            ghostEnableToggle.SetIsOnWithoutNotify(GhostSettings.enableGhost);
+        }
     }
+
 
     void UpdateLineRendererColors()
     {

@@ -23,6 +23,8 @@ public class TeleportControl : MonoBehaviour
 
     private float lastTeleportTime;
     private bool isPaused = false;
+    [HideInInspector]public bool updatingFromUI = false;
+
 
     private GameObject teleportGhost;
     private Animator ghostAnimator;
@@ -258,28 +260,47 @@ public class TeleportControl : MonoBehaviour
     }
     public void SetGhostVisibility(bool isVisible)
     {
-        if (teleportGhost == null) return;
+        if (teleportGhost == null) 
+            return;
 
         teleportGhost.SetActive(isVisible);
         GhostSettings.enableGhost = isVisible;
         GhostSettings.SaveSettings();
 
+        // Also update the line if it's Easy difficulty
         if (IsEasyDifficulty() && teleportGuide != null &&
-            teleportGuide.TryGetComponent<LineRenderer>(out LineRenderer line))
+            teleportGuide.TryGetComponent(out LineRenderer line))
         {
             line.enabled = isVisible;
         }
 
+
+        // Sync the toggle only if not triggered by UI
+        if (!updatingFromUI)
+        {
+            GhostSettingsUI ui = FindObjectOfType<GhostSettingsUI>();
+            if (ui != null && ui.ghostEnableToggle != null)
+            {
+                ui.ghostEnableToggle.SetIsOnWithoutNotify(isVisible);
+            }
+        }
         NotifyGhostUIUpdate(isVisible);
+
+    }
+
+    public void SetGhostVisibilityFromUI(bool isVisible)
+    {
+        updatingFromUI = true;
+        SetGhostVisibility(isVisible);
+        updatingFromUI = false;
     }
     private void NotifyGhostUIUpdate(bool visible)
     {
         GhostSettingsUI ui = FindObjectOfType<GhostSettingsUI>();
         if (ui != null && ui.ghostEnableToggle != null)
         {
-            ui.suppressGhostToggleUpdate = true;
-            ui.ghostEnableToggle.isOn = visible;
-            ui.suppressGhostToggleUpdate = false;
+            ui.ghostEnableToggle.SetIsOnWithoutNotify(visible); 
         }
     }
+
 }

@@ -477,7 +477,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2862910266307557663}
         m_TargetAssemblyTypeName: GhostSettingsUI, Assembly-CSharp
         m_MethodName: OnGhostToggleChanged
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2692,6 +2692,7 @@ MonoBehaviour:
   ghostEnableToggle: {fileID: 6113518949342759703}
   safeColorPicker: {fileID: 4351704039926610423}
   unsafeColorPicker: {fileID: 4706030645860506076}
+  suppressGhostToggleUpdate: 0
 --- !u!1 &4989242893000223312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,14 +2855,14 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.7
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2862910266307557663}
         m_TargetAssemblyTypeName: GhostSettingsUI, Assembly-CSharp
         m_MethodName: SetGhostOpacity
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3226,7 +3227,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2862910266307557663}
         m_TargetAssemblyTypeName: GhostSettingsUI, Assembly-CSharp
         m_MethodName: SetTinting
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
