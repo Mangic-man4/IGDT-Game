@@ -98,8 +98,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.43116412, g: 0.6653029, b: 0.79622644, a: 1}
-      key1: {r: 0.43116412, g: 0.6653029, b: 0.79622644, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -150,5 +150,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5426890507027463275, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
-  teleportDistance: 30
   teleportGhost: {fileID: 2992987325490857947, guid: 067871f591a0a5b43a23298373641cf0, type: 3}

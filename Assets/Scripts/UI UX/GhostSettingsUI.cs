@@ -11,6 +11,8 @@ public class GhostSettingsUI : MonoBehaviour
     public Slider ghostOpacitySlider;
     public Toggle ghostTintToggle;
     public Toggle ghostEnableToggle;
+    public Toggle applyOpacityToggle;
+
 
 
     [SerializeField] private FlexibleColorPicker safeColorPicker;
@@ -46,6 +48,13 @@ public class GhostSettingsUI : MonoBehaviour
         // Listen for changes
         safeColorPicker.onColorChange.AddListener(OnSafeColorChanged);
         unsafeColorPicker.onColorChange.AddListener(OnUnsafeColorChanged);
+
+        if (applyOpacityToggle != null)
+        {
+            applyOpacityToggle.isOn = GhostSettings.applyOpacityToGuide;
+            applyOpacityToggle.onValueChanged.AddListener(SetApplyOpacityToGuide);
+        }
+
     }
 
     public void SetGhostOpacity(float value)
@@ -120,6 +129,11 @@ public class GhostSettingsUI : MonoBehaviour
 
         teleportLine.startColor = color;
         teleportLine.endColor = color;
+    }
+    public void SetApplyOpacityToGuide(bool enabled)
+    {
+        GhostSettings.applyOpacityToGuide = enabled;
+        GhostSettings.SaveSettings();
     }
 
 }

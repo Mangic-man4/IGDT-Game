@@ -63,14 +63,14 @@ public class TeleportGuide : MonoBehaviour
         // === Match ghost tinting ===
         Color guideColor = GhostSettings.ghostColor;
 
-        if (GhostSettings.enableTinting && PauseManager.Instance != null && teleportControl.IsEasyDifficulty()
-)
+        if (GhostSettings.enableTinting && PauseManager.Instance != null && teleportControl.IsEasyDifficulty())
         {
             bool isSafe = teleportControl.IsTeleportTargetSafe(targetPosition);
-            guideColor = isSafe ? Color.green : Color.red;
+            guideColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
         }
 
-        guideColor.a = 1f; // Keep line fully visible
+
+        guideColor.a = GhostSettings.applyOpacityToGuide ? GhostSettings.ghostAlpha : 1f;
         lineRenderer.startColor = guideColor;
         lineRenderer.endColor = guideColor;
 
@@ -87,4 +87,5 @@ public class TeleportGuide : MonoBehaviour
         isVisible = value;
         lineRenderer.enabled = value;
     }
+
 }

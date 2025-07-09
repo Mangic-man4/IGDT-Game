@@ -284,8 +284,6 @@ public class TeleportControl : MonoBehaviour
                 ui.ghostEnableToggle.SetIsOnWithoutNotify(isVisible);
             }
         }
-        NotifyGhostUIUpdate(isVisible);
-
     }
 
     public void SetGhostVisibilityFromUI(bool isVisible)
@@ -294,13 +292,4 @@ public class TeleportControl : MonoBehaviour
         SetGhostVisibility(isVisible);
         updatingFromUI = false;
     }
-    private void NotifyGhostUIUpdate(bool visible)
-    {
-        GhostSettingsUI ui = FindObjectOfType<GhostSettingsUI>();
-        if (ui != null && ui.ghostEnableToggle != null)
-        {
-            ui.ghostEnableToggle.SetIsOnWithoutNotify(visible); 
-        }
-    }
-
 }
