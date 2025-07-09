@@ -9,6 +9,9 @@ public static class GhostSettings
     public static bool enableTinting = true;
     public static Color ghostColor = Color.white;
     public static bool applyOpacityToGuide = false;
+    public static float shadowAlpha = 0.2f;
+    public static bool shadowUsesOpacity = false;
+
 
 
     public static Color safeColor = Color.green;
@@ -21,6 +24,9 @@ public static class GhostSettings
         enableTinting = PlayerPrefs.GetInt("Ghost_Tinting", 1) == 1;
         ghostAlpha = PlayerPrefs.GetFloat("Ghost_Alpha", 0.3f);
         applyOpacityToGuide = PlayerPrefs.GetInt("GhostApplyOpacityToGuide", 0) == 1;
+        shadowAlpha = PlayerPrefs.GetFloat("Ghost_ShadowAlpha", 0.2f);
+        shadowUsesOpacity = PlayerPrefs.GetInt("Ghost_ShadowUseOpacity", 0) == 1;
+
 
 
         float r = PlayerPrefs.GetFloat("Ghost_Color_R", 1f);
@@ -35,6 +41,8 @@ public static class GhostSettings
         PlayerPrefs.SetInt("Ghost_Tinting", enableTinting ? 1 : 0);
         PlayerPrefs.SetFloat("Ghost_Alpha", ghostAlpha);
         PlayerPrefs.SetInt("GhostApplyOpacityToGuide", applyOpacityToGuide ? 1 : 0);
+        PlayerPrefs.SetFloat("Ghost_ShadowAlpha", shadowAlpha);
+        PlayerPrefs.SetInt("Ghost_ShadowUseOpacity", shadowUsesOpacity ? 1 : 0);
 
 
         PlayerPrefs.SetFloat("Ghost_Color_R", ghostColor.r);

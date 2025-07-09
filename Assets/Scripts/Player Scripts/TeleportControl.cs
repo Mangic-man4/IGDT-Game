@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,10 +18,12 @@ public class TeleportControl : MonoBehaviour
     [Header("Teleport Visual Ghost")]
     [SerializeField] private float ghostAlpha = 0.3f;
 
+    public float shadowAlphaMax = GhostSettings.shadowAlpha;
+
     [Header("Vertical Mode Settings")]
     public float verticalXThreshold = 0f;  // Default fallback to 0
 
-
+   
     private float lastTeleportTime;
     private bool isPaused = false;
     [HideInInspector]public bool updatingFromUI = false;
@@ -145,21 +148,24 @@ public class TeleportControl : MonoBehaviour
             teleportGhost.transform.position = targetPosition;
             teleportGhost.transform.localScale = transform.localScale;
 
+            ApplyGhostColorByDifficulty(targetPosition);
+
+
             // Safety check
-            bool isSafe = IsTeleportTargetSafe(teleportGhost.transform.position);
+            /* bool isSafe = IsTeleportTargetSafe(teleportGhost.transform.position);
 
-            Color ghostColor = GhostSettings.ghostColor;
+             Color ghostColor = GhostSettings.ghostColor;
 
-            if (IsEasyDifficulty() && GhostSettings.enableTinting)
-            {
-                ghostColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
-            }
+             if (IsEasyDifficulty() && GhostSettings.enableTinting)
+             {
+                 ghostColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
+             }
 
-            ghostColor.a = GhostSettings.ghostAlpha;
-            foreach (var sr in teleportGhost.GetComponentsInChildren<SpriteRenderer>())
-            {
-                sr.color = ghostColor;
-            }
+             ghostColor.a = GhostSettings.ghostAlpha;
+             foreach (var sr in teleportGhost.GetComponentsInChildren<SpriteRenderer>())
+             {
+                 sr.color = ghostColor;
+             }*/
 
             /* //Old
             foreach (var sr in teleportGhost.GetComponentsInChildren<SpriteRenderer>())
@@ -238,6 +244,20 @@ public class TeleportControl : MonoBehaviour
         return SceneManager.GetActiveScene().name.Contains("Easy");
     }
 
+    public bool IsNormalDifficulty()
+    {
+        return SceneManager.GetActiveScene().name.Contains("Normal");
+    }
+    public bool IsHardDifficulty()
+    {
+        return SceneManager.GetActiveScene().name.Contains("Hard");
+    }
+
+    public bool IsExtremeDifficulty()
+    {
+        return SceneManager.GetActiveScene().name.Contains("Extreme");
+    }
+
     public void SetPauseState(bool pause)
     {
         isPaused = pause;
@@ -267,11 +287,10 @@ public class TeleportControl : MonoBehaviour
         GhostSettings.enableGhost = isVisible;
         GhostSettings.SaveSettings();
 
-        // Also update the line if it's Easy difficulty
-        if (IsEasyDifficulty() && teleportGuide != null &&
-            teleportGuide.TryGetComponent(out LineRenderer line))
+        // Enable line if Easy and ghost visible
+        if (teleportGuide != null && TryGetComponent(out LineRenderer line))
         {
-            line.enabled = isVisible;
+            line.enabled = isVisible && IsEasyDifficulty();
         }
 
 
@@ -292,4 +311,41 @@ public class TeleportControl : MonoBehaviour
         SetGhostVisibility(isVisible);
         updatingFromUI = false;
     }
+
+    public void ApplyGhostColorByDifficulty(Vector3 targetPosition)
+    {
+        if (teleportGhost == null)
+            return;
+
+        foreach (var sr in teleportGhost.GetComponentsInChildren<SpriteRenderer>())
+        {
+            Color ghostColor;
+
+            if (IsHardDifficulty() || IsExtremeDifficulty())
+            {
+                float alpha = GhostSettings.shadowUsesOpacity
+                    ? GhostSettings.ghostAlpha * shadowAlphaMax
+                    : shadowAlphaMax;
+
+
+                ghostColor = new Color(0f, 0f, 0f, alpha);
+            }
+
+            else
+            {
+                ghostColor = GhostSettings.ghostColor;
+
+                if ((IsEasyDifficulty() || IsNormalDifficulty()) && GhostSettings.enableTinting)
+                {
+                    bool isSafe = IsTeleportTargetSafe(targetPosition);
+                    ghostColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
+                }
+
+                ghostColor.a = GhostSettings.ghostAlpha;
+            }
+
+            sr.color = ghostColor;
+        }
+    }
+
 }

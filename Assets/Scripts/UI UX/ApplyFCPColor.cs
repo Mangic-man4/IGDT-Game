@@ -11,6 +11,10 @@ public class ApplyFCPColor : MonoBehaviour
 
     [Header("Button Purpose")]
     public bool isSafeColor = true;
+    private void Start()
+    {
+        ApplyCurrentColor(); // Initial sync
+    }
 
     private void OnEnable()
     {

@@ -12,7 +12,7 @@ public class GhostSettingsUI : MonoBehaviour
     public Toggle ghostTintToggle;
     public Toggle ghostEnableToggle;
     public Toggle applyOpacityToggle;
-
+    public Toggle shadowUseOpacityToggle;
 
 
     [SerializeField] private FlexibleColorPicker safeColorPicker;
@@ -53,6 +53,12 @@ public class GhostSettingsUI : MonoBehaviour
         {
             applyOpacityToggle.isOn = GhostSettings.applyOpacityToGuide;
             applyOpacityToggle.onValueChanged.AddListener(SetApplyOpacityToGuide);
+        }
+
+        if (shadowUseOpacityToggle != null)
+        {
+            shadowUseOpacityToggle.isOn = GhostSettings.shadowUsesOpacity;
+            shadowUseOpacityToggle.onValueChanged.AddListener(SetShadowUseOpacity);
         }
 
     }
@@ -133,6 +139,11 @@ public class GhostSettingsUI : MonoBehaviour
     public void SetApplyOpacityToGuide(bool enabled)
     {
         GhostSettings.applyOpacityToGuide = enabled;
+        GhostSettings.SaveSettings();
+    }
+    public void SetShadowUseOpacity(bool enabled)
+    {
+        GhostSettings.shadowUsesOpacity = enabled;
         GhostSettings.SaveSettings();
     }
 

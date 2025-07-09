@@ -59,7 +59,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5426890507027463275
 Transform:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   normalDrag: 0
   lowGravityScale: 0.5
   lowGravityDrag: 1
-  mainCamera: {fileID: 8379751870133835304, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+  mainCamera: {fileID: 0}
 --- !u!95 &3857985449349044614
 Animator:
   serializedVersion: 5
@@ -303,7 +303,9 @@ MonoBehaviour:
   teleportCooldown: 0.5
   teleportGuidePrefab: {fileID: 1922650727168598821, guid: a26e2ee09e105d84099faa5b3e1e7753, type: 3}
   ghostAlpha: 0.3
+  shadowAlphaMax: 0.2
   verticalXThreshold: 0
+  updatingFromUI: 0
   afterImagePrefab: {fileID: 2646490012046674189, guid: 8712cd7ad51c8924388b90c139fca216, type: 3}
   teleportBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
 --- !u!82 &5194615938594376831
