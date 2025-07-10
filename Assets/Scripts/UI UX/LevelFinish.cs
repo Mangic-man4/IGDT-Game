@@ -66,14 +66,26 @@ public class LevelFinish : MonoBehaviour
     private void SavePlayerHighScore(string sceneName, int newScore)
     {
         string playerName = PlayerPrefs.GetString("PlayerName", "Guest");
-        string key = $"Hiscore_{playerName}_{sceneName}";
+        string personalKey = $"Hiscore_{playerName}_{sceneName}";
 
-        int previousBest = PlayerPrefs.GetInt(key, 0);
+        int previousBest = PlayerPrefs.GetInt(personalKey, 0);
         if (newScore > previousBest)
         {
-            PlayerPrefs.SetInt(key, newScore);
+            PlayerPrefs.SetInt(personalKey, newScore);
+        }
+
+        // --- Global best check ---
+        string globalScoreKey = $"GlobalHiscore_{sceneName}";
+        string globalNameKey = $"GlobalHiscoreName_{sceneName}";
+
+        int globalBest = PlayerPrefs.GetInt(globalScoreKey, 0);
+        if (newScore > globalBest)
+        {
+            PlayerPrefs.SetInt(globalScoreKey, newScore);
+            PlayerPrefs.SetString(globalNameKey, playerName);
         }
     }
+
 
     private int ExtractCoinsFromText()
     {

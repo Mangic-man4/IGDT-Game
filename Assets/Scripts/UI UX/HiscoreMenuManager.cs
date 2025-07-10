@@ -36,12 +36,21 @@ public class HiscoreMenuManager : MonoBehaviour
         foreach (string level in levelNames)
         {
             string sceneName = $"{level} {difficulty}";
-            string key = $"Hiscore_{playerName}_{sceneName}";
-            int score = PlayerPrefs.GetInt(key, 0);
 
-            display += $"{level}: {score}\n";
+            string personalKey = $"Hiscore_{playerName}_{sceneName}";
+            int personalScore = PlayerPrefs.GetInt(personalKey, 0);
+
+            string globalScoreKey = $"GlobalHiscore_{sceneName}";
+            string globalNameKey = $"GlobalHiscoreName_{sceneName}";
+            int globalScore = PlayerPrefs.GetInt(globalScoreKey, 0);
+            string globalName = PlayerPrefs.GetString(globalNameKey, "None");
+
+            display += $"{level}:\n";
+            display += $"- You: {personalScore}\n";
+            display += $"- Best: {globalScore} ({globalName})\n\n";
         }
 
         hiscoreListText.text = display;
     }
+
 }
