@@ -196,9 +196,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 4
   chaseStopDistance: 30
-  chaseSpeed: 7
+  chaseSpeed: 4
   shootInterval: 2
   fireballSpeed: 6
+  revealedScale: {x: 2, y: 2, z: 1}
+  disguisedScale: {x: 1, y: 1, z: 1}
   player: {fileID: 0}
   disguisedSprite: {fileID: 0}
   revealedSprite: {fileID: 0}

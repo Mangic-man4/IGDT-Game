@@ -16,7 +16,7 @@ public class HiscoreMenuManager : MonoBehaviour
     private void Start()
     {
         string playerName = PlayerPrefs.GetString("PlayerName", "Guest");
-        titleText.text = $"Hiscores for {playerName}";
+        titleText.text = $"High Scores for {playerName}";
 
         // Setup dropdown
         difficultyDropdown.ClearOptions();

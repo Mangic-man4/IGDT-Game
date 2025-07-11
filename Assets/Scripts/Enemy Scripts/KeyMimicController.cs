@@ -6,11 +6,30 @@ public class KeyMimicController : MonoBehaviour
 {
     public static List<KeyMimicController> activeMimics = new List<KeyMimicController>();
 
-    public float detectionRange = 4f;
-    public float chaseStopDistance = 30f;
-    public float chaseSpeed = 4f;
-    public float shootInterval = 2f;
-    public float fireballSpeed = 6f;
+    [Header("Mimic Behavior Settings")]
+    [Tooltip("Distance at which the mimic activates")]
+    public float detectionRange;
+
+    [Tooltip("Distance beyond which the mimic gives up chase")]
+    public float chaseStopDistance;
+
+    [Tooltip("Movement speed while chasing the player")]
+    public float chaseSpeed;
+
+    [Tooltip("Seconds between fireball shots")]
+    public float shootInterval;
+
+    [Tooltip("Speed at which the fireball travels")]
+    public float fireballSpeed;
+
+    [Header("Scale Settings")]
+    [Tooltip("Scale when revealed")]
+    public Vector3 revealedScale;
+
+    [Tooltip("Scale when disguised")]
+    public Vector3 disguisedScale;
+
+    [Header("References")]
     public Transform player;
     public Sprite disguisedSprite;
     public Sprite revealedSprite;
@@ -19,9 +38,9 @@ public class KeyMimicController : MonoBehaviour
 
     private SpriteRenderer sr;
     private Rigidbody2D rb;
+    private Animator anim;
     private bool revealed = false;
     private float shootTimer;
-    private Animator anim;
 
     void Start()
     {
@@ -92,7 +111,7 @@ public class KeyMimicController : MonoBehaviour
         if (revealed) return;
         revealed = true;
 
-        transform.localScale = new Vector3(2f, 2f, 1f);
+        transform.localScale = revealedScale;
         anim.Play("Key");
         anim.SetTrigger("Reveal");
     }
@@ -100,14 +119,14 @@ public class KeyMimicController : MonoBehaviour
     void StopChase()
     {
         revealed = false;
-        transform.localScale = Vector3.one;
+        transform.localScale = disguisedScale;
         anim.Play("Key");
         transform.rotation = Quaternion.identity;
     }
 
     public void ResetToIdle()
     {
-        StopChase(); // Called on player death
+        StopChase();
     }
 
     void ChasePlayer()
@@ -137,6 +156,7 @@ public class KeyMimicController : MonoBehaviour
         StopChase();
     }
 }
+
 
 
 
