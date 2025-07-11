@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        string sceneName = SceneManager.GetActiveScene().name;
+        //string sceneName = SceneManager.GetActiveScene().name;
 
         if (!checkpointsEnabled)
         {
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
         if (pwr != null) pwr.ClearAllPowerUps();
 
-        // NEW: Force all KeyMimics to deaggro
+        // Force all KeyMimics to deaggro
         foreach (var mimic in KeyMimicController.activeMimics)
             mimic.ResetToIdle();
 

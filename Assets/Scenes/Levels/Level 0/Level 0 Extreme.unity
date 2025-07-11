@@ -31924,6 +31924,7 @@ GameObject:
   - component: {fileID: 844159412}
   - component: {fileID: 844159414}
   - component: {fileID: 844159415}
+  - component: {fileID: 844159416}
   m_Layer: 0
   m_Name: Teleport
   m_TagString: Untagged
@@ -31979,7 +31980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TELEPORT BETWEEN THE WORLDS BY PRESSING"F"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
@@ -32048,6 +32049,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &844159416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844159411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e001f3640ccbf3648b91bdcdaca9fab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textField: {fileID: 844159415}
+  actionDescription: Teleport between the worlds
+  actionKey: 1
+  axisKey: 0
+  useAxis: 0
+  usePositiveAxis: 1
+  useRichText: 1
 --- !u!1001 &845161110
 PrefabInstance:
   m_ObjectHideFlags: 0
