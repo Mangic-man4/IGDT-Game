@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     [Header("Camera + Audio")]
     public Camera mainCamera;
 
+    [Header("Checkpoint toggle")]
+    [SerializeField] private bool checkpointsEnabled = false;
+
+
     private Rigidbody2D rb;
     private Animator animator;
     private AudioSource jumpSound;
@@ -205,7 +209,7 @@ public class PlayerController : MonoBehaviour
     {
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if (!sceneName.Contains("Easy"))
+        if (!checkpointsEnabled)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Time.timeScale = 1f;
