@@ -42,7 +42,11 @@ public class LevelHoverTooltip : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (tooltipPanel == null || tooltipText == null || difficultyText == null) return;
+        if (!TooltipSettings.TooltipsEnabled)
+            return;
+
+        if (tooltipPanel == null || tooltipText == null || difficultyText == null)
+            return;
 
         string difficulty = difficultyText.text.Trim();
         string sceneName = $"Level {level} {difficulty}";

@@ -5,7 +5,7 @@ using UnityEditor;
 
 public static class ResetKeyBindingsEditor
 {
-    [MenuItem("Tools/Keybindings/Reset Keybinds to Defaults")]
+    [MenuItem("Tools/Reset Keybinds to Defaults")]
     public static void ResetKeybindingsToDefault()
     {
         // ActionKey bindings
