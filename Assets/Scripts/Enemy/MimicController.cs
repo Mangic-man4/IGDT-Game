@@ -78,18 +78,34 @@ public class MimicController : MonoBehaviour
     void ChasePlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
-        Vector2 newPos = rb.position + direction * moveSpeed * Time.deltaTime;
+        Vector2 newPos = rb.position + moveSpeed * Time.deltaTime * direction;
         rb.MovePosition(newPos);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (revealed && collision.collider.CompareTag("Player") && collision.collider.TryGetComponent<PlayerController>(out var playerController))
+        if (!revealed || !collision.collider.CompareTag("Player")) return;
+
+        if (collision.collider.TryGetComponent<PlayerPowerUps>(out var powerUps) &&
+            collision.collider.TryGetComponent<PlayerController>(out var playerController))
         {
-            playerController.Die();
-            Debug.Log("Player caught by Mimic!");
+            if (powerUps.IsShieldActive() && powerUps.IsEnemyProtectionEnabled())
+            {
+                if (powerUps.TryUseShield())
+                {
+                    Debug.Log("Mimic hit absorbed by shield.");
+                    return;
+                }
+            }
+
+            if (!powerUps.IsInvincible())
+            {
+                playerController.Die();
+                Debug.Log("Player caught by Mimic!");
+            }
         }
     }
+
 }
 
 

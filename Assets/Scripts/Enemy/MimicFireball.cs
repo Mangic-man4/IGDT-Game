@@ -14,10 +14,25 @@ public class MimicFireball : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") &&
+            other.TryGetComponent<PlayerPowerUps>(out var powerUps) &&
+            other.TryGetComponent<PlayerController>(out var playerController))
         {
-            Debug.Log("Player hit by fireball!");
-            other.GetComponent<PlayerController>().Die();
+            if (powerUps.IsShieldActive() && powerUps.IsEnemyProtectionEnabled())
+            {
+                if (powerUps.TryUseShield())
+                {
+                    Debug.Log("Fireball hit absorbed by shield.");
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+
+            if (!powerUps.IsInvincible())
+            {
+                playerController.Die();
+                Debug.Log("Player hit by fireball!");
+            }
 
             if (owner != null && SceneManager.GetActiveScene().name.Contains("Easy"))
             {
@@ -32,5 +47,6 @@ public class MimicFireball : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }
 

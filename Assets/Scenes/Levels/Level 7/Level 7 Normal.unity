@@ -154400,6 +154400,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[0].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[0].g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[0].r
+      value: 0.051259637
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[1].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[1].g
+      value: 0.7092399
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[1].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[2].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436946557807577545, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: shieldColors.Array.data[2].r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -463560,7 +463604,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 23e4efbea1fe22041b128877f167d932, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

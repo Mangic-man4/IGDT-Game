@@ -27,11 +27,25 @@ public class LaserTurret : MonoBehaviour
             endPoint = hitInfo.point;
 
             if (hitInfo.collider.CompareTag("Player") &&
+                hitInfo.collider.TryGetComponent<PlayerPowerUps>(out var powerUps) &&
                 hitInfo.collider.TryGetComponent<PlayerController>(out var playerController))
             {
-                playerController.Die();
-                Debug.Log("Player has died! Triggered by LaserTurret.");
+                if (powerUps.IsShieldActive() && powerUps.IsEnemyProtectionEnabled())
+                {
+                    if (powerUps.TryUseShield())
+                    {
+                        Debug.Log("Laser hit absorbed by shield.");
+                        return;
+                    }
+                }
+
+                if (!powerUps.IsInvincible())
+                {
+                    playerController.Die();
+                    Debug.Log("Player has died! Triggered by LaserTurret.");
+                }
             }
+
         }
         else
         {

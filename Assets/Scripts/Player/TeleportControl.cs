@@ -267,17 +267,52 @@ public class TeleportControl : MonoBehaviour
 
     public bool IsTeleportTargetSafe(Vector3 destination)
     {
-        // Check tagged colliders
+        // First check for dangerous tagged colliders
         Collider2D[] hits = Physics2D.OverlapCircleAll(destination, 0.5f);
         foreach (var hit in hits)
         {
             if (hit.CompareTag("ObbyCourse") || hit.CompareTag("Door") ||
                 hit.CompareTag("DashWall") || hit.CompareTag("Spike") ||
                 hit.CompareTag("Laser"))
+            {
                 return false;
+            }
         }
+
+        // Then check if any laser beams pass near the destination
+        foreach (LaserTurret turret in FindObjectsOfType<LaserTurret>())
+        {
+            if (turret == null || turret.firePoint == null) continue;
+
+            Vector2 origin = turret.firePoint.position;
+            Vector2 direction = turret.firePoint.right.normalized;
+            float maxDistance = 100f;
+
+            RaycastHit2D hitInfo = Physics2D.Raycast(origin, direction, maxDistance);
+            Vector2 laserEnd = hitInfo.collider != null ? hitInfo.point : origin + direction * maxDistance;
+
+            // Find the closest point on the laser beam line to the teleport destination
+            Vector2 closestPoint = ClosestPointOnLine(origin, laserEnd, destination);
+
+            float proximity = Vector2.Distance(destination, closestPoint);
+            if (proximity <= 0.5f) // adjust as needed
+            {
+                return false;
+            }
+        }
+
         return true;
     }
+
+    // Helper function: closest point on line segment from A to B
+    private Vector2 ClosestPointOnLine(Vector2 a, Vector2 b, Vector2 point)
+    {
+        Vector2 ab = b - a;
+        float t = Vector2.Dot(point - a, ab) / ab.sqrMagnitude;
+        t = Mathf.Clamp01(t);
+        return a + t * ab;
+    }
+
     public void SetGhostVisibility(bool isVisible)
     {
         if (teleportGhost == null) 

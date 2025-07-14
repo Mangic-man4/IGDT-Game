@@ -7,6 +7,7 @@ public enum PowerUpType
     DoubleJump,
     Teleport,
     InfiniteSpeed,
-    InfiniteDoubleJump
+    InfiniteDoubleJump,
+    Shield
 }
 

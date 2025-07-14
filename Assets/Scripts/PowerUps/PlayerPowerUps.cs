@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerPowerUps : MonoBehaviour
 {
+    [Header("Power-up States")]
     // --- Power-up States ---
     public bool hasDash;
     public bool hasDoubleJump;
@@ -10,6 +11,8 @@ public class PlayerPowerUps : MonoBehaviour
     public bool gravityFlipped;
     public bool hasSpeed;
     public int fireballCharges;
+    private int shieldStacks = 0;
+    private bool isInvincible = false;
 
     // --- Timers ---
     public float speedTimer;
@@ -26,7 +29,9 @@ public class PlayerPowerUps : MonoBehaviour
     private float lastDashTime;
     public bool isDashing = false;
 
-    [Header("Dash Visual Effects")]
+
+    [Header("Other Settings")]
+    // --- Dash Visual Effects ---
     public GameObject afterImagePrefab;
     public GameObject dashBurstPrefab;
 
@@ -44,9 +49,29 @@ public class PlayerPowerUps : MonoBehaviour
     // --- Gravity Settings ---
     [HideInInspector] public bool previousGravityState;
 
+    [Header("Shield Settings")]
+    // --- Shield Settings ---
+    [SerializeField] private SpriteRenderer bubbleVisual; // Optional visual if using child
+    [SerializeField] private GameObject shieldPrefab;     // Optional prefab if not using child
+    private GameObject shieldInstance;
+
+    public bool protectFromEnemies = true;
+    public bool protectFromTraps = true;
+    public float invincibilityTime = 2f;
+    [SerializeField] private Color[] shieldColors; // Array of colors for 1, 2, 3+ stacks
 
     // --- References ---
     private Rigidbody2D rb;
+    private RigidbodySleepMode2D originalSleepMode;
+
+
+    private void Awake()
+    {
+        if (TryGetComponent<Rigidbody2D>(out rb))
+        {
+            originalSleepMode = rb.sleepMode;
+        }
+    }
 
     private void Start()
     {
@@ -70,7 +95,22 @@ public class PlayerPowerUps : MonoBehaviour
             FlipGravity();
             previousGravityState = gravityFlipped;
         }
+
+        // If prefab-based shield is used, follow player
+        if (shieldInstance != null)
+        {
+            shieldInstance.transform.position = transform.position;
+        }
     }
+
+    void LateUpdate()
+    {
+        if (shieldInstance != null && shieldInstance.activeSelf)
+        {
+            shieldInstance.transform.position = transform.position;
+        }
+    }
+
 
     public void CollectPowerUp(PowerUpType type)
     {
@@ -114,6 +154,12 @@ public class PlayerPowerUps : MonoBehaviour
                 hasDoubleJump = true;
                 hasInfiniteDoubleJump = true;
                 break;
+
+            case PowerUpType.Shield:
+                shieldStacks++;
+                UpdateShieldVisual();
+                break;
+
         }
     }
 
@@ -315,6 +361,104 @@ public class PlayerPowerUps : MonoBehaviour
         isDashing = false;
 
     }
+
+    public void CollectShieldPowerUp()
+    {
+        shieldStacks++;
+
+        if (shieldInstance == null && shieldPrefab != null)
+        {
+            shieldInstance = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+        }
+
+        UpdateShieldVisual();
+    }
+
+    public bool TryUseShield()
+    {
+        if (shieldStacks > 0 && !isInvincible)
+        {
+            shieldStacks--;
+            StartCoroutine(InvincibilityCoroutine());
+            UpdateShieldVisual();
+            return true;
+        }
+
+        return false;
+    }
+
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+
+        if (rb != null)
+            rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
+
+        float elapsed = 0f;
+        SpriteRenderer playerSprite = GetComponent<SpriteRenderer>();
+
+        // Flicker loop
+        while (elapsed < invincibilityTime)
+        {
+            if (playerSprite != null)
+            {
+                playerSprite.enabled = !playerSprite.enabled;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+            elapsed += 0.1f;
+        }
+
+        if (playerSprite != null)
+        {
+            playerSprite.enabled = true;
+        }
+
+        isInvincible = false;
+
+        // Restore sleep mode after invincibility ends
+        if (rb != null)
+            rb.sleepMode = originalSleepMode;
+    }
+
+
+    private void UpdateShieldVisual()
+    {
+        if (shieldStacks <= 0)
+        {
+            if (shieldInstance != null)
+                shieldInstance.SetActive(false);
+            return;
+        }
+
+        if (shieldInstance == null && shieldPrefab != null)
+        {
+            shieldInstance = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+        }
+
+        if (shieldInstance != null)
+        {
+            shieldInstance.SetActive(true);
+            shieldInstance.transform.position = transform.position;
+            shieldInstance.transform.SetParent(null);
+
+            int colorIndex = Mathf.Clamp(shieldStacks - 1, 0, shieldColors.Length - 1);
+            if (shieldInstance.TryGetComponent<SpriteRenderer>(out var sr))
+            {
+                sr.color = shieldColors[colorIndex];
+            }
+        }
+    }
+
+
+
+
+    // External accessors for trap/enemy detection
+    public bool IsShieldActive() => shieldStacks > 0;
+    public bool IsTrapProtectionEnabled() => protectFromTraps;
+    public bool IsEnemyProtectionEnabled() => protectFromEnemies;
+    public bool IsInvincible() => isInvincible;
 
 
     [System.Serializable]
