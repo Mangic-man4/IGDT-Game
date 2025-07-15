@@ -225041,6 +225041,10 @@ PrefabInstance:
       propertyPath: respawnRestoresSavedState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
+      propertyPath: respawnRestoresEnvironmentalObjects
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396751, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
       propertyPath: m_Name
       value: Checkpoint
@@ -226706,6 +226710,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
       propertyPath: respawnRestoresSavedState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
+      propertyPath: respawnRestoresEnvironmentalObjects
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396751, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
@@ -232581,6 +232589,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
       propertyPath: respawnRestoresSavedState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
+      propertyPath: respawnRestoresEnvironmentalObjects
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396751, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}

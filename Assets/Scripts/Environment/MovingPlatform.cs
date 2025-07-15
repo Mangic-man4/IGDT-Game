@@ -7,6 +7,9 @@ public class MovingPlatform : MonoBehaviour
     public Vector3 endPosition;
     public float speed = 1.0f;
 
+    private Quaternion startRotation;
+    private Rigidbody2D rb;
+
     [Header("Behaviour")]
     [Tooltip("If ON, the platform stays still until the player touches it once.")]
     [SerializeField] private bool startOnFirstTouch = false;
@@ -21,6 +24,13 @@ public class MovingPlatform : MonoBehaviour
     private bool hasStopped = false;
 
 
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+    }
 
     void Update()
     {
@@ -57,6 +67,20 @@ public class MovingPlatform : MonoBehaviour
                 movingToEnd = true;
             }
         }
+    }
+
+    public void ResetMovingPlatform()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        transform.SetPositionAndRotation(startPosition, startRotation);
+
+        movingToEnd = true;
+        activated = false;
+        hasStopped = false;
+
+        gameObject.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

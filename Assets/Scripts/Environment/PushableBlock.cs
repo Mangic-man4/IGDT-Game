@@ -9,9 +9,26 @@ public class PushableBlock : MonoBehaviour
     [SerializeField] private float pushForce = 2.0f;
     [SerializeField] private float stopThreshold = 0.1f;
 
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+    }
+
+    public void ResetBlock()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        isBeingPushed = false;
+
+        transform.SetPositionAndRotation(startPosition, startRotation);
+
+        gameObject.SetActive(true);
     }
 
     void FixedUpdate()

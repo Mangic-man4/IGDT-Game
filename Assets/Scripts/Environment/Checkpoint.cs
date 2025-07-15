@@ -10,11 +10,14 @@ public class Checkpoint : MonoBehaviour
 
     //  Checkpoint behaviour flags 
     [Header("Checkpoint Settings")]
-    [Tooltip("Re-enable in-world pickups on respawn")]
+    [Tooltip("Re-enable in-world pickups, like powerups, keys and coins, on respawn")]
     public bool respawnRestoresPowerUps = false;
 
-    [Tooltip("Save & restore the player’s powerup snapshot")]
+    [Tooltip("Save & restore the player’s powerup snapshot (aka respawn with the powerups that you had when you activated the checkpoint)")]
     public bool respawnRestoresSavedState = false;
+
+    [Tooltip("Restore things like pushable blocks, crumbling platforms and moving platfroms")]
+    public bool respawnRestoresEnvironmentalObjects = false;
 
     private ItemCollector.CollectorSnapshot savedCollector;
     private float savedTimer;
@@ -129,6 +132,12 @@ public class Checkpoint : MonoBehaviour
             var scoreMgr = FindObjectOfType<ScoreManager>();
             if (scoreMgr != null) scoreMgr.SetScore(savedScore);
         }
+
+        if (respawnRestoresEnvironmentalObjects)
+        {
+            CheckpointManager.ResetAllEnvironmentObjects();
+        }
+
         {
             CheckpointManager.RespawnAllPickups();
         }

@@ -20,6 +20,9 @@ public class CrumblePlatform : MonoBehaviour
     private bool isPlayerOnPlatform = false;
     private bool isCrumbled = false;
 
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+
     private Collider2D col;
     private SpriteRenderer sr;
 
@@ -27,6 +30,9 @@ public class CrumblePlatform : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -64,6 +70,21 @@ public class CrumblePlatform : MonoBehaviour
         }
     }
 
+    public void ResetPlatform()
+    {
+        StopAllCoroutines();
+        crumbleCoroutine = null;
+        isCrumbled = false;
+        isPlayerOnPlatform = false;
+
+        transform.SetPositionAndRotation(startPosition, startRotation);
+
+        col.enabled = true;
+        sr.enabled = true;
+        sr.color = Color.white;
+
+        gameObject.SetActive(true);
+    }
 
 
     void OnCollisionExit2D(Collision2D collision)
@@ -82,6 +103,7 @@ public class CrumblePlatform : MonoBehaviour
             // Example: animator.SetTrigger("ResetCrumble");
         }
     }
+
 
     private IEnumerator CrumbleWithColorTransition(float delay)
     {

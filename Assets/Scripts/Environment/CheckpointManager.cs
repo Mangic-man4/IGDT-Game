@@ -22,5 +22,24 @@ public static class CheckpointManager
         foreach (PowerUpPickup p in pickups)
             p.Respawn();
     }
+
+    public static void ResetAllEnvironmentObjects()
+    {
+        foreach (var platform in Object.FindObjectsOfType<CrumblePlatform>())
+        {
+            platform.ResetPlatform();
+        }
+
+        foreach (var block in Object.FindObjectsOfType<PushableBlock>())
+        {
+            block.ResetBlock();
+        }
+
+        foreach (var movingPlatform in Object.FindObjectsOfType<MovingPlatform>())
+        {
+            movingPlatform.ResetMovingPlatform();
+        }
+    }
+
 }
 
