@@ -26,11 +26,14 @@ public class Checkpoint : MonoBehaviour
     public bool giveDash;
     public bool giveSpeed;
     public bool giveDoubleJump;
-    public bool giveFireball;
     public bool giveGravityFlip;
     public bool giveInfiniteSpeed;
     public bool giveInfiniteDoubleJump;
     public bool giveTeleport;
+    [Tooltip("0 = none")]
+    public int giveFireballCharges = 0;
+    [Tooltip("0 = none")]
+    public int giveShieldStacks = 0;
 
     // Stored state (only used if respawnRestoresSavedState is true)
     private PlayerPowerUps.CheckpointPowerUpState savedState;
@@ -134,11 +137,20 @@ public class Checkpoint : MonoBehaviour
         if (giveDash) powerUps.CollectPowerUp(PowerUpType.Dash);
         if (giveSpeed) powerUps.CollectPowerUp(PowerUpType.Speed);
         if (giveDoubleJump) powerUps.CollectPowerUp(PowerUpType.DoubleJump);
-        if (giveFireball) powerUps.CollectPowerUp(PowerUpType.Fireball);
         if (giveGravityFlip) powerUps.CollectPowerUp(PowerUpType.GravityFlip);
         if (giveInfiniteSpeed) powerUps.CollectPowerUp(PowerUpType.InfiniteSpeed);
         if (giveInfiniteDoubleJump) powerUps.CollectPowerUp(PowerUpType.InfiniteDoubleJump);
         if (giveTeleport) powerUps.CollectPowerUp(PowerUpType.Teleport);
+        if (giveFireballCharges > 0)
+        {
+            powerUps.AddFireballCharges(giveFireballCharges);
+        }
+
+        if (giveShieldStacks > 0)
+        {
+            for (int i = 0; i < giveShieldStacks; i++)
+                powerUps.AddShield();
+        }
     }
     public bool RespawnsSavedState()
     {

@@ -11,8 +11,18 @@ public class PlayerPowerUps : MonoBehaviour
     public bool gravityFlipped;
     public bool hasSpeed;
     public int fireballCharges;
-    private int shieldStacks = 0;
-    private bool isInvincible = false;
+    [SerializeField] private int shieldStacks = 0;
+    public int ShieldStacks
+    {
+        get => shieldStacks;
+        set
+        {
+            shieldStacks = Mathf.Clamp(value, 0, maxShieldStacks);
+            UpdateShieldVisual();
+        }
+    }
+    [Tooltip("Mainly used by the Shield, but can still be used without shields.")]
+    public bool isInvincible = false;
 
     // --- Timers ---
     public float speedTimer;
@@ -58,7 +68,10 @@ public class PlayerPowerUps : MonoBehaviour
     public bool protectFromEnemies = true;
     public bool protectFromTraps = true;
     public float invincibilityTime = 2f;
+    public int maxShieldStacks = 3;
     [SerializeField] private Color[] shieldColors; // Array of colors for 1, 2, 3+ stacks
+    private int lastShieldStackVisual = -1;
+
 
     // --- References ---
     private Rigidbody2D rb;
@@ -96,8 +109,15 @@ public class PlayerPowerUps : MonoBehaviour
             previousGravityState = gravityFlipped;
         }
 
-        // If prefab-based shield is used, follow player
-        if (shieldInstance != null)
+        // If shieldStacks was modified directly, update visuals
+        if (shieldStacks != lastShieldStackVisual)
+        {
+            UpdateShieldVisual();
+            lastShieldStackVisual = shieldStacks;
+        }
+
+        // Update shield position every frame if needed
+        if (shieldInstance != null && shieldInstance.activeSelf)
         {
             shieldInstance.transform.position = transform.position;
         }
@@ -156,7 +176,7 @@ public class PlayerPowerUps : MonoBehaviour
                 break;
 
             case PowerUpType.Shield:
-                shieldStacks++;
+                ShieldStacks++;
                 UpdateShieldVisual();
                 break;
 
@@ -364,7 +384,7 @@ public class PlayerPowerUps : MonoBehaviour
 
     public void CollectShieldPowerUp()
     {
-        shieldStacks++;
+        ShieldStacks++;
 
         if (shieldInstance == null && shieldPrefab != null)
         {
@@ -376,9 +396,9 @@ public class PlayerPowerUps : MonoBehaviour
 
     public bool TryUseShield()
     {
-        if (shieldStacks > 0 && !isInvincible)
+        if (ShieldStacks > 0 && !isInvincible)
         {
-            shieldStacks--;
+            ShieldStacks--;
             StartCoroutine(InvincibilityCoroutine());
             UpdateShieldVisual();
             return true;
@@ -425,7 +445,7 @@ public class PlayerPowerUps : MonoBehaviour
 
     private void UpdateShieldVisual()
     {
-        if (shieldStacks <= 0)
+        if (ShieldStacks <= 0)
         {
             if (shieldInstance != null)
                 shieldInstance.SetActive(false);
@@ -443,19 +463,30 @@ public class PlayerPowerUps : MonoBehaviour
             shieldInstance.transform.position = transform.position;
             shieldInstance.transform.SetParent(null);
 
-            int colorIndex = Mathf.Clamp(shieldStacks - 1, 0, shieldColors.Length - 1);
+            int colorIndex = Mathf.Clamp(ShieldStacks - 1, 0, shieldColors.Length - 1);
             if (shieldInstance.TryGetComponent<SpriteRenderer>(out var sr))
             {
                 sr.color = shieldColors[colorIndex];
             }
         }
     }
+    public void AddShield()
+    {
+        ShieldStacks++;
+    }
 
+
+    public void AddFireballCharges(int amount)
+    {
+        fireballCharges += amount;
+        // Optional: clamp to a max limit
+        // fireballCharges = Mathf.Min(fireballCharges, maxFireballCharges);
+    }
 
 
 
     // External accessors for trap/enemy detection
-    public bool IsShieldActive() => shieldStacks > 0;
+    public bool IsShieldActive() => ShieldStacks > 0;
     public bool IsTrapProtectionEnabled() => protectFromTraps;
     public bool IsEnemyProtectionEnabled() => protectFromEnemies;
     public bool IsInvincible() => isInvincible;
@@ -471,6 +502,7 @@ public class PlayerPowerUps : MonoBehaviour
         public bool gravityFlipped;
         public bool hasSpeed;
         public int fireballCharges;
+        public int ShieldStacks;
 
         // --- Timers ---
         public float speedTimer;
@@ -491,6 +523,7 @@ public class PlayerPowerUps : MonoBehaviour
             gravityFlipped = this.gravityFlipped,
             hasSpeed = this.hasSpeed,
             fireballCharges = this.fireballCharges,
+            ShieldStacks = this.ShieldStacks,
 
             speedTimer = this.speedTimer,
             doubleJumpTimer = this.doubleJumpTimer,
@@ -508,12 +541,15 @@ public class PlayerPowerUps : MonoBehaviour
         gravityFlipped = state.gravityFlipped;
         hasSpeed = state.hasSpeed;
         fireballCharges = state.fireballCharges;
+        ShieldStacks = state.ShieldStacks;
 
         speedTimer = state.speedTimer;
         doubleJumpTimer = state.doubleJumpTimer;
 
         hasInfiniteSpeed = state.hasInfiniteSpeed;
         hasInfiniteDoubleJump = state.hasInfiniteDoubleJump;
+
+        UpdateShieldVisual();
 
         // Optional: Reapply any state visuals like flipping gravity
         if (gravityFlipped != previousGravityState)
@@ -539,6 +575,8 @@ public class PlayerPowerUps : MonoBehaviour
         hasSpeed = false;
         gravityFlipped = false;
         fireballCharges = 0;
+        ShieldStacks = 0; 
+        UpdateShieldVisual();
 
         // Clear timers
         speedTimer = 0f;
@@ -555,7 +593,5 @@ public class PlayerPowerUps : MonoBehaviour
             previousGravityState = false;
         }
     }
-
-
 }
 

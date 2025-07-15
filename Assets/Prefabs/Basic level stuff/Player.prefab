@@ -159,6 +159,7 @@ MonoBehaviour:
   lowGravityScale: 0.5
   lowGravityDrag: 1
   mainCamera: {fileID: 0}
+  checkpointsEnabled: 0
 --- !u!95 &3857985449349044614
 Animator:
   serializedVersion: 5
@@ -643,6 +644,8 @@ MonoBehaviour:
   gravityFlipped: 0
   hasSpeed: 0
   fireballCharges: 0
+  shieldStacks: 0
+  isInvincible: 0
   speedTimer: 0
   doubleJumpTimer: 0
   hasInfiniteSpeed: 0
@@ -657,6 +660,17 @@ MonoBehaviour:
   fireCooldown: 0.5
   speedMultiplier: 2
   previousGravityState: 0
+  bubbleVisual: {fileID: 3236114499674192031, guid: 72f4dec4202de954ea5d402a6e6ce674, type: 3}
+  shieldPrefab: {fileID: 1799413529693063709, guid: 72f4dec4202de954ea5d402a6e6ce674, type: 3}
+  protectFromEnemies: 1
+  protectFromTraps: 1
+  invincibilityTime: 2
+  maxShieldStacks: 3
+  shieldColors:
+  - {r: 0, g: 1, b: 0.16624975, a: 0.8}
+  - {r: 1, g: 0.49644572, b: 0, a: 0.8}
+  - {r: 1, g: 0, b: 0, a: 0.8}
+  - {r: 0, g: 0, b: 0, a: 0.8}
 --- !u!1 &7015317838451058430
 GameObject:
   m_ObjectHideFlags: 0
