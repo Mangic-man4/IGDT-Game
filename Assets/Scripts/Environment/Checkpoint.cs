@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 
 public class Checkpoint : MonoBehaviour
@@ -10,14 +12,23 @@ public class Checkpoint : MonoBehaviour
 
     //  Checkpoint behaviour flags 
     [Header("Checkpoint Settings")]
-    [Tooltip("Re-enable in-world pickups, like powerups, keys and coins, on respawn")]
-    public bool respawnRestoresPowerUps = false;
+    [Tooltip("Re-enable powerups on respawn")]
+    public bool restorePowerUps = false;
 
-    [Tooltip("Save & restore the player’s powerup snapshot (aka respawn with the powerups that you had when you activated the checkpoint)")]
-    public bool respawnRestoresSavedState = false;
+    [Tooltip("Save & restore the player’s item pickup snapshot (aka respawn with the items that you had when you activated the checkpoint, and don't respawn them)")]
+    public bool restoreSavedPickupState = false;
 
     [Tooltip("Restore things like pushable blocks, crumbling platforms and moving platfroms")]
-    public bool respawnRestoresEnvironmentalObjects = false;
+    public bool restoreEnvironmentalObjects = false;
+
+    [Tooltip("WARNING: STILL BROKEN! Save & restore enemy and turret snapshots. WARNING: CAN LEAD TO SOFTLOCKS!")]
+    public bool restoreEnemySnapshot = false;
+
+    [Tooltip("Reset the position (and states) of enemies that are still alive (only mimics atm, because laser turrets don't benefit from this)")]
+    public bool resetEnemies = false;
+
+    [Tooltip("Reset the states of all enemies (respawn dead enemies)")]
+    public bool respawnEnemies = false;
 
     private ItemCollector.CollectorSnapshot savedCollector;
     private float savedTimer;
@@ -38,9 +49,39 @@ public class Checkpoint : MonoBehaviour
     [Tooltip("0 = none")]
     public int giveShieldStacks = 0;
 
-    // Stored state (only used if respawnRestoresSavedState is true)
+    // Stored state (only used if restoreSavedPickupState is true)
     private PlayerPowerUps.CheckpointPowerUpState savedState;
 
+    [HideInInspector] public MimicType mimicType;
+
+    // Enemy Snapshots
+    [System.Serializable]
+    public struct MimicSnapshot
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+        public Vector2 velocity;
+        public MimicType type;
+        public string tag;
+    }
+
+    [System.Serializable]
+    public struct TurretSnapshot
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+    }
+
+    // Prefabs for respawning
+    [SerializeField] private GameObject keyMimicPrefab;
+    [SerializeField] private GameObject coinMimicPrefab;
+    [SerializeField] private GameObject turretPrefab;
+
+    // Saved states
+    private readonly List<MimicSnapshot> savedMimics = new();
+    private readonly List<TurretSnapshot> savedTurrets = new();
+
+    private readonly Rigidbody2D rb;
 
     private void Start()
     {
@@ -94,26 +135,60 @@ public class Checkpoint : MonoBehaviour
         if (scoreMgr != null)
             savedScore = scoreMgr.GetScore();
 
+
+        // Save only active mimics
+        savedMimics.Clear();
+
+        foreach (var mimic in FindObjectsOfType<MimicController>())
+        {
+            if (mimic.gameObject.activeInHierarchy)
+                SaveMimicSnapshot(mimic.transform, MimicType.Coin);
+        }
+
+        foreach (var keyMimic in FindObjectsOfType<KeyMimicController>())
+        {
+            if (keyMimic.gameObject.activeInHierarchy)
+                SaveMimicSnapshot(keyMimic.transform, MimicType.Key);
+        }
+
+        savedTurrets.Clear();
+        foreach (var turret in FindObjectsOfType<LaserTurret>())
+        {
+            savedTurrets.Add(new TurretSnapshot
+            {
+                position = turret.transform.position,
+                rotation = turret.transform.rotation
+            });
+        }
+
         isChecked = true;
         sR.sprite = activated;
-
         GetComponent<SpriteRenderer>().color = Color.green;
-
         Debug.Log($"Checkpoint {name} snapshot saved!");
     }
 
+    private void SaveMimicSnapshot(Transform t, MimicType type)
+    {
+        savedMimics.Add(new MimicSnapshot
+        {
+            position = t.position,
+            rotation = t.rotation,
+            velocity = rb != null ? rb.velocity : Vector2.zero,
+            type = type,
+            tag = t.tag // <- here
+        });
 
-
-
+        Debug.Log($"Saved {type} mimic at {t.position} with tag {t.tag}");
+    }
 
     public void RestoreCheckpointState(GameObject playerObj)
     {
         var powerUps = playerObj.GetComponent<PlayerPowerUps>();
 
-        if (respawnRestoresPowerUps)
+        if (restorePowerUps)
             CheckpointManager.RespawnAllPickups();
 
-        if (respawnRestoresSavedState)
+        if (restoreSavedPickupState)
         {
             powerUps.SetPowerUpState(savedState);
 
@@ -133,10 +208,90 @@ public class Checkpoint : MonoBehaviour
             if (scoreMgr != null) scoreMgr.SetScore(savedScore);
         }
 
-        if (respawnRestoresEnvironmentalObjects)
+        if (restoreEnvironmentalObjects)
         {
             CheckpointManager.ResetAllEnvironmentObjects();
         }
+
+        if (resetEnemies)
+        {
+            CheckpointManager.ResetEnemies();
+        }
+
+        if (respawnEnemies)
+        {
+            CheckpointManager.RespawnEnemies();
+        }
+
+        if (restoreEnemySnapshot)
+        {
+            // Handle Coin Mimics
+            foreach (var mimic in FindObjectsOfType<MimicController>())
+            {
+                var snapshot = savedMimics.FirstOrDefault(s =>
+                    mimic.CompareTag(s.tag) && Vector3.Distance(s.position, mimic.transform.position) < 1.0f);
+
+                if (snapshot.tag != null)
+                {
+                    mimic.RestoreFromSnapshot(snapshot.position, snapshot.rotation, snapshot.velocity);
+                }
+                else
+                {
+                    Destroy(mimic.gameObject);
+                }
+            }
+
+
+            // Handle Key Mimics
+            foreach (var keyMimic in FindObjectsOfType<KeyMimicController>())
+            {
+                var snapshot = savedMimics.FirstOrDefault(s =>
+                    keyMimic.CompareTag(s.tag) && Vector3.Distance(s.position, keyMimic.transform.position) < 1.0f);
+
+                if (snapshot.tag != null)
+                {
+                    keyMimic.RestoreFromSnapshot(snapshot.position, snapshot.rotation, snapshot.velocity);
+                }
+                else
+                {
+                    Destroy(keyMimic.gameObject);
+                }
+            }
+
+            // Recreate missing snapshots (if any enemies died before checkpoint restore)
+            foreach (var snapshot in savedMimics)
+            {
+                GameObject prefabToUse = snapshot.type == MimicType.Key ? keyMimicPrefab : coinMimicPrefab;
+                bool alreadyExists = FindObjectsOfType<MonoBehaviour>()
+                                     .Any(x =>
+                                         (snapshot.type == MimicType.Key && x is KeyMimicController && Vector3.Distance(x.transform.position, snapshot.position) < 0.1f) ||
+                                         (snapshot.type == MimicType.Coin && x is MimicController && Vector3.Distance(x.transform.position, snapshot.position) < 0.1f));
+
+                if (!alreadyExists)
+                {
+                    GameObject mimic = Instantiate(prefabToUse, snapshot.position, snapshot.rotation);
+
+                    if (snapshot.type == MimicType.Coin && mimic.TryGetComponent<MimicController>(out var mc))
+                        mc.RestoreFromSnapshot(snapshot.position, snapshot.rotation, snapshot.velocity);
+
+                    else if (snapshot.type == MimicType.Key && mimic.TryGetComponent<KeyMimicController>(out var kmc))
+                        kmc.RestoreFromSnapshot(snapshot.position, snapshot.rotation, snapshot.velocity);
+                }
+            }
+            // Destroy all existing turrets before restoring
+            foreach (var turret in FindObjectsOfType<LaserTurret>())
+            {
+                Destroy(turret.gameObject);
+            }
+
+            // Restore turrets as usual
+            foreach (var snapshot in savedTurrets)
+            {
+                Instantiate(turretPrefab, snapshot.position, snapshot.rotation);
+            }
+        }
+
+
 
         {
             CheckpointManager.RespawnAllPickups();
@@ -163,7 +318,7 @@ public class Checkpoint : MonoBehaviour
     }
     public bool RespawnsSavedState()
     {
-        return respawnRestoresSavedState;
+        return restoreSavedPickupState;
     }
 
 }

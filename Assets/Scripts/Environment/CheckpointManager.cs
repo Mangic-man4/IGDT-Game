@@ -41,5 +41,38 @@ public static class CheckpointManager
         }
     }
 
+    public static void ResetEnemies()
+    {
+        foreach (var mimic in Object.FindObjectsOfType<MimicController>())
+        {
+            mimic.ResetMimicPos();
+        }
+
+        foreach (var keyMimic in Object.FindObjectsOfType<KeyMimicController>())
+        {
+            keyMimic.ResetMimicPos();
+        }
+
+        // No turret method, because turret's dont need resetting if they're still alive
+    }
+
+    public static void RespawnEnemies()
+    {
+        foreach (var mimic in Object.FindObjectsOfType<MimicController>(true))
+        {
+            mimic.RespawnEnemies();
+        }
+
+        foreach (var keyMimic in Object.FindObjectsOfType<KeyMimicController>(true))
+        {
+            keyMimic.RespawnEnemies();
+        }
+
+        foreach (var turret in Object.FindObjectsOfType<LaserTurret>(true))
+        {
+            turret.RespawnTurret();
+        }
+    }
+
 }
 

@@ -20,6 +20,7 @@ TagManager:
   - Laser
   - Ghost
   - Drip
+  - KeyMimic
   layers:
   - Default
   - TransparentFX

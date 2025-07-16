@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyMimicController : MonoBehaviour
 {
-    public static List<KeyMimicController> activeMimics = new List<KeyMimicController>();
+    public static List<KeyMimicController> activeMimics = new();
 
     [Header("Mimic Behavior Settings")]
     [Tooltip("Distance at which the mimic activates")]
@@ -30,7 +30,7 @@ public class KeyMimicController : MonoBehaviour
     public Vector3 disguisedScale;
 
     [Header("References")]
-    public Transform player;
+    private Transform player;
     public Sprite disguisedSprite;
     public Sprite revealedSprite;
     public GameObject fireballPrefab;
@@ -41,6 +41,27 @@ public class KeyMimicController : MonoBehaviour
     private Animator anim;
     private bool revealed = false;
     private float shootTimer;
+
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+
+    public bool IsRevealed() => revealed;
+
+    public void SetRevealed(bool value)
+    {
+        revealed = value;
+
+        if (anim != null)
+        {
+            anim.Play(revealed ? "KeyMimic_Aggro" : "Key");
+        }
+    }
+
+    void Awake()
+    {
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+    }
 
     void Start()
     {
@@ -62,6 +83,54 @@ public class KeyMimicController : MonoBehaviour
 
         activeMimics.Add(this);
     }
+
+    public void ResetMimicPos()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        revealed = false;
+
+        transform.SetPositionAndRotation(originalPosition, originalRotation);
+
+        if (anim != null)
+            anim.Play("Key");
+    }
+
+    public void RespawnEnemies()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        revealed = false;
+
+        transform.SetPositionAndRotation(originalPosition, originalRotation);
+
+        if (anim != null)
+            anim.Play("Key");
+
+        gameObject.SetActive(true);
+    }
+
+    public void RestoreFromSnapshot(Vector3 pos, Quaternion rot, Vector2 velocity)
+    {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (anim == null) anim = GetComponent<Animator>();
+
+        transform.SetPositionAndRotation(pos, rot);
+
+        if (rb != null)
+        {
+            rb.velocity = velocity;
+            rb.angularVelocity = 0f;
+            rb.freezeRotation = false;
+        }
+
+        revealed = false;
+
+        if (anim != null)
+            anim.Play("Key"); 
+    }
+
+
 
     void OnDestroy()
     {
@@ -132,7 +201,7 @@ public class KeyMimicController : MonoBehaviour
     void ChasePlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
-        Vector2 newPos = rb.position + direction * chaseSpeed * Time.fixedDeltaTime;
+        Vector2 newPos = rb.position + chaseSpeed * Time.fixedDeltaTime * direction;
         rb.MovePosition(newPos);
     }
 
@@ -148,7 +217,10 @@ public class KeyMimicController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 160f);
 
-        fireball.GetComponent<MimicFireball>()?.SetOwner(this);
+        if (fireball.TryGetComponent<MimicFireball>(out var fb))
+        {
+            fb.SetOwner(this);
+        }
     }
 
     public void ForceDeaggro()

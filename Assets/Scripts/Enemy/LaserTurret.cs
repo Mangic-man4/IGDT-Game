@@ -10,6 +10,15 @@ public class LaserTurret : MonoBehaviour
     public Transform firePoint;              // Still on root
     public LineRenderer laserBeamRenderer;   // On child object (LaserBeam)
 
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+
+    void Awake()
+    {
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+    }
+
     void Update()
     {
         ShootLaser();
@@ -54,5 +63,11 @@ public class LaserTurret : MonoBehaviour
 
         laserBeamRenderer.SetPosition(0, firePoint.position);
         laserBeamRenderer.SetPosition(1, endPoint);
+    }
+    public void RespawnTurret()
+    {
+        transform.SetPositionAndRotation(originalPosition, originalRotation);
+
+        gameObject.SetActive(true);
     }
 }

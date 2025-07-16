@@ -32,12 +32,12 @@ public class EnemyHealth : MonoBehaviour
         currentHits -= amount;
         if (currentHits <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
     public void Kill() //Kill without dealing damage.
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

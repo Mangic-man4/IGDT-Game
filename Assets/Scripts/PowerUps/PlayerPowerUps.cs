@@ -350,7 +350,7 @@ public class PlayerPowerUps : MonoBehaviour
 
     private bool IsEnemyTag(string tag)
     {
-        return tag == "Enemy" || tag == "CoinMimic";
+        return tag == "Enemy" || tag == "CoinMimic" || tag == "KeyMimic";
     }
 
     private IEnumerator DisableTriggerAfterDash(Collider2D wallCollider)

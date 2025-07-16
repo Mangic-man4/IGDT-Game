@@ -22,13 +22,13 @@ public class Fireball : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(direction * speed * Time.fixedDeltaTime);
+        transform.Translate(speed * Time.fixedDeltaTime * direction);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Check for valid target tags
-        if (other.CompareTag("Enemy") || other.CompareTag("CoinMimic"))
+        if (other.CompareTag("Enemy") || other.CompareTag("CoinMimic") || other.CompareTag("KeyMimic"))
         {
             if (other.TryGetComponent<EnemyHealth>(out var enemyHealth))
             {

@@ -8,7 +8,6 @@ public class MovingPlatform : MonoBehaviour
     public float speed = 1.0f;
 
     private Quaternion startRotation;
-    private Rigidbody2D rb;
 
     [Header("Behaviour")]
     [Tooltip("If ON, the platform stays still until the player touches it once.")]
@@ -26,8 +25,6 @@ public class MovingPlatform : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         startPosition = transform.position;
         startRotation = transform.rotation;
     }
@@ -71,8 +68,8 @@ public class MovingPlatform : MonoBehaviour
 
     public void ResetMovingPlatform()
     {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+        //rb.velocity = Vector2.zero;
+        //rb.angularVelocity = 0f;
 
         transform.SetPositionAndRotation(startPosition, startRotation);
 

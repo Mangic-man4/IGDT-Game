@@ -7,13 +7,34 @@ public class MimicController : MonoBehaviour
     public float detectionRange = 2.5f;
     public float chaseStopDistance = 6f;
     public float moveSpeed = 12f;
-    public Transform player;
+    private Transform player;
 
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private Animator anim;
     private bool revealed = false;
 
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+
+    public bool IsRevealed() => revealed;
+
+    public void SetRevealed(bool value)
+    {
+        revealed = value;
+
+        if (anim != null)
+        {
+            anim.Play(revealed ? "CoinMimic_Chomp" : "Coin");
+        }
+    }
+
+
+    void Awake()
+    {
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+    }
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -33,8 +54,56 @@ public class MimicController : MonoBehaviour
             }
         }
 
-        anim.Play("Idle"); // Start in idle animation
+        anim.Play("Coin"); // Start in idle animation
     }
+
+    public void ResetMimicPos()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        revealed = false;
+
+        transform.SetPositionAndRotation(originalPosition, originalRotation);
+
+        if (anim != null)
+            anim.Play("Coin");
+    }
+
+    public void RespawnEnemies()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        revealed = false;
+
+        transform.SetPositionAndRotation(originalPosition, originalRotation);
+
+        if (anim != null)
+            anim.Play("Coin");
+
+        gameObject.SetActive(true);
+    }
+
+    public void RestoreFromSnapshot(Vector3 pos, Quaternion rot, Vector2 velocity)
+    {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (anim == null) anim = GetComponent<Animator>();
+
+        transform.SetPositionAndRotation(pos, rot);
+
+        if (rb != null)
+        {
+            rb.velocity = velocity;
+            rb.angularVelocity = 0f;
+            rb.freezeRotation = false;
+        }
+
+        revealed = false;
+
+        if (anim != null)
+            anim.Play("Coin");
+    }
+
+
 
     void Update()
     {
@@ -57,11 +126,12 @@ public class MimicController : MonoBehaviour
             {
                 ChasePlayer();
 
-                // ✅ Flip the sprite to face the player
+                // Flip the sprite to face the player
                 sr.flipX = (player.position.x < transform.position.x);
             }
         }
     }
+
 
     void Reveal()
     {
@@ -105,7 +175,6 @@ public class MimicController : MonoBehaviour
             }
         }
     }
-
 }
 
 

@@ -220,7 +220,7 @@ public class TeleportControl : MonoBehaviour
         lastTeleportTime = Time.time;
 
         // Define which tags are allowed to be killed
-        string[] killableTags = { "Enemy"};
+        string[] killableTags = { "Enemy", "KeyMimic", "CoinMimic"};
 
         // Check if any enemies are hit
         Collider2D[] overlaps = Physics2D.OverlapCircleAll(newPosition, 0.5f);
