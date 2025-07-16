@@ -94,7 +94,7 @@ public class MimicController : MonoBehaviour
         {
             rb.velocity = velocity;
             rb.angularVelocity = 0f;
-            rb.freezeRotation = false;
+            rb.freezeRotation = true;
         }
 
         revealed = false;
