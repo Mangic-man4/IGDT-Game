@@ -105,12 +105,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level 7/Level 7 Normal.unity
     guid: 1709dad58a1fd4f458da42134599e657
   - enabled: 1
-    path: Assets/Scenes/Menus/End Screen.unity
-    guid: 9050f8bd1231ea5408d0d7505bbfb219
-  - enabled: 1
     path: Assets/Scenes/Levels/Level 6/Level 6 Extreme.unity
     guid: a6b1a9a3f9891fa4a8155d303748c60b
   - enabled: 1
     path: Assets/Scenes/Levels/Level 6/Level 6 Hard.unity
     guid: e6a4f468eaca0d848bba72448791c385
+  - enabled: 1
+    path: Assets/Scenes/Menus/End Screen.unity
+    guid: 9050f8bd1231ea5408d0d7505bbfb219
   m_configObjects: {}

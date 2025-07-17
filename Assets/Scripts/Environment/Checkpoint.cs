@@ -38,16 +38,19 @@ public class Checkpoint : MonoBehaviour
     //  Manual powerups to give on respawn 
     [Header("Manual Powerups to Grant on Respawn")]
     public bool giveDash;
-    public bool giveSpeed;
-    public bool giveDoubleJump;
     public bool giveGravityFlip;
     public bool giveInfiniteSpeed;
     public bool giveInfiniteDoubleJump;
     public bool giveTeleport;
+    public bool giveSpeed;
+    public bool giveDoubleJump;
+    [SerializeField] private float speedDuration = 15f;
+    [SerializeField] private float jumpDuration = 15f;
     [Tooltip("0 = none")]
     public int giveFireballCharges = 0;
     [Tooltip("0 = none")]
     public int giveShieldStacks = 0;
+
 
     // Stored state (only used if restoreSavedPickupState is true)
     private PlayerPowerUps.CheckpointPowerUpState savedState;
@@ -299,12 +302,20 @@ public class Checkpoint : MonoBehaviour
     
         // Reapply manual power-ups after full restore
         if (giveDash) powerUps.CollectPowerUp(PowerUpType.Dash);
-        if (giveSpeed) powerUps.CollectPowerUp(PowerUpType.Speed);
-        if (giveDoubleJump) powerUps.CollectPowerUp(PowerUpType.DoubleJump);
+        //if (giveSpeed) powerUps.CollectPowerUp(PowerUpType.Speed);
+        //if (giveDoubleJump) powerUps.CollectPowerUp(PowerUpType.DoubleJump);
         if (giveGravityFlip) powerUps.CollectPowerUp(PowerUpType.GravityFlip);
         if (giveInfiniteSpeed) powerUps.CollectPowerUp(PowerUpType.InfiniteSpeed);
         if (giveInfiniteDoubleJump) powerUps.CollectPowerUp(PowerUpType.InfiniteDoubleJump);
         if (giveTeleport) powerUps.CollectPowerUp(PowerUpType.Teleport);
+        if (giveSpeed)
+            powerUps.CollectPowerUp(PowerUpType.Speed, speedDuration);
+
+        if (giveDoubleJump)
+            powerUps.CollectPowerUp(PowerUpType.DoubleJump, jumpDuration);
+        {
+
+        }
         if (giveFireballCharges > 0)
         {
             powerUps.AddFireballCharges(giveFireballCharges);

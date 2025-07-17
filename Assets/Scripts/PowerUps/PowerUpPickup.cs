@@ -6,8 +6,19 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class PowerUpPickup : MonoBehaviour
 {
+    public event System.Action OnCollected;
+
     [Tooltip("Type of power-up this object provides")]
     public PowerUpType powerUpType;
+
+    [Tooltip("Duration in seconds for Speed and DoubleJump powerups")]
+    public float duration = 30f;
+
+    [Tooltip("Fireball charge amount if this is a Fireball powerup")]
+    public int fireballAmount = 10;
+
+    [Tooltip("Picking up the powerup disables the object")]
+    public bool disableOnPickup;
 
     // ---------- internal state ----------
     private Vector3 startPos;
@@ -21,31 +32,33 @@ public class PowerUpPickup : MonoBehaviour
         startRot = transform.rotation;
         CheckpointManager.RegisterPickup(this);   // <- global list
     }
-
+        
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
         if (other.TryGetComponent<PlayerPowerUps>(out var player))
         {
-            player.CollectPowerUp(powerUpType);
+            player.CollectPowerUp(powerUpType, duration, fireballAmount);
             collected = true;
-            gameObject.SetActive(false);          // disable instead of Destroy
+            gameObject.SetActive(!disableOnPickup);
+
+            OnCollected?.Invoke(); // Notify spawner or any other listener
+
         }
     }
 
-    /// <summary> Called by the checkpoint system when it wants every
-    /// pickup to be available again. </summary>
+    // Called by the checkpoint system when it wants every pickup to be available again.
     public void Respawn()
     {
-        if (!collected) return;                   // already active – do nothing
+        if (!collected) return; // already active; do nothing
 
         transform.SetPositionAndRotation(startPos, startRot);
         gameObject.SetActive(true);
         collected = false;
     }
 
-    private void OnDestroy()                      // tidy up when scene unloads
+    private void OnDestroy() // tidy up when scene unloads
     {
         CheckpointManager.UnregisterPickup(this);
     }

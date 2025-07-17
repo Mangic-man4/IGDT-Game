@@ -132,7 +132,7 @@ public class PlayerPowerUps : MonoBehaviour
     }
 
 
-    public void CollectPowerUp(PowerUpType type)
+    public void CollectPowerUp(PowerUpType type, float duration = 15f, int amount = 0)
     {
         switch (type)
         {
@@ -141,7 +141,7 @@ public class PlayerPowerUps : MonoBehaviour
                 break;
 
             case PowerUpType.Fireball:
-                fireballCharges += 10; // Difficulty-based adjustment could go here
+                fireballCharges += amount; // Difficulty-based adjustment could go here
                 break;
 
             case PowerUpType.GravityFlip:
@@ -150,15 +150,14 @@ public class PlayerPowerUps : MonoBehaviour
                 previousGravityState = gravityFlipped;
                 break;
 
-
             case PowerUpType.Speed:
                 hasSpeed = true;
-                speedTimer = 15f;
+                speedTimer = duration;
                 break;
 
             case PowerUpType.DoubleJump:
                 hasDoubleJump = true;
-                doubleJumpTimer = 15f;
+                doubleJumpTimer = duration;
                 break;
 
             case PowerUpType.Teleport: // Used to disable dash when teleport returns
@@ -166,14 +165,18 @@ public class PlayerPowerUps : MonoBehaviour
                 break;
 
             case PowerUpType.InfiniteSpeed:
-                hasSpeed = true;
-                hasInfiniteSpeed = true;
+                hasInfiniteSpeed = !hasInfiniteSpeed;
+                hasSpeed = hasInfiniteSpeed;
+                speedTimer = hasInfiniteSpeed ? -1f : 0f;
                 break;
 
             case PowerUpType.InfiniteDoubleJump:
-                hasDoubleJump = true;
-                hasInfiniteDoubleJump = true;
+                hasInfiniteDoubleJump = !hasInfiniteDoubleJump;
+                hasDoubleJump = hasInfiniteDoubleJump;
+                hasUsedDoubleJump = false;
+                doubleJumpTimer = hasInfiniteDoubleJump ? -1f : 0f;
                 break;
+
 
             case PowerUpType.Shield:
                 ShieldStacks++;

@@ -230,8 +230,3 @@ public class Pause : MonoBehaviour
             pauseMainPanel.SetActive(true);
     }
 }
-
-
-
-
-// pause to do: Fix unpause when press space, teleport bug is back...
