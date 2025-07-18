@@ -21,6 +21,7 @@ TagManager:
   - Ghost
   - Drip
   - KeyMimic
+  - FPSCounter
   layers:
   - Default
   - TransparentFX
