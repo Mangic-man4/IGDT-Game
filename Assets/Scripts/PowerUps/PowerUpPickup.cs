@@ -20,6 +20,8 @@ public class PowerUpPickup : MonoBehaviour
     [Tooltip("Picking up the powerup disables the object")]
     public bool disableOnPickup;
 
+    [HideInInspector] public bool spawnedFromSpawner = false;
+
     // ---------- internal state ----------
     private Vector3 startPos;
     private Quaternion startRot;
@@ -30,7 +32,11 @@ public class PowerUpPickup : MonoBehaviour
     {
         startPos = transform.position;
         startRot = transform.rotation;
-        CheckpointManager.RegisterPickup(this);   // <- global list
+        // Only register if not spawned from a spawner
+        if (!spawnedFromSpawner)
+        {
+            CheckpointManager.RegisterPickup(this); // Global list
+        }
     }
         
     private void OnTriggerEnter2D(Collider2D other)
@@ -60,6 +66,9 @@ public class PowerUpPickup : MonoBehaviour
 
     private void OnDestroy() // tidy up when scene unloads
     {
-        CheckpointManager.UnregisterPickup(this);
+        if (!spawnedFromSpawner)
+        {
+            CheckpointManager.UnregisterPickup(this);
+        }
     }
 }

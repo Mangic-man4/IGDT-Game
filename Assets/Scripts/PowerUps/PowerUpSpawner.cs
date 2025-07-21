@@ -15,6 +15,18 @@ public class PowerUpSpawner : MonoBehaviour
 
     private GameObject currentPowerUp;
 
+    private static readonly List<PowerUpSpawner> allSpawners = new();
+
+    private void Awake()
+    {
+        allSpawners.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        allSpawners.Remove(this);
+    }
+
     private void Start()
     {
         if (spawnPoint == null)
@@ -32,6 +44,7 @@ public class PowerUpSpawner : MonoBehaviour
         // Hook into the pickup system so we know when it's collected
         if (currentPowerUp.TryGetComponent(out PowerUpPickup pickup))
         {
+            pickup.spawnedFromSpawner = true;
             pickup.OnCollected += HandlePickupCollected;
         }
     }
@@ -46,6 +59,25 @@ public class PowerUpSpawner : MonoBehaviour
 
         currentPowerUp = null;
         Invoke(nameof(SpawnPowerUp), respawnDelay);
+    }
+
+    public void ForceSpawn()
+    {
+        // Cancel any delayed respawn
+        CancelInvoke(nameof(SpawnPowerUp));
+
+        // If one is already active, do nothing (optional safety)
+        if (currentPowerUp != null) return;
+
+        SpawnPowerUp();
+    }
+
+    public static void ForceSpawnOnAll()
+    {
+        foreach (var spawner in allSpawners)
+        {
+            spawner.ForceSpawn();
+        }
     }
 }
 

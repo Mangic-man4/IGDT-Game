@@ -242,6 +242,8 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
 
         active.RestoreCheckpointState(gameObject);
+
+        PowerUpSpawner.ForceSpawnOnAll();
     }
 
 

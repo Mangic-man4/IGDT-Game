@@ -100,6 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpType: 6
+  duration: 30
+  fireballAmount: 10
+  disableOnPickup: 1
+  spawnedFromSpawner: 0
 --- !u!58 &3802297280981527632
 CircleCollider2D:
   m_ObjectHideFlags: 0

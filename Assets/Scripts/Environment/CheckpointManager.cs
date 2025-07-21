@@ -8,8 +8,10 @@ public static class CheckpointManager
 
     public static void RegisterPickup(PowerUpPickup p)
     {
+        if (p.spawnedFromSpawner) return; // Skip spawner pickups completely
         if (!pickups.Contains(p)) pickups.Add(p);
     }
+
 
     public static void UnregisterPickup(PowerUpPickup p)
     {
@@ -20,8 +22,12 @@ public static class CheckpointManager
     public static void RespawnAllPickups()
     {
         foreach (PowerUpPickup p in pickups)
+        {
+            if (p.spawnedFromSpawner) continue; // Ignore spawner pickups
             p.Respawn();
+        }
     }
+
 
     public static void ResetAllEnvironmentObjects()
     {
