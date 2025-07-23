@@ -22,11 +22,14 @@ public class PowerUpPickup : MonoBehaviour
 
     [HideInInspector] public bool spawnedFromSpawner = false;
 
-    [Header("Item pickup VFX settings")]
+    [Header("VFX settings")]
+    [Tooltip("Particles that spawn on the item's position")]
     [SerializeField] private GameObject pickupVFX; // Drag your particle prefab in Inspector
-    [SerializeField] private Color vfxColor = Color.white   ;
+    [Tooltip("Color for both the Pickup VFX and Powerup Aura VFX Prefab")]
+    [SerializeField] private Color vfxColor = Color.white;
     //[SerializeField] private Gradient vfxGradient;
-
+    [Tooltip("Particles that spawn on the player's position")]
+    public GameObject powerupAuraFXPrefab;
 
     // ---------- internal state ----------
     private Vector3 startPos;
@@ -60,6 +63,17 @@ public class PowerUpPickup : MonoBehaviour
 
             OnCollected?.Invoke(); // Notify spawner or any other listener
 
+            // Aura Glow Effect 
+            if (powerupAuraFXPrefab != null)
+            {
+                GameObject fx = Instantiate(powerupAuraFXPrefab, other.transform.position, Quaternion.identity, other.transform);
+                var ps = fx.GetComponent<ParticleSystem>();
+                var main = ps.main;
+
+                main.startColor = vfxColor; // Use the same color already set for pickup particles
+
+                Destroy(fx, main.duration + main.startLifetime.constantMax);
+            }
         }
     }
 
@@ -79,5 +93,16 @@ public class PowerUpPickup : MonoBehaviour
         {
             CheckpointManager.UnregisterPickup(this);
         }
+    }
+
+    public void ShowAuraEffect(Color auraColor)
+    {
+        GameObject fx = Instantiate(powerupAuraFXPrefab, transform.position, Quaternion.identity, transform);
+
+        var ps = fx.GetComponent<ParticleSystem>();
+        var main = ps.main;
+        main.startColor = auraColor;
+
+        Destroy(fx, main.duration + main.startLifetime.constantMax);
     }
 }

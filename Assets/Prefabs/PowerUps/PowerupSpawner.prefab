@@ -145,6 +145,18 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7840491619309254364, guid: 2b01fc8f7e1234040afc02b6eaad6456, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7840491619309254364, guid: 2b01fc8f7e1234040afc02b6eaad6456, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7840491619309254364, guid: 2b01fc8f7e1234040afc02b6eaad6456, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8311487948373450135, guid: 2b01fc8f7e1234040afc02b6eaad6456, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.08500004

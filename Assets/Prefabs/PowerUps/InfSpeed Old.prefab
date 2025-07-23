@@ -106,6 +106,7 @@ MonoBehaviour:
   spawnedFromSpawner: 0
   pickupVFX: {fileID: 7800986390570443941, guid: 0b503a3340d26e941ba2ea79e887a16d, type: 3}
   vfxColor: {r: 0.6, g: 0.8980393, b: 0.3137255, a: 1}
+  powerupAuraFXPrefab: {fileID: 4739691811893906984, guid: f1bb9ca9b4a355c4aa0488297c1f9359, type: 3}
 --- !u!58 &3802297280981527632
 CircleCollider2D:
   m_ObjectHideFlags: 0

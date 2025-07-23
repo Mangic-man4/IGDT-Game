@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5046137897659938863
+--- !u!1 &6909637850056108829
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3016754148482441715}
-  - component: {fileID: 6907593880088708765}
-  - component: {fileID: 8615363983354030110}
-  - component: {fileID: 3802297280981527632}
-  - component: {fileID: 4867958113536681067}
+  - component: {fileID: 1724088704884955569}
+  - component: {fileID: 2266945172255762095}
+  - component: {fileID: 7748571759976553447}
+  - component: {fileID: 8626263069711533769}
   m_Layer: 9
-  m_Name: InfSpeed
+  m_Name: Shield
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3016754148482441715
+--- !u!4 &1724088704884955569
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5046137897659938863}
+  m_GameObject: {fileID: 6909637850056108829}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.66, y: -1.7299994, z: 9.946678}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.73, y: 7.7200003, z: 9.946678}
+  m_LocalScale: {x: 1, y: 1, z: 0.6263}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6907593880088708765
+--- !u!212 &2266945172255762095
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5046137897659938863}
+  m_GameObject: {fileID: 6909637850056108829}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -78789347, guid: 4852b85c69c57844ca001301f3586ef1, type: 3}
-  m_Color: {r: 0.6679245, g: 0.6679245, b: 0.6679245, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1ecd38441f8ade04ebc5d062cf56e961, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,33 +86,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8615363983354030110
+--- !u!114 &7748571759976553447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5046137897659938863}
+  m_GameObject: {fileID: 6909637850056108829}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 852bc2ea2d56d814e94d2d565faf52b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpType: 6
-  duration: 30
-  fireballAmount: 10
+  powerUpType: 8
+  duration: 15
+  fireballAmount: 3
   disableOnPickup: 1
   spawnedFromSpawner: 0
   pickupVFX: {fileID: 7800986390570443941, guid: 0b503a3340d26e941ba2ea79e887a16d, type: 3}
-  vfxColor: {r: 0.6, g: 0.8980393, b: 0.3137255, a: 1}
+  vfxColor: {r: 0.10980393, g: 0.4039216, b: 0.62352943, a: 1}
   powerupAuraFXPrefab: {fileID: 4739691811893906984, guid: f1bb9ca9b4a355c4aa0488297c1f9359, type: 3}
---- !u!58 &3802297280981527632
+--- !u!58 &8626263069711533769
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5046137897659938863}
+  m_GameObject: {fileID: 6909637850056108829}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -142,24 +141,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!95 &4867958113536681067
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5046137897659938863}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6a55768872ea58149a8fad97300a3783, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
