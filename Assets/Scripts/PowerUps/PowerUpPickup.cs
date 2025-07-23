@@ -22,6 +22,12 @@ public class PowerUpPickup : MonoBehaviour
 
     [HideInInspector] public bool spawnedFromSpawner = false;
 
+    [Header("Item pickup VFX settings")]
+    [SerializeField] private GameObject pickupVFX; // Drag your particle prefab in Inspector
+    [SerializeField] private Color vfxColor = Color.white   ;
+    //[SerializeField] private Gradient vfxGradient;
+
+
     // ---------- internal state ----------
     private Vector3 startPos;
     private Quaternion startRot;
@@ -46,6 +52,9 @@ public class PowerUpPickup : MonoBehaviour
         if (other.TryGetComponent<PlayerPowerUps>(out var player))
         {
             player.CollectPowerUp(powerUpType, duration, fireballAmount);
+
+            PickupVFXSpawner.Spawn(transform.position, vfxColor, pickupVFX);
+
             collected = true;
             gameObject.SetActive(!disableOnPickup);
 

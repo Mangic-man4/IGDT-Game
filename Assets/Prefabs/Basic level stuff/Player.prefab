@@ -150,7 +150,7 @@ MonoBehaviour:
     m_Bits: 64
   testPlatforms:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1280
   platformLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -159,7 +159,7 @@ MonoBehaviour:
   lowGravityScale: 0.5
   lowGravityDrag: 1
   mainCamera: {fileID: 0}
-  checkpointsEnabled: 0
+  checkpointsEnabled: 1
 --- !u!95 &3857985449349044614
 Animator:
   serializedVersion: 5
@@ -419,6 +419,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyCollectSound: {fileID: 947713195477563227}
   coinCollectSound: {fileID: 5787218236385084756}
+  pickupVFX: {fileID: 7800986390570443941, guid: 0b503a3340d26e941ba2ea79e887a16d, type: 3}
+  coinPickupColor: {r: 0.53333336, g: 0.7686275, b: 0.8588236, a: 1}
+  keyPickupColor: {r: 0.32941177, g: 0.18823531, b: 0.3647059, a: 1}
 --- !u!114 &7011977222045603715
 MonoBehaviour:
   m_ObjectHideFlags: 0

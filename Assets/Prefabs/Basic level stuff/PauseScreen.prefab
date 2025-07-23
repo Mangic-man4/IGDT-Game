@@ -2268,7 +2268,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   m_IsOn: 1
 --- !u!114 &7906937614184493226
@@ -2284,7 +2284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsToggle: {fileID: 135074765922251488}
-  fpsDisplay: {fileID: 5462348926789686126, guid: ee12de2040e46c8419675db0ef30cd86, type: 3}
 --- !u!1 &4486399515681770671
 GameObject:
   m_ObjectHideFlags: 0

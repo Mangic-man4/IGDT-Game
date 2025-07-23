@@ -540682,22 +540682,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 354762061995534929, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 354762061995534929, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 354762061995534929, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 354762061995534929, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 580030391748567254, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -540778,17 +540762,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1539056309715634655, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 1691073745903896349, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6652574977656368180, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
-      propertyPath: m_TagString
-      value: FPSCounter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

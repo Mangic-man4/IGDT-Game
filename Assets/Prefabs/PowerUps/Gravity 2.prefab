@@ -104,6 +104,8 @@ MonoBehaviour:
   fireballAmount: 10
   disableOnPickup: 1
   spawnedFromSpawner: 0
+  pickupVFX: {fileID: 7800986390570443941, guid: 0b503a3340d26e941ba2ea79e887a16d, type: 3}
+  vfxColor: {r: 0.7137255, g: 0.37254903, b: 0.7137255, a: 1}
 --- !u!58 &3211436846851161904
 CircleCollider2D:
   m_ObjectHideFlags: 0

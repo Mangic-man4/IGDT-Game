@@ -29,6 +29,11 @@ public class ItemCollector : MonoBehaviour
     private readonly List<GameObject> pressedButtons = new();
 
     // ────────────────────────────────────────────────────────────────
+
+    [SerializeField] private GameObject pickupVFX;
+    [SerializeField] private Color coinPickupColor = Color.yellow;
+    [SerializeField] private Color keyPickupColor = Color.white;
+
     #region Unity Life-Cycle
     void Start()
     {
@@ -71,6 +76,8 @@ public class ItemCollector : MonoBehaviour
     #region Coin & Button Helpers
     void CollectCoin(GameObject coin)
     {
+        PickupVFXSpawner.Spawn(coin.transform.position, coinPickupColor, pickupVFX);
+
         coins++;
         coinCount.text = $"Coins: {coins}";
         collectedCoins.Add(coin);
@@ -79,6 +86,8 @@ public class ItemCollector : MonoBehaviour
 
     void PressButton(GameObject button)
     {
+        PickupVFXSpawner.Spawn(button.transform.position, keyPickupColor, pickupVFX);
+
         // find the child "Door"
         Transform doorTf = button.transform.Find("Door");
         if (doorTf == null) 

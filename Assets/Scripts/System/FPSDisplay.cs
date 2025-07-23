@@ -4,34 +4,35 @@ using UnityEngine;
 public class FPSDisplay : MonoBehaviour
 {
     public TextMeshProUGUI fpsText;
-    public TextMeshProUGUI outline1;
-    public TextMeshProUGUI outline2;
-    public TextMeshProUGUI outline3;
-    public TextMeshProUGUI outline4;
-    public TextMeshProUGUI outline5;
-    public TextMeshProUGUI outline6;
-    public TextMeshProUGUI outline7;
-    public TextMeshProUGUI outline8;
+    public TextMeshProUGUI[] outlines;
     public float updateRate = 0.5f; // How often to update the FPS (in seconds)
 
     private float timer;
     private int frameCount;
 
+    public static GameObject InstanceObject { get; private set; }
+
+    void OnEnable()
+    {
+        if (InstanceObject == null)
+        {
+            InstanceObject = gameObject;
+        }
+    }
+
     void Awake()
     {
+        InstanceObject = gameObject;
+
         // Hide if toggle was off
         bool showFPS = PlayerPrefs.GetInt("ShowFPS", 1) == 1;
-        gameObject.SetActive(showFPS);
+        SetChildrenActive(showFPS);
 
-        Color black = Color.black;
-        outline1.color = black;
-        outline2.color = black;
-        outline3.color = black;
-        outline4.color = black;
-        outline5.color = black;
-        outline6.color = black;
-        outline7.color = black;
-        outline8.color = black;
+        foreach (var outline in outlines)
+        {
+            if (outline != null)
+                outline.color = Color.black;
+        }
     }
 
    /* void Start()
@@ -50,28 +51,20 @@ public class FPSDisplay : MonoBehaviour
         if (timer >= updateRate)
         {
             float fps = frameCount / timer;
-            int roundedFPS = Mathf.RoundToInt(fps);
-
-            string displayText = $"{roundedFPS} FPS";
+            string displayText = Mathf.RoundToInt(fps) + " FPS";
 
             fpsText.text = displayText;
-            outline1.text = displayText;
-            outline2.text = displayText;
-            outline3.text = displayText;
-            outline4.text = displayText;
-            outline5.text = displayText;
-            outline6.text = displayText;
-            outline7.text = displayText;
-            outline8.text = displayText;
+            foreach (var outline in outlines)
+            {
+                outline.text = displayText;
+            }
 
-
-            // Set color based on performance
-            if (roundedFPS >= 58)
+            if (fps >= 58)
                 fpsText.color = new Color(0f, 0.77f, 0f);
-            else if (roundedFPS >= 45)
-                fpsText.color = new Color(1f, 0.92f, 0.016f); // Yellow-ish
-            else if (roundedFPS >= 30)
-                fpsText.color = new Color(1f, 0.5f, 0f);       // Orange
+            else if (fps >= 45)
+                fpsText.color = new Color(1f, 0.92f, 0.016f);
+            else if (fps >= 30)
+                fpsText.color = new Color(1f, 0.5f, 0f);
             else
                 fpsText.color = Color.red;
 
@@ -80,4 +73,26 @@ public class FPSDisplay : MonoBehaviour
         }
     }
 
+
+    private void SetChildrenActive(bool active)
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(active);
+        }
+    }
+
+    public static void SetVisible(bool visible)
+    {
+        if (InstanceObject == null)
+        {
+            Debug.LogWarning("FPSDisplay.InstanceObject is null!");
+            return;
+        }
+
+        foreach (Transform child in InstanceObject.transform)
+        {
+            child.gameObject.SetActive(visible);
+        }
+    }
 }

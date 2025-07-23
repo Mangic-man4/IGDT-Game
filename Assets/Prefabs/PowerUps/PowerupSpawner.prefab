@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f44e05e7593c4e47b2466d2788a8372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 0}
+  powerUpPrefab: {fileID: 1462985385594655389, guid: 4b0acfd9bac76504fb5e4b95c2cf2b96, type: 3}
   respawnDelay: 5
   spawnPoint: {fileID: 3072852681486070096}
 --- !u!1001 &8882528733394701184
@@ -141,6 +141,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4703595824453170284}
     m_Modifications:
+    - target: {fileID: 412940134291311624, guid: 2b01fc8f7e1234040afc02b6eaad6456, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8311487948373450135, guid: 2b01fc8f7e1234040afc02b6eaad6456, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.08500004

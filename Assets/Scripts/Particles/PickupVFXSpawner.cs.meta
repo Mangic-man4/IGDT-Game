@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 852bc2ea2d56d814e94d2d565faf52b5
+guid: 5ce2f2eeadd4ed845826b9f05454452f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - pickupVFX: {fileID: 7800986390570443941, guid: 0b503a3340d26e941ba2ea79e887a16d, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
