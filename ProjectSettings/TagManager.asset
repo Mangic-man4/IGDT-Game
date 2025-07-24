@@ -22,6 +22,7 @@ TagManager:
   - Drip
   - KeyMimic
   - FPSCounter
+  - PickupEffect
   layers:
   - Default
   - TransparentFX

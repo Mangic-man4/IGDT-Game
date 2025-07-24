@@ -29,10 +29,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Camera + Audio")]
     public Camera mainCamera;
+    [Tooltip("The death effect you want to play at the player's death")]
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioSource audioSource;
 
     [Header("Checkpoint toggle")]
     [SerializeField] private bool checkpointsEnabled = false;
 
+    [Header("Death particle effect")]
+    [SerializeField] private GameObject deathEffectPrefab;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -209,10 +214,24 @@ public class PlayerController : MonoBehaviour
     {
         //string sceneName = SceneManager.GetActiveScene().name;
 
+        foreach (var effect in GameObject.FindGameObjectsWithTag("PickupEffect"))
+        {
+            Destroy(effect);
+        }
+
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
+
+        if (deathEffectPrefab != null)
+        {
+            Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        }
+
         if (!checkpointsEnabled)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Time.timeScale = 1f;
+            StartCoroutine(DelayedReloadScene()); // Delay the reload
             return;
         }
 
@@ -231,8 +250,7 @@ public class PlayerController : MonoBehaviour
         if (active == null)
         {
             Debug.Log("Easy death with NO checkpoint - hard resetting level");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Time.timeScale = 1f;
+            StartCoroutine(DelayedReloadScene());
             return;
         }
 
@@ -284,6 +302,36 @@ public class PlayerController : MonoBehaviour
     {
         yield return null;
         transform.SetParent(null);
+    }
+    private IEnumerator DelayedReloadScene()
+    {
+        if (deathEffectPrefab != null)
+        {
+            Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        }
+
+        // Disable movement scripts
+        if (TryGetComponent<PlayerController>(out var controller)) controller.enabled = false;
+
+        if (TryGetComponent<TeleportControl>(out var teleport)) teleport.enabled = false;
+
+        if (TryGetComponent<PlayerPowerUps>(out var powerUps)) powerUps.enabled = false;
+
+        if (TryGetComponent<SpriteRenderer>(out var spriteRenderer)) spriteRenderer .enabled = false;
+
+        foreach (var col in GetComponentsInChildren<Collider2D>())
+        {
+            col.enabled = false;
+        }
+
+        // Freeze physics
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+
+        yield return new WaitForSeconds(1.5f); // adjust delay as needed
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 
 }

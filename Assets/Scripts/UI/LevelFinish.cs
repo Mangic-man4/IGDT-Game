@@ -32,7 +32,7 @@ public class LevelFinish : MonoBehaviour
 
         string sceneName = SceneManager.GetActiveScene().name;
         string[] sceneParts = sceneName.Split(' ');
-        string difficulty = sceneParts[sceneParts.Length - 1];
+        string difficulty = sceneParts[^1];
 
         int coinsCollected = ExtractCoinsFromText();
         float timeElapsed = timer.GetTimeElapsed();
@@ -48,7 +48,7 @@ public class LevelFinish : MonoBehaviour
 
         string sceneName = SceneManager.GetActiveScene().name;
         string[] sceneParts = sceneName.Split(' ');
-        string difficulty = sceneParts[sceneParts.Length - 1];
+        string difficulty = sceneParts[^1];
 
         int coinsCollected = ExtractCoinsFromText();
         float timeElapsed = timer.GetTimeElapsed();

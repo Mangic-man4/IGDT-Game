@@ -15,6 +15,7 @@ public class ScoreManager : MonoBehaviour
     private const float HardMultiplier = 1.0f;
     private const float ExtremeMultiplier = 1.5f;
 
+    private readonly static HashSet<string> loggedDifficultyErrors = new();
 
     private int score = 0;
 
@@ -71,7 +72,11 @@ public class ScoreManager : MonoBehaviour
             case "extreme":
                 return ExtremeMultiplier;
             default:
-                Debug.LogError("Unknown difficulty: " + difficulty);
+                if (!loggedDifficultyErrors.Contains(difficulty))
+                {
+                    Debug.LogError("Unknown difficulty: " + difficulty);
+                    loggedDifficultyErrors.Add(difficulty);
+                }
                 return 1.0f;
         }
     }
