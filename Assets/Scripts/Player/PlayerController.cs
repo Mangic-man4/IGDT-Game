@@ -36,9 +36,10 @@ public class PlayerController : MonoBehaviour
     [Header("Checkpoint toggle")]
     [SerializeField] private bool checkpointsEnabled = false;
 
-    [Header("Death particle effect")]
+    [Header("Particle effects")]
     [SerializeField] private GameObject deathEffectPrefab;
-
+    [SerializeField] private GameObject spawnEffectPrefab;
+        
     private Rigidbody2D rb;
     private Animator animator;
     private AudioSource jumpSound;
@@ -260,6 +261,11 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
 
         active.RestoreCheckpointState(gameObject);
+
+        if (spawnEffectPrefab != null)
+        {
+            Instantiate(spawnEffectPrefab, transform.position, Quaternion.identity);
+        }
 
         PowerUpSpawner.ForceSpawnOnAll();
     }
