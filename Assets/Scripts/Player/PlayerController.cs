@@ -332,7 +332,7 @@ public class PlayerController : MonoBehaviour
 
         // Freeze physics
         rb.velocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Static;
+        rb.bodyType = RigidbodyType2D.Kinematic;
 
         yield return new WaitForSeconds(1.5f); // adjust delay as needed
 
