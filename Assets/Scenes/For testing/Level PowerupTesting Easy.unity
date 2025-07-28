@@ -321877,6 +321877,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7800986390570443941, guid: 0b503a3340d26e941ba2ea79e887a16d, type: 3}
     - target: {fileID: 829262850901001188, guid: e64a1eb71a3bd574aa8c64ef50eb44a5, type: 3}
+      propertyPath: powerUpType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 829262850901001188, guid: e64a1eb71a3bd574aa8c64ef50eb44a5, type: 3}
       propertyPath: disableOnPickup
       value: 1
       objectReference: {fileID: 0}
