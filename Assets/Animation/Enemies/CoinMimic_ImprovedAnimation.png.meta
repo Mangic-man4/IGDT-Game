@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c96b75916d181394c8f7d156f779b366
+guid: d9ae24e7685269746883c06220c360e4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 96
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,9 +70,9 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
-    textureFormat: 4
-    textureCompression: 1
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,23 +94,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 1
-    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -123,96 +110,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MoreButtons_0
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 38
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 945bb8eced927f1479f17422ba718381
-      internalID: -2123463885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MoreButtons_1
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 38
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08f9b9fc10595cc41b9d50fc579f8aae
-      internalID: 2100200953
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MoreButtons_2
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 38
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2470832a26309144dbfaf65e8b19a500
-      internalID: 31538713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MoreButtons_3
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 38
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 823a03f917226f442b4451dd55f88bfa
-      internalID: 1201496830
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MoreButtons_4
+      name: CoinMimic_ImprovedAnimation_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 20
-        width: 49
+        y: 32
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -221,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cae7204096217cd4cbfc3cafc41d7412
-      internalID: -1709822011
+      spriteID: a186cac526de641418b1c9086f965d94
+      internalID: -879557557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoreButtons_5
+      name: CoinMimic_ImprovedAnimation_1
       rect:
         serializedVersion: 2
-        x: 57
-        y: 20
-        width: 49
-        height: 15
+        x: 16
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,19 +145,145 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b01facfccf9567540a47ddcf093f7bc8
-      internalID: 819515419
+      spriteID: 2d396350a1991a4459aefd20913ebf2e
+      internalID: 441489592
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoreButtons_6
+      name: CoinMimic_ImprovedAnimation_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 705f04f355c2f904cba4b5e1413cfe67
+      internalID: -615105514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinMimic_ImprovedAnimation_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a49bdef94058e3141b142858c8a45339
+      internalID: 1041522367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinMimic_ImprovedAnimation_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc4756ac468d28940934323df8323632
+      internalID: 1067960298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinMimic_ImprovedAnimation_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 274d6a92b98b1ec4780fbc4b6ee917b1
+      internalID: 1101865908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinMimic_ImprovedAnimation_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec90b400d6710444aa59f8a5d07224f7
+      internalID: 993587580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinMimic_ImprovedAnimation_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cdaeb35e6b25ba488eb6c1b0a7ddbbd
+      internalID: 1943992331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinMimic_ImprovedAnimation_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 49
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -263,20 +292,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4152d53debf60342bbcbdcb9c541867
-      internalID: 1516836999
+      spriteID: 17e4105d69c797844a02113dc7c06ab4
+      internalID: -914775565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MoreButtons_7
+      name: CoinMimic_ImprovedAnimation_9
       rect:
         serializedVersion: 2
-        x: 57
+        x: 16
         y: 0
-        width: 49
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,8 +313,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea3b46a0ad6904e438b97ed9bf3546a5
-      internalID: 1591171304
+      spriteID: b51edb507a26760429126870d91200ab
+      internalID: 1215708383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinMimic_ImprovedAnimation_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116045a0620ba204b8ee07bfdcdeefd9
+      internalID: 1313088873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinMimic_ImprovedAnimation_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56abb54a45f0f144c990abf221ac36d0
+      internalID: -828507109
       vertices: []
       indices: 
       edges: []
@@ -301,14 +372,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MoreButtons_0: -2123463885
-      MoreButtons_1: 2100200953
-      MoreButtons_2: 31538713
-      MoreButtons_3: 1201496830
-      MoreButtons_4: -1709822011
-      MoreButtons_5: 819515419
-      MoreButtons_6: 1516836999
-      MoreButtons_7: 1591171304
+      CoinMimic_ImprovedAnimation_0: -879557557
+      CoinMimic_ImprovedAnimation_1: 441489592
+      CoinMimic_ImprovedAnimation_10: 1313088873
+      CoinMimic_ImprovedAnimation_11: -828507109
+      CoinMimic_ImprovedAnimation_2: -615105514
+      CoinMimic_ImprovedAnimation_3: 1041522367
+      CoinMimic_ImprovedAnimation_4: 1067960298
+      CoinMimic_ImprovedAnimation_5: 1101865908
+      CoinMimic_ImprovedAnimation_6: 993587580
+      CoinMimic_ImprovedAnimation_7: 1943992331
+      CoinMimic_ImprovedAnimation_8: -914775565
+      CoinMimic_ImprovedAnimation_9: 1215708383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
