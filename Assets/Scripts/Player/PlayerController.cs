@@ -39,7 +39,10 @@ public class PlayerController : MonoBehaviour
     [Header("Particle effects")]
     [SerializeField] private GameObject deathEffectPrefab;
     [SerializeField] private GameObject spawnEffectPrefab;
-        
+    [SerializeField] private GameObject dustJumpVFX;
+    [SerializeField] private GameObject doubleJumpVFX;
+    //[SerializeField] private GameObject speedLines;
+
     private Rigidbody2D rb;
     private Animator animator;
     private AudioSource jumpSound;
@@ -126,6 +129,19 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
 
         FlipSprite();
+
+        // Speed Lines Control 
+        // Remove because it's ugly
+        /*if (powerUps.hasSpeed && Mathf.Abs(xInput) > 0.01f)
+        {
+            if (!speedLines.activeSelf)
+                speedLines.SetActive(true);
+        }
+        else
+        {
+            if (speedLines.activeSelf)
+                speedLines.SetActive(false);
+        }*/
     }
 
     private void HandleJumpInput()
@@ -135,12 +151,27 @@ public class PlayerController : MonoBehaviour
         if (isGrounded || coyoteTimer > 0f)
         {
             Jump();
+
+            // Dust VFX for regular jump
+            if (dustJumpVFX != null)
+            {
+                Instantiate(dustJumpVFX, transform.position + new Vector3(0f, -1f, 0f), Quaternion.identity);
+            }
+
             powerUps.hasUsedDoubleJump = false;
         }
         else if (powerUps.hasDoubleJump && !powerUps.hasUsedDoubleJump)
         {
             Jump();
+
+            // Instantiate double jump visual effect
+            if (doubleJumpVFX != null)
+            {
+                Instantiate(doubleJumpVFX, transform.position + new Vector3(0f, -1f, 0f), Quaternion.identity);
+            }
+
             powerUps.hasUsedDoubleJump = true;
+
         }
     }
 

@@ -72,3 +72,6 @@ TagManager:
   - name: LaserCollider
     uniqueID: 1013474819
     locked: 0
+  - name: Fireball
+    uniqueID: 231641443
+    locked: 0
