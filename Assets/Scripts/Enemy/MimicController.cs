@@ -182,12 +182,13 @@ public class MimicController : MonoBehaviour
     }
 
     void TryKillPlayer(Collision2D collision)
-    {
+    { 
         if (lethal && revealed &&
-            collision.collider.CompareTag("Player") &&
-            collision.collider.TryGetComponent<PlayerController>(out var playerController))
+            collision.collider.CompareTag("Player") && 
+            collision.collider.TryGetComponent<PlayerController>(out var playerController)
+            && collision.collider.TryGetComponent<PlayerPowerUps>(out var powerUps))
         {
-            if (powerUps.IsShieldActive() && powerUps.IsEnemyProtectionEnabled())
+             if (powerUps.IsShieldActive() && powerUps.IsEnemyProtectionEnabled())
             {
                 if (powerUps.TryUseShield())
                 {
@@ -201,8 +202,8 @@ public class MimicController : MonoBehaviour
                 playerController.Die();
                 Debug.Log("Player caught by Mimic!");
             }
-        }
-    }
+        } 
+    } 
 }
 
 
