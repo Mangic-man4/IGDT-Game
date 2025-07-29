@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d9ae24e7685269746883c06220c360e4
+guid: 98a3f1f9a10ac60498ea9d71f79ce848
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_0
+      name: CoinMimic_Awake_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a186cac526de641418b1c9086f965d94
-      internalID: -879557557
+      spriteID: a9b1633b81694b848a4115ae7f74d9bf
+      internalID: 385548565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_1
+      name: CoinMimic_Awake_1
       rect:
         serializedVersion: 2
         x: 16
@@ -139,20 +139,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d396350a1991a4459aefd20913ebf2e
-      internalID: 441489592
+      spriteID: 00b3abe105e9eb94281ec38c16c06549
+      internalID: 1307428363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_2
+      name: CoinMimic_Awake_2
       rect:
         serializedVersion: 2
         x: 32
@@ -160,20 +160,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 705f04f355c2f904cba4b5e1413cfe67
-      internalID: -615105514
+      spriteID: 810905d7712ffd6499f50b0fe9ae72da
+      internalID: -1402772564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_3
+      name: CoinMimic_Awake_3
       rect:
         serializedVersion: 2
         x: 48
@@ -181,20 +181,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a49bdef94058e3141b142858c8a45339
-      internalID: 1041522367
+      spriteID: e2cecf5acabb8f247b71a33c70993565
+      internalID: 1913862854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_4
+      name: CoinMimic_Chase_0
       rect:
         serializedVersion: 2
         x: 0
@@ -202,20 +202,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc4756ac468d28940934323df8323632
-      internalID: 1067960298
+      spriteID: 79339f2024b5e1c4bb3d32e8f9b54a80
+      internalID: -377831927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_5
+      name: CoinMimic_Chase_1
       rect:
         serializedVersion: 2
         x: 16
@@ -223,20 +223,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 274d6a92b98b1ec4780fbc4b6ee917b1
-      internalID: 1101865908
+      spriteID: afc6ceaa4c3633e4cbc945a11487a3d8
+      internalID: 766506011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_6
+      name: CoinMimic_Chase_2
       rect:
         serializedVersion: 2
         x: 32
@@ -244,20 +244,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec90b400d6710444aa59f8a5d07224f7
-      internalID: 993587580
+      spriteID: 2a0d46c1f351a6f4fb28f52059c990f6
+      internalID: 871504627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_7
+      name: CoinMimic_Chase_3
       rect:
         serializedVersion: 2
         x: 48
@@ -265,20 +265,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cdaeb35e6b25ba488eb6c1b0a7ddbbd
-      internalID: 1943992331
+      spriteID: 1f0a6d4d5df1c6c47a38ebd8e6bb2491
+      internalID: -1805604403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_8
+      name: CoinMimic_Chase_4
       rect:
         serializedVersion: 2
         x: 0
@@ -286,20 +286,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17e4105d69c797844a02113dc7c06ab4
-      internalID: -914775565
+      spriteID: 9277d8bacc5b5aa45bf8b7b0f3f16686
+      internalID: -2060171825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_9
+      name: CoinMimic_Chase_5
       rect:
         serializedVersion: 2
         x: 16
@@ -307,20 +307,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b51edb507a26760429126870d91200ab
-      internalID: 1215708383
+      spriteID: e1449091412d9fe498e3786c00afa2a9
+      internalID: 541648391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_10
+      name: CoinMimic_Chase_6
       rect:
         serializedVersion: 2
         x: 32
@@ -328,20 +328,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 116045a0620ba204b8ee07bfdcdeefd9
-      internalID: 1313088873
+      spriteID: 78c906b49479ce14892765b413078ca8
+      internalID: 1152402427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoinMimic_ImprovedAnimation_11
+      name: CoinMimic_Chase_7
       rect:
         serializedVersion: 2
         x: 48
@@ -349,14 +349,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56abb54a45f0f144c990abf221ac36d0
-      internalID: -828507109
+      spriteID: 31f07c5f4059dd84ba5e577db59a9770
+      internalID: -550912617
       vertices: []
       indices: 
       edges: []
@@ -372,18 +372,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CoinMimic_ImprovedAnimation_0: -879557557
-      CoinMimic_ImprovedAnimation_1: 441489592
-      CoinMimic_ImprovedAnimation_10: 1313088873
-      CoinMimic_ImprovedAnimation_11: -828507109
-      CoinMimic_ImprovedAnimation_2: -615105514
-      CoinMimic_ImprovedAnimation_3: 1041522367
-      CoinMimic_ImprovedAnimation_4: 1067960298
-      CoinMimic_ImprovedAnimation_5: 1101865908
-      CoinMimic_ImprovedAnimation_6: 993587580
-      CoinMimic_ImprovedAnimation_7: 1943992331
-      CoinMimic_ImprovedAnimation_8: -914775565
-      CoinMimic_ImprovedAnimation_9: 1215708383
+      CoinMimic_Awake_0: 385548565
+      CoinMimic_Awake_1: 1307428363
+      CoinMimic_Awake_2: -1402772564
+      CoinMimic_Awake_3: 1913862854
+      CoinMimic_Chase_0: -377831927
+      CoinMimic_Chase_1: 766506011
+      CoinMimic_Chase_2: 871504627
+      CoinMimic_Chase_3: -1805604403
+      CoinMimic_Chase_4: -2060171825
+      CoinMimic_Chase_5: 541648391
+      CoinMimic_Chase_6: 1152402427
+      CoinMimic_Chase_7: -550912617
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
