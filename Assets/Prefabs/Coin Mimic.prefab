@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4414078915070554189}
   - component: {fileID: 3476450196916903927}
   - component: {fileID: 5244880618120367726}
-  - component: {fileID: -8092567551063488737}
   m_Layer: 0
   m_Name: Coin Mimic
   m_TagString: CoinMimic
@@ -187,5 +186,5 @@ MonoBehaviour:
   detectionRange: 4
   chaseStopDistance: 15
   moveSpeed: 12
-  lethalDelayTime: 2
+  lethalDelayTime: 0.5
   player: {fileID: 0}

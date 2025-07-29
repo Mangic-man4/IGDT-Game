@@ -37,7 +37,7 @@ public class MimicController : MonoBehaviour
 
         if (anim != null)
         {
-            anim.Play(revealed ? "CoinMimic_Chomp" : "Coin");
+            anim.Play(revealed ? "CoinMimic_Chase" : "Coin");
         }
     }
 
@@ -128,7 +128,8 @@ public class MimicController : MonoBehaviour
                 Reveal();
             }
         }
-        else
+        
+        if (lethal)
         {
             if (distance > chaseStopDistance)
             {
@@ -147,7 +148,7 @@ public class MimicController : MonoBehaviour
     {
         revealed = true;
         lethal = false; // reset lethal state
-        anim.Play("CoinMimic_Chomp");
+        anim.Play("CoinMimic_Awake");
         StartCoroutine(BecomeLethalAfterDelay());
     }
 
@@ -169,6 +170,7 @@ public class MimicController : MonoBehaviour
     {
         yield return new WaitForSeconds(lethalDelayTime);
         lethal = true;
+        anim.Play("CoinMimic_Chase");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
