@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class MimicController : MonoBehaviour
 {
-    public float detectionRange = 2.5f;
-    public float chaseStopDistance = 6f;
-    public float moveSpeed = 12f;
-    private Transform player;
+    [Header("Mimic Behavior Settings")]
+    [Tooltip("Distance at which the mimic wakes up")]
+    public float detectionRange;
+
+    [Tooltip("Distance beyond which the mimic gives up chase")]
+    public float chaseStopDistance;
+
+    [Tooltip("Movement speed while chasing the player")]
+    public float moveSpeed;
+
+    [Tooltip("Time after awakening before the mimic becomes lethal")]
+    public float lethalDelayTime;
+
+    [Header("References")]
+    public Transform player;
 
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private Animator anim;
     private bool revealed = false;
+    private bool lethal = false;
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
@@ -125,9 +137,7 @@ public class MimicController : MonoBehaviour
             else
             {
                 ChasePlayer();
-
-                // Flip the sprite to face the player
-                sr.flipX = (player.position.x < transform.position.x);
+                sr.flipX = (player.position.x < transform.position.x); // Face player
             }
         }
     }
@@ -136,13 +146,16 @@ public class MimicController : MonoBehaviour
     void Reveal()
     {
         revealed = true;
-        anim.Play("CoinMimic_Chomp"); // Start chomp loop
+        lethal = false; // reset lethal state
+        anim.Play("CoinMimic_Chomp");
+        StartCoroutine(BecomeLethalAfterDelay());
     }
 
     void StopChase()
     {
         revealed = false;
-        anim.Play("Coin"); // Go back to idle animation
+        lethal = false;
+        anim.Play("Coin");
     }
 
     void ChasePlayer()
@@ -152,11 +165,26 @@ public class MimicController : MonoBehaviour
         rb.MovePosition(newPos);
     }
 
+    IEnumerator BecomeLethalAfterDelay()
+    {
+        yield return new WaitForSeconds(lethalDelayTime);
+        lethal = true;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!revealed || !collision.collider.CompareTag("Player")) return;
+        TryKillPlayer(collision);
+    }
 
-        if (collision.collider.TryGetComponent<PlayerPowerUps>(out var powerUps) &&
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        TryKillPlayer(collision);
+    }
+
+    void TryKillPlayer(Collision2D collision)
+    {
+        if (lethal && revealed &&
+            collision.collider.CompareTag("Player") &&
             collision.collider.TryGetComponent<PlayerController>(out var playerController))
         {
             if (powerUps.IsShieldActive() && powerUps.IsEnemyProtectionEnabled())
@@ -176,6 +204,8 @@ public class MimicController : MonoBehaviour
         }
     }
 }
+
+
 
 
 
