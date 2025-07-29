@@ -308,15 +308,16 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("LowGravityZone"))
         {
-            rb.gravityScale = lowGravityScale;
+            rb.gravityScale = Mathf.Sign(rb.gravityScale) * lowGravityScale;
             rb.drag = lowGravityDrag;
         }
     }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("LowGravityZone"))
         {
-            rb.gravityScale = lowGravityScale;
+            rb.gravityScale = Mathf.Sign(rb.gravityScale) * lowGravityScale;
             rb.drag = lowGravityDrag;
         }
     }
@@ -325,10 +326,11 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("LowGravityZone"))
         {
-            rb.gravityScale = normalGravityScale;
+            rb.gravityScale = Mathf.Sign(rb.gravityScale) * normalGravityScale;
             rb.drag = normalDrag;
         }
     }
+
 
     public void UnparentFromPlatform()
     {

@@ -78,6 +78,9 @@ public class PowerUpUI : MonoBehaviour
         if (playerPowerUps.fireballCharges > 0)
             display += "Fireballs: " + playerPowerUps.fireballCharges + " \n";
 
+        if (playerPowerUps.ShieldStacks > 0)
+            display += "Shield charges: " + playerPowerUps.ShieldStacks + " \n";
+
         display = display.TrimEnd('\n');
         powerUpText.text = display;
 

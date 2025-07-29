@@ -80,17 +80,21 @@ public class PlayerPowerUps : MonoBehaviour
 
     private void Awake()
     {
-        if (TryGetComponent<Rigidbody2D>(out rb))
+        if (TryGetComponent(out rb))
         {
             originalSleepMode = rb.sleepMode;
         }
+
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        previousGravityState = gravityFlipped;
+        if (!gravityFlipped)
+        {
+            previousGravityState = gravityFlipped;
+        }
 
     }
 
