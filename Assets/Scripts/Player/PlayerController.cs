@@ -205,7 +205,10 @@ public class PlayerController : MonoBehaviour
         {
             float flipY = Mathf.Sign(transform.localScale.y);
             transform.localScale = new Vector3(Mathf.Sign(xInput) * scale, flipY * scale, 1f);
-            audioPlayer.PlayWalk();
+            if (isGrounded) 
+            {
+                audioPlayer.PlayWalk();
+            }
         }
     }
 
