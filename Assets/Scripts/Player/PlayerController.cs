@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private AudioSource jumpSound;
     private PlayerPowerUps powerUps;
+    private AudioPlayer audioPlayer;
 
     private float xInput;
     private bool isGrounded;
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         powerUps = GetComponent<PlayerPowerUps>();
         jumpSound = GetComponent<AudioSource>();
+        audioPlayer = GetComponent<AudioPlayer>();
 
         if (mainCamera) _ = mainCamera.transform.position; // Accessed once
 
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
-
+        
         FlipSprite();
 
         // Speed Lines Control 
@@ -203,6 +205,7 @@ public class PlayerController : MonoBehaviour
         {
             float flipY = Mathf.Sign(transform.localScale.y);
             transform.localScale = new Vector3(Mathf.Sign(xInput) * scale, flipY * scale, 1f);
+            audioPlayer.PlayWalk();
         }
     }
 

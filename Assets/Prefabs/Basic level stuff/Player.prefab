@@ -47,12 +47,13 @@ GameObject:
   - component: {fileID: 7773183268164951915}
   - component: {fileID: 5272437660059241589}
   - component: {fileID: 1177102040998870391}
-  - component: {fileID: 5194615938594376831}
   - component: {fileID: 4299364924263223257}
   - component: {fileID: 7011977222045603715}
+  - component: {fileID: 5436946557807577545}
+  - component: {fileID: 4666501575135228415}
+  - component: {fileID: 5194615938594376831}
   - component: {fileID: 947713195477563227}
   - component: {fileID: 5787218236385084756}
-  - component: {fileID: 5436946557807577545}
   - component: {fileID: 1161131264994772054}
   m_Layer: 7
   m_Name: Player
@@ -316,6 +317,103 @@ MonoBehaviour:
   updatingFromUI: 0
   afterImagePrefab: {fileID: 2646490012046674189, guid: 8712cd7ad51c8924388b90c139fca216, type: 3}
   teleportBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
+--- !u!114 &4299364924263223257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992987325490857947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee7c80b58fd56741876638725cab0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyCollectSound: {fileID: 947713195477563227}
+  coinCollectSound: {fileID: 5787218236385084756}
+  pickupVFX: {fileID: 7800986390570443941, guid: 0b503a3340d26e941ba2ea79e887a16d, type: 3}
+  coinPickupColor: {r: 0.53333336, g: 0.7686275, b: 0.8588236, a: 1}
+  keyPickupColor: {r: 0.32941177, g: 0.18823531, b: 0.3647059, a: 1}
+--- !u!114 &7011977222045603715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992987325490857947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9e2e620f9d4fa46998f93ace942887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPointX: -15
+  respawnPointY: -15
+  teleportControl: {fileID: 1177102040998870391}
+--- !u!114 &5436946557807577545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992987325490857947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec227269399e66048bab7a2bd2906cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasDash: 0
+  hasDoubleJump: 0
+  hasUsedDoubleJump: 0
+  gravityFlipped: 0
+  hasSpeed: 0
+  fireballCharges: 0
+  shieldStacks: 0
+  isInvincible: 0
+  speedTimer: 0
+  doubleJumpTimer: 0
+  hasInfiniteSpeed: 0
+  hasInfiniteDoubleJump: 0
+  dashCooldown: 0.5
+  dashDistance: 4
+  isDashing: 0
+  afterImagePrefab: {fileID: 2646490012046674189, guid: 8712cd7ad51c8924388b90c139fca216, type: 3}
+  dashBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
+  fireballPrefab: {fileID: 4380742645657599097, guid: 8a9b39b48b411864a9b8a14575e3bb61, type: 3}
+  firePoint: {fileID: 2527680590558214655}
+  fireCooldown: 0.5
+  speedMultiplier: 2
+  previousGravityState: 0
+  bubbleVisual: {fileID: 3236114499674192031, guid: 72f4dec4202de954ea5d402a6e6ce674, type: 3}
+  shieldPrefab: {fileID: 1799413529693063709, guid: 72f4dec4202de954ea5d402a6e6ce674, type: 3}
+  protectFromEnemies: 1
+  protectFromTraps: 1
+  invincibilityTime: 2
+  maxShieldStacks: 3
+  shieldColors:
+  - {r: 0, g: 1, b: 0.16624975, a: 0.8}
+  - {r: 1, g: 0.49644572, b: 0, a: 0.8}
+  - {r: 1, g: 0, b: 0, a: 0.8}
+  - {r: 0, g: 0, b: 0, a: 0.8}
+--- !u!114 &4666501575135228415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992987325490857947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d55e9e2bf924c94491162a347fe2c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - type: 0
+    audioClips:
+    - {fileID: 8300000, guid: eb719fe2a0d43f940a968375c8dd4097, type: 3}
+    - {fileID: 8300000, guid: 120b79e2ca45143478600d82f1449e5f, type: 3}
+    - {fileID: 8300000, guid: a1792b8d9cba70d49a9b970858ff2429, type: 3}
+    - {fileID: 8300000, guid: d0b52fd73ac4c3149825cb9e0cd71f52, type: 3}
+    audioSource: {fileID: 1161131264994772054}
 --- !u!82 &5194615938594376831
 AudioSource:
   m_ObjectHideFlags: 0
@@ -412,38 +510,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4299364924263223257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2992987325490857947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee7c80b58fd56741876638725cab0b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCollectSound: {fileID: 947713195477563227}
-  coinCollectSound: {fileID: 5787218236385084756}
-  pickupVFX: {fileID: 7800986390570443941, guid: 0b503a3340d26e941ba2ea79e887a16d, type: 3}
-  coinPickupColor: {r: 0.53333336, g: 0.7686275, b: 0.8588236, a: 1}
-  keyPickupColor: {r: 0.32941177, g: 0.18823531, b: 0.3647059, a: 1}
---- !u!114 &7011977222045603715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2992987325490857947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9e2e620f9d4fa46998f93ace942887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnPointX: -15
-  respawnPointY: -15
-  teleportControl: {fileID: 1177102040998870391}
 --- !u!82 &947713195477563227
 AudioSource:
   m_ObjectHideFlags: 0
@@ -636,51 +702,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5436946557807577545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2992987325490857947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec227269399e66048bab7a2bd2906cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasDash: 0
-  hasDoubleJump: 0
-  hasUsedDoubleJump: 0
-  gravityFlipped: 0
-  hasSpeed: 0
-  fireballCharges: 0
-  shieldStacks: 0
-  isInvincible: 0
-  speedTimer: 0
-  doubleJumpTimer: 0
-  hasInfiniteSpeed: 0
-  hasInfiniteDoubleJump: 0
-  dashCooldown: 0.5
-  dashDistance: 4
-  isDashing: 0
-  afterImagePrefab: {fileID: 2646490012046674189, guid: 8712cd7ad51c8924388b90c139fca216, type: 3}
-  dashBurstPrefab: {fileID: 7474656509737929893, guid: 884236f2c81e0aa439108ae09a477ecf, type: 3}
-  fireballPrefab: {fileID: 4380742645657599097, guid: 8a9b39b48b411864a9b8a14575e3bb61, type: 3}
-  firePoint: {fileID: 2527680590558214655}
-  fireCooldown: 0.5
-  speedMultiplier: 2
-  previousGravityState: 0
-  bubbleVisual: {fileID: 3236114499674192031, guid: 72f4dec4202de954ea5d402a6e6ce674, type: 3}
-  shieldPrefab: {fileID: 1799413529693063709, guid: 72f4dec4202de954ea5d402a6e6ce674, type: 3}
-  protectFromEnemies: 1
-  protectFromTraps: 1
-  invincibilityTime: 2
-  maxShieldStacks: 3
-  shieldColors:
-  - {r: 0, g: 1, b: 0.16624975, a: 0.8}
-  - {r: 1, g: 0.49644572, b: 0, a: 0.8}
-  - {r: 1, g: 0, b: 0, a: 0.8}
-  - {r: 0, g: 0, b: 0, a: 0.8}
 --- !u!82 &1161131264994772054
 AudioSource:
   m_ObjectHideFlags: 0
