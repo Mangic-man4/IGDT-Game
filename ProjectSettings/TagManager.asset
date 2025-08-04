@@ -23,6 +23,7 @@ TagManager:
   - KeyMimic
   - FPSCounter
   - PickupEffect
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
@@ -38,8 +39,8 @@ TagManager:
   - IgnoreLaserBeamCollider
   - LaserBeamCollider
   - Ghost
-  - 
-  - 
+  - IgnoreParticleCollider
+  - TeleportKillzone
   - 
   - 
   - 

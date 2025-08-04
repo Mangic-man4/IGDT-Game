@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1331251727093042800}
   m_Layer: 3
   m_Name: Moving platforms
-  m_TagString: Untagged
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,3 +295,6 @@ MonoBehaviour:
   startPosition: {x: -4, y: 0, z: -1}
   endPosition: {x: 1.8, y: 0, z: -1}
   speed: 3
+  startOnFirstTouch: 0
+  triggerCheck: 0
+  stopAtEnd: 0

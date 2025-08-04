@@ -273,7 +273,7 @@ public class TeleportControl : MonoBehaviour
         {
             if (hit.CompareTag("ObbyCourse") || hit.CompareTag("Door") ||
                 hit.CompareTag("DashWall") || hit.CompareTag("Spike") ||
-                hit.CompareTag("Laser"))
+                hit.CompareTag("Laser") || hit.CompareTag("MovingPlatform"))
             {
                 return false;
             }

@@ -3681,7 +3681,7 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 4
     type: 1
-    collisionMode: 0
+    collisionMode: 1
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
@@ -3851,7 +3851,7 @@ ParticleSystem:
     radiusScale: 0.13
     collidesWith:
       serializedVersion: 2
-      m_Bits: 73
+      m_Bits: 201
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
