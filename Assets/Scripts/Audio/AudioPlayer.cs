@@ -23,6 +23,7 @@ public class AudioPlayer : MonoBehaviour
 
         [Header("Playback Settings")]
         public AudioSource audioSource;
+        [Range(0f, 1f)] public float volume = 1f;
         [Min(0f)] public float delayBetweenSounds = 0f;
 
         [Header("SFX")]
@@ -53,8 +54,8 @@ public class AudioPlayer : MonoBehaviour
         if (!canPlay.TryGetValue(type, out bool canBePlayed) || !canBePlayed) return;
 
         var audioClip = effect.audioClips[Random.Range(0, effect.audioClips.Length)];
-        effect.audioSource.PlayOneShot(audioClip);
-        
+        effect.audioSource.PlayOneShot(audioClip, effect.volume);
+
         if (effect.delayBetweenSounds > 0f)
         {
             StartCoroutine(SoundCooldown(type, effect.delayBetweenSounds));

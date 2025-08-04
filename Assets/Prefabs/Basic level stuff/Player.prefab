@@ -409,6 +409,7 @@ MonoBehaviour:
   soundEffects:
   - type: 0
     audioSource: {fileID: 1161131264994772054}
+    volume: 0.5
     delayBetweenSounds: 0.55
     audioClips:
     - {fileID: 8300000, guid: eb719fe2a0d43f940a968375c8dd4097, type: 3}

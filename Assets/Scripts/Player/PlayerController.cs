@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
              Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, testPlatforms);
         */
 
-        // Nre detection method
+        // New detection method
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBoxSize, 0f, groundLayer | platformLayer | testPlatforms);
 
         //xInput = Input.GetAxisRaw("Horizontal"); //old
