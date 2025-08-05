@@ -13,12 +13,17 @@ public class AudioSettingsUI : MonoBehaviour
         float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
         float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
 
-        musicSlider.SetValueWithoutNotify(musicVolume);
-        sfxSlider.SetValueWithoutNotify(sfxVolume);
+        if (musicSlider != null)
+        {
+            musicSlider.SetValueWithoutNotify(musicVolume);
+            musicSlider.onValueChanged.AddListener(SetMusicVolume);
+        }
 
-        // Add listeners
-        musicSlider.onValueChanged.AddListener(SetMusicVolume);
-        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        if (sfxSlider != null)
+        {
+            sfxSlider.SetValueWithoutNotify(sfxVolume);
+            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        }
     }
 
     private void SetMusicVolume(float value)
@@ -33,7 +38,10 @@ public class AudioSettingsUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
-        sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
+        if (musicSlider != null)
+            musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
+
+        if (sfxSlider != null)
+            sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
     }
 }
