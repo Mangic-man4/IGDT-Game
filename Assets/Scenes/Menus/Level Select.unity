@@ -696,6 +696,7 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 0}
   previewSpritesByDifficulty:
   - difficultyName: Easy
     previewSprite: {fileID: 21300000, guid: b061953396d8ce34d8a802ece93c0257, type: 3}
@@ -976,15 +977,16 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
   - difficultyName: Easy
-    previewSprite: {fileID: 0}
+    previewSprite: {fileID: 21300000, guid: dbb67389fa8dcbc409c7a403aa9a27b6, type: 3}
   - difficultyName: Normal
-    previewSprite: {fileID: 21300000, guid: d8b9bbe3b25814048913100efd82e880, type: 3}
+    previewSprite: {fileID: 21300000, guid: db4e26b7a077f304083dec571f0a9cba, type: 3}
   - difficultyName: Hard
-    previewSprite: {fileID: 0}
+    previewSprite: {fileID: 21300000, guid: 40d97a8e477019948ab061e760104660, type: 3}
   - difficultyName: Extreme
-    previewSprite: {fileID: 0}
+    previewSprite: {fileID: 21300000, guid: fad9cf5b36bf488489812542f2747f10, type: 3}
 --- !u!1 &339172893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1797,7 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
   - difficultyName: Easy
     previewSprite: {fileID: 21300000, guid: 0eea4cb169179c841b37bbb6c5c6bcce, type: 3}
@@ -2746,6 +2749,7 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty: []
 --- !u!1 &1232554598 stripped
 GameObject:
@@ -2784,6 +2788,7 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
   - difficultyName: Easy
     previewSprite: {fileID: 21300000, guid: a72dd5d12ea55334580e46911a342eca, type: 3}
@@ -3786,6 +3791,7 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
   - difficultyName: Easy
     previewSprite: {fileID: 21300000, guid: 35bdb3a1aac7b374ebd65d9819ffea7f, type: 3}
@@ -4712,6 +4718,7 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
   - difficultyName: Easy
     previewSprite: {fileID: 21300000, guid: 6a18361fd8d7c0148a819023ed2bf850, type: 3}
@@ -4866,6 +4873,7 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
   - difficultyName: Easy
     previewSprite: {fileID: 21300000, guid: 5a23f2987a129f84d8a93631106ac3bc, type: 3}
@@ -5146,6 +5154,7 @@ MonoBehaviour:
   difficultyText: {fileID: 1824472680}
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
+  fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
   - difficultyName: Easy
     previewSprite: {fileID: 21300000, guid: 703924cf7f62c3c48b178f9a121e5831, type: 3}

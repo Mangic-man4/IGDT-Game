@@ -3,7 +3,12 @@ guid: 0dd3305442ff97746adf4fba89702d22
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tooltipPanel: {instanceID: 0}
+  - tooltipText: {instanceID: 0}
+  - difficultyText: {instanceID: 0}
+  - previewImageObject: {instanceID: 0}
+  - fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
