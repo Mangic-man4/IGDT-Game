@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2434330215019359322}
   - component: {fileID: 2319551865518173537}
   - component: {fileID: 3277395909952905616}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: MimicFireball
-  m_TagString: Untagged
+  m_TagString: MimicFireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
