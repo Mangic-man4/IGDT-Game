@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 16847317151607456}
   - component: {fileID: 16847317151607468}
   - component: {fileID: -8936463124491238571}
+  - component: {fileID: 8377897183694426011}
   m_Layer: 0
   m_Name: TurretTest
   m_TagString: Enemy
@@ -31,10 +32,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.8139, y: -15.45, z: -1.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5384549249311755713}
+  - {fileID: 3797968048242067884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &16847317151607458
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -652591494, guid: 7d6b82852604a524ca058e9794fb1b92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -191,8 +192,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9347ac5d5008a44989780a339024b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 5384549249311755713}
-  laserSpriteRenderer: {fileID: 5313125113039321232}
+  firePoint: {fileID: 3797968048242067884}
+  maxDistance: 100
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!114 &-8936463124491238571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +210,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultHits: 2
---- !u!1 &1787353803026696792
+--- !u!95 &8377897183694426011
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16847317151607470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c4d836374be6aa4797f35a0c6e61da3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5312669406995455479
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,37 +239,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5384549249311755713}
-  - component: {fileID: 5313125113039321232}
-  m_Layer: 12
-  m_Name: LaserBeam
-  m_TagString: Laser
+  - component: {fileID: 3797968048242067884}
+  - component: {fileID: 7910953833158459187}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5384549249311755713
+--- !u!4 &3797968048242067884
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787353803026696792}
+  m_GameObject: {fileID: 5312669406995455479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.32, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 16847317151607457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5313125113039321232
+--- !u!212 &7910953833158459187
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787353803026696792}
+  m_GameObject: {fileID: 5312669406995455479}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -278,13 +303,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
-  m_Sprite: {fileID: -1083952649, guid: 7d6b82852604a524ca058e9794fb1b92, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1950075425, guid: 7d6b82852604a524ca058e9794fb1b92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 3, y: 1}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -215,27 +215,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Beam_1
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 176
-        width: 48
-        height: 16
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 16, y: 5, z: 6, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ecd31fb4e55c0b4489a6cb2f7a9260a1
-      internalID: -1083952649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Improvements_9
       rect:
         serializedVersion: 2
@@ -593,27 +572,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Beam_2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 128
-        width: 48
-        height: 16
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 16, y: 5, z: 6, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 48b6c2b3b53f97041a0befc7fd2ef4c9
-      internalID: -1424865339
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Checkpoint_1
       rect:
         serializedVersion: 2
@@ -924,27 +882,6 @@ TextureImporter:
       bones: []
       spriteID: 03af552a56320c6438ecae6a59a81af6
       internalID: -251117953
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Beam_3
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 80
-        width: 48
-        height: 16
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 16, y: 5, z: 6, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2499cbb58624e2d43b902d086d2ca122
-      internalID: 1422738867
       vertices: []
       indices: 
       edges: []
@@ -1265,27 +1202,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Beam_4
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 32
-        width: 48
-        height: 16
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 16, y: 5, z: 6, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd931852e61f0cf4394f8dba9770b4e4
-      internalID: 1321698683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Improvements_81
       rect:
         serializedVersion: 2
@@ -1474,6 +1390,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Beam_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 176
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 0, z: 16, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27f15ddb0a7e6c642b75da17f4014fbb
+      internalID: -1950075425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 128
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 0, z: 16, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75902af88e0b0aa4787da9295031930f
+      internalID: -829983067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 0, z: 16, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab40266b6027b745b9039259c957711
+      internalID: -1632522776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 0, z: 16, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3c99555b8b35bd479e1974cdd9136b8
+      internalID: -111881061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1485,10 +1485,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Beam_1: -1083952649
-      Beam_2: -1424865339
-      Beam_3: 1422738867
-      Beam_4: 1321698683
+      Beam_0: -1950075425
+      Beam_1: -829983067
+      Beam_11: -1454702675
+      Beam_12: -740035575
+      Beam_2: -1632522776
+      Beam_22: -25231284
+      Beam_3: -111881061
+      Beam_32: -1938514941
+      Beam_42: -989612739
       Checkpoint_1: -798453530
       Checkpoint_2: 725526263
       GravBG: 1236074273
