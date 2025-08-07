@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Improvements_0
+      name: GravParticle_11
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_1
+      name: GravParticle_21
       rect:
         serializedVersion: 2
         x: 16
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_9
+      name: GravNode_11
       rect:
         serializedVersion: 2
         x: 0
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_10
+      name: GravNode_21
       rect:
         serializedVersion: 2
         x: 16
@@ -341,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_17
+      name: GravNode_31
       rect:
         serializedVersion: 2
         x: 0
@@ -362,7 +362,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_18
+      name: GravNode_41
       rect:
         serializedVersion: 2
         x: 16
@@ -467,7 +467,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_24
+      name: GravParticle_12
       rect:
         serializedVersion: 2
         x: 0
@@ -488,7 +488,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_25
+      name: GravParticle_22
       rect:
         serializedVersion: 2
         x: 16
@@ -593,7 +593,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_33
+      name: GravNode_12
       rect:
         serializedVersion: 2
         x: 0
@@ -614,7 +614,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_34
+      name: GravNode_22
       rect:
         serializedVersion: 2
         x: 16
@@ -719,7 +719,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_41
+      name: GravNode_32
       rect:
         serializedVersion: 2
         x: 0
@@ -740,7 +740,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_42
+      name: GravNode_42
       rect:
         serializedVersion: 2
         x: 16
@@ -782,7 +782,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_48
+      name: GravParticle_13
       rect:
         serializedVersion: 2
         x: 0
@@ -803,7 +803,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_49
+      name: GravParticle_23
       rect:
         serializedVersion: 2
         x: 16
@@ -887,7 +887,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_57
+      name: GravNode_13
       rect:
         serializedVersion: 2
         x: 0
@@ -908,7 +908,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_58
+      name: GravNode_23
       rect:
         serializedVersion: 2
         x: 16
@@ -1013,7 +1013,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_65
+      name: GravNode_33
       rect:
         serializedVersion: 2
         x: 0
@@ -1034,7 +1034,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_66
+      name: GravNode_43
       rect:
         serializedVersion: 2
         x: 16
@@ -1097,7 +1097,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_72
+      name: GravParticle_14
       rect:
         serializedVersion: 2
         x: 0
@@ -1118,7 +1118,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_73
+      name: GravParticle_24
       rect:
         serializedVersion: 2
         x: 16
@@ -1202,7 +1202,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_81
+      name: GravNode_14
       rect:
         serializedVersion: 2
         x: 0
@@ -1223,7 +1223,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_82
+      name: GravNode_24
       rect:
         serializedVersion: 2
         x: 16
@@ -1248,7 +1248,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
+        y: 15
         width: 16
         height: 16
       alignment: 0
@@ -1328,7 +1328,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_89
+      name: GravNode_34
       rect:
         serializedVersion: 2
         x: 0
@@ -1349,7 +1349,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Improvements_90
+      name: GravNode_44
       rect:
         serializedVersion: 2
         x: 16
@@ -1523,61 +1523,61 @@ TextureImporter:
       GravEffect_44: -1760962623
       GravFG_1: 2092158861
       GravFG_2: -1581588454
+      GravNode_11: 2124070154
+      GravNode_12: 2016923810
+      GravNode_13: 2035923418
+      GravNode_14: -1183127997
+      GravNode_21: -8662405
+      GravNode_22: -1223180920
+      GravNode_23: 707686309
+      GravNode_24: -1422906152
+      GravNode_31: 446200387
+      GravNode_32: -2099920914
+      GravNode_33: -953855162
+      GravNode_34: 836791318
+      GravNode_41: 1052745989
+      GravNode_42: -529934413
+      GravNode_43: -1941749539
+      GravNode_44: 141715673
+      GravParticle_11: -812906626
+      GravParticle_12: -319415094
+      GravParticle_13: 1265055298
+      GravParticle_14: 1504481587
+      GravParticle_21: -2111895860
+      GravParticle_22: 1712810713
+      GravParticle_23: 373559723
+      GravParticle_24: -1860932747
       GravRock_1: 2086439673
       GravRock_2: 507648305
       GravRock_3: 168819597
       GravRock_4: -795235706
-      Improvements_0: -812906626
-      Improvements_1: -2111895860
-      Improvements_10: -8662405
       Improvements_15: -1125036231
       Improvements_16: -1295066514
-      Improvements_17: 446200387
-      Improvements_18: 1052745989
       Improvements_23: -440669603
-      Improvements_24: -319415094
-      Improvements_25: 1712810713
       Improvements_30: 2017733355
       Improvements_31: 1410760617
-      Improvements_33: 2016923810
-      Improvements_34: -1223180920
       Improvements_39: 1143532170
       Improvements_40: -1289829652
-      Improvements_41: -2099920914
-      Improvements_42: -529934413
       Improvements_44: 1072382382
       Improvements_45: 410082237
       Improvements_46: 1090573389
       Improvements_47: -536758024
-      Improvements_48: 1265055298
-      Improvements_49: 373559723
       Improvements_54: -908877978
       Improvements_55: 2104754663
       Improvements_56: -479228863
-      Improvements_57: 2035923418
-      Improvements_58: 707686309
       Improvements_6: -730143682
       Improvements_63: 778720651
       Improvements_64: -1429920193
-      Improvements_65: -953855162
-      Improvements_66: -1941749539
       Improvements_68: -1510753401
       Improvements_69: 155962925
       Improvements_7: -2111097965
       Improvements_70: -1093565139
-      Improvements_72: 1504481587
-      Improvements_73: -1860932747
       Improvements_78: 536513243
       Improvements_79: 295774484
       Improvements_8: -859706668
       Improvements_80: -903463256
-      Improvements_81: -1183127997
-      Improvements_82: -1422906152
       Improvements_87: 226178263
       Improvements_88: -1210386049
-      Improvements_89: 836791318
-      Improvements_9: 2124070154
-      Improvements_90: 141715673
       Improvements_92: 1037359676
       Improvements_93: 1655780966
       Improvements_94: 895308271
