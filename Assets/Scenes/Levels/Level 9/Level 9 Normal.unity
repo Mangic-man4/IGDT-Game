@@ -131,10 +131,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 181034672}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PhaseDropPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 181034671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.678, y: -0.042, z: 0.015222875}
+  m_LocalPosition: {x: -0.047, y: 0.644, z: 0.015222875}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22481,10 +22481,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 953662344}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: MimicSpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -22497,7 +22497,7 @@ Transform:
   m_GameObject: {fileID: 953662343}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.678, y: -0.042, z: 0.015222875}
+  m_LocalPosition: {x: 0.552, y: -0.037, z: 0.015222875}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -199139,6 +199139,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+--- !u!1 &1316205739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1316205740}
+  m_Layer: 17
+  m_Name: ExplosiveDropPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1316205740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316205739}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071066, w: 0.70710707}
+  m_LocalPosition: {x: -0.57799953, y: 0.057999805, z: 0.015222875}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1742615993}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &1349787984 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6652574977656368180, guid: 32f0a4a2c9878954abb2727f8e02d443, type: 3}
@@ -199410,10 +199441,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1718418878}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ExplosiveDropPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -199426,7 +199457,7 @@ Transform:
   m_GameObject: {fileID: 1718418877}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071066, w: 0.70710707}
-  m_LocalPosition: {x: -0.6779999, y: -0.042000007, z: 0.015222875}
+  m_LocalPosition: {x: -0.5779999, y: -0.19200002, z: 0.015222875}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -199451,7 +199482,8 @@ GameObject:
   - component: {fileID: 1742615990}
   - component: {fileID: 1742615994}
   - component: {fileID: 1742615995}
-  m_Layer: 0
+  - component: {fileID: 1742615996}
+  m_Layer: 17
   m_Name: BossPlaceholder
   m_TagString: MimicBoss
   m_Icon: {fileID: 0}
@@ -199473,14 +199505,22 @@ MonoBehaviour:
   maxHealth: 9
   currentHealth: 0
   currentPhase: 1
-  phase2Threshold: 6
-  phase3Threshold: 3
-  lungeForce: 10
+  phase2Threshold: 88
+  phase3Threshold: 77
+  lungeForce: 20
   lungeCooldown: 2
+  lungeChance: 1
+  attackDistance: 12.8
+  moveSpeed: 3
   explosiveCoinPrefab: {fileID: 6475583564443012492, guid: 386bc81fb6814714e9976095f1f6e6ed, type: 3}
   explosiveDropPoints:
   - {fileID: 1718418878}
-  explosiveDropCooldown: 10
+  - {fileID: 1316205740}
+  explosiveDropCooldown: 2
+  randomLaunchForce: 2
+  randomTorque: 2
+  baseLaunchForce: 9
+  baseLaunchDirection: {x: 1.25, y: 1}
   mimicPrefab: {fileID: 4980505486070737709, guid: a25ed35ae5c3dc4448894d66e27e4726, type: 3}
   spawnPoints:
   - {fileID: 953662344}
@@ -199491,6 +199531,9 @@ MonoBehaviour:
   dropPosition: {fileID: 181034672}
   invincibilityTime: 1
   bossSprite: {fileID: 1742615992}
+  phase1Color: {r: 1, g: 1, b: 1, a: 1}
+  phase2Color: {r: 1, g: 0.8207547, b: 0.8207547, a: 1}
+  phase3Color: {r: 1, g: 0.39811313, b: 0.39811313, a: 1}
 --- !u!58 &1742615991
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -199498,7 +199541,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742615989}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -199566,9 +199609,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 1152402427, guid: 98a3f1f9a10ac60498ea9d71f79ce848, type: 3}
+  m_Color: {r: 0.6075471, g: 0.6075471, b: 0.6075471, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -199592,6 +199635,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1718418878}
+  - {fileID: 1316205740}
   - {fileID: 953662344}
   - {fileID: 181034672}
   m_Father: {fileID: 0}
@@ -199611,7 +199655,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -199622,7 +199666,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1742615995
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -199635,10 +199679,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1352
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -199658,6 +199702,27 @@ CircleCollider2D:
   m_Offset: {x: 0.0018791199, y: 0}
   serializedVersion: 2
   m_Radius: 0.51315385
+--- !u!95 &1742615996
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742615989}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7aa10a65a946b294c8251e543a96e84e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1813860470
 GameObject:
   m_ObjectHideFlags: 0

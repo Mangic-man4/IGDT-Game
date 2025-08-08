@@ -83,15 +83,7 @@ public class MimicController : MonoBehaviour
 
     public void RespawnEnemies()
     {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        revealed = false;
-
-        transform.SetPositionAndRotation(originalPosition, originalRotation);
-
-        if (anim != null)
-            anim.Play("Coin");
-
+        ResetMimicPos();
         gameObject.SetActive(true);
     }
 

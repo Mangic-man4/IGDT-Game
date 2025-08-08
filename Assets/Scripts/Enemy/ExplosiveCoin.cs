@@ -8,6 +8,7 @@ public class ExplosiveCoin : MonoBehaviour
     public GameObject explosionEffectPrefab;
 
     [Header("Throw Settings")]
+    public bool autoLaunchOnStart = false;
     public float launchForce = 5f;
     public Vector2 launchDirection = new(1f, 1f);
 
@@ -18,8 +19,11 @@ public class ExplosiveCoin : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // Apply arc force
-        rb.AddForce(launchDirection.normalized * launchForce, ForceMode2D.Impulse);
+        // Apply arc force (not needed because the boss code handles this already)
+        if (autoLaunchOnStart)
+        {
+            rb.AddForce(launchDirection.normalized * launchForce, ForceMode2D.Impulse);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

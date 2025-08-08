@@ -45,8 +45,8 @@ TagManager:
   - IgnoreParticleCollider
   - TeleportKillzone
   - MimicFireball
-  - 
-  - 
+  - MimicBoss
+  - Fireball
   - 
   - 
   - 
