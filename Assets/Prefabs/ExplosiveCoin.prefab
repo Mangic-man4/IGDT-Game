@@ -187,11 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb524114a7e2c943ac4b51e78ea1689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 2.02
+  explosionRadius: 2
   explosionLayers:
     serializedVersion: 2
     m_Bits: 1481
-  explosionEffectPrefab: {fileID: 2641176362958019219, guid: 1ef9f0bf51473ed40b15c89726b4a761, type: 3}
+  explosionEffectPrefab: {fileID: 6868839473017282360, guid: c536d03712633e8408b6431d1e06006a, type: 3}
   autoLaunchOnStart: 0
   launchForce: 5
   launchDirection: {x: 1, y: 1}

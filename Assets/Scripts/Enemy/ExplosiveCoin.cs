@@ -42,14 +42,17 @@ public class ExplosiveCoin : MonoBehaviour
     {
         hasExploded = true;
 
+        // In ExplosiveCoin.Explode()
         if (explosionEffectPrefab != null)
         {
-            if (explosionEffectPrefab != null)
+            GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+
+            if (effect.TryGetComponent(out ExplosionVFXScaler scaler))
             {
-                GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-                Destroy(effect, 1.5f); // Destroy after 1.5 seconds (adjust as needed)
+                scaler.SetRadius(explosionRadius);   // <- matches your OverlapCircleAll radius
             }
         }
+
 
         // Damage all valid targets in radius
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius, explosionLayers);

@@ -77,8 +77,7 @@ public class MimicBossController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
+        if (TryGetComponent(out sr))
         {
             sr.color = phase1Color;
         }
