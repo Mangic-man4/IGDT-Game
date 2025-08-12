@@ -17,12 +17,25 @@ public class MimicController : MonoBehaviour
     [Tooltip("Time after awakening before the mimic becomes lethal")]
     public float lethalDelayTime;
 
+    [Header("Special Variant")]
+    [Tooltip("If true, uses the aggro (chase) animation as the idle (no 'Coin' idle).")]
+    [SerializeField] private bool aggroAsIdle = false;
+
+    [Tooltip("If false, skip the awake animation and go straight to chase visual.")]
+    [SerializeField] private bool useAwakeAnimation = true;
+
+    [Header("Animation Names (defaults for Coin Mimic)")]
+    [SerializeField] private string idleAnim = "Coin";
+    [SerializeField] private string awakeAnim = "CoinMimic_Awake";
+    [SerializeField] private string chaseAnim = "CoinMimic_Chase";
+
     [Header("References")]
     public Transform player;
 
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private Animator anim;
+
     private bool revealed = false;
     private bool lethal = false;
 
@@ -34,11 +47,12 @@ public class MimicController : MonoBehaviour
     public void SetRevealed(bool value)
     {
         revealed = value;
+        if (anim == null) return;
 
-        if (anim != null)
-        {
-            anim.Play(revealed ? "CoinMimic_Chase" : "Coin");
-        }
+        if (revealed)
+            PlayChase();
+        else
+            PlayIdle();
     }
 
 
@@ -66,19 +80,23 @@ public class MimicController : MonoBehaviour
             }
         }
 
-        anim.Play("Coin"); // Start in idle animation
+        // Start in visual idle (either Coin or Chase depending on variant)
+        PlayIdle();
     }
 
     public void ResetMimicPos()
     {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
         revealed = false;
-
+        lethal = false;
         transform.SetPositionAndRotation(originalPosition, originalRotation);
-
-        if (anim != null)
-            anim.Play("Coin");
+        
+        PlayIdle();
     }
 
     public void RespawnEnemies()
@@ -102,15 +120,17 @@ public class MimicController : MonoBehaviour
         }
 
         revealed = false;
+        lethal = false;
 
-        if (anim != null)
-            anim.Play("Coin");
+        PlayIdle();
     }
 
 
 
     void Update()
     {
+        if (player == null) return;
+
         float distance = Vector2.Distance(transform.position, player.position);
 
         if (!revealed)
@@ -130,7 +150,11 @@ public class MimicController : MonoBehaviour
             else
             {
                 ChasePlayer();
-                sr.flipX = (player.position.x < transform.position.x); // Face player
+
+                if (sr != null)
+                {
+                    sr.flipX = (player.position.x < transform.position.x); // Face player
+                }
             }
         }
     }
@@ -140,7 +164,12 @@ public class MimicController : MonoBehaviour
     {
         revealed = true;
         lethal = false; // reset lethal state
-        anim.Play("CoinMimic_Awake");
+
+        if (useAwakeAnimation)
+            PlayAwake();
+        else
+            PlayChase(); // go straight to chase visual
+
         StartCoroutine(BecomeLethalAfterDelay());
     }
 
@@ -148,11 +177,12 @@ public class MimicController : MonoBehaviour
     {
         revealed = false;
         lethal = false;
-        anim.Play("Coin");
+        PlayIdle();
     }
 
     void ChasePlayer()
     {
+        if (rb == null) return;
         Vector2 direction = (player.position - transform.position).normalized;
         Vector2 newPos = rb.position + moveSpeed * Time.deltaTime * direction;
         rb.MovePosition(newPos);
@@ -162,7 +192,26 @@ public class MimicController : MonoBehaviour
     {
         yield return new WaitForSeconds(lethalDelayTime);
         lethal = true;
-        anim.Play("CoinMimic_Chase");
+        PlayChase();
+    }
+
+    // --- Animation helpers ---
+    private void PlayIdle()
+    {
+        if (anim == null) return;
+        anim.Play(aggroAsIdle ? chaseAnim : idleAnim);
+    }
+
+    private void PlayAwake()
+    {
+        if (anim == null) return;
+        anim.Play(awakeAnim);
+    }
+
+    private void PlayChase()
+    {
+        if (anim == null) return;
+        anim.Play(chaseAnim);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

@@ -46,7 +46,7 @@ public class MimicBossController : MonoBehaviour
 
 
     [Header("Mimic Spawn Settings")]
-    public GameObject mimicPrefab;
+    [SerializeField] private GameObject[] mimicPrefabs;
     public Transform[] spawnPoints;
     public int maxMimics = 3;
     private int activeMimics = 0;
@@ -54,6 +54,8 @@ public class MimicBossController : MonoBehaviour
     [Header("Phase Transition")]
     public GameObject[] phaseTransitionPowerups;
     public Transform dropPosition;
+    [SerializeField] private GameObject jumpDustPrefab;
+
 
     [Header("Damage Flicker")]
     public float invincibilityTime = 1f;
@@ -229,25 +231,33 @@ public class MimicBossController : MonoBehaviour
         yield return new WaitForSeconds(explosiveDropCooldown);
         canDropExplosives = true;
     }
+    private GameObject PickMimicPrefab()
+    {
+        if (mimicPrefabs == null || mimicPrefabs.Length == 0) return null;
+        return mimicPrefabs[Random.Range(0, mimicPrefabs.Length)];
+    }
 
     IEnumerator SpawnMimic()
     {
         canSpawnMimic = false;
-
         yield return new WaitForSeconds(3f);
 
         if (spawnPoints.Length > 0 && activeMimics < maxMimics)
         {
             bool playerOnRight = player.position.x > transform.position.x;
-            int directionMultiplier = playerOnRight ? 1 : -1;
+            int dir = playerOnRight ? 1 : -1;
 
             Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
             Vector3 spawnPos = point.position;
-            spawnPos.x = transform.position.x + directionMultiplier * Mathf.Abs(point.localPosition.x);
+            spawnPos.x = transform.position.x + dir * Mathf.Abs(point.localPosition.x);
             spawnPos.y = transform.position.y + point.localPosition.y;
 
-            Instantiate(mimicPrefab, spawnPos, Quaternion.identity);
-            activeMimics++;
+            var prefab = PickMimicPrefab();
+            if (prefab != null)
+            {
+                Instantiate(prefab, spawnPos, Quaternion.identity);
+                activeMimics++;
+            }
         }
 
         yield return new WaitForSeconds(3f);
@@ -315,13 +325,10 @@ public class MimicBossController : MonoBehaviour
             rb.AddForce(new Vector2(xForce, yForce), ForceMode2D.Impulse);
 
             // Add the cleanup component to remove Rigidbody later
-            if (!powerup.TryGetComponent<PowerupFallCleanup>(out _))
-            {
-                if (!powerup.TryGetComponent<PowerupFallCleanup>(out _))
-                {
-                    powerup.AddComponent<PowerupFallCleanup>();
-                }
-            }
+            if (!powerup.TryGetComponent<PowerupFallCleanup>(out var cleanup))
+                cleanup = powerup.AddComponent<PowerupFallCleanup>();
+
+            cleanup.SetLandingVFX(jumpDustPrefab);
         }
     }
 
