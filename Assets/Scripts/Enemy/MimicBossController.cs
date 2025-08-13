@@ -76,6 +76,27 @@ public class MimicBossController : MonoBehaviour
     public Transform dropPosition;
     [SerializeField] private GameObject jumpDustPrefab;
 
+    [Header("Death Coin Drop")]
+    [Tooltip("Assign the regular coin pickup prefab")]
+    [SerializeField] private GameObject regularCoinPrefab;    // your normal pickup coin prefab
+    [Tooltip("How many coins to spawn")]
+    [SerializeField] private int deathCoinCount = 12;          // how many to spawn
+    [Tooltip("Minimum shoot-out force")]
+    [SerializeField] private float coinMinImpulse = 6f;        // shoot-out force range
+    [Tooltip("Maximum shoot-out force")]
+    [SerializeField] private float coinMaxImpulse = 10f;
+    [Tooltip("Spawn offset from boss center")]
+    [SerializeField] private float coinSpawnRadius = 0.2f;     // spawn offset from boss center
+    [Tooltip("Gives a bit of spin")]
+    [SerializeField] private float coinMaxTorque = 5f;         // little spin
+    [Tooltip("Nudges directions slightly upward")]
+    [SerializeField] private float coinUpBias = 0.15f;         // nudges directions slightly upward
+    [Tooltip("Avoid bouncing off corpse")]
+    [SerializeField] private float bossCoinNoCollideTime = 0.2f; // avoid bouncing off corpse
+
+    // optional visuals
+    [Tooltip("OPTIONAL")]
+    [SerializeField] private GameObject coinBurstVFX;          // reuse your Explosion_FX if you want
 
     [Header("Damage Flicker")]
     public float invincibilityTime = 1f;
@@ -466,6 +487,8 @@ public class MimicBossController : MonoBehaviour
     void Die()
     {
         // TODO: Death animation and coin explosion
+        DropDeathCoins();
+
         Destroy(gameObject);
     }
 
@@ -532,6 +555,46 @@ public class MimicBossController : MonoBehaviour
         }
 
         activeMimicSet.Remove(t);
+    }
+
+    // Call this right before you Destroy the boss
+    public void DropDeathCoins()
+    {
+        if (coinBurstVFX) Instantiate(coinBurstVFX, transform.position, Quaternion.identity);
+
+        var bossCols = GetComponentsInChildren<Collider2D>(true);
+
+        float count = Mathf.Max(1, deathCoinCount);
+        float baseAngle = Random.Range(0f, 360f / count);
+
+        for (int i = 0; i < count; i++)
+        {
+            float angle = baseAngle + (360f * i / count) + Random.Range(-10f, 10f);
+            Vector2 dir = new(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+            dir = (dir + new Vector2(0f, coinUpBias)).normalized;
+
+            Vector3 spawnPos = transform.position + (Vector3)dir * coinSpawnRadius;
+
+            var coin = Instantiate(regularCoinPrefab, spawnPos, Quaternion.identity);
+
+            // physics kick
+            if (!coin.TryGetComponent<Rigidbody2D>(out var crb))
+                crb = coin.AddComponent<Rigidbody2D>();
+            crb.velocity = Vector2.zero;
+            crb.AddForce(dir * Random.Range(coinMinImpulse, coinMaxImpulse), ForceMode2D.Impulse);
+            crb.AddTorque(Random.Range(-coinMaxTorque, coinMaxTorque), ForceMode2D.Impulse);
+
+            // ensure cleanup + dust
+            if (!coin.TryGetComponent<PowerupFallCleanup>(out var cleanup))
+                cleanup = coin.AddComponent<PowerupFallCleanup>();
+            if (jumpDustPrefab) cleanup.SetLandingVFX(jumpDustPrefab);
+
+            // ignore boss colliders so they don't ping off the corpse; no need to re-enable
+            var coinCols = coin.GetComponentsInChildren<Collider2D>(true);
+            foreach (var bc in bossCols)
+                foreach (var cc in coinCols)
+                    if (bc && cc) Physics2D.IgnoreCollision(bc, cc, true);
+        }
     }
 
     private void OnDrawGizmosSelected()

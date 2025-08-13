@@ -23,7 +23,12 @@ public class PowerupFallCleanup : MonoBehaviour
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
+        if (TryGetComponent<Rigidbody2D>(out rb))
+        {
+            rb.freezeRotation = true; // or: rb.constraints |= RigidbodyConstraints2D.FreezeRotation;
+            rb.angularVelocity = 0f;
+        }
 
         // Find existing colliders: keep the trigger, add/ensure a solid
         foreach (var c in GetComponents<Collider2D>())
