@@ -11,11 +11,24 @@ public class MimicController : MonoBehaviour
     [Tooltip("Distance beyond which the mimic gives up chase")]
     public float chaseStopDistance;
 
+    [Tooltip("Extra margin added to chaseStopDistance to avoid stop/start thrashing")]
+    public float chaseStopBuffer = 0.25f;
+
     [Tooltip("Movement speed while chasing the player")]
     public float moveSpeed;
 
     [Tooltip("Time after awakening before the mimic becomes lethal")]
     public float lethalDelayTime;
+
+    [Header("Physics Tuning")]
+    [Tooltip("Linear drag while chasing (usually 0)")]
+    public float chaseDrag = 0f;
+
+    [Tooltip("Linear drag when not chasing to prevent sliding")]
+    public float idleDrag = 8f;
+
+    [Tooltip("Optional smoothing when setting velocity")]
+    public float velocitySmoothing = 0.1f;
 
     [Header("Special Variant")]
     [Tooltip("If true, uses the aggro (chase) animation as the idle (no 'Coin' idle).")]
@@ -42,6 +55,10 @@ public class MimicController : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
+    // cached target velocity for FixedUpdate
+    private Vector2 targetVelocity;
+    private Vector2 currentVelocity; // used for smoothing
+
     public bool IsRevealed() => revealed;
 
     public void SetRevealed(bool value)
@@ -67,6 +84,19 @@ public class MimicController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
+        if (rb != null)
+        {
+            // Prevent spin/jitter from contacts
+            rb.freezeRotation = true;
+
+            // Make visuals smoother between physics steps
+            rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+            // Start at idle drag so we don't drift before reveal
+            rb.drag = idleDrag;
+
+        }
+
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -80,7 +110,6 @@ public class MimicController : MonoBehaviour
             }
         }
 
-        // Start in visual idle (either Coin or Chase depending on variant)
         PlayIdle();
     }
 
@@ -90,6 +119,7 @@ public class MimicController : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
+            rb.drag = idleDrag;
         }
 
         revealed = false;
@@ -117,6 +147,7 @@ public class MimicController : MonoBehaviour
             rb.velocity = velocity;
             rb.angularVelocity = 0f;
             rb.freezeRotation = true;
+            rb.drag = idleDrag;
         }
 
         revealed = false;
@@ -125,11 +156,12 @@ public class MimicController : MonoBehaviour
         PlayIdle();
     }
 
-
-
     void Update()
     {
-        if (player == null) return;
+        if (player == null)
+        {
+            return;
+        }
 
         float distance = Vector2.Distance(transform.position, player.position);
 
@@ -140,35 +172,71 @@ public class MimicController : MonoBehaviour
                 Reveal();
             }
         }
-        
+
         if (lethal)
         {
-            if (distance > chaseStopDistance)
+            // Stop only when clearly outside (buffer avoids jitter at the edge)
+            if (distance > (chaseStopDistance + chaseStopBuffer))
             {
                 StopChase();
             }
             else
             {
-                ChasePlayer();
+                // Compute desired velocity; applied in FixedUpdate
+                Vector2 dir = (player.position - transform.position).normalized;
+                targetVelocity = dir * moveSpeed;
 
                 if (sr != null)
                 {
-                    sr.flipX = (player.position.x < transform.position.x); // Face player
+                    sr.flipX = (player.position.x < transform.position.x);
                 }
             }
         }
+        else
+        {
+            // Not lethal means we shouldn't drift; ensure no target motion
+            targetVelocity = Vector2.zero;
+        }
     }
 
+    void FixedUpdate()
+    {
+        if (rb == null)
+        {
+            return;
+        }
+
+        // Smoothly approach target velocity to remove shakiness
+        if (velocitySmoothing <= 0f)
+        {
+            rb.velocity = targetVelocity;
+        }
+        else
+        {
+            rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, velocitySmoothing);
+        }
+    }
 
     void Reveal()
     {
         revealed = true;
         lethal = false; // reset lethal state
 
+        if (rb != null)
+        {
+            // When waking up, remove idle drag so chase feels snappy
+            rb.drag = chaseDrag;
+            rb.velocity = Vector2.zero;
+        }
+
         if (useAwakeAnimation)
+        {
             PlayAwake();
+        }
         else
-            PlayChase(); // go straight to chase visual
+        {
+            PlayChase();
+        }
 
         StartCoroutine(BecomeLethalAfterDelay());
     }
@@ -177,21 +245,40 @@ public class MimicController : MonoBehaviour
     {
         revealed = false;
         lethal = false;
+
+        if (rb != null)
+        {
+            // Kill motion and add drag so we don't slide away
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.drag = idleDrag;
+        }
+
+        targetVelocity = Vector2.zero;
+
         PlayIdle();
     }
 
+    // Obsolete
+    /*
     void ChasePlayer()
     {
         if (rb == null) return;
         Vector2 direction = (player.position - transform.position).normalized;
         Vector2 newPos = rb.position + moveSpeed * Time.deltaTime * direction;
         rb.MovePosition(newPos);
-    }
+    }*/
 
     IEnumerator BecomeLethalAfterDelay()
     {
         yield return new WaitForSeconds(lethalDelayTime);
         lethal = true;
+
+        if (rb != null)
+        {
+            rb.drag = chaseDrag;
+        }
+
         PlayChase();
     }
 
@@ -246,11 +333,13 @@ public class MimicController : MonoBehaviour
                 Debug.Log("Player caught by Mimic!");
             }
         } 
-    } 
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, chaseStopDistance + chaseStopBuffer);
+    }
 }
-
-
-
-
-
-
