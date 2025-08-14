@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,7 +10,7 @@ public class MimicBossController : MonoBehaviour
 
     [Header("General Settings")]
     public int maxHealth = 9;
-    [SerializeField] private int currentHealth;
+    [HideInInspector] public int currentHealth;
     [SerializeField] private int currentPhase = 1;
     private bool isInvincible = false;
 
@@ -91,8 +92,8 @@ public class MimicBossController : MonoBehaviour
     [SerializeField] private float coinMaxTorque = 5f;         // little spin
     [Tooltip("Nudges directions slightly upward")]
     [SerializeField] private float coinUpBias = 0.15f;         // nudges directions slightly upward
-    [Tooltip("Avoid bouncing off corpse")]
-    [SerializeField] private float bossCoinNoCollideTime = 0.2f; // avoid bouncing off corpse
+    //[Tooltip("Avoid bouncing off corpse")]
+    //[SerializeField] private float bossCoinNoCollideTime = 0.2f; // avoid bouncing off corpse
 
     // optional visuals
     [Tooltip("OPTIONAL")]
@@ -107,10 +108,19 @@ public class MimicBossController : MonoBehaviour
     [SerializeField] private Color phase2Color = Color.gray;
     [SerializeField] private Color phase3Color = Color.black;
 
+    [Header("Boss HUD")]
+    [SerializeField] private string displayName = "Mimic Boss";
+    public string DisplayName => displayName;
+
+    public int MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
+    private BossHealthBarHUD bossBar;
+
     private bool canSpawnMimic = true;
     private bool canDropExplosives = true;
     private bool isNearPlayer = false;
     private bool isLunging = false;
+    private bool hasDroppedOnce = false;
 
     private Rigidbody2D rb;
     private Transform player;
@@ -122,9 +132,10 @@ public class MimicBossController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.freezeRotation = true;
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        //rb.interpolation = RigidbodyInterpolation2D.Interpolate; // Causes weird spawn at 0,0,0
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rb.gravityScale = 0f;
+        StartCoroutine(EnableInterpolationAfterDelay(0.1f));
 
         if (TryGetComponent(out sr))
         {
@@ -135,12 +146,14 @@ public class MimicBossController : MonoBehaviour
 
         // if you forgot to assign visualRoot, infer it from the sprite
         if (visualRoot == null && sr != null)
-        {
+        {   
             // prefer the sprite's parent (e.g., your "Visual" GO); fallback to sprite itself
             visualRoot = (sr.transform.parent != null) ? sr.transform.parent : sr.transform;
         }
 
         currentHealth = maxHealth;
+        bossBar = FindObjectOfType<BossHealthBarHUD>();
+
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -173,7 +186,7 @@ public class MimicBossController : MonoBehaviour
             StartCoroutine(SpawnMimic());
         }
 
-        if (isNearPlayer && canLunge && Random.value < lungeChance)
+        if (isNearPlayer && canLunge && UnityEngine.Random.value < lungeChance)
         {
             StartCoroutine(LungeAttack());
         }
@@ -339,6 +352,13 @@ public class MimicBossController : MonoBehaviour
     {
         canDropExplosives = false;
 
+        if (!hasDroppedOnce)
+        {
+            float startupDelay = UnityEngine.Random.Range(1f, 2f);
+            yield return new WaitForSeconds(startupDelay);
+            hasDroppedOnce = true;
+        }
+
         bool playerOnRight = player.position.x > transform.position.x;
         int directionMultiplier = playerOnRight ? 1 : -1;
 
@@ -352,7 +372,7 @@ public class MimicBossController : MonoBehaviour
             Vector3 spawnPos = transform.position + spawnOffset;
 
             // Random rotation
-            Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+            Quaternion rotation = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 360f));
 
             GameObject coin = Instantiate(explosiveCoinPrefab, spawnPos, rotation);
 
@@ -360,11 +380,11 @@ public class MimicBossController : MonoBehaviour
             {
                 // Combine base launch direction with randomness
                 Vector2 launchDir = new(baseLaunchDirection.x * directionMultiplier, baseLaunchDirection.y);
-                Vector2 randomizedForce = launchDir.normalized * Random.Range(baseLaunchForce * 0.8f, baseLaunchForce * 1.2f);
+                Vector2 randomizedForce = launchDir.normalized * UnityEngine.Random.Range(baseLaunchForce * 0.8f, baseLaunchForce * 1.2f);
                 coinRb.AddForce(randomizedForce, ForceMode2D.Impulse);
 
                 // Add spin
-                coinRb.AddTorque(Random.Range(-randomTorque, randomTorque), ForceMode2D.Impulse);
+                coinRb.AddTorque(UnityEngine.Random.Range(-randomTorque, randomTorque), ForceMode2D.Impulse);
             }
 
         }
@@ -375,7 +395,7 @@ public class MimicBossController : MonoBehaviour
     private GameObject PickMimicPrefab()
     {
         if (mimicPrefabs == null || mimicPrefabs.Length == 0) return null;
-        return mimicPrefabs[Random.Range(0, mimicPrefabs.Length)];
+        return mimicPrefabs[UnityEngine.Random.Range(0, mimicPrefabs.Length)];
     }
 
     IEnumerator SpawnMimic()
@@ -388,7 +408,7 @@ public class MimicBossController : MonoBehaviour
             bool playerOnRight = player.position.x > transform.position.x;
             int dir = playerOnRight ? 1 : -1;
 
-            Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Transform point = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
             Vector3 spawnPos = point.position;
             spawnPos.x = transform.position.x + dir * Mathf.Abs(point.localPosition.x);
             spawnPos.y = transform.position.y + point.localPosition.y;
@@ -419,7 +439,7 @@ public class MimicBossController : MonoBehaviour
     {
         if (isInvincible) return;
 
-        currentHealth -= damage;
+        currentHealth = Mathf.Max(0, currentHealth - Mathf.Max(0, damage));
         StartCoroutine(DamageFlicker());
 
         if (currentHealth <= 0f)
@@ -471,8 +491,8 @@ public class MimicBossController : MonoBehaviour
             rb.interpolation = RigidbodyInterpolation2D.Interpolate;
 
             // Apply random launch force (tweak values as needed)
-            float xForce = Random.Range(-2f, 2f);
-            float yForce = Random.Range(4f, 6f);
+            float xForce = UnityEngine.Random.Range(-2f, 2f);
+            float yForce = UnityEngine.Random.Range(4f, 6f);
             rb.AddForce(new Vector2(xForce, yForce), ForceMode2D.Impulse);
 
             // Add the cleanup component to remove Rigidbody later
@@ -486,8 +506,17 @@ public class MimicBossController : MonoBehaviour
 
     void Die()
     {
-        // TODO: Death animation and coin explosion
+        // TODO: Death animation
         DropDeathCoins();
+
+        if (bossBar != null)
+        {
+            // Force fill to 0 immediately to avoid lingering visuals
+            bossBar.ForceEmpty();
+
+            // Start fading and auto-destroy
+            bossBar.Hide(autoDestroy: true);
+        }
 
         Destroy(gameObject);
     }
@@ -565,11 +594,11 @@ public class MimicBossController : MonoBehaviour
         var bossCols = GetComponentsInChildren<Collider2D>(true);
 
         float count = Mathf.Max(1, deathCoinCount);
-        float baseAngle = Random.Range(0f, 360f / count);
+        float baseAngle = UnityEngine.Random.Range(0f, 360f / count);
 
         for (int i = 0; i < count; i++)
         {
-            float angle = baseAngle + (360f * i / count) + Random.Range(-10f, 10f);
+            float angle = baseAngle + (360f * i / count) + UnityEngine.Random.Range(-10f, 10f);
             Vector2 dir = new(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
             dir = (dir + new Vector2(0f, coinUpBias)).normalized;
 
@@ -581,8 +610,8 @@ public class MimicBossController : MonoBehaviour
             if (!coin.TryGetComponent<Rigidbody2D>(out var crb))
                 crb = coin.AddComponent<Rigidbody2D>();
             crb.velocity = Vector2.zero;
-            crb.AddForce(dir * Random.Range(coinMinImpulse, coinMaxImpulse), ForceMode2D.Impulse);
-            crb.AddTorque(Random.Range(-coinMaxTorque, coinMaxTorque), ForceMode2D.Impulse);
+            crb.AddForce(dir * UnityEngine.Random.Range(coinMinImpulse, coinMaxImpulse), ForceMode2D.Impulse);
+            crb.AddTorque(UnityEngine.Random.Range(-coinMaxTorque, coinMaxTorque), ForceMode2D.Impulse);
 
             // ensure cleanup + dust
             if (!coin.TryGetComponent<PowerupFallCleanup>(out var cleanup))
@@ -602,4 +631,13 @@ public class MimicBossController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
+    private IEnumerator EnableInterpolationAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (rb != null)
+        {
+            rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        }
+    }
+
 }

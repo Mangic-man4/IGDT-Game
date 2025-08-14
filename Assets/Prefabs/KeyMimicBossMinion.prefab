@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5250846358273488598}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: FireballSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7016894945470450141}
   - component: {fileID: 1530861629846059183}
   - component: {fileID: -3854660147829760695}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: KeyMimicBossMinion
   m_TagString: KeyMimic
   m_Icon: {fileID: 0}
