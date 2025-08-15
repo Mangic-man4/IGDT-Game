@@ -408,12 +408,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffects:
   - type: 0
+    audioSource: {fileID: 1161131264994772054}
+    delayBetweenSounds: 30
     audioClips:
     - {fileID: 8300000, guid: eb719fe2a0d43f940a968375c8dd4097, type: 3}
     - {fileID: 8300000, guid: 120b79e2ca45143478600d82f1449e5f, type: 3}
     - {fileID: 8300000, guid: a1792b8d9cba70d49a9b970858ff2429, type: 3}
     - {fileID: 8300000, guid: d0b52fd73ac4c3149825cb9e0cd71f52, type: 3}
-    audioSource: {fileID: 1161131264994772054}
 --- !u!82 &5194615938594376831
 AudioSource:
   m_ObjectHideFlags: 0
