@@ -15,6 +15,16 @@ public class BossHealthBarHUD : MonoBehaviour
     private float lerpSpeed = 10f;
     [SerializeField] private bool healthLog = false;
 
+    [SerializeField, Tooltip("Reference to the player. Will auto-find by tag if left null.")]
+    private Transform player;
+
+    [SerializeField, Tooltip("How much to reduce alpha when player overlaps bar.")]
+    private float overlapAlpha = 0.5f;
+
+    [SerializeField, Tooltip("UI element to use for bounds checking (e.g. the full bar frame).")]
+    private RectTransform boundsRect;
+
+
     private float target01 = 0f;
     private float current01 = 0f;
     private bool visible;
@@ -43,6 +53,12 @@ public class BossHealthBarHUD : MonoBehaviour
             Debug.LogWarning("[BossHealthBarHUD] No MimicBossController found.");
             Hide();
         }
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj) player = playerObj.transform;
+        }
+
     }
 
     void Update()
@@ -57,12 +73,32 @@ public class BossHealthBarHUD : MonoBehaviour
         if (fill) fill.fillAmount = current01;
 
         float targetAlpha = visible ? 1f : 0f;
+        if (player != null && boundsRect != null)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(player.position);
+            Rect rect = RectTransformToScreenSpace(boundsRect);
+
+            if (rect.Contains(screenPos))
+            {
+                targetAlpha *= overlapAlpha; // dim it
+            }
+        }
+
         if (group) group.alpha = Mathf.MoveTowards(group.alpha, targetAlpha, fadeSpeed * Time.deltaTime);
         if (healthLog) 
         {
             Debug.Log($"HUD: Boss HP {boss.CurrentHealth} / {boss.MaxHealth} -> {target01} ({fill.fillAmount})");
         }
+    }
+    private Rect RectTransformToScreenSpace(RectTransform rt)
+    {
+        Vector3[] corners = new Vector3[4];
+        rt.GetWorldCorners(corners);
 
+        Vector2 bottomLeft = RectTransformUtility.WorldToScreenPoint(null, corners[0]);
+        Vector2 topRight = RectTransformUtility.WorldToScreenPoint(null, corners[2]);
+
+        return new Rect(bottomLeft, topRight - bottomLeft);
     }
 
     public void Show() => visible = true;

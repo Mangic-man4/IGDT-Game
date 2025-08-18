@@ -33,6 +33,7 @@ RectTransform:
   - {fileID: 1251632377063395851}
   - {fileID: 4707426516180379150}
   - {fileID: 3013377687877049579}
+  - {fileID: 8276826195214305329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -70,6 +71,44 @@ MonoBehaviour:
   fadeSpeed: 2
   lerpSpeed: 50
   healthLog: 0
+  player: {fileID: 0}
+  overlapAlpha: 0.3
+  boundsRect: {fileID: 8276826195214305329}
+--- !u!1 &1613723354244589771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8276826195214305329}
+  m_Layer: 5
+  m_Name: Bounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8276826195214305329
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613723354244589771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3469668392587664983}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.5714, y: 77.61341}
+  m_SizeDelta: {x: 737.1414, y: 242.08}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3765774367244757712
 GameObject:
   m_ObjectHideFlags: 0

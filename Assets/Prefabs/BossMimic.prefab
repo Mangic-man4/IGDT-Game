@@ -260,7 +260,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 524288
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -382,7 +382,7 @@ CircleCollider2D:
     m_Bits: 1352
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 524416
+    m_Bits: 524424
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

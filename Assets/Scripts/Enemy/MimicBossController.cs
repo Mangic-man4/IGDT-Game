@@ -14,6 +14,9 @@ public class MimicBossController : MonoBehaviour
     [SerializeField] private int currentPhase = 1;
     private bool isInvincible = false;
 
+    public event Action OnDied;
+    public bool IsDead { get; private set; } = false;
+
     [Header("Phase Thresholds Percentages")]
     public float phase2Threshold = 66f;
     public float phase3Threshold = 33f;
@@ -506,6 +509,9 @@ public class MimicBossController : MonoBehaviour
 
     void Die()
     {
+        Debug.Log("[Boss] Died");
+        IsDead = true;
+
         // TODO: Death animation
         DropDeathCoins();
 
@@ -518,6 +524,7 @@ public class MimicBossController : MonoBehaviour
             bossBar.Hide(autoDestroy: true);
         }
 
+        OnDied?.Invoke();
         Destroy(gameObject);
     }
 
