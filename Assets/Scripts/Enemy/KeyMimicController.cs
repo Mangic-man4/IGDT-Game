@@ -274,4 +274,13 @@ public class KeyMimicController : MonoBehaviour
     {
         StopChase();
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, chaseStopDistance);
+    }
 }
