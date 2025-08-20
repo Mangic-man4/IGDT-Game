@@ -1,22 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class LaserTurret : MonoBehaviour
 {
     [Header("References")]
     public Transform firePoint;              // Still on root
-    public LineRenderer laserBeamRenderer;   // On child object (LaserBeam)
+    public float maxDistance = 100f;
+    public LayerMask layerMask;
+
+    private SpriteRenderer laserRenderer;   // On child object (LaserBeam)
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+
+    // For laser
+    private float distance;
+    private Vector3 direction;
 
     void Awake()
     {
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+    }
+
+    private void Start()
+    {
+        if (firePoint != null)
+            laserRenderer = firePoint.GetComponent<SpriteRenderer>();
+
+        GetPlacementDirection();
     }
 
     void Update()
@@ -26,18 +38,24 @@ public class LaserTurret : MonoBehaviour
 
     void ShootLaser()
     {
-        if (firePoint == null || laserBeamRenderer == null) return;
+        if (firePoint == null || laserRenderer == null) return;
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-        Vector3 endPoint;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistance, layerMask);
+        distance = hit.collider ? hit.distance : maxDistance;
 
-        if (hitInfo)
+        Vector2 size = laserRenderer.size;
+        size.x = distance;
+        laserRenderer.size = size;
+
+        // Position the laser midpoint in world space
+        firePoint.position = transform.position + (direction * distance * 0.5f);
+
+        if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
-            endPoint = hitInfo.point;
+            var powerUps = hit.collider.GetComponent<PlayerPowerUps>();
+            var playerController = hit.collider.GetComponent<PlayerController>();
 
-            if (hitInfo.collider.CompareTag("Player") &&
-                hitInfo.collider.TryGetComponent<PlayerPowerUps>(out var powerUps) &&
-                hitInfo.collider.TryGetComponent<PlayerController>(out var playerController))
+            if (powerUps != null && playerController != null)
             {
                 if (powerUps.IsShieldActive() && powerUps.IsEnemyProtectionEnabled())
                 {
@@ -54,20 +72,19 @@ public class LaserTurret : MonoBehaviour
                     Debug.Log("Player has died! Triggered by LaserTurret.");
                 }
             }
-
         }
-        else
-        {
-            endPoint = firePoint.position + firePoint.right * 100f;
-        }
-
-        laserBeamRenderer.SetPosition(0, firePoint.position);
-        laserBeamRenderer.SetPosition(1, endPoint);
     }
+
     public void RespawnTurret()
     {
         transform.SetPositionAndRotation(originalPosition, originalRotation);
-
         gameObject.SetActive(true);
+    }
+
+    void GetPlacementDirection()
+    {
+        // Determine direction based on scale.x (lossyScale.x)
+        float facing = Mathf.Sign(transform.lossyScale.x);
+        direction = new Vector2(facing, 0f);
     }
 }
