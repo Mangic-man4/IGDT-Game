@@ -59,7 +59,10 @@ public static class CheckpointManager
             keyMimic.ResetMimicPos();
         }
 
-        // No turret method, because turret's dont need resetting if they're still alive
+        foreach (var turret in Object.FindObjectsOfType<LaserTurret>(true))
+        {
+            turret.ResetTurret();
+        }
     }
 
     public static void RespawnEnemies()

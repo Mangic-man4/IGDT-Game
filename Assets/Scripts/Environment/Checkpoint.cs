@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class Checkpoint : MonoBehaviour
@@ -73,6 +74,7 @@ public class Checkpoint : MonoBehaviour
     {
         public Vector3 position;
         public Quaternion rotation;
+        public Vector3 scale;
     }
 
     // Prefabs for respawning
@@ -160,7 +162,8 @@ public class Checkpoint : MonoBehaviour
             savedTurrets.Add(new TurretSnapshot
             {
                 position = turret.transform.position,
-                rotation = turret.transform.rotation
+                rotation = turret.transform.rotation,
+                scale = turret.transform.localScale
             });
         }
 
@@ -290,7 +293,8 @@ public class Checkpoint : MonoBehaviour
             // Restore turrets as usual
             foreach (var snapshot in savedTurrets)
             {
-                Instantiate(turretPrefab, snapshot.position, snapshot.rotation);
+                GameObject turret = Instantiate(turretPrefab, snapshot.position, snapshot.rotation);
+                turret.transform.localScale = snapshot.scale;
             }
         }
 

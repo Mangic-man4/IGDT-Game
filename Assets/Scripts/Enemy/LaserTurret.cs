@@ -12,6 +12,7 @@ public class LaserTurret : MonoBehaviour
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+    private Vector3 originalScale;
 
     // For laser
     private float distance;
@@ -21,6 +22,7 @@ public class LaserTurret : MonoBehaviour
     {
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+        originalScale = transform.localScale;
     }
 
     private void Start()
@@ -48,7 +50,7 @@ public class LaserTurret : MonoBehaviour
         laserRenderer.size = size;
 
         // Position the laser midpoint in world space
-        firePoint.position = transform.position + (direction * distance * 0.5f);
+        firePoint.position = transform.position + (0.5f * distance * direction);
 
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
@@ -75,9 +77,15 @@ public class LaserTurret : MonoBehaviour
         }
     }
 
-    public void RespawnTurret()
+    public void ResetTurret()
     {
         transform.SetPositionAndRotation(originalPosition, originalRotation);
+        transform.localScale = originalScale;
+    }
+
+    public void RespawnTurret()
+    {
+        ResetTurret();
         gameObject.SetActive(true);
     }
 

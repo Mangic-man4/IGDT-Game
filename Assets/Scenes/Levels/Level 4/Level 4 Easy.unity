@@ -343103,7 +343103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
       propertyPath: restoreEnemySnapshot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
       propertyPath: restoreSavedPickupState
@@ -346929,11 +346929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5426890507027463275, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.39
+      value: 115.5
       objectReference: {fileID: 0}
     - target: {fileID: 5426890507027463275, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.21
+      value: -11.5
       objectReference: {fileID: 0}
     - target: {fileID: 5426890507027463275, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -349297,6 +349297,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 207784725}
     m_Modifications:
     - target: {fileID: 16847317151607457, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 16847317151607457, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.780022
       objectReference: {fileID: 0}
@@ -349336,6 +349340,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 16847317151607458, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 16847317151607470, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
       propertyPath: m_Name
       value: TurretTest (1)
@@ -349367,6 +349375,10 @@ PrefabInstance:
     - target: {fileID: 16847317582894819, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3797968048242067884, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
