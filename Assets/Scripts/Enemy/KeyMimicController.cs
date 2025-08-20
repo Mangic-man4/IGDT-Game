@@ -29,6 +29,18 @@ public class KeyMimicController : MonoBehaviour
     [Tooltip("Scale when disguised")]
     public Vector3 disguisedScale;
 
+    [Header("Special Variant")]
+    [Tooltip("If true, uses the aggro (chase) animation as the idle (no 'Key' idle).")]
+    [SerializeField] private bool aggroAsIdle = false;
+
+    [Tooltip("If true, use the animator trigger to play the reveal/awake sequence. If false, go straight to chase visuals.")]
+    [SerializeField] private bool useRevealTrigger = true;
+
+    [Header("Animation Names")]
+    [SerializeField] private string idleAnim = "Key";
+    [SerializeField] private string chaseAnim = "KeyMimic_Aggro";
+    [SerializeField] private string revealTrigger = "Reveal";
+
     [Header("References")]
     private Transform player;
     public Sprite disguisedSprite;
@@ -39,6 +51,7 @@ public class KeyMimicController : MonoBehaviour
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private Animator anim;
+
     private bool revealed = false;
     private float shootTimer;
 
@@ -50,11 +63,12 @@ public class KeyMimicController : MonoBehaviour
     public void SetRevealed(bool value)
     {
         revealed = value;
+        if (anim == null) return;
 
-        if (anim != null)
-        {
-            anim.Play(revealed ? "KeyMimic_Aggro" : "Key");
-        }
+        if (revealed)
+            PlayChase();
+        else
+            PlayIdle();
     }
 
     void Awake()
@@ -70,7 +84,6 @@ public class KeyMimicController : MonoBehaviour
         anim = GetComponent<Animator>();
         sr.sprite = disguisedSprite;
         shootTimer = shootInterval;
-        anim.Play("Key");
 
         if (player == null)
         {
@@ -81,31 +94,40 @@ public class KeyMimicController : MonoBehaviour
                 Debug.LogError("Player not found! Tag the player as 'Player'.");
         }
 
+        PlayIdle(); // start visual idle (respects special variant)
         activeMimics.Add(this);
     }
 
     public void ResetMimicPos()
     {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
         revealed = false;
 
         transform.SetPositionAndRotation(originalPosition, originalRotation);
+        //transform.localScale = disguisedScale;
 
-        if (anim != null)
-            anim.Play("Key");
+        PlayIdle();
     }
 
     public void RespawnEnemies()
     {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
         revealed = false;
 
         transform.SetPositionAndRotation(originalPosition, originalRotation);
+        //transform.localScale = disguisedScale;
 
-        if (anim != null)
-            anim.Play("Key");
+        PlayIdle();
 
         gameObject.SetActive(true);
     }
@@ -126,8 +148,7 @@ public class KeyMimicController : MonoBehaviour
 
         revealed = false;
 
-        if (anim != null)
-            anim.Play("Key"); 
+        PlayIdle();
     }
 
 
@@ -170,7 +191,10 @@ public class KeyMimicController : MonoBehaviour
                 Vector2 direction = (player.position - transform.position).normalized;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
-                sr.flipY = (player.position.x > transform.position.x);
+                if (sr != null)
+                {
+                    sr.flipY = (player.position.x > transform.position.x);
+                }
             }
         }
     }
@@ -181,16 +205,39 @@ public class KeyMimicController : MonoBehaviour
         revealed = true;
 
         transform.localScale = revealedScale;
-        anim.Play("Key");
-        anim.SetTrigger("Reveal");
+
+        if (useRevealTrigger)
+        {
+            // Enter base state then trigger; base respects special variant
+            PlayIdle();
+            if (anim != null) anim.SetTrigger(revealTrigger);
+        }
+        else
+        {
+            // Skip reveal sequence; go straight to chase visuals
+            PlayChase();
+        }
     }
 
     void StopChase()
     {
         revealed = false;
         transform.localScale = disguisedScale;
-        anim.Play("Key");
         transform.rotation = Quaternion.identity;
+        PlayIdle();
+    }
+
+    // --- Animation helpers ---
+    private void PlayIdle()
+    {
+        if (anim == null) return;
+        anim.Play(aggroAsIdle ? chaseAnim : idleAnim);
+    }
+
+    private void PlayChase()
+    {
+        if (anim == null) return;
+        anim.Play(chaseAnim);
     }
 
     public void ResetToIdle()
@@ -227,12 +274,13 @@ public class KeyMimicController : MonoBehaviour
     {
         StopChase();
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, chaseStopDistance);
+    }
 }
-
-
-
-
-
-
-
-

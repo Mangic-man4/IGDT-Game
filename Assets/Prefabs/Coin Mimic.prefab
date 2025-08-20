@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4414078915070554189}
   - component: {fileID: 3476450196916903927}
   - component: {fileID: 5244880618120367726}
-  - component: {fileID: -8092567551063488737}
+  - component: {fileID: -1132099917541573857}
   m_Layer: 0
   m_Name: Coin Mimic
   m_TagString: CoinMimic
@@ -186,6 +186,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 4
   chaseStopDistance: 15
+  chaseStopBuffer: 0.25
   moveSpeed: 12
-  lethalDelayTime: 2
+  lethalDelayTime: 0.5
+  chaseDrag: 0
+  idleDrag: 8
+  velocitySmoothing: 0.1
+  aggroAsIdle: 0
+  useAwakeAnimation: 1
+  idleAnim: Coin
+  awakeAnim: CoinMimic_Awake
+  chaseAnim: CoinMimic_Chase
   player: {fileID: 0}
+--- !u!114 &-1132099917541573857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969178686675295398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9921f554f0f33554dbfcbfb81eabf03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHits: 2

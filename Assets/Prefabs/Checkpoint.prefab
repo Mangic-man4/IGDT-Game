@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7752239881352396749}
   - component: {fileID: 7752239881352396750}
   - component: {fileID: 7752239881352396739}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Checkpoint
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.35, y: -14.84, z: 0}
-  m_LocalScale: {x: 3.62, y: 3.62, z: 3.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 862349742, guid: e8d5dca6b50e8b94da7cb747c71c0b74, type: 3}
+  m_Sprite: {fileID: -798453530, guid: 7d6b82852604a524ca058e9794fb1b92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8beb8b60677b4794eb098a3b8dfa08e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activated: {fileID: 2021673001, guid: e8d5dca6b50e8b94da7cb747c71c0b74, type: 3}
+  activated: {fileID: 725526263, guid: 7d6b82852604a524ca058e9794fb1b92, type: 3}
   restorePowerUps: 1
   restoreSavedPickupState: 1
   restoreEnvironmentalObjects: 1
@@ -106,12 +106,14 @@ MonoBehaviour:
   resetEnemies: 0
   respawnEnemies: 0
   giveDash: 0
-  giveSpeed: 0
-  giveDoubleJump: 0
   giveGravityFlip: 0
   giveInfiniteSpeed: 0
   giveInfiniteDoubleJump: 0
   giveTeleport: 0
+  giveSpeed: 0
+  giveDoubleJump: 0
+  speedDuration: 15
+  jumpDuration: 15
   giveFireballCharges: 0
   giveShieldStacks: 0
   mimicType: 0
@@ -150,16 +152,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0018181354, y: 0.0006970018}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.56}
+    oldSize: {x: 1, y: 3}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1597589, y: 0.56084144}
+  m_Size: {x: 0.5, y: 3}
   m_EdgeRadius: 0

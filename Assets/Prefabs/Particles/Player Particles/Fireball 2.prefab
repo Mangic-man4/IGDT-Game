@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6038998808009413676}
   - component: {fileID: 1833179299281117684}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: FireballTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7462162284036262911}
   - component: {fileID: 7779263276758000463}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: FireballCoreInner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,9 +246,9 @@ GameObject:
   - component: {fileID: 1201017423262866099}
   - component: {fileID: 3173637069542698111}
   - component: {fileID: 4253458839098209933}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Fireball 2
-  m_TagString: Untagged
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -412,7 +412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4220074320507739461}
   - component: {fileID: 2767711405856144234}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: FireballCoreInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 8179471998471744406}
   - component: {fileID: 5956886605302336790}
   - component: {fileID: 1706811675450059860}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: FireballParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5385,7 +5385,7 @@ GameObject:
   - component: {fileID: 4814513940849119465}
   - component: {fileID: 8166346038248502510}
   - component: {fileID: 2637369526023106814}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: FireballParticles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

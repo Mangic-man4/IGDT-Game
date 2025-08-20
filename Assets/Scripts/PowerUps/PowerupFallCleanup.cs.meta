@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: ac2732a28a1de674a8f53a2afe749ca2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - landingVFXPrefab: {fileID: 7068264207356540617, guid: 79666834ba0b07c4ab5a2f5438e19de7, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -23,6 +23,10 @@ TagManager:
   - KeyMimic
   - FPSCounter
   - PickupEffect
+  - MovingPlatform
+  - MimicBoss
+  - Fireball
+  - MimicFireball
   layers:
   - Default
   - TransparentFX
@@ -38,12 +42,12 @@ TagManager:
   - IgnoreLaserBeamCollider
   - LaserBeamCollider
   - Ghost
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - IgnoreParticleCollider
+  - TeleportKillzone
+  - MimicFireball
+  - MimicBoss
+  - Fireball
+  - MimicBossMinion
   - 
   - 
   - 

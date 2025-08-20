@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7134111829452979268}
   - component: {fileID: 1482934999491342131}
   - component: {fileID: 1922753510909762535}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Better Fireball
-  m_TagString: Untagged
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +52,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -124,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5843122841605671284}
   - component: {fileID: 9062484070848293257}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: FireballTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 6389952206305914100}
   - component: {fileID: 4812744560574696833}
   - component: {fileID: 8285117090229425535}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: 'FireballParticles '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5162,7 +5162,7 @@ GameObject:
   - component: {fileID: 6370159773961161476}
   - component: {fileID: 8633328729804434754}
   - component: {fileID: 7744930413361666925}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Core FireballParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

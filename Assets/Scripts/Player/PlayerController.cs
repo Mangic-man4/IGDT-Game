@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private AudioSource jumpSound;
     private PlayerPowerUps powerUps;
+    private AudioPlayer audioPlayer;
 
     private float xInput;
     private bool isGrounded;
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         powerUps = GetComponent<PlayerPowerUps>();
         jumpSound = GetComponent<AudioSource>();
+        audioPlayer = GetComponent<AudioPlayer>();
 
         if (mainCamera) _ = mainCamera.transform.position; // Accessed once
 
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour
              Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, testPlatforms);
         */
 
-        // Nre detection method
+        // New detection method
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckBoxSize, 0f, groundLayer | platformLayer | testPlatforms);
 
         //xInput = Input.GetAxisRaw("Horizontal"); //old
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
-
+        
         FlipSprite();
 
         // Speed Lines Control 
@@ -203,6 +205,10 @@ public class PlayerController : MonoBehaviour
         {
             float flipY = Mathf.Sign(transform.localScale.y);
             transform.localScale = new Vector3(Mathf.Sign(xInput) * scale, flipY * scale, 1f);
+            if (isGrounded) 
+            {
+                audioPlayer.PlayWalk();
+            }
         }
     }
 
@@ -306,29 +312,34 @@ public class PlayerController : MonoBehaviour
     // === Collision Events ===
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Trigger Entered: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
-            rb.gravityScale = lowGravityScale;
+            rb.gravityScale = Mathf.Sign(rb.gravityScale) * lowGravityScale;
             rb.drag = lowGravityDrag;
         }
     }
+
     private void OnTriggerStay2D(Collider2D other)
     {
+        Debug.Log("Trigger Stays: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
-            rb.gravityScale = lowGravityScale;
+            rb.gravityScale = Mathf.Sign(rb.gravityScale) * lowGravityScale;
             rb.drag = lowGravityDrag;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("Trigger Exit: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
-            rb.gravityScale = normalGravityScale;
+            rb.gravityScale = Mathf.Sign(rb.gravityScale) * normalGravityScale;
             rb.drag = normalDrag;
         }
     }
+
 
     public void UnparentFromPlatform()
     {

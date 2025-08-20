@@ -5,11 +5,25 @@ using UnityEngine;
 public class DripSpawner : MonoBehaviour
 {
     public GameObject dripPrefab;
+
+    [Header("Fixed Interval")]
     public float interval = 1.5f;
+
+    [Header("Random Interval")]
+    public bool useRandomInterval = false;
+    public float minInterval = 1f;
+    public float maxInterval = 3f;
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnDrop), 0f, interval);
+        if (useRandomInterval)
+        {
+            StartCoroutine(SpawnWithRandomInterval());
+        }
+        else
+        {
+            InvokeRepeating(nameof(SpawnDrop), 0f, interval);
+        }
     }
 
     void SpawnDrop()
@@ -19,5 +33,13 @@ public class DripSpawner : MonoBehaviour
 
         Instantiate(dripPrefab, transform.position, dripRotation);
     }
-
+    private IEnumerator SpawnWithRandomInterval()
+    {
+        while (true)
+        {
+            SpawnDrop();
+            float waitTime = Random.Range(minInterval, maxInterval);
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
 }

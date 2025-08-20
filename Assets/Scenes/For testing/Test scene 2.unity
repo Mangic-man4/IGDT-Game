@@ -320426,6 +320426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyMimic
       objectReference: {fileID: 0}
+    - target: {fileID: 4980505486070737709, guid: a25ed35ae5c3dc4448894d66e27e4726, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7016894945470450141, guid: a25ed35ae5c3dc4448894d66e27e4726, type: 3}
       propertyPath: player
       value: 

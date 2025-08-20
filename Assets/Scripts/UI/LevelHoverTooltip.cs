@@ -16,6 +16,7 @@ public class LevelHoverTooltip : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     [Header("Level Preview")]
     public Image previewImageObject;
+    public Sprite fallbackSprite;
 
     [System.Serializable]
     public class DifficultyPreview
@@ -65,18 +66,19 @@ public class LevelHoverTooltip : MonoBehaviour, IPointerEnterHandler, IPointerEx
         tooltipPanel.SetActive(true);
         tooltipPanel.transform.position = Input.mousePosition + offset;
 
-        // Set preview image by difficulty
+        // Set preview image by difficulty with fallback
         if (previewImageObject != null)
         {
             if (difficultySpriteMap.TryGetValue(difficulty, out Sprite sprite) && sprite != null)
             {
                 previewImageObject.sprite = sprite;
-                previewImageObject.gameObject.SetActive(true);
             }
             else
             {
-                previewImageObject.gameObject.SetActive(false);
+                previewImageObject.sprite = fallbackSprite;
             }
+
+            previewImageObject.gameObject.SetActive(true);
         }
     }
 

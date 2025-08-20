@@ -20,28 +20,44 @@ public class AudioManager : MonoBehaviour
         }
 
         Instance = this;
+
+        // Move to root if it's a child
+        if (transform.parent != null)
+        {
+            transform.SetParent(null);
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void EnsureInstanceExists()
+
+    private void Start()
     {
-        if (Instance == null)
-        {
-            GameObject audioManagerObj = new GameObject("AudioManager (Auto)");
-            audioManagerObj.AddComponent<AudioManager>();
-        }
+        // Load saved volumes or default to 1.0f (full volume)
+        float musicVol = PlayerPrefs.GetFloat(musicVolumeParam, 1f);
+        float sfxVol = PlayerPrefs.GetFloat(sfxVolumeParam, 1f);
+
+        ApplyVolume(musicVolumeParam, musicVol);
+        ApplyVolume(sfxVolumeParam, sfxVol);
     }
 
     public void SetMusicVolume(float volume)
     {
-        mixer.SetFloat(musicVolumeParam, Mathf.Log10(volume) * 20);
+        ApplyVolume(musicVolumeParam, volume);
         PlayerPrefs.SetFloat(musicVolumeParam, volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        mixer.SetFloat(sfxVolumeParam, Mathf.Log10(volume) * 20);
+        ApplyVolume(sfxVolumeParam, volume);
         PlayerPrefs.SetFloat(sfxVolumeParam, volume);
+    }
+
+    private void ApplyVolume(string param, float volume)
+    {
+        if (volume <= 0.0001f)
+            mixer.SetFloat(param, -80f); // Effectively silent
+        else
+            mixer.SetFloat(param, Mathf.Log10(volume) * 20f);
     }
 }

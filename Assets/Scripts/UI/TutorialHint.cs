@@ -71,7 +71,14 @@ public class TutorialHint : MonoBehaviour
             keyText = $"<b><color=#FFD700>{keyText}</color></b>";  // bold and gold
         }
 
-        return $"{actionDescription.ToUpper()} BY PRESSING \"{keyText}\"";
+        if (!useAxis)
+        {
+            return $"{actionDescription.ToUpper()} BY PRESSING \"{keyText}\"";
+        }
+        else
+        {
+            return $"{actionDescription.ToUpper()} BY HOLDING \"{keyText}\"";
+        }
     }
 
     private string FormatKeyCode(KeyCode key) => key switch

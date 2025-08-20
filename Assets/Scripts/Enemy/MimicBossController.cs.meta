@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ddf56385003d34841a6e187f3e8b7ce1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - explosiveCoinPrefab: {fileID: 6475583564443012492, guid: 386bc81fb6814714e9976095f1f6e6ed, type: 3}
+  - mimicPrefab: {instanceID: 0}
+  - dropPosition: {instanceID: 0}
+  - bossSprite: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

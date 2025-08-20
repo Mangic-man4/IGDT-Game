@@ -14,7 +14,7 @@ public class TeleportGuide : MonoBehaviour
     private TeleportControl teleportControl;
 
     [SerializeField] private bool matchGhostOpacity = true;
-    private float shadowAlphaMax = GhostSettings.shadowAlpha; //  editable in Inspector
+    private readonly float shadowAlphaMax = GhostSettings.shadowAlpha; //  editable in Inspector
     private bool isVisible = true;
 
     void Awake()
