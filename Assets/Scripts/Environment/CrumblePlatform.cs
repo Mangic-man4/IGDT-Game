@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 
 public class CrumblePlatform : MonoBehaviour
 {
@@ -19,17 +21,25 @@ public class CrumblePlatform : MonoBehaviour
     private Coroutine crumbleCoroutine;
     private bool isPlayerOnPlatform = false;
     private bool isCrumbled = false;
+    private Material tilemapMaterial;
 
     private Vector3 startPosition;
     private Quaternion startRotation;
 
     private Collider2D col;
     private SpriteRenderer sr;
+    private TilemapRenderer tr;
 
     void Start()
     {
         col = GetComponent<Collider2D>();
-        sr = GetComponent<SpriteRenderer>();
+        TryGetComponent(out sr);
+        TryGetComponent(out tr);
+
+        if (tr != null)
+        {
+            tilemapMaterial = tr.material;
+        }
 
         startPosition = transform.position;
         startRotation = transform.rotation;
@@ -79,9 +89,17 @@ public class CrumblePlatform : MonoBehaviour
 
         transform.SetPositionAndRotation(startPosition, startRotation);
 
-        col.enabled = true;
-        sr.enabled = true;
-        sr.color = Color.white;
+        if (col != null) col.enabled = true;
+        if (sr != null)
+        {
+            sr.enabled = true;
+            sr.color = Color.white;
+        }
+        if (tr != null) tr.enabled = true;
+        if (tilemapMaterial != null)
+        {
+            tilemapMaterial.color = Color.white;
+        }
 
         gameObject.SetActive(true);
     }
@@ -97,8 +115,13 @@ public class CrumblePlatform : MonoBehaviour
         {
             StopCoroutine(crumbleCoroutine);
             crumbleCoroutine = null;
-            sr.color = Color.white;
+            if (sr != null)
+                sr.color = Color.white;
 
+            if (tilemapMaterial != null)
+            {
+                tilemapMaterial.color = Color.white;
+            }
             // Add animation trigger here for crumble cancel/reset
             // Example: animator.SetTrigger("ResetCrumble");
         }
@@ -112,7 +135,13 @@ public class CrumblePlatform : MonoBehaviour
         Color startColor = new(1f, 0.65f, 0f);
         Color endColor = Color.red;
 
-        sr.color = startColor;
+        if (sr != null)
+            sr.color = startColor;
+
+        if (tilemapMaterial != null)
+        {
+            tilemapMaterial.color = startColor;
+        }
 
         // Optional: Trigger initial "start crumbling" animation here
         // Example: animator.SetTrigger("StartCrumble");
@@ -121,7 +150,14 @@ public class CrumblePlatform : MonoBehaviour
         {
             if (cancelOnStepOff && !isPlayerOnPlatform)
             {
-                sr.color = Color.white;
+                if (sr != null)
+                    sr.color = Color.white;
+
+                if (tilemapMaterial != null)
+                {
+                    tilemapMaterial.color = Color.white;
+                }
+
                 crumbleCoroutine = null;
 
                 // Add animation trigger here for crumble interruption
@@ -132,7 +168,14 @@ public class CrumblePlatform : MonoBehaviour
 
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / delay);
-            sr.color = Color.Lerp(startColor, endColor, t);
+            if (sr != null)
+                sr.color = Color.Lerp(startColor, endColor, t);
+
+            if (tilemapMaterial != null)
+            {
+                tilemapMaterial.color = Color.Lerp(startColor, endColor, t);
+            }
+
             yield return null;
         }
 
@@ -144,20 +187,27 @@ public class CrumblePlatform : MonoBehaviour
 
         yield return new WaitForSeconds(destroyDelay);
 
-        col.enabled = false;
-        sr.enabled = false;
+        if (col != null) col.enabled = false;
+        if (sr != null) sr.enabled = false;
+        if (tr != null) tr.enabled = false;
 
         if (enableRegrowth)
         {
             yield return new WaitForSeconds(regrowDelay);
-            col.enabled = true;
-            sr.enabled = true;
-            sr.color = Color.white;
+
+            if (col != null) col.enabled = true;
+            if (sr != null)
+            {
+                sr.enabled = true;
+                sr.color = Color.white;
+            }
+            if (tr != null) tr.enabled = true;
+            if (tilemapMaterial != null)
+            {
+                tilemapMaterial.color = Color.white;
+            }
+
             isCrumbled = false;
-
-            // Add animation trigger here for regrowth
-            // Example: animator.SetTrigger("Regrow");
-
         }
     }
 }
