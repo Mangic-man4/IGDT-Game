@@ -75,6 +75,7 @@ public class Checkpoint : MonoBehaviour
         public Vector3 position;
         public Quaternion rotation;
         public Vector3 scale;
+        public Vector3 visualScale;
     }
 
     // Prefabs for respawning
@@ -159,13 +160,22 @@ public class Checkpoint : MonoBehaviour
         savedTurrets.Clear();
         foreach (var turret in FindObjectsOfType<LaserTurret>())
         {
+            Vector3 visualScale = Vector3.one; // default fallback
+            Transform visual = turret.transform.Find("FirePoint");
+            if (visual != null)
+            {
+                visualScale = visual.localScale;
+            }
+
             savedTurrets.Add(new TurretSnapshot
             {
                 position = turret.transform.position,
                 rotation = turret.transform.rotation,
-                scale = turret.transform.localScale
+                scale = turret.transform.localScale,
+                visualScale = visualScale
             });
         }
+
 
         isChecked = true;
         sR.sprite = activated;
@@ -295,6 +305,12 @@ public class Checkpoint : MonoBehaviour
             {
                 GameObject turret = Instantiate(turretPrefab, snapshot.position, snapshot.rotation);
                 turret.transform.localScale = snapshot.scale;
+
+                Transform visualChild = turret.transform.Find("FirePoint");
+                if (visualChild != null)
+                {
+                    visualChild.localScale = snapshot.visualScale;
+                }
             }
         }
 
