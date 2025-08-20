@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GravityParticle_10
+      name: GravParticle_11
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c07e19a742418549820ef4084c8d9b3
-      internalID: -185015481
+      spriteID: 4b8220814b8a7a04986b094bbfbba170
+      internalID: -812906626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityParticle_20
+      name: GravParticle_21
       rect:
         serializedVersion: 2
         x: 16
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70f97e6c8b733e842b4066f0be153d12
-      internalID: -118139686
+      spriteID: 4e91b64887ce22a4a81ea3b923aa9045
+      internalID: -2111895860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityDust_10
+      name: GravDust_11
       rect:
         serializedVersion: 2
         x: 32
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 410f353996c92dd4999d2973d429c7e2
-      internalID: 1950602781
+      spriteID: 70475396de74a374b97dd3e1e5f7622d
+      internalID: -113044673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_10
+      name: GravEffect_11
       rect:
         serializedVersion: 2
         x: 48
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1632362f3004bbd4295a27155b9f1055
-      internalID: -1656869503
+      spriteID: 327e55c1ae99c684998472dff8533a98
+      internalID: -1498408161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_20
+      name: GravEffect_21
       rect:
         serializedVersion: 2
         x: 64
@@ -208,35 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 585c00a16e0838f4692cb6f6adfbc3d4
-      internalID: 1422261203
+      spriteID: 5635ca4a4b6ccd949b83972ff0601057
+      internalID: -195676921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DeactivePoint_1
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 176
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5535761c7e4e84744a675e9ac1a4f045
-      internalID: 1677230414
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Node_10
+      name: GravNode_11
       rect:
         serializedVersion: 2
         x: 0
@@ -250,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d851e3fba6e063b408003694229c9d37
-      internalID: 1174315033
+      spriteID: 0264cd8bae8a72f4d81deaed98b6bf1b
+      internalID: 2124070154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_20
+      name: GravNode_21
       rect:
         serializedVersion: 2
         x: 16
@@ -271,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64dffb6ce8dbc2945a4834325f8dd017
-      internalID: 678245140
+      spriteID: 8a0b5f152bdea5447bfa6a19a7a3c03d
+      internalID: -8662405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityDust_20
+      name: GravDust_21
       rect:
         serializedVersion: 2
         x: 32
@@ -292,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89d172909dab60340ac84e2fc79d9867
-      internalID: -1965681515
+      spriteID: 0fc022f0b621898418678cfa08f4d512
+      internalID: 319249798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_30
+      name: GravEffect_31
       rect:
         serializedVersion: 2
         x: 48
@@ -313,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5aaf198e455b3c4e881415409fdb2f9
-      internalID: -2028817494
+      spriteID: 52b7f3b16b330964ea1450e800d523c0
+      internalID: 67057537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_40
+      name: GravEffect_41
       rect:
         serializedVersion: 2
         x: 64
@@ -334,19 +313,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d51d503ce01658c42a8d6c9329a63fb1
-      internalID: -2077928249
+      spriteID: 6c12ab57c3072ac40a97d9c419a6fd31
+      internalID: 167002035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DeactivePoint_2
+      name: Turret_1
       rect:
         serializedVersion: 2
         x: 80
         y: 160
-        width: 16
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -355,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afcc6a424f6597f498a6a15529564cd9
-      internalID: 2083519561
+      spriteID: 1f7556b046d36744ca804706fe272068
+      internalID: -652591494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_30
+      name: GravNode_31
       rect:
         serializedVersion: 2
         x: 0
@@ -376,14 +355,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd569cc2d601c1145bade75539bab27c
-      internalID: -407090805
+      spriteID: 9d95ed1ca200400469b58c882b0048f2
+      internalID: 446200387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_40
+      name: GravNode_41
       rect:
         serializedVersion: 2
         x: 16
@@ -397,14 +376,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e04192929428c14688e4c2c2fceb721
-      internalID: -1900155920
+      spriteID: d49da4a2b78fced4cad8cbcbb87e28f3
+      internalID: 1052745989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_1
+      name: GravRock_1
       rect:
         serializedVersion: 2
         x: 32
@@ -418,17 +397,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50aae0a64c58a0846830ce59cc1486c9
-      internalID: -1190989865
+      spriteID: d29983659f3e4fa4cacecc405d6aaabd
+      internalID: 2086439673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LowGravityFront_1
+      name: GravFG_1
       rect:
         serializedVersion: 2
         x: 48
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb8463321450b247be57e02aa008729
+      internalID: 2092158861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GravFG_2
+      rect:
+        serializedVersion: 2
+        x: 64
         y: 144
         width: 16
         height: 16
@@ -439,35 +439,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1129ea320c2bb0644bbbfa4feb18d35b
-      internalID: 884555351
+      spriteID: a8908186ea8fbe24da10a45674a52d8e
+      internalID: -1581588454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LowGravityFront_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 144
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cea1f816664744042b910b5b1e0c7bbb
-      internalID: -2031998975
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DeactivePoint_3
+      name: GravBG
       rect:
         serializedVersion: 2
         x: 80
@@ -481,14 +460,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb5014143304e3045bd515e11f8b966c
-      internalID: -1659270747
+      spriteID: 78a8bcf54732a604c81aa13720ec6f03
+      internalID: 1236074273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LowGravityBG
+      name: GravParticle_12
       rect:
         serializedVersion: 2
         x: 0
@@ -502,14 +481,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddd41c7525745584382a4a3a9025cf29
-      internalID: -335771147
+      spriteID: c65e052f1e551694ca0a4bdab9ab964f
+      internalID: -319415094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeamEnd_1
+      name: GravParticle_22
       rect:
         serializedVersion: 2
         x: 16
@@ -523,14 +502,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b5a9d82029b3554bb530fa88edb8b61
-      internalID: -1202659025
+      spriteID: 68fd49b951503a6409cda7aea9beacc4
+      internalID: 1712810713
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Beam
+      name: GravDust_12
       rect:
         serializedVersion: 2
         x: 32
@@ -544,14 +523,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96ae74dadd8bf6447aaf148506b659ec
-      internalID: 1302581347
+      spriteID: ca733ba3d6b9aa441aef29db9cd89875
+      internalID: -258598331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeamStart_1
+      name: GravEffect_12
       rect:
         serializedVersion: 2
         x: 48
@@ -565,14 +544,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbd60f7a6bf1e9d40acd2d3feaf58187
-      internalID: -747608956
+      spriteID: 1b7dfa70758b0ab429d78d7657d84110
+      internalID: 865324677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TurretFront_1
+      name: GravEffect_22
       rect:
         serializedVersion: 2
         x: 64
@@ -586,20 +565,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34e180e9987d3ab46a4a4ce20575ddde
-      internalID: -234392288
+      spriteID: 6271917ff5b3cdd4b9696c73a195af40
+      internalID: -96107596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TurretBack_1
+      name: Checkpoint_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 128
+        x: 128
+        y: 144
         width: 16
-        height: 16
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -607,14 +586,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 466734842bf96424aa0d425bccb672b9
-      internalID: 214083896
+      spriteID: 3071755920fddf543a20c020cbf39e59
+      internalID: -798453530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityParticle_11
+      name: GravNode_12
       rect:
         serializedVersion: 2
         x: 0
@@ -628,14 +607,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f52f23c3b826c2441a4f073c8446afba
-      internalID: 934649677
+      spriteID: a4b38e8b33ead31479d002c308214132
+      internalID: 2016923810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityParticle_21
+      name: GravNode_22
       rect:
         serializedVersion: 2
         x: 16
@@ -649,14 +628,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 386438823c1d37947b1be6ad55c24240
-      internalID: -1698045422
+      spriteID: 96b6dfe74731fa64e820137afcea7438
+      internalID: -1223180920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityDust_11
+      name: GravDust_22
       rect:
         serializedVersion: 2
         x: 32
@@ -670,14 +649,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4392b0488a157a5419dbabe2ded9cce5
-      internalID: 511262404
+      spriteID: c42d0f921ca8944429d482cfb8ef8a60
+      internalID: 1846586212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_11
+      name: GravEffect_32
       rect:
         serializedVersion: 2
         x: 48
@@ -691,14 +670,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a01a9a5d8c3c43428fbf55bc7dfc25e
-      internalID: 1913049405
+      spriteID: 9b8c6fa31d10f534daee6631cd5d3aa5
+      internalID: 1798282025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_21
+      name: GravEffect_42
       rect:
         serializedVersion: 2
         x: 64
@@ -712,19 +691,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff80e025a10201840b301dff6a0c4b1b
-      internalID: -50237945
+      spriteID: 6fbee99b21021374ca47a8225ca932bf
+      internalID: -1852745899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_11
+      name: Turret_2
       rect:
         serializedVersion: 2
         x: 80
         y: 112
-        width: 16
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -733,14 +712,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5026584316bc165499c691aca141ae2a
-      internalID: 1040148735
+      spriteID: 82880cb5001058747b9b4ec08dcc7b26
+      internalID: -1984908533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_21
+      name: GravNode_32
       rect:
         serializedVersion: 2
         x: 0
@@ -754,14 +733,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e60b2922ce4aea479d90732741572ab
-      internalID: -779952949
+      spriteID: 249e882f38ef3164688a219d9469397a
+      internalID: -2099920914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityDust_21
+      name: GravNode_42
       rect:
         serializedVersion: 2
         x: 16
@@ -775,14 +754,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 587b01e2af59ba147869c5ef34b061e1
-      internalID: -1122278821
+      spriteID: df176c52d62f1694d9c2c8ff6d4f91b1
+      internalID: -529934413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_31
+      name: GravRock_2
       rect:
         serializedVersion: 2
         x: 32
@@ -796,77 +775,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d8b0826d64941340bcd71e6e8e3ab30
-      internalID: -1632641573
+      spriteID: c179130e17c352447bc68bf67cbee281
+      internalID: 507648305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_41
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d00a5150b54ceb43927d2f6e23b6fac
-      internalID: -495204346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Node_31
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21af5017fad99e543b65557d8b0505d1
-      internalID: -288977486
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Node_41
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0391b2df73ec7184997463cef3a4cb5b
-      internalID: -2000560219
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Stone_2
+      name: GravParticle_13
       rect:
         serializedVersion: 2
         x: 0
@@ -880,14 +796,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4340907e4c4ee842a67bc21bf1ef259
-      internalID: -1603549772
+      spriteID: 160e7b6b447e0a14ca71b301721d96e0
+      internalID: 1265055298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeamEnd_2
+      name: GravParticle_23
       rect:
         serializedVersion: 2
         x: 16
@@ -901,14 +817,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7268281b3b7141d4e82c513b2a33ae53
-      internalID: 1922546124
+      spriteID: b087d072e86994f49a856d4dff4dd2e8
+      internalID: 373559723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeamStart_2
+      name: GravDust_13
       rect:
         serializedVersion: 2
         x: 32
@@ -922,14 +838,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52999854debd99848b428e3e19c0a6b3
-      internalID: 1242237125
+      spriteID: 4d3603d095020464cbf5217742ecdb4c
+      internalID: 1980639397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TurretFront_2
+      name: GravEffect_13
       rect:
         serializedVersion: 2
         x: 48
@@ -943,14 +859,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dace547fb95e88c46bc2f18e097f2131
-      internalID: 1763398396
+      spriteID: d9a5c29782d13e54caf5201c6dda4b9e
+      internalID: -94568405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TurretBack_2
+      name: GravEffect_23
       rect:
         serializedVersion: 2
         x: 64
@@ -964,35 +880,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 407f128716440734fa3edf8689b36203
-      internalID: -1734101506
+      spriteID: 03af552a56320c6438ecae6a59a81af6
+      internalID: -251117953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityParticle_12
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae4f14af4e4658846852f8c3cf71c6cb
-      internalID: 867990484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GravityParticle_22
+      name: GravNode_13
       rect:
         serializedVersion: 2
         x: 0
@@ -1006,14 +901,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf1b8d2358f041b48bfd1791d0f5db70
-      internalID: 1032182692
+      spriteID: abe3ef364dbd6fa47928a7a8ff3a8c31
+      internalID: 2035923418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_12
+      name: GravNode_23
       rect:
         serializedVersion: 2
         x: 16
@@ -1027,14 +922,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 462d4f1e0bcca6a47965d9294e0328ab
-      internalID: -1340031101
+      spriteID: 021541888365d054d8bcdeee495fcef5
+      internalID: 707686309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_22
+      name: GravDust_23
       rect:
         serializedVersion: 2
         x: 32
@@ -1048,14 +943,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c722268700275104d93e9a7f7d4c871b
-      internalID: 1546866202
+      spriteID: 5508454e30348234885e2845144fd06a
+      internalID: 807919867
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ActivePoint_1
+      name: GravEffect_33
       rect:
         serializedVersion: 2
         x: 48
@@ -1069,14 +964,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b84f7b7159ffa1f4e9e8bf82513ee75e
-      internalID: -232766135
+      spriteID: caba5cf36cf6eac41b3126880bb29bfe
+      internalID: 871831703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_12
+      name: GravEffect_43
       rect:
         serializedVersion: 2
         x: 64
@@ -1090,19 +985,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1689a876b195e784580ea2974b8c7fb9
-      internalID: 276366091
+      spriteID: ab767759d552fb6448fb0fb0baca1184
+      internalID: -1160327152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_22
+      name: Turret_3
       rect:
         serializedVersion: 2
         x: 80
         y: 64
-        width: 16
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1111,14 +1006,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e26b078e2110054b96fa52c354e6b37
-      internalID: 1803258118
+      spriteID: 5d97188758eecd34eb0cd7cfbd7d9abb
+      internalID: -341927447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_32
+      name: GravNode_33
       rect:
         serializedVersion: 2
         x: 0
@@ -1132,14 +1027,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6ef5a3c845c517459923c80d08c1495
-      internalID: -1490549899
+      spriteID: 342b5d63bfb5d434aa55238984830c1b
+      internalID: -953855162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_42
+      name: GravNode_43
       rect:
         serializedVersion: 2
         x: 16
@@ -1153,14 +1048,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf0565a74673be84fad69e160008062d
-      internalID: 1338127088
+      spriteID: b514c899b8efecd4a978d1eeb549affa
+      internalID: -1941749539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ActivePoint_2
+      name: GravRock_3
       rect:
         serializedVersion: 2
         x: 32
@@ -1174,20 +1069,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cf00898e68adb549bc4b1c505f4f078
-      internalID: 786415286
+      spriteID: 35d73479f255dab4d9374318ce66edca
+      internalID: 168819597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_32
+      name: Checkpoint_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 128
         y: 48
         width: 16
-        height: 16
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1195,56 +1090,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df53097184820ff499b1b4688c1a112a
-      internalID: -1467315652
+      spriteID: 8918a2205073042429051be987945b01
+      internalID: 725526263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_42
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b89f2bd1fe06c3641a8747a4aa6e418d
-      internalID: 420092519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Stone_3
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6281bc75f2bf004db12c97ce9350cb1
-      internalID: -1204031171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ActivePoint_3
+      name: GravParticle_14
       rect:
         serializedVersion: 2
         x: 0
@@ -1258,14 +1111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9edfcd58adce054fb0bd5d3cf9e7b63
-      internalID: -296320973
+      spriteID: c8885fde5e703c444aa6f364e3be8578
+      internalID: 1504481587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeamEnd_3
+      name: GravParticle_24
       rect:
         serializedVersion: 2
         x: 16
@@ -1279,14 +1132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f04859def5f2edc47ab08aee7edac05b
-      internalID: 1882518312
+      spriteID: eb24f36dc6a228941b9b005c2a91d4f6
+      internalID: -1860932747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TurretBack_3
+      name: GravDust_14
       rect:
         serializedVersion: 2
         x: 32
@@ -1300,14 +1153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7697a00774c011c45be1a2a5981ef432
-      internalID: 1442761260
+      spriteID: 37d2006f6d49bdf42b70bb9f3b757e10
+      internalID: -294325376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityParticle_23
+      name: GravEffect_14
       rect:
         serializedVersion: 2
         x: 48
@@ -1321,14 +1174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 009430d997ed6ca47ac535e5d20da158
-      internalID: -1509043913
+      spriteID: 256c4ee08c1ccef4284de081bb2f593f
+      internalID: 250569763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityDust_12
+      name: GravEffect_24
       rect:
         serializedVersion: 2
         x: 64
@@ -1342,35 +1195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0f1842dd1b4f674d9fe94f29ca978e5
-      internalID: 2067100543
+      spriteID: c6941c18a4234ff4aa21947f7a563fde
+      internalID: -939279453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_13
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69511c715adc1da48b636692ce6a5699
-      internalID: -909389961
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GravityEffect_23
+      name: GravNode_14
       rect:
         serializedVersion: 2
         x: 0
@@ -1384,14 +1216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2010e11dec822c84e977ecb7363829d5
-      internalID: -789023247
+      spriteID: 3582432c656dfe24aba977418a8369a5
+      internalID: -1183127997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_13
+      name: GravNode_24
       rect:
         serializedVersion: 2
         x: 16
@@ -1405,14 +1237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a80b3472ec15c4bab22f25daff483e
-      internalID: 254400362
+      spriteID: 616d7dee66839ff4c8f93236c522b925
+      internalID: -1422906152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_23
+      name: GravDust_24
       rect:
         serializedVersion: 2
         x: 32
@@ -1426,14 +1258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b89e1944f5674014a8ff390f9256db82
-      internalID: 1243591291
+      spriteID: c698b397981dd64419c26b39d18e6a33
+      internalID: -486746883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityDust_22
+      name: GravEffect_34
       rect:
         serializedVersion: 2
         x: 48
@@ -1447,14 +1279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25ab170a5edc8d14fa800d0b261ba9e3
-      internalID: 1735768798
+      spriteID: 67258b2dd90be714ca56ef44e5ede0ae
+      internalID: 391201009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_33
+      name: GravEffect_44
       rect:
         serializedVersion: 2
         x: 64
@@ -1468,19 +1300,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cfd7ffb3e2737944ac9dad8273b77a9
-      internalID: -1446511685
+      spriteID: a87f283e8c7452e4b834f65f47c16cd5
+      internalID: -1760962623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GravityEffect_43
+      name: Turret_4
       rect:
         serializedVersion: 2
         x: 80
         y: 16
-        width: 16
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1489,14 +1321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02bea3f08dcedc748b963b42a455c215
-      internalID: -1812054422
+      spriteID: 000413f4239df6e4fa313ace3e17c018
+      internalID: 414398338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_33
+      name: GravNode_34
       rect:
         serializedVersion: 2
         x: 0
@@ -1510,14 +1342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd1e5057a993204458b02e2d5ab2caa3
-      internalID: -1446162479
+      spriteID: 6c3e7015ded674d4f8df0f12efc7607d
+      internalID: 836791318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Node_43
+      name: GravNode_44
       rect:
         serializedVersion: 2
         x: 16
@@ -1531,14 +1363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5060c26bec6f5844863774025745853
-      internalID: 662804539
+      spriteID: 7886cfa8aba233e4d9570ad89639ce5a
+      internalID: 141715673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone_4
+      name: GravRock_4
       rect:
         serializedVersion: 2
         x: 32
@@ -1552,50 +1384,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50fd7cda72b16a14dbaebe390ff7970c
-      internalID: -2048965753
+      spriteID: 16b21f65ed1d6c44eb40cfd831212c31
+      internalID: -795235706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeamEnd_4
+      name: Beam_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
+        x: 80
+        y: 176
+        width: 48
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 0, z: 16, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f47f2508594e9245be58fa7b4ffb0e0
-      internalID: -1929116076
+      spriteID: 27f15ddb0a7e6c642b75da17f4014fbb
+      internalID: -1950075425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TurretBack_4
+      name: Beam_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
+        x: 80
+        y: 128
+        width: 48
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 0, z: 16, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5a99faa7862bf241aaa8bf4caf784dd
-      internalID: 1505403405
+      spriteID: 75902af88e0b0aa4787da9295031930f
+      internalID: -829983067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 0, z: 16, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab40266b6027b745b9039259c957711
+      internalID: -1632522776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 0, z: 16, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3c99555b8b35bd479e1974cdd9136b8
+      internalID: -111881061
       vertices: []
       indices: 
       edges: []
@@ -1611,77 +1485,107 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ActivePoint_1: -232766135
-      ActivePoint_2: 786415286
-      ActivePoint_3: -296320973
-      Beam: 1302581347
-      BeamEnd_1: -1202659025
-      BeamEnd_2: 1922546124
-      BeamEnd_3: 1882518312
-      BeamEnd_4: -1929116076
-      BeamStart_1: -747608956
-      BeamStart_2: 1242237125
-      DeactivePoint_1: 1677230414
-      DeactivePoint_2: 2083519561
-      DeactivePoint_3: -1659270747
-      GravityDust_10: 1950602781
-      GravityDust_11: 511262404
-      GravityDust_12: 2067100543
-      GravityDust_20: -1965681515
-      GravityDust_21: -1122278821
-      GravityDust_22: 1735768798
-      GravityEffect_10: -1656869503
-      GravityEffect_11: 1913049405
-      GravityEffect_12: -1340031101
-      GravityEffect_13: -909389961
-      GravityEffect_20: 1422261203
-      GravityEffect_21: -50237945
-      GravityEffect_22: 1546866202
-      GravityEffect_23: -789023247
-      GravityEffect_30: -2028817494
-      GravityEffect_31: -1632641573
-      GravityEffect_32: -1490549899
-      GravityEffect_33: -1446511685
-      GravityEffect_40: -2077928249
-      GravityEffect_41: -495204346
-      GravityEffect_42: 1338127088
-      GravityEffect_43: -1812054422
-      GravityParticle_10: -185015481
-      GravityParticle_11: 934649677
-      GravityParticle_12: 867990484
-      GravityParticle_20: -118139686
-      GravityParticle_21: -1698045422
-      GravityParticle_22: 1032182692
-      GravityParticle_23: -1509043913
-      LowGravityBG: -335771147
-      LowGravityFront_1: 884555351
-      LowGravityFront_2: -2031998975
-      Node_10: 1174315033
-      Node_11: 1040148735
-      Node_12: 276366091
-      Node_13: 254400362
-      Node_20: 678245140
-      Node_21: -779952949
-      Node_22: 1803258118
-      Node_23: 1243591291
-      Node_30: -407090805
-      Node_31: -288977486
-      Node_32: -1467315652
-      Node_33: -1446162479
-      Node_40: -1900155920
-      Node_41: -2000560219
-      Node_42: 420092519
-      Node_43: 662804539
-      Stone_1: -1190989865
-      Stone_2: -1603549772
-      Stone_3: -1204031171
-      Stone_4: -2048965753
-      TurretBack_1: 214083896
-      TurretBack_2: -1734101506
-      TurretBack_3: 1442761260
-      TurretBack_4: 1505403405
-      TurretFront_1: -234392288
-      TurretFront_2: 1763398396
+      Beam_0: -1950075425
+      Beam_1: -829983067
+      Beam_11: -1454702675
+      Beam_12: -740035575
+      Beam_2: -1632522776
+      Beam_22: -25231284
+      Beam_3: -111881061
+      Beam_32: -1938514941
+      Beam_42: -989612739
+      Checkpoint_1: -798453530
+      Checkpoint_2: 725526263
+      GravBG: 1236074273
+      GravDust_11: -113044673
+      GravDust_12: -258598331
+      GravDust_13: 1980639397
+      GravDust_14: -294325376
+      GravDust_21: 319249798
+      GravDust_22: 1846586212
+      GravDust_23: 807919867
+      GravDust_24: -486746883
+      GravEffect_11: -1498408161
+      GravEffect_12: 865324677
+      GravEffect_13: -94568405
+      GravEffect_14: 250569763
+      GravEffect_21: -195676921
+      GravEffect_22: -96107596
+      GravEffect_23: -251117953
+      GravEffect_24: -939279453
+      GravEffect_31: 67057537
+      GravEffect_32: 1798282025
+      GravEffect_33: 871831703
+      GravEffect_34: 391201009
+      GravEffect_41: 167002035
+      GravEffect_42: -1852745899
+      GravEffect_43: -1160327152
+      GravEffect_44: -1760962623
+      GravFG_1: 2092158861
+      GravFG_2: -1581588454
+      GravNode_11: 2124070154
+      GravNode_12: 2016923810
+      GravNode_13: 2035923418
+      GravNode_14: -1183127997
+      GravNode_21: -8662405
+      GravNode_22: -1223180920
+      GravNode_23: 707686309
+      GravNode_24: -1422906152
+      GravNode_31: 446200387
+      GravNode_32: -2099920914
+      GravNode_33: -953855162
+      GravNode_34: 836791318
+      GravNode_41: 1052745989
+      GravNode_42: -529934413
+      GravNode_43: -1941749539
+      GravNode_44: 141715673
+      GravParticle_11: -812906626
+      GravParticle_12: -319415094
+      GravParticle_13: 1265055298
+      GravParticle_14: 1504481587
+      GravParticle_21: -2111895860
+      GravParticle_22: 1712810713
+      GravParticle_23: 373559723
+      GravParticle_24: -1860932747
+      GravRock_1: 2086439673
+      GravRock_2: 507648305
+      GravRock_3: 168819597
+      GravRock_4: -795235706
+      Improvements_15: -1125036231
+      Improvements_16: -1295066514
+      Improvements_23: -440669603
+      Improvements_30: 2017733355
+      Improvements_31: 1410760617
+      Improvements_39: 1143532170
+      Improvements_40: -1289829652
+      Improvements_44: 1072382382
+      Improvements_45: 410082237
+      Improvements_46: 1090573389
+      Improvements_47: -536758024
+      Improvements_54: -908877978
+      Improvements_55: 2104754663
+      Improvements_56: -479228863
+      Improvements_6: -730143682
+      Improvements_63: 778720651
+      Improvements_64: -1429920193
+      Improvements_68: -1510753401
+      Improvements_69: 155962925
+      Improvements_7: -2111097965
+      Improvements_70: -1093565139
+      Improvements_78: 536513243
+      Improvements_79: 295774484
+      Improvements_8: -859706668
+      Improvements_80: -903463256
+      Improvements_87: 226178263
+      Improvements_88: -1210386049
+      Improvements_92: 1037359676
+      Improvements_93: 1655780966
+      Improvements_94: 895308271
+      Improvements_95: 1550286684
+      Turret_1: -652591494
+      Turret_2: -1984908533
+      Turret_3: -341927447
+      Turret_4: 414398338
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

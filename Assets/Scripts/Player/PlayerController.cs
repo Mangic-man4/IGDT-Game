@@ -312,6 +312,7 @@ public class PlayerController : MonoBehaviour
     // === Collision Events ===
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Trigger Entered: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
             rb.gravityScale = Mathf.Sign(rb.gravityScale) * lowGravityScale;
@@ -321,6 +322,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        Debug.Log("Trigger Stays: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
             rb.gravityScale = Mathf.Sign(rb.gravityScale) * lowGravityScale;
@@ -330,6 +332,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("Trigger Exit: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
             rb.gravityScale = Mathf.Sign(rb.gravityScale) * normalGravityScale;
