@@ -75,6 +75,9 @@ public class Checkpoint : MonoBehaviour
         public Vector3 position;
         public Quaternion rotation;
         public Vector3 scale;
+        public Vector3 visualScale;
+        public bool flipX;
+        public bool flipY;
     }
 
     // Prefabs for respawning
@@ -159,13 +162,33 @@ public class Checkpoint : MonoBehaviour
         savedTurrets.Clear();
         foreach (var turret in FindObjectsOfType<LaserTurret>())
         {
+            Vector3 visualScale = Vector3.one; // default fallback
+            Transform visual = turret.transform.Find("FirePoint");
+            if (visual != null)
+            {
+                visualScale = visual.localScale;
+            }
+
+            bool flipX = false;
+            bool flipY = false;
+
+            if (turret.TryGetComponent<SpriteRenderer>(out var sr))
+            {
+                flipX = sr.flipX;
+                flipY = sr.flipY;
+            }
+
             savedTurrets.Add(new TurretSnapshot
             {
                 position = turret.transform.position,
                 rotation = turret.transform.rotation,
-                scale = turret.transform.localScale
+                scale = turret.transform.localScale,
+                visualScale = visualScale,
+                flipX = flipX,
+                flipY = flipY
             });
         }
+
 
         isChecked = true;
         sR.sprite = activated;
@@ -295,6 +318,18 @@ public class Checkpoint : MonoBehaviour
             {
                 GameObject turret = Instantiate(turretPrefab, snapshot.position, snapshot.rotation);
                 turret.transform.localScale = snapshot.scale;
+
+                if (turret.TryGetComponent<SpriteRenderer>(out var sr))
+                {
+                    sr.flipX = snapshot.flipX;
+                    sr.flipY = snapshot.flipY;
+                }
+
+                Transform visualChild = turret.transform.Find("FirePoint");
+                if (visualChild != null)
+                {
+                    visualChild.localScale = snapshot.visualScale;
+                }
             }
         }
 
