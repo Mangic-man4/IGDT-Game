@@ -197,6 +197,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 192
+  localMuzzleOffset: {x: 0, y: 0}
+  selfHitEpsilon: 0.01
 --- !u!114 &-8936463124491238571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +308,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1950075425, guid: 7d6b82852604a524ca058e9794fb1b92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 2
   m_Size: {x: 1, y: 1}

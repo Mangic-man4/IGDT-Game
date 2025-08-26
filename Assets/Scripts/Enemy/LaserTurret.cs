@@ -1,22 +1,28 @@
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class LaserTurret : MonoBehaviour
 {
     [Header("References")]
-    public Transform firePoint;              // Still on root
+    [Tooltip("Child transform that holds the SpriteRenderer for the beam. Pivot should be centered.")]
+    public Transform firePoint;                       // Child with SpriteRenderer
     public float maxDistance = 100f;
     public LayerMask layerMask;
 
-    private SpriteRenderer laserRenderer;   // On child object (LaserBeam)
+    [Header("Muzzle & Beam")]
+    [Tooltip("Local-space offset of the ray start from the turret pivot (e.g. barrel tip).")]
+    public Vector2 localMuzzleOffset = Vector2.zero;  // Adjust in Inspector to match your sprite
+    [Tooltip("Small offset along the direction so the ray doesn't hit own collider.")]
+    public float selfHitEpsilon = 0.01f;
 
+    private SpriteRenderer laserRenderer;             // On firePoint
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private Vector3 originalScale;
 
-    // For laser
+    // Computed per frame
+    private Vector3 dir;
+    private Vector3 worldStart;
     private float distance;
-    private Vector3 direction;
 
     void Awake()
     {
@@ -25,12 +31,15 @@ public class LaserTurret : MonoBehaviour
         originalScale = transform.localScale;
     }
 
-    private void Start()
+    void Start()
     {
         if (firePoint != null)
             laserRenderer = firePoint.GetComponent<SpriteRenderer>();
 
-        GetPlacementDirection();
+        if (laserRenderer == null)
+        {
+            Debug.LogWarning("[LaserTurret] Missing SpriteRenderer on firePoint.");
+        }
     }
 
     void Update()
@@ -42,16 +51,31 @@ public class LaserTurret : MonoBehaviour
     {
         if (firePoint == null || laserRenderer == null) return;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistance, layerMask);
+        // 1) Direction: turret sprite faces LEFT at 0°, and beam sprite is drawn LEFT→RIGHT.
+        // So we fire along -transform.right (world space), which respects rotation & flipping.
+        dir = (-transform.right).normalized;
+
+        // 2) World start: turret pivot + local muzzle offset (rotated with the turret).
+        worldStart = transform.TransformPoint(localMuzzleOffset);
+
+        // 3) Raycast
+        Vector3 rayStart = worldStart + dir * selfHitEpsilon;
+        RaycastHit2D hit = Physics2D.Raycast(rayStart, dir, maxDistance, layerMask);
         distance = hit.collider ? hit.distance : maxDistance;
 
-        Vector2 size = laserRenderer.size;
+        // 4) Align the beam child so its local +X points in firing direction.
+        firePoint.right = dir;
+
+        // 5) Size the beam: sprite goes left→right, pivot centered → place beam at midpoint.
+        //    Requires SpriteRenderer Draw Mode = Tiled or Sliced so 'size' affects width.
+        var size = laserRenderer.size;
         size.x = distance;
         laserRenderer.size = size;
 
-        // Position the laser midpoint in world space
-        firePoint.position = transform.position + (0.5f * distance * direction);
+        // 6) Position the beam center at midpoint between start and hit (or max range)
+        firePoint.position = worldStart + dir * (distance * 0.5f);
 
+        // 7) Player hit logic
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             var powerUps = hit.collider.GetComponent<PlayerPowerUps>();
@@ -87,12 +111,5 @@ public class LaserTurret : MonoBehaviour
     {
         ResetTurret();
         gameObject.SetActive(true);
-    }
-
-    void GetPlacementDirection()
-    {
-        // Determine direction based on scale.x (lossyScale.x)
-        float facing = Mathf.Sign(transform.lossyScale.x);
-        direction = new Vector2(facing, 0f);
     }
 }

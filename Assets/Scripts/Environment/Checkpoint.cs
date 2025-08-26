@@ -78,6 +78,7 @@ public class Checkpoint : MonoBehaviour
         public Vector3 visualScale;
         public bool flipX;
         public bool flipY;
+        public LayerMask layerMask;
     }
 
     // Prefabs for respawning
@@ -185,7 +186,8 @@ public class Checkpoint : MonoBehaviour
                 scale = turret.transform.localScale,
                 visualScale = visualScale,
                 flipX = flipX,
-                flipY = flipY
+                flipY = flipY,
+                layerMask = turret.layerMask
             });
         }
 
@@ -319,12 +321,16 @@ public class Checkpoint : MonoBehaviour
                 GameObject turret = Instantiate(turretPrefab, snapshot.position, snapshot.rotation);
                 turret.transform.localScale = snapshot.scale;
 
+                if (turret.TryGetComponent<LaserTurret>(out var turretObj))
+                {
+                    turretObj.layerMask = snapshot.layerMask;
+                }
+
                 if (turret.TryGetComponent<SpriteRenderer>(out var sr))
                 {
                     sr.flipX = snapshot.flipX;
                     sr.flipY = snapshot.flipY;
                 }
-
                 Transform visualChild = turret.transform.Find("FirePoint");
                 if (visualChild != null)
                 {
@@ -364,6 +370,11 @@ public class Checkpoint : MonoBehaviour
         {
             for (int i = 0; i < giveShieldStacks; i++)
                 powerUps.AddShield();
+        }
+
+        if (playerObj.TryGetComponent<PlayerController>(out var pc))
+        {
+            pc.ResetDeathState();
         }
     }
     public bool RespawnsSavedState()

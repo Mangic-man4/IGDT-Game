@@ -540529,6 +540529,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 16847317151607468, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
+      propertyPath: localMuzzleOffset.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 16847317151607470, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
       propertyPath: m_Name
       value: TurretTest (1)

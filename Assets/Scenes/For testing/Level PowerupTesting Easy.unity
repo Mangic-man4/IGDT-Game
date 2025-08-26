@@ -23982,6 +23982,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1773850570}
     - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
+      propertyPath: restorePowerUps
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
       propertyPath: giveShieldStacks
       value: 0
       objectReference: {fileID: 0}
@@ -24002,7 +24006,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
+      propertyPath: restoreSavedPickupState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
       propertyPath: respawnRestoresSavedState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
+      propertyPath: restoreEnvironmentalObjects
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7752239881352396750, guid: 0035791bc613c6749b5ce32837cb4f46, type: 3}
@@ -321378,6 +321390,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 16847317151607468, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 1216
+      objectReference: {fileID: 0}
+    - target: {fileID: 16847317151607468, guid: e5eed12eb101d2f489470107b775b4fc, type: 3}
       propertyPath: laserBeamRenderer
       value: 
       objectReference: {fileID: 0}
@@ -321920,67 +321936,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9716720ccddbe524a9776839b6221eb4, type: 3}
---- !u!1001 &3745468449697889618
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -15.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703595824453170284, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4981804538047946541, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_Name
-      value: PowerupSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 4981804538047946541, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bccc98e990ce6b94ba0f6266c16807b4, type: 3}
 --- !u!1001 &3996432490615122590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -322909,7 +322864,6 @@ SceneRoots:
   - {fileID: 1156181087}
   - {fileID: 700441256}
   - {fileID: 1486448184}
-  - {fileID: 3745468449697889618}
   - {fileID: 1311596013}
   - {fileID: 1108035863}
   - {fileID: 8195978321689215663}

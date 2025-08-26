@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private float xInput;
     private bool isGrounded;
     private bool isPaused = false;
+    private bool hasDied = false;
 
     private readonly float coyoteTime = 0.05f;
     private float coyoteTimer;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
     // === Unity Methods ===
     private void Start()
     {
+        ResetDeathState();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         powerUps = GetComponent<PlayerPowerUps>();
@@ -250,6 +252,9 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        if (hasDied) return; // prevent multiple death triggers
+        hasDied = true;
+
         //string sceneName = SceneManager.GetActiveScene().name;
 
         foreach (var effect in GameObject.FindGameObjectsWithTag("PickupEffect"))
@@ -380,6 +385,10 @@ public class PlayerController : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
+    }
+    public void ResetDeathState()
+    {
+        hasDied = false;
     }
 
 }
