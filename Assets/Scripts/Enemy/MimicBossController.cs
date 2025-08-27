@@ -58,7 +58,8 @@ public class MimicBossController : MonoBehaviour
     [Tooltip("Spawnpoints for the Explosice Coin prefab. All spawnpoints spawn coins simultaneously")]
     public Transform[] explosiveDropPoints;
     [Tooltip("Cooldown between the attack")]
-    public float explosiveDropCooldown = 4f;
+    //public float explosiveDropCooldown = 4f; // old fixed cooldown
+    public Vector2 explosiveDropCooldownRange = new(2f, 4f); // new random cooldown range
     private float explosiveDropTimer = 0f;
     //[Tooltip("Adds a random amount of force to the coins")]
     //[SerializeField] private float randomLaunchForce = 5f;
@@ -180,7 +181,10 @@ public class MimicBossController : MonoBehaviour
             if (explosiveDropTimer <= 0f)
             {
                 StartCoroutine(DropExplosives());
-                explosiveDropTimer = explosiveDropCooldown;
+                //explosiveDropTimer = explosiveDropCooldown; // old fixed cooldown
+                explosiveDropTimer = UnityEngine.Random.Range(explosiveDropCooldownRange.x, explosiveDropCooldownRange.y); // new random cooldown range
+
+                Debug.Log($"[Boss] Next explosive drop cooldown set to {explosiveDropTimer:F2} seconds");
             }
         }
 
@@ -391,8 +395,8 @@ public class MimicBossController : MonoBehaviour
             }
 
         }
-
-        yield return new WaitForSeconds(explosiveDropCooldown);
+        // NOTE: Removed waiting from here because cooldown timing is already 
+        // handled in Update(). Leaving it here caused the boss to wait twice (double time).
         canDropExplosives = true;
     }
     private GameObject PickMimicPrefab()

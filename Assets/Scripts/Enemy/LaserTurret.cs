@@ -51,31 +51,27 @@ public class LaserTurret : MonoBehaviour
     {
         if (firePoint == null || laserRenderer == null) return;
 
-        // 1) Direction: turret sprite faces LEFT at 0°, and beam sprite is drawn LEFT→RIGHT.
-        // So we fire along -transform.right (world space), which respects rotation & flipping.
         dir = (-transform.right).normalized;
 
-        // 2) World start: turret pivot + local muzzle offset (rotated with the turret).
+        // 1) World start: turret pivot + local muzzle offset (rotated with the turret).
         worldStart = transform.TransformPoint(localMuzzleOffset);
 
-        // 3) Raycast
+        // 2) Raycast
         Vector3 rayStart = worldStart + dir * selfHitEpsilon;
         RaycastHit2D hit = Physics2D.Raycast(rayStart, dir, maxDistance, layerMask);
         distance = hit.collider ? hit.distance : maxDistance;
 
-        // 4) Align the beam child so its local +X points in firing direction.
+        // 3) Align the beam child so its local +X points in firing direction.
         firePoint.right = dir;
 
-        // 5) Size the beam: sprite goes left→right, pivot centered → place beam at midpoint.
-        //    Requires SpriteRenderer Draw Mode = Tiled or Sliced so 'size' affects width.
         var size = laserRenderer.size;
         size.x = distance;
         laserRenderer.size = size;
 
-        // 6) Position the beam center at midpoint between start and hit (or max range)
+        // 4) Position the beam center at midpoint between start and hit (or max range)
         firePoint.position = worldStart + dir * (distance * 0.5f);
 
-        // 7) Player hit logic
+        // 5) Player hit logic
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             var powerUps = hit.collider.GetComponent<PlayerPowerUps>();
