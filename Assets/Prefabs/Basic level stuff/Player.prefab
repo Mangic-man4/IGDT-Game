@@ -310,6 +310,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportDistance: 15
   teleportCooldown: 0.5
+  cooldownReadySfx: {fileID: 8300000, guid: 665dffdeb16f12441bfe9c419ff6aa3f, type: 3}
+  cooldownReadyVolume: 1
+  cooldownReadyVfx: {fileID: 8781724617795257530, guid: ee6dee29432a5954a8943efb0b2bd59b, type: 3}
+  cooldownReadyVfxOffset: {x: 0.6, y: 0.6, z: 0}
+  cameraSfxSource: {fileID: 0}
   teleportGuidePrefab: {fileID: 1922650727168598821, guid: a26e2ee09e105d84099faa5b3e1e7753, type: 3}
   ghostAlpha: 0.3
   shadowAlphaMax: 0.2

@@ -120,7 +120,8 @@ public class Pause : MonoBehaviour
         if (pausedText != null)
             pausedText.gameObject.SetActive(true);
 
-        PauseBackgroundMusic();
+        PauseAllAudio(); // <- instead of PauseBackgroundMusic()
+        //PauseBackgroundMusic();
 
         if (playerController != null)
             playerController.SetPauseState(true);
@@ -151,7 +152,8 @@ public class Pause : MonoBehaviour
         else
             Debug.LogWarning("pausedText was still null during ResumeGame!");
 
-        ResumeBackgroundMusic();
+        ResumeAllAudio(); // <- instead of ResumeBackgroundMusic()
+        //ResumeBackgroundMusic();
 
         if (playerController != null)
             playerController.SetPauseState(false);
@@ -229,4 +231,16 @@ public class Pause : MonoBehaviour
         if (pauseMainPanel != null)
             pauseMainPanel.SetActive(true);
     }
+
+    void PauseAllAudio()
+    {
+        // Pauses all AudioSources where ignoreListenerPause == false (default)
+        AudioListener.pause = true;
+    }
+
+    void ResumeAllAudio()
+    {
+        AudioListener.pause = false;
+    }
+
 }
