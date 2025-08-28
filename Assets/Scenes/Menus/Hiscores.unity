@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 101513648}
   m_Direction: 2
   m_Value: 1.0000002
-  m_Size: 0.24294208
+  m_Size: 0.24294205
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 464681265}
   m_Direction: 0
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2399,13 +2399,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Easy
+    - m_Text: Apprentice
       m_Image: {fileID: 0}
-    - m_Text: Normal
+    - m_Text: Adept
       m_Image: {fileID: 0}
-    - m_Text: Hard
+    - m_Text: Wizard
       m_Image: {fileID: 0}
-    - m_Text: Extreme
+    - m_Text: Archmage
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3434,7 +3434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Easy
+  m_text: Apprentice
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
@@ -3443,8 +3443,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

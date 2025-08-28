@@ -1,13 +1,13 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
 public class DifficultySelection : MonoBehaviour
 {
     public TMP_Dropdown difficultyDropdown;
     public TextMeshProUGUI difficultyText;
 
-    public string CurrentDifficultyStatic { get; private set; } = "Normal";
+    // Store the currently selected difficulty (Apprentice/Adept/Wizard/Archmage)
+    public string CurrentDifficulty { get; private set; } = "Adept"; // default
 
     void Start()
     {
@@ -15,40 +15,39 @@ public class DifficultySelection : MonoBehaviour
         {
             difficultyDropdown.onValueChanged.AddListener(OnDropdownChanged);
 
-            // Optional: Set default index
-            difficultyDropdown.value = 1; // 0 = Easy, 1 = Normal, 2 = Hard, 3 = Extreme
+            // Optional: set default index to "Adept" (index 1 if dropdown order = Apprentice, Adept, Wizard, Archmage)
+            difficultyDropdown.value = Mathf.Clamp(difficultyDropdown.value, 0, difficultyDropdown.options.Count - 1);
             difficultyDropdown.RefreshShownValue();
 
-            SetSelectedDifficulty(difficultyDropdown.options[difficultyDropdown.value].text);
+            // Initialize from dropdown’s current option
+            string initValue = difficultyDropdown.options[difficultyDropdown.value].text;
+            SetSelectedDifficulty(initValue);
+        }
+        else
+        {
+            // If no dropdown, just refresh label from current stored difficulty
+            UpdateDifficultyDisplay();
         }
     }
 
     private void OnDropdownChanged(int index)
     {
-        string selectedDifficulty = difficultyDropdown.options[index].text;
-        SetSelectedDifficulty(selectedDifficulty);
+        string selected = difficultyDropdown.options[index].text;
+        SetSelectedDifficulty(selected);
     }
 
     public void SetSelectedDifficulty(string difficulty)
     {
-        CurrentDifficultyStatic = difficulty;
-
+        CurrentDifficulty = difficulty;
         UpdateDifficultyDisplay();
-        Debug.Log("Difficulty set to: " + difficulty);
+        Debug.Log($"Difficulty set to: {CurrentDifficulty}");
     }
 
     private void UpdateDifficultyDisplay()
     {
         if (difficultyText != null)
-        {
-            difficultyText.text = CurrentDifficultyStatic;
-        }
+            difficultyText.text = CurrentDifficulty;
         else
-        {
             Debug.LogWarning("DifficultyText is not assigned!");
-        }
     }
 }
-
-
-

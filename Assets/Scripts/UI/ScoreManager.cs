@@ -10,10 +10,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
 
     // Constants for difficulty multipliers
-    private const float EasyMultiplier = 0.5f;
-    private const float NormalMultiplier = 0.75f;
-    private const float HardMultiplier = 1.0f;
-    private const float ExtremeMultiplier = 1.5f;
+    private const float ApprenticeMultiplier = 0.5f;
+    private const float AdeptMultiplier = 0.75f;
+    private const float WizardMultiplier = 1.0f;
+    private const float ArchmageMultiplier = 1.5f;
 
     private readonly static HashSet<string> loggedDifficultyErrors = new();
 
@@ -63,14 +63,14 @@ public class ScoreManager : MonoBehaviour
     {
         switch (difficulty.ToLower())
         {
-            case "easy":
-                return EasyMultiplier;
-            case "normal":
-                return NormalMultiplier;
-            case "hard":
-                return HardMultiplier;
-            case "extreme":
-                return ExtremeMultiplier;
+            case "apprentice":
+                return ApprenticeMultiplier;
+            case "adept":
+                return AdeptMultiplier;
+            case "wizard":
+                return WizardMultiplier;
+            case "archmage":
+                return ArchmageMultiplier;
             default:
                 if (!loggedDifficultyErrors.Contains(difficulty))
                 {

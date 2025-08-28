@@ -292,12 +292,12 @@ public class PlayerController : MonoBehaviour
 
         if (active == null)
         {
-            Debug.Log("Easy death with NO checkpoint - hard resetting level");
+            Debug.Log("Apprentice death with NO checkpoint - hard resetting level");
             StartCoroutine(DelayedReloadScene());
             return;
         }
 
-        Debug.Log($"Easy death WITH checkpoint - restoring snapshot from {active.name}");
+        Debug.Log($"Apprentice death WITH checkpoint - restoring snapshot from {active.name}");
 
         transform.position = respawnPoint;
         rb.velocity = Vector2.zero;
@@ -317,7 +317,7 @@ public class PlayerController : MonoBehaviour
     // === Collision Events ===
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger Entered: " + other.gameObject.name);
+        //Debug.Log("Trigger Entered: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
             rb.gravityScale = Mathf.Sign(rb.gravityScale) * lowGravityScale;
@@ -327,7 +327,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Trigger Stays: " + other.gameObject.name);
+        //Debug.Log("Trigger Stays: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
             rb.gravityScale = Mathf.Sign(rb.gravityScale) * lowGravityScale;
@@ -337,7 +337,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Trigger Exit: " + other.gameObject.name);
+        //Debug.Log("Trigger Exit: " + other.gameObject.name);
         if (other.CompareTag("LowGravityZone"))
         {
             rb.gravityScale = Mathf.Sign(rb.gravityScale) * normalGravityScale;

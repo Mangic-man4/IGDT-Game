@@ -34,7 +34,7 @@ public class MimicFireball : MonoBehaviour
                 Debug.Log("Player hit by fireball!");
             }
 
-            if (owner != null && SceneManager.GetActiveScene().name.Contains("Easy"))
+            if (owner != null && SceneManager.GetActiveScene().name.Contains("Apprentice"))
             {
                 owner.ForceDeaggro();
             }

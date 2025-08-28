@@ -98,7 +98,7 @@ public class TeleportControl : MonoBehaviour
         teleportGuide = guideObj.GetComponent<TeleportGuide>();
         teleportGuide.player = transform;
         teleportGuide.teleportGhost = teleportGhost;
-        teleportGhost.SetActive(IsEasyDifficulty() && GhostSettings.enableGhost);
+        teleportGhost.SetActive(IsApprenticeDifficulty() && GhostSettings.enableGhost);
 
     }
 
@@ -156,7 +156,7 @@ public class TeleportControl : MonoBehaviour
 
              Color ghostColor = GhostSettings.ghostColor;
 
-             if (IsEasyDifficulty() && GhostSettings.enableTinting)
+             if (IsApprenticeDifficulty() && GhostSettings.enableTinting)
              {
                  ghostColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
              }
@@ -239,23 +239,23 @@ public class TeleportControl : MonoBehaviour
 
 
 
-    public bool IsEasyDifficulty()
+    public bool IsApprenticeDifficulty()
     {
-        return SceneManager.GetActiveScene().name.Contains("Easy");
+        return SceneManager.GetActiveScene().name.Contains("Apprentice");
     }
 
-    public bool IsNormalDifficulty()
+    public bool IsAdeptDifficulty()
     {
-        return SceneManager.GetActiveScene().name.Contains("Normal");
+        return SceneManager.GetActiveScene().name.Contains("Adept");
     }
-    public bool IsHardDifficulty()
+    public bool IsWizardDifficulty()
     {
-        return SceneManager.GetActiveScene().name.Contains("Hard");
+        return SceneManager.GetActiveScene().name.Contains("Wizard");
     }
 
-    public bool IsExtremeDifficulty()
+    public bool IsArchmageDifficulty()
     {
-        return SceneManager.GetActiveScene().name.Contains("Extreme");
+        return SceneManager.GetActiveScene().name.Contains("Archmage");
     }
 
     public void SetPauseState(bool pause)
@@ -322,10 +322,10 @@ public class TeleportControl : MonoBehaviour
         GhostSettings.enableGhost = isVisible;
         GhostSettings.SaveSettings();
 
-        // Enable line if Easy and ghost visible
+        // Enable line if Apprentice and ghost visible
         if (teleportGuide != null && TryGetComponent(out LineRenderer line))
         {
-            line.enabled = isVisible && IsEasyDifficulty();
+            line.enabled = isVisible && IsApprenticeDifficulty();
         }
 
 
@@ -356,7 +356,7 @@ public class TeleportControl : MonoBehaviour
         {
             Color ghostColor;
 
-            if (IsHardDifficulty() || IsExtremeDifficulty())
+            if (IsWizardDifficulty() || IsArchmageDifficulty())
             {
                 float alpha = GhostSettings.shadowUsesOpacity
                     ? GhostSettings.ghostAlpha * shadowAlphaMax
@@ -370,7 +370,7 @@ public class TeleportControl : MonoBehaviour
             {
                 ghostColor = GhostSettings.ghostColor;
 
-                if ((IsEasyDifficulty() || IsNormalDifficulty()) && GhostSettings.enableTinting)
+                if ((IsApprenticeDifficulty() || IsAdeptDifficulty()) && GhostSettings.enableTinting)
                 {
                     bool isSafe = IsTeleportTargetSafe(targetPosition);
                     ghostColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;

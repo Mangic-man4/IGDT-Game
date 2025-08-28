@@ -21,7 +21,7 @@ public class LevelHoverTooltip : MonoBehaviour, IPointerEnterHandler, IPointerEx
     [System.Serializable]
     public class DifficultyPreview
     {
-        public string difficultyName; // e.g., "Easy", "Normal", "Hard", "Extreme"
+        public string difficultyName; // e.g., "Apprentice", "Adept", "Wizard", "Archmage"
         public Sprite previewSprite;
     }
 

@@ -99,6 +99,13 @@ public class MimicBossController : MonoBehaviour
     //[Tooltip("Avoid bouncing off corpse")]
     //[SerializeField] private float bossCoinNoCollideTime = 0.2f; // avoid bouncing off corpse
 
+    [Header("Pickup Landing Config")]
+    [SerializeField] private LayerMask pickupGroundMask;   // set in Inspector: Ground, Platforms, ObbyCourse, etc.
+    [SerializeField] private float pickupMinGroundNormalY = 0.5f;   // treat slopes up to ~60° as ground
+    [SerializeField] private float pickupSupportCheckDist = 0.2f;   // probe depth under pickup
+    [SerializeField] private float pickupSettleGrace = 0.05f;       // small delay after landing before re-check
+
+
     // optional visuals
     [Tooltip("OPTIONAL")]
     [SerializeField] private GameObject coinBurstVFX;          // reuse your Explosion_FX if you want
@@ -491,6 +498,7 @@ public class MimicBossController : MonoBehaviour
                 rb = powerup.AddComponent<Rigidbody2D>();
             }
 
+            rb.freezeRotation = true;
             rb.gravityScale = 1f;
 
             // Optional: limit falling speed
@@ -506,7 +514,15 @@ public class MimicBossController : MonoBehaviour
             if (!powerup.TryGetComponent<PowerupFallCleanup>(out var cleanup))
                 cleanup = powerup.AddComponent<PowerupFallCleanup>();
 
-            cleanup.SetLandingVFX(jumpDustPrefab);
+            // If you added Init(...) to PowerupFallCleanup:
+            cleanup.Init(
+                landingVFX: jumpDustPrefab,
+                groundMask: pickupGroundMask,
+                minNormalY: pickupMinGroundNormalY,
+                checkDist: pickupSupportCheckDist,
+                settleGraceSeconds: pickupSettleGrace
+
+            );
         }
     }
 
@@ -620,6 +636,7 @@ public class MimicBossController : MonoBehaviour
             // physics kick
             if (!coin.TryGetComponent<Rigidbody2D>(out var crb))
                 crb = coin.AddComponent<Rigidbody2D>();
+            crb.freezeRotation = true;
             crb.velocity = Vector2.zero;
             crb.AddForce(dir * UnityEngine.Random.Range(coinMinImpulse, coinMaxImpulse), ForceMode2D.Impulse);
             crb.AddTorque(UnityEngine.Random.Range(-coinMaxTorque, coinMaxTorque), ForceMode2D.Impulse);
@@ -627,7 +644,15 @@ public class MimicBossController : MonoBehaviour
             // ensure cleanup + dust
             if (!coin.TryGetComponent<PowerupFallCleanup>(out var cleanup))
                 cleanup = coin.AddComponent<PowerupFallCleanup>();
-            if (jumpDustPrefab) cleanup.SetLandingVFX(jumpDustPrefab);
+
+            cleanup.Init(
+                landingVFX: jumpDustPrefab,
+                groundMask: pickupGroundMask,
+                minNormalY: pickupMinGroundNormalY,
+                checkDist: pickupSupportCheckDist,
+                settleGraceSeconds: pickupSettleGrace
+
+            );
 
             // ignore boss colliders so they don't ping off the corpse; no need to re-enable
             var coinCols = coin.GetComponentsInChildren<Collider2D>(true);

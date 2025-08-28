@@ -7,8 +7,8 @@ using TMPro;
 public class DifficultySelector : MonoBehaviour
 {
     public TextMeshProUGUI difficultyText; // Assign in the Inspector
-    private int difficultyIndex = 1; // Start at Normal
-    private readonly string[] difficulties = { "Easy", "Normal", "Hard", "Extreme" };
+    private int difficultyIndex = 1; // Start at Adept
+    private readonly string[] difficulties = { "Apprentice", "Adept", "Wizard", "Archmage" };
     private bool canChangeDifficulty = true; // To prevent rapid, unintended changes
     public float changeCooldown = 0.5f; // Half a second before allowing another change
 
