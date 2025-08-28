@@ -123,6 +123,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level 7/Level 7 Archmage.unity
     guid: 7f0678be0815f0743926a91bdb7a7684
   - enabled: 1
+    path: Assets/Scenes/Levels/Level 8/Level 8 Apprentice.unity
+    guid: b741d0ebc79b5e1408f34f25339d6d05
+  - enabled: 1
     path: Assets/Scenes/Levels/Level 9/Level 9 Adept.unity
     guid: 85b164f774969bb45b7be91e5e797786
   - enabled: 1

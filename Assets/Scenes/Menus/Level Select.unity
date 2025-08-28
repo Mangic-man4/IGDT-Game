@@ -2750,7 +2750,9 @@ MonoBehaviour:
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
-  previewSpritesByDifficulty: []
+  previewSpritesByDifficulty:
+  - difficultyName: Apprentice
+    previewSprite: {fileID: 21300000, guid: 790be0a25b4b6bb42a6727cd35ecfb43, type: 3}
 --- !u!1 &1230613182
 GameObject:
   m_ObjectHideFlags: 0
@@ -4221,7 +4223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Normal
+  m_text: Adept
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
