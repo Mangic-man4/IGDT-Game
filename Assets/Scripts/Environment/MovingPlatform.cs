@@ -16,7 +16,8 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private bool triggerCheck = false;
     [Tooltip("If ON, the platform stops when it reaches the End Position    .")]
     [SerializeField] private bool stopAtEnd = false;
-
+    [Tooltip("If ON, use the Gameobject's position as the start position")]
+    [SerializeField] private bool useObjectPosAsStartPos = false;
 
     private bool movingToEnd = true;
     private bool activated = false;        // set true after first player touch
@@ -25,8 +26,11 @@ public class MovingPlatform : MonoBehaviour
 
     void Start()
     {
-        startPosition = transform.position;
-        startRotation = transform.rotation;
+        if (useObjectPosAsStartPos)
+        {
+            startPosition = transform.position;
+            //startRotation = transform.rotation;
+        }
     }
 
     void Update()

@@ -452,13 +452,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Easy
+    - m_Text: Apprentice
       m_Image: {fileID: 0}
-    - m_Text: Normal
+    - m_Text: Adept
       m_Image: {fileID: 0}
-    - m_Text: Hard
+    - m_Text: Wizard
       m_Image: {fileID: 0}
-    - m_Text: Extreme
+    - m_Text: Archmage
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -698,13 +698,13 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 0}
   previewSpritesByDifficulty:
-  - difficultyName: Easy
+  - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: dc9dbcb39f3341a4b97879d3cb2fb101, type: 3}
-  - difficultyName: Normal
+  - difficultyName: Adept
     previewSprite: {fileID: 21300000, guid: dc9dbcb39f3341a4b97879d3cb2fb101, type: 3}
-  - difficultyName: Hard
+  - difficultyName: Wizard
     previewSprite: {fileID: 21300000, guid: dc9dbcb39f3341a4b97879d3cb2fb101, type: 3}
-  - difficultyName: Extreme
+  - difficultyName: Archmage
     previewSprite: {fileID: 21300000, guid: dc9dbcb39f3341a4b97879d3cb2fb101, type: 3}
 --- !u!1001 &325425784
 PrefabInstance:
@@ -979,13 +979,13 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
-  - difficultyName: Easy
+  - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: dbb67389fa8dcbc409c7a403aa9a27b6, type: 3}
-  - difficultyName: Normal
+  - difficultyName: Adept
     previewSprite: {fileID: 21300000, guid: db4e26b7a077f304083dec571f0a9cba, type: 3}
-  - difficultyName: Hard
+  - difficultyName: Wizard
     previewSprite: {fileID: 21300000, guid: 40d97a8e477019948ab061e760104660, type: 3}
-  - difficultyName: Extreme
+  - difficultyName: Archmage
     previewSprite: {fileID: 21300000, guid: fad9cf5b36bf488489812542f2747f10, type: 3}
 --- !u!1 &339172893
 GameObject:
@@ -1799,13 +1799,13 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
-  - difficultyName: Easy
+  - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: 0eea4cb169179c841b37bbb6c5c6bcce, type: 3}
-  - difficultyName: Normal
+  - difficultyName: Adept
     previewSprite: {fileID: 21300000, guid: c56a02831fe71c044a971d575441b030, type: 3}
-  - difficultyName: Hard
+  - difficultyName: Wizard
     previewSprite: {fileID: 21300000, guid: 03c6055cc7fd78b469f334dc34515f17, type: 3}
-  - difficultyName: Extreme
+  - difficultyName: Archmage
     previewSprite: {fileID: 21300000, guid: ebd9258fc40393041b717f9181bdc21f, type: 3}
 --- !u!1 &820411804
 GameObject:
@@ -2275,7 +2275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Easy
+  m_text: Apprentice
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
@@ -2750,7 +2750,9 @@ MonoBehaviour:
   offset: {x: 50, y: 30, z: 0}
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
-  previewSpritesByDifficulty: []
+  previewSpritesByDifficulty:
+  - difficultyName: Apprentice
+    previewSprite: {fileID: 21300000, guid: 790be0a25b4b6bb42a6727cd35ecfb43, type: 3}
 --- !u!1 &1230613182
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,8 +2811,14 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
-  - difficultyName: Normal
-    previewSprite: {fileID: 21300000, guid: 3560f47e3cc721149a40b04441f6ab9d, type: 3}
+  - difficultyName: Apprentice
+    previewSprite: {fileID: 21300000, guid: 9af7f44595dfabd4ab59668dcc9eafe8, type: 3}
+  - difficultyName: Adept
+    previewSprite: {fileID: 21300000, guid: 9af7f44595dfabd4ab59668dcc9eafe8, type: 3}
+  - difficultyName: Wizard
+    previewSprite: {fileID: 21300000, guid: 9af7f44595dfabd4ab59668dcc9eafe8, type: 3}
+  - difficultyName: Archmage
+    previewSprite: {fileID: 21300000, guid: a31bad22ef6aeb745ba3a627b75f95f5, type: 3}
 --- !u!114 &1230613185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2874,13 +2882,13 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
-  - difficultyName: Easy
+  - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: a72dd5d12ea55334580e46911a342eca, type: 3}
-  - difficultyName: Normal
+  - difficultyName: Adept
     previewSprite: {fileID: 21300000, guid: 06955649cc442fc468d4e777b49e91b6, type: 3}
-  - difficultyName: Hard
+  - difficultyName: Wizard
     previewSprite: {fileID: 21300000, guid: 467d26946dd606c46b9b6f4c58fe17fc, type: 3}
-  - difficultyName: Extreme
+  - difficultyName: Archmage
     previewSprite: {fileID: 21300000, guid: 4bdfe06c23c30c84b8d2db532ba85923, type: 3}
 --- !u!1 &1247299692
 GameObject:
@@ -3877,13 +3885,13 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
-  - difficultyName: Easy
+  - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: 35bdb3a1aac7b374ebd65d9819ffea7f, type: 3}
-  - difficultyName: Normal
+  - difficultyName: Adept
     previewSprite: {fileID: 21300000, guid: c753aa5c20ead1d41a16e610cdbacb9c, type: 3}
-  - difficultyName: Hard
+  - difficultyName: Wizard
     previewSprite: {fileID: 21300000, guid: f2a439345ba62254892f723f71dd7f3f, type: 3}
-  - difficultyName: Extreme
+  - difficultyName: Archmage
     previewSprite: {fileID: 21300000, guid: 193735dbd3d1e1041aa1b233ca28eada, type: 3}
 --- !u!1 &1738105750
 GameObject:
@@ -4215,7 +4223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Normal
+  m_text: Adept
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
   m_sharedMaterial: {fileID: -586181918111797382, guid: b237df52ae2fa2645bb3dd942298d9cc, type: 2}
@@ -4332,6 +4340,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 24079752, guid: 97c9e13251085e24a8ac885ca8b62abc, type: 3}
+    - target: {fileID: 3104259492835932615, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2979263
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104259492835932615, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
+      propertyPath: m_Color.g
+      value: 0.2979263
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104259492835932615, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9716981
+      objectReference: {fileID: 0}
     - target: {fileID: 3104259492835932615, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -5144,13 +5164,13 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
-  - difficultyName: Easy
+  - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: 6a18361fd8d7c0148a819023ed2bf850, type: 3}
-  - difficultyName: Normal
+  - difficultyName: Adept
     previewSprite: {fileID: 21300000, guid: 872357e5cb9b53f4cafd9f39084062e0, type: 3}
-  - difficultyName: Hard
+  - difficultyName: Wizard
     previewSprite: {fileID: 21300000, guid: cabeb7b2ff057e94d8270ae64ca6e110, type: 3}
-  - difficultyName: Extreme
+  - difficultyName: Archmage
     previewSprite: {fileID: 21300000, guid: 3e1bcfb07c3aa724cae5c5b034e30b1e, type: 3}
 --- !u!1 &1967250763
 GameObject:
@@ -5300,13 +5320,13 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
-  - difficultyName: Easy
+  - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: 5a23f2987a129f84d8a93631106ac3bc, type: 3}
-  - difficultyName: Normal
+  - difficultyName: Adept
     previewSprite: {fileID: 21300000, guid: d7fd0ef91ddf0cd4fbc3a215ec6e8ab9, type: 3}
-  - difficultyName: Hard
+  - difficultyName: Wizard
     previewSprite: {fileID: 21300000, guid: 7c0de3d978fe7a149b01aee38cde66f1, type: 3}
-  - difficultyName: Extreme
+  - difficultyName: Archmage
     previewSprite: {fileID: 21300000, guid: f03074b800b40254ca9ec7175cecf1e7, type: 3}
 --- !u!1001 &2026007402
 PrefabInstance:
@@ -5581,13 +5601,13 @@ MonoBehaviour:
   previewImageObject: {fileID: 46866449}
   fallbackSprite: {fileID: 21300000, guid: 954e10eac7896fd42adb5c53b368e380, type: 3}
   previewSpritesByDifficulty:
-  - difficultyName: Easy
+  - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: 703924cf7f62c3c48b178f9a121e5831, type: 3}
-  - difficultyName: Normal
+  - difficultyName: Adept
     previewSprite: {fileID: 21300000, guid: f85d52b4961ed4940914e23a1eca37d9, type: 3}
-  - difficultyName: Hard
+  - difficultyName: Wizard
     previewSprite: {fileID: 21300000, guid: e30c07e5a36358b4993d114f0b2b9104, type: 3}
-  - difficultyName: Extreme
+  - difficultyName: Archmage
     previewSprite: {fileID: 21300000, guid: 7aa7fd96ae89d874cbda39cd80a510de, type: 3}
 --- !u!1 &2073665137
 GameObject:
@@ -5737,6 +5757,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 24079752, guid: 97c9e13251085e24a8ac885ca8b62abc, type: 3}
+    - target: {fileID: 3104259492835932615, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2028302
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104259492835932615, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104259492835932615, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6567476
+      objectReference: {fileID: 0}
     - target: {fileID: 3104259492835932615, guid: 999284b50c73a604e84a4002f4e5b728, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1

@@ -10,7 +10,7 @@ public class HiscoreMenuManager : MonoBehaviour
     public TMP_Dropdown difficultyDropdown;
 
     private readonly string[] levelNames = { "Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7" }; // Add your level names
-    private readonly string[] difficulties = { "Easy", "Normal", "Hard", "Extreme" };
+    private readonly string[] difficulties = { "Apprentice", "Adept", "Wizard", "Archmage" }; //change to new system
 
 
     private void Start()

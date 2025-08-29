@@ -76,6 +76,7 @@ public class PlayerPowerUps : MonoBehaviour
     // --- References ---
     private Rigidbody2D rb;
     private RigidbodySleepMode2D originalSleepMode;
+    private Collider2D[] _playerCols;
 
 
     private void Awake()
@@ -84,7 +85,7 @@ public class PlayerPowerUps : MonoBehaviour
         {
             originalSleepMode = rb.sleepMode;
         }
-
+        _playerCols = GetComponentsInChildren<Collider2D>(true);
     }
 
     private void Start()
@@ -262,7 +263,7 @@ public class PlayerPowerUps : MonoBehaviour
             string tag = hit.collider.tag;
             int platformLayer = LayerMask.NameToLayer("Platform");
 
-            if (tag == "ObbyCourse" || tag == "Door" || hit.collider.gameObject.layer == platformLayer)
+            if (tag == "ObbyCourse" || tag == "Door" || hit.collider.gameObject.layer == platformLayer || tag == "Untagged")
             {
                 Debug.Log("Hit " + hit.collider.tag + " or Platform layer, stopping dash before wall.");
                 Vector2 stopPosition = hit.point - direction * 0.05f;
@@ -273,10 +274,12 @@ public class PlayerPowerUps : MonoBehaviour
             {
                 Debug.Log("DashWall hit, dashing through.");
                 Collider2D wallCollider = hit.collider;
-                wallCollider.isTrigger = true;
+                //wallCollider.isTrigger = true;
+                GameObject wallRoot = wallCollider.transform.root.gameObject;
+                StartCoroutine(TemporarilyIgnoreWall(wallRoot, 0.05f));
                 finalPos = targetPosition;
                 rb.MovePosition(targetPosition);
-                StartCoroutine(DisableTriggerAfterDash(wallCollider));
+                //StartCoroutine(DisableTriggerAfterDash(wallCollider));
                 TryKillEnemyAtDashEndpoint(finalPos);
             }
             else if (IsEnemyTag(tag))
@@ -331,8 +334,6 @@ public class PlayerPowerUps : MonoBehaviour
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
-
-
     private void TryKillEnemyAtDashEndpoint(Vector2 position)
     {
         float killRadius = 0.5f; // Adjust for difficulty/sensitivity
@@ -354,10 +355,50 @@ public class PlayerPowerUps : MonoBehaviour
         }
     }
 
-
     private bool IsEnemyTag(string tag)
     {
         return tag == "Enemy" || tag == "CoinMimic" || tag == "KeyMimic";
+    }
+    private IEnumerator TemporarilyIgnoreWall(GameObject wallRoot, float seconds = 0.05f)
+    {
+        if (_playerCols == null || _playerCols.Length == 0)
+        {
+            _playerCols = GetComponentsInChildren<Collider2D>(true);
+        }
+
+        // Collect ALL colliders on the wall object (root + children)
+        var wallCols = wallRoot.GetComponentsInChildren<Collider2D>(true);
+
+        // Ignore collisions for the dash duration
+        for (int i = 0; i < _playerCols.Length; i++)
+        {
+            for (int j = 0; j < wallCols.Length; j++)
+            {
+                if (_playerCols[i] != null && wallCols[j] != null)
+                {
+                    Physics2D.IgnoreCollision(_playerCols[i], wallCols[j], true);
+                }
+            }
+        }
+
+        // Wait at least one physics step (and a tiny extra time to be safe)
+        yield return new WaitForFixedUpdate();
+        if (seconds > 0f)
+        {
+            yield return new WaitForSeconds(seconds);
+        }
+
+        // Re-enable collisions
+        for (int i = 0; i < _playerCols.Length; i++)
+        {
+            for (int j = 0; j < wallCols.Length; j++)
+            {
+                if (_playerCols[i] != null && wallCols[j] != null)
+                {
+                    Physics2D.IgnoreCollision(_playerCols[i], wallCols[j], false);
+                }
+            }
+        }
     }
 
     private IEnumerator DisableTriggerAfterDash(Collider2D wallCollider)
@@ -365,6 +406,13 @@ public class PlayerPowerUps : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         if (wallCollider != null)
             wallCollider.isTrigger = false;
+    }
+    private IEnumerator DelayedDash()
+    {
+        yield return null; // Wait 1 frame for unparenting to take effect
+        ExecuteDash();
+        isDashing = false;
+
     }
 
     private void TryFireball()
@@ -378,14 +426,6 @@ public class PlayerPowerUps : MonoBehaviour
 
         fireballCharges--;
         lastFireTime = Time.time;
-
-    }
-
-    private IEnumerator DelayedDash()
-    {
-        yield return null; // Wait 1 frame for unparenting to take effect
-        ExecuteDash();
-        isDashing = false;
 
     }
 

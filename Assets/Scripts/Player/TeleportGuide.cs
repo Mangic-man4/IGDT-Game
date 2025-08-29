@@ -48,12 +48,12 @@ public class TeleportGuide : MonoBehaviour
 
         //lineRenderer.enabled = isVisible;
 
-        bool isEasy = teleportControl.IsEasyDifficulty();
-        bool isNormal = teleportControl.IsNormalDifficulty();
-        bool isHard = teleportControl.IsHardDifficulty();
-        bool isExtreme = teleportControl.IsExtremeDifficulty();
+        bool isApprentice = teleportControl.IsApprenticeDifficulty();
+        bool isAdept = teleportControl.IsAdeptDifficulty();
+        bool isWizard = teleportControl.IsWizardDifficulty();
+        bool isArchmage = teleportControl.IsArchmageDifficulty();
 
-        lineRenderer.enabled = isEasy;
+        lineRenderer.enabled = isApprentice;
         isVisible = teleportGhost.activeSelf;
 
         Vector3 direction;
@@ -85,19 +85,19 @@ public class TeleportGuide : MonoBehaviour
         // Determine the base guide color
         Color guideColor = GhostSettings.ghostColor;
 
-        if ((isEasy || isNormal) && GhostSettings.enableTinting && PauseManager.Instance != null)
+        if ((isApprentice || isAdept) && GhostSettings.enableTinting && PauseManager.Instance != null)
         {
             bool isSafe = teleportControl.IsTeleportTargetSafe(targetPosition);
             guideColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
         }
-        else if (isHard || isExtreme)
+        else if (isWizard || isArchmage)
         {
             float alpha = matchGhostOpacity ? GhostSettings.ghostAlpha : shadowAlphaMax;
             guideColor = new Color(0f, 0f, 0f, alpha);
         }
 
 
-        if (isHard || isExtreme)
+        if (isWizard || isArchmage)
         {
             guideColor.a = GhostSettings.shadowUsesOpacity
                 ? GhostSettings.ghostAlpha * shadowAlphaMax
@@ -115,7 +115,7 @@ public class TeleportGuide : MonoBehaviour
         /*// === Match ghost tinting ===
         Color guideColor = GhostSettings.ghostColor;
 
-        if (GhostSettings.enableTinting && PauseManager.Instance != null && teleportControl.IsEasyDifficulty())
+        if (GhostSettings.enableTinting && PauseManager.Instance != null && teleportControl.IsApprenticeDifficulty())
         {
             bool isSafe = teleportControl.IsTeleportTargetSafe(targetPosition);
             guideColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
@@ -137,7 +137,7 @@ public class TeleportGuide : MonoBehaviour
     public void SetVisible(bool show)
     {
         isVisible = show;
-        lineRenderer.enabled = show && teleportControl != null && teleportControl.IsEasyDifficulty();
+        lineRenderer.enabled = show && teleportControl != null && teleportControl.IsApprenticeDifficulty();
         /*isVisible = value;
         lineRenderer.enabled = value;*/
     }

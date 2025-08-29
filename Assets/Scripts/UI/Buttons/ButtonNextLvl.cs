@@ -44,8 +44,8 @@ public class ButtonNextLvl : MonoBehaviour
                 else
                 {
                     Debug.LogWarning("Next level '" + nextLevelName + "' not found. Loading default level.");
-                    // If the next level doesn't exist, load the default level (e.g., Level (Number) Normal)
-                    SceneManager.LoadScene("Level " + levelNumber.ToString() + " Normal");
+                    // If the next level doesn't exist, load the default level (e.g., Level (Number) Adept)
+                    SceneManager.LoadScene("Level " + levelNumber.ToString() + " Adept");
                 }
             }
             else

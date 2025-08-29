@@ -20,9 +20,9 @@ public class EnemyHealth : MonoBehaviour
     // Determines hit points based on scene difficulty keyword.
     private int GetHitsByDifficulty(string sceneName) => sceneName switch
     {
-        string name when name.Contains("Easy") => 1,
-        string name when name.Contains("Hard") => 3,
-        string name when name.Contains("Extreme") => 4,
+        string name when name.Contains("Apprentice") => 1,
+        string name when name.Contains("Wizard") => 3,
+        string name when name.Contains("Archmage") => 4,
         _ => defaultHits
     };
 

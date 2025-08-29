@@ -12,6 +12,18 @@ public class TeleportControl : MonoBehaviour
     public float teleportDistance;
     [SerializeField] private float teleportCooldown = 0.5f;
 
+    [Header("Cooldown Ready Cue")]
+    [SerializeField] private AudioClip cooldownReadySfx;
+    [SerializeField, Range(0f, 1f)] private float cooldownReadyVolume = 1f;
+    [SerializeField] private GameObject cooldownReadyVfx;   // optional (sparkle/ping)
+    [SerializeField] private Vector3 cooldownReadyVfxOffset = Vector3.zero;
+
+    // Optional: assign a dedicated SFX AudioSource on the Main Camera in the Inspector.
+    // If null, we’ll fall back to Camera.main + PlayClipAtPoint.
+    [SerializeField] private AudioSource cameraSfxSource;
+
+    private bool cooldownReadyPlayed = true; // true at start so we don't ping on scene load
+
     [Header("Teleport Guide (optional)")]
     [SerializeField] private GameObject teleportGuidePrefab;
 
@@ -98,13 +110,89 @@ public class TeleportControl : MonoBehaviour
         teleportGuide = guideObj.GetComponent<TeleportGuide>();
         teleportGuide.player = transform;
         teleportGuide.teleportGhost = teleportGhost;
-        teleportGhost.SetActive(IsEasyDifficulty() && GhostSettings.enableGhost);
+        teleportGhost.SetActive(IsApprenticeDifficulty() && GhostSettings.enableGhost);
 
     }
 
     private void Update()
     {
         if (isPaused) return;
+
+        // Cooldown ready cue (fires once when lockout ends)
+        if (!cooldownReadyPlayed && Time.time >= lastTeleportTime + teleportCooldown)
+        {
+            // --- SFX at the camera ---
+            if (cooldownReadySfx != null)
+            {
+                if (cameraSfxSource != null)
+                {
+                    // Best: uses your mixer routing & 2D/3D settings on that source
+                    cameraSfxSource.PlayOneShot(cooldownReadySfx, cooldownReadyVolume);
+                }
+                else
+                {
+                    // Fallback: play at camera position
+                    var cam = Camera.main;
+                    var pos = cam ? cam.transform.position : transform.position;
+                    AudioSource.PlayClipAtPoint(cooldownReadySfx, pos, cooldownReadyVolume);
+                }
+            }
+
+            // --- VFX that follows the player (flip by facing/gravity, stable size) ---
+            if (cooldownReadyVfx != null)
+            {
+                // Determine facing (+1 right / -1 left) and gravity (+1 normal / -1 inverted)
+                float signX = Mathf.Sign(transform.localScale.x);
+                float signY = Mathf.Sign(transform.localScale.y);
+
+                // Flip the offset by facing/gravity so the star appears by the eyes correctly
+                Vector3 flippedOffset = new Vector3(
+                    cooldownReadyVfxOffset.x * signX,
+                    cooldownReadyVfxOffset.y * signY,
+                    cooldownReadyVfxOffset.z
+                );
+
+                // Spawn
+                var fx = Instantiate(cooldownReadyVfx, transform.position + flippedOffset, Quaternion.identity);
+
+                // Follow the player but neutralize parent scale so size stays as in prefab
+                fx.transform.SetParent(transform, worldPositionStays: true);
+                fx.transform.localScale = Vector3.one;
+
+                // Make sure particle size/space isn't affected by parent transforms
+                var systems = fx.GetComponentsInChildren<ParticleSystem>(true);
+                for (int i = 0; i < systems.Length; i++)
+                {
+                    var main = systems[i].main;
+                    main.scalingMode = ParticleSystemScalingMode.Local;     // ignore parent scale
+                    main.simulationSpace = ParticleSystemSimulationSpace.World; // keep motion stable if you move
+                    systems[i].Clear(true);
+                    systems[i].Play(true);
+                }
+
+                // Optional: ensure it renders on top
+                var rends = fx.GetComponentsInChildren<Renderer>(true);
+                foreach (var r in rends) { r.sortingLayerName = "VFX"; r.sortingOrder = 200; }
+
+                // Cleanup
+                float maxLife = 0.6f;
+                foreach (var ps in systems)
+                {
+                    var m = ps.main;
+                    float dur = m.duration;
+                    float life = (m.startLifetime.mode == ParticleSystemCurveMode.TwoConstants)
+                        ? m.startLifetime.constantMax
+                        : m.startLifetime.constant;
+                    maxLife = Mathf.Max(maxLife, dur + life);
+                }
+                Destroy(fx, maxLife);
+            }
+
+
+
+            cooldownReadyPlayed = true;
+        }
+
 
         if (KeyBindings.GetKeyDown(ActionKey.ToggleGhost))
         {
@@ -114,16 +202,21 @@ public class TeleportControl : MonoBehaviour
             }
         }
 
-
-
-        // Attempt teleport
-        if (Time.time > lastTeleportTime + teleportCooldown && KeyBindings.GetKeyDown(ActionKey.Teleport))
+        // Attempt teleport/dash (shared cooldown)
+        if (Time.time >= lastTeleportTime + teleportCooldown && KeyBindings.GetKeyDown(ActionKey.Teleport))
         {
             if (powerUps.hasDash)
+            {
                 powerUps.PerformDash();
+                StartCooldown(); // dash uses the same lockout ping
+            }
             else
+            {
                 PerformTeleport();
+                StartCooldown(); // we’ll remove the old lastTeleportTime set inside PerformTeleport
+            }
         }
+
 
         // Update ghost preview
         if (teleportGhost != null && teleportGhost.activeSelf)
@@ -156,7 +249,7 @@ public class TeleportControl : MonoBehaviour
 
              Color ghostColor = GhostSettings.ghostColor;
 
-             if (IsEasyDifficulty() && GhostSettings.enableTinting)
+             if (IsApprenticeDifficulty() && GhostSettings.enableTinting)
              {
                  ghostColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;
              }
@@ -180,9 +273,6 @@ public class TeleportControl : MonoBehaviour
             ghostAnimator.Play(stateInfo.shortNameHash, 0, stateInfo.normalizedTime);
         }
     }
-
-
-
 
     private void PerformTeleport()
     {
@@ -214,10 +304,7 @@ public class TeleportControl : MonoBehaviour
             }
         }
 
-
-
         transform.position = newPosition;
-        lastTeleportTime = Time.time;
 
         // Define which tags are allowed to be killed
         string[] killableTags = { "Enemy", "KeyMimic", "CoinMimic"};
@@ -237,25 +324,30 @@ public class TeleportControl : MonoBehaviour
         }
     }
 
-
-
-    public bool IsEasyDifficulty()
+    private void StartCooldown()
     {
-        return SceneManager.GetActiveScene().name.Contains("Easy");
+        lastTeleportTime = Time.time;
+        cooldownReadyPlayed = false;
     }
 
-    public bool IsNormalDifficulty()
+
+    public bool IsApprenticeDifficulty()
     {
-        return SceneManager.GetActiveScene().name.Contains("Normal");
-    }
-    public bool IsHardDifficulty()
-    {
-        return SceneManager.GetActiveScene().name.Contains("Hard");
+        return SceneManager.GetActiveScene().name.Contains("Apprentice");
     }
 
-    public bool IsExtremeDifficulty()
+    public bool IsAdeptDifficulty()
     {
-        return SceneManager.GetActiveScene().name.Contains("Extreme");
+        return SceneManager.GetActiveScene().name.Contains("Adept");
+    }
+    public bool IsWizardDifficulty()
+    {
+        return SceneManager.GetActiveScene().name.Contains("Wizard");
+    }
+
+    public bool IsArchmageDifficulty()
+    {
+        return SceneManager.GetActiveScene().name.Contains("Archmage");
     }
 
     public void SetPauseState(bool pause)
@@ -322,10 +414,10 @@ public class TeleportControl : MonoBehaviour
         GhostSettings.enableGhost = isVisible;
         GhostSettings.SaveSettings();
 
-        // Enable line if Easy and ghost visible
+        // Enable line if Apprentice and ghost visible
         if (teleportGuide != null && TryGetComponent(out LineRenderer line))
         {
-            line.enabled = isVisible && IsEasyDifficulty();
+            line.enabled = isVisible && IsApprenticeDifficulty();
         }
 
 
@@ -356,7 +448,7 @@ public class TeleportControl : MonoBehaviour
         {
             Color ghostColor;
 
-            if (IsHardDifficulty() || IsExtremeDifficulty())
+            if (IsWizardDifficulty() || IsArchmageDifficulty())
             {
                 float alpha = GhostSettings.shadowUsesOpacity
                     ? GhostSettings.ghostAlpha * shadowAlphaMax
@@ -370,7 +462,7 @@ public class TeleportControl : MonoBehaviour
             {
                 ghostColor = GhostSettings.ghostColor;
 
-                if ((IsEasyDifficulty() || IsNormalDifficulty()) && GhostSettings.enableTinting)
+                if ((IsApprenticeDifficulty() || IsAdeptDifficulty()) && GhostSettings.enableTinting)
                 {
                     bool isSafe = IsTeleportTargetSafe(targetPosition);
                     ghostColor = isSafe ? GhostSettings.safeColor : GhostSettings.unsafeColor;

@@ -8,8 +8,8 @@ public static class HiscoreEditorUtility
     {
         string playerName = PlayerPrefs.GetString("PlayerName", "Guest");
 
-        string[] levels = { "Level 0", "Level 1", "Level 2", "Level 3" }; // Add all your levels
-        string[] difficulties = { "Easy", "Normal", "Hard", "Extreme" };
+        string[] levels = { "Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9" }; // Add all your levels
+        string[] difficulties = { "Apprentice", "Adept", "Wizard", "Archmage" };
 
         foreach (string level in levels)
         {
