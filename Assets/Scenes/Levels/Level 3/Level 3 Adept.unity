@@ -43083,6 +43083,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+--- !u!82 &237017299 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4043977785782492113, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+  m_PrefabInstance: {fileID: 237017298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &240875797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2609007147354730318, guid: fdf2e2382febb3a4f9ddf79cfed2bd03, type: 3}
@@ -70159,6 +70164,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!251 &303451417
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -71095,6 +71101,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!251 &342003621
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -74193,6 +74200,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!251 &503693758
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -74963,6 +74971,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!251 &518297120
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -81259,6 +81268,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!251 &854014198
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -90531,6 +90541,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1177102040998870391, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: cameraSfxSource
+      value: 
+      objectReference: {fileID: 237017299}
     - target: {fileID: 1840644673984533290, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: mainCamera
       value: 
@@ -92816,6 +92830,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!251 &1211956210
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -104711,6 +104726,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!251 &1848634332
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -581341,6 +581357,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!251 &2067666736
 PlatformEffector2D:
   m_ObjectHideFlags: 0

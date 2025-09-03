@@ -56497,7 +56497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 824110013944118696, guid: 69a04a2fd444efc44964fc26ee3c72db, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -165003,6 +165003,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1177102040998870391, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: cameraSfxSource
+      value: 
+      objectReference: {fileID: 355225031}
     - target: {fileID: 1840644673984533290, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: checkpointsEnabled
       value: 0
@@ -165912,6 +165916,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+--- !u!82 &355225031 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4043977785782492113, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+  m_PrefabInstance: {fileID: 355225030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &357916909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511767,6 +511776,7 @@ MonoBehaviour:
   startOnFirstTouch: 0
   triggerCheck: 0
   stopAtEnd: 0
+  useObjectPosAsStartPos: 0
 --- !u!4 &1406188127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6412591671252580258, guid: 27c9357ec820628418d1a26644af6b98, type: 3}

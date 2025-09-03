@@ -137,4 +137,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level 9/Level 9 Apprentice.unity
     guid: 0ac1bbd52b2a6844792a8043d70aa39d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 8/Level 8 Adept.unity
+    guid: 5398ae3df845acc4bbf8812c3f803822
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 8/Level 8 Archmage.unity
+    guid: 8c376c1b21fa5ed488196f1f5966198a
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 8/Level 8 Wizard.unity
+    guid: 1b19beb94c75afd4fafe374dd7094f47
   m_configObjects: {}

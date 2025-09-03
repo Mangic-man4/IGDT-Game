@@ -242126,6 +242126,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+--- !u!82 &744979385 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4043977785782492113, guid: be0068671e3ac4047af0a2851923b6ba, type: 3}
+  m_PrefabInstance: {fileID: 744979384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &746514527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -249754,6 +249759,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1177102040998870391, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
+      propertyPath: cameraSfxSource
+      value: 
+      objectReference: {fileID: 744979385}
     - target: {fileID: 1840644673984533290, guid: 067871f591a0a5b43a23298373641cf0, type: 3}
       propertyPath: mainCamera
       value: 
