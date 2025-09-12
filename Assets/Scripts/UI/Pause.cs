@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class Pause : MonoBehaviour
@@ -73,6 +74,8 @@ public class Pause : MonoBehaviour
 
         if (settingsPanel != null)
             settingsPanel.SetActive(false); // hide at start
+
+        AudioListener.pause = false;// Ensure audio is not paused at start
     }
 
 
@@ -241,6 +244,32 @@ public class Pause : MonoBehaviour
     void ResumeAllAudio()
     {
         AudioListener.pause = false;
+    }
+
+    void Awake()
+    {
+        // Make sure a new scene never starts muted
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // Called after each scene loads
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Ensure global audio is unpaused and time is normal
+        AudioListener.pause = false;
+        Time.timeScale = 1f;
+
+        // Reset your own pause state/UI
+        if (PauseManager.Instance != null)
+            PauseManager.Instance.SetPauseState(false);
+
+        if (PauseScreen != null) PauseScreen.SetActive(false);
+        if (pausedText != null) pausedText.gameObject.SetActive(false);
     }
 
 }
