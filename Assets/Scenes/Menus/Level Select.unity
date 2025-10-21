@@ -2753,6 +2753,12 @@ MonoBehaviour:
   previewSpritesByDifficulty:
   - difficultyName: Apprentice
     previewSprite: {fileID: 21300000, guid: 790be0a25b4b6bb42a6727cd35ecfb43, type: 3}
+  - difficultyName: Adept
+    previewSprite: {fileID: 21300000, guid: d46b4c6a277f1c84593ce1bd36a1ea30, type: 3}
+  - difficultyName: Wizard
+    previewSprite: {fileID: 21300000, guid: e8d1f83395a093c459ab1f3a91e2c118, type: 3}
+  - difficultyName: Archmage
+    previewSprite: {fileID: 21300000, guid: def971cb69710924b9c2b7170f7e478b, type: 3}
 --- !u!1 &1230613182
 GameObject:
   m_ObjectHideFlags: 0
