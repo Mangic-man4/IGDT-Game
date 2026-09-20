@@ -8,8 +8,8 @@ public class ScriptBundler
     // Add any folder names (relative to Assets/) that you want to ignore here
     private static readonly string[] foldersToIgnore = new string[]
     {
-        "/Assets/TextMesh Pro",
-        "/Assets/FlexibleColorPicker"
+        "TextMesh Pro/",
+        "FlexibleColorPicker/"
     };
 
     [MenuItem("Tools/Bundle All Scripts")]
@@ -30,12 +30,13 @@ public class ScriptBundler
         foreach (string path in scriptPaths)
         {
             string normalizedPath = path.Replace("\\", "/");
+            string relativeToAssets = normalizedPath.Replace(Application.dataPath.Replace("\\", "/") + "/", "");
 
             // Skip ignored folders
             bool skip = false;
             foreach (string ignore in foldersToIgnore)
             {
-                if (normalizedPath.StartsWith(ignore))
+                if (relativeToAssets.StartsWith(ignore))
                 {
                     skip = true;
                     break;
